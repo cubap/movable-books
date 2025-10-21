@@ -1,0 +1,37 @@
+# Site settings
+title: Movable Books
+description: Collecting use cases and generating fixtures for movable books in IIIF
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "https://cubap.github.io/movable-books" # the base hostname & protocol for your site
+github_username: cubap
+repository: cubap/movable-books
+
+# Build settings
+markdown: kramdown
+theme: minima
+
+# Collections
+collections:
+  use_cases:
+    output: true
+    permalink: /use-cases/:name/
+
+# Defaults
+defaults:
+  - scope:
+      path: ""
+      type: "use_cases"
+    values:
+      layout: "use_case"
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+
+# Exclude from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - vendor/
+  - .bundle/

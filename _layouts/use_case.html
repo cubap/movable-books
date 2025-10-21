@@ -1,0 +1,93 @@
+---
+layout: default
+---
+<article class="use-case">
+    <header class="use-case-header">
+        <h1 class="use-case-title">{{ page.title }}</h1>
+        <p class="edit-link">
+            <a href="https://github.com/{{ site.repository }}/edit/main/{{ page.path }}" target="_blank">
+                📝 Edit this page on GitHub
+            </a>
+        </p>
+    </header>
+
+    <div class="use-case-content">
+        {% if page.description or content contains "## Description" %}
+        <section class="use-case-section" id="description">
+            <h2>Description</h2>
+            {% if page.description %}
+                <div class="section-content">
+                    {{ page.description | markdownify }}
+                </div>
+            {% endif %}
+        </section>
+        {% endif %}
+
+        {% if page.examples or content contains "## Examples" %}
+        <section class="use-case-section" id="examples">
+            <h2>Examples</h2>
+            {% if page.examples %}
+                <div class="section-content">
+                    {{ page.examples | markdownify }}
+                </div>
+            {% endif %}
+        </section>
+        {% endif %}
+
+        {% if page.instances or content contains "## Instances" %}
+        <section class="use-case-section" id="instances">
+            <h2>Instances</h2>
+            {% if page.instances %}
+                <div class="section-content">
+                    {% for instance in page.instances %}
+                        <div class="instance">
+                            <h3><a href="{{ instance.url }}" target="_blank">{{ instance.title }}</a></h3>
+                            {% if instance.description %}
+                                <p>{{ instance.description }}</p>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </section>
+        {% endif %}
+
+        {% if page.data or content contains "## Data" %}
+        <section class="use-case-section" id="data">
+            <h2>Data</h2>
+            {% if page.data %}
+                <div class="section-content">
+                    {% if page.data.manifest %}
+                        <h3>IIIF Manifest</h3>
+                        <pre><code>{{ page.data.manifest | jsonify }}</code></pre>
+                    {% endif %}
+                    {% if page.data.canvas %}
+                        <h3>IIIF Canvas</h3>
+                        <pre><code>{{ page.data.canvas | jsonify }}</code></pre>
+                    {% endif %}
+                </div>
+            {% endif %}
+        </section>
+        {% endif %}
+
+        <section class="use-case-section" id="links">
+            <h2>Links</h2>
+            <div class="section-content">
+                <ul class="links-list">
+                    <li><a href="https://iiif.slack.com/archives/C093P3XRLK1" target="_blank">IIIF Community Group on Slack</a></li>
+                    <li><a href="https://github.com/{{ site.repository }}" target="_blank">GitHub Repository</a></li>
+                    <li><a href="https://github.com/{{ site.repository }}/issues/1" target="_blank">Use Cases Discussion (Issue #1)</a></li>
+                    {% if page.links %}
+                        {% for link in page.links %}
+                            <li><a href="{{ link.url }}" target="_blank">{{ link.title }}</a></li>
+                        {% endfor %}
+                    {% endif %}
+                </ul>
+            </div>
+        </section>
+
+        <div class="use-case-markdown-content">
+            {{ content }}
+        </div>
+    </div>
+</article>
