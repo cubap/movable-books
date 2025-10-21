@@ -13,95 +13,17 @@ examples: |
   
   Another example is a medical volvelle showing the relationship between bodily humors, seasons, and treatments, where rotating the disc aligns different combinations of information.
 instances:
-  - title: "Astronomical Volvelle from Peter Apian"
-    url: "https://www.metmuseum.org/art/collection/search/356983"
+  - title: "Insert great examples here!"
+    url: "#nothing"
     description: "16th-century astronomical computing device with rotating paper discs"
-  - title: "Medieval Medical Volvelle"
-    url: "#"
-    description: "A diagnostic tool for determining treatments based on aligned symptoms"
 links:
   - title: "Wikipedia: Volvelle"
     url: "https://en.wikipedia.org/wiki/Volvelle"
 data:
-  manifest: |
-    {
-      "@context": "http://iiif.io/api/presentation/3/context.json",
-      "id": "https://example.org/iiif/volvelle/manifest",
-      "type": "Manifest",
-      "label": { "en": [ "Volvelle Example" ] },
-      "items": [
-        {
-          "id": "https://example.org/iiif/volvelle/canvas/p1",
-          "type": "Canvas",
-          "label": { "en": [ "Page with Volvelle" ] },
-          "height": 3000,
-          "width": 2000,
-          "items": [
-            {
-              "id": "https://example.org/iiif/volvelle/page/p1/1",
-              "type": "AnnotationPage",
-              "items": [
-                {
-                  "id": "https://example.org/iiif/volvelle/annotation/base",
-                  "type": "Annotation",
-                  "motivation": "painting",
-                  "body": {
-                    "id": "https://example.org/iiif/volvelle/base-page.jpg",
-                    "type": "Image",
-                    "format": "image/jpeg",
-                    "height": 3000,
-                    "width": 2000
-                  },
-                  "target": "https://example.org/iiif/volvelle/canvas/p1"
-                },
-                {
-                  "id": "https://example.org/iiif/volvelle/annotation/disc1",
-                  "type": "Annotation",
-                  "motivation": "painting",
-                  "body": {
-                    "id": "https://example.org/iiif/volvelle/rotating-disc.png",
-                    "type": "Image",
-                    "format": "image/png",
-                    "height": 800,
-                    "width": 800
-                  },
-                  "target": {
-                    "type": "SpecificResource",
-                    "source": "https://example.org/iiif/volvelle/canvas/p1",
-                    "selector": {
-                      "type": "FragmentSelector",
-                      "value": "xywh=600,1100,800,800"
-                    }
-                  },
-                  "body": {
-                    "type": "Choice",
-                    "items": [
-                      {
-                        "id": "https://example.org/iiif/volvelle/disc-rotation-0.png",
-                        "type": "Image",
-                        "label": { "en": [ "0 degrees" ] }
-                      },
-                      {
-                        "id": "https://example.org/iiif/volvelle/disc-rotation-90.png",
-                        "type": "Image",
-                        "label": { "en": [ "90 degrees" ] }
-                      }
-                    ]
-                  }
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    }
+  manifest: "https://cubap.github.io/movable-books/fixtures/manifests/all.json"
 ---
 
-## Additional Context
-
-Volvelles represent one of the earliest forms of interactive information display, predating modern computing by centuries. They combine aesthetic beauty with functional purpose, making them fascinating objects for digital preservation and interaction.
-
-### Implementation Notes
+## Implementation Notes
 
 When implementing digital volvelles, consider:
 

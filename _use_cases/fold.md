@@ -8,124 +8,24 @@ description: |
 examples: |
   Common examples include:
   
+  - **Flaps**: Small folded sections that can be lifted to reveal hidden content underneath
+  - **Accordion Folds**: Multiple panels connected in a zigzag pattern, commonly used in Asian handscrolls or modern artist books
   - **Fold-out Maps**: A large map folded to fit within a book that unfolds to reveal the full extent of the geographical area
   - **Gatefolds**: Two panels that fold out from the center, often used for panoramic images or large diagrams
-  - **Accordion Folds**: Multiple panels connected in a zigzag pattern, commonly used in Asian handscrolls or modern artist books
   - **Pop-up Elements**: Folded paper structures that create three-dimensional forms when the page is opened
 instances:
-  - title: "Blaeu Atlas Fold-out Map"
-    url: "#"
+  - title: "Please edit some examples here!"
+    url: "#nothing"
     description: "17th-century atlas with large fold-out maps of continents"
-  - title: "Pop-up Book Page"
-    url: "#"
-    description: "Victorian pop-up book with architectural scenes that rise when opened"
-  - title: "Japanese Accordion Book (Orihon)"
-    url: "#"
-    description: "Traditional Japanese book format with continuous zigzag folding"
+
 links:
   - title: "Book Structures and Formats"
     url: "https://www.nedcc.org/free-resources/preservation-leaflets/4.-storage-and-handling/4.10-storage-methods-and-handling-practices"
 data:
-  manifest: |
-    {
-      "@context": "http://iiif.io/api/presentation/3/context.json",
-      "id": "https://example.org/iiif/fold/manifest",
-      "type": "Manifest",
-      "label": { "en": [ "Fold Example - Gatefold" ] },
-      "items": [
-        {
-          "id": "https://example.org/iiif/fold/canvas/base",
-          "type": "Canvas",
-          "label": { "en": [ "Base Page" ] },
-          "height": 3000,
-          "width": 2000,
-          "items": [
-            {
-              "id": "https://example.org/iiif/fold/page/base/1",
-              "type": "AnnotationPage",
-              "items": [
-                {
-                  "id": "https://example.org/iiif/fold/annotation/base",
-                  "type": "Annotation",
-                  "motivation": "painting",
-                  "body": {
-                    "id": "https://example.org/iiif/fold/base.jpg",
-                    "type": "Image",
-                    "format": "image/jpeg",
-                    "height": 3000,
-                    "width": 2000
-                  },
-                  "target": "https://example.org/iiif/fold/canvas/base"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "id": "https://example.org/iiif/fold/canvas/left-panel",
-          "type": "Canvas",
-          "label": { "en": [ "Left Fold-out Panel" ] },
-          "height": 3000,
-          "width": 2000,
-          "items": [
-            {
-              "id": "https://example.org/iiif/fold/page/left/1",
-              "type": "AnnotationPage",
-              "items": [
-                {
-                  "id": "https://example.org/iiif/fold/annotation/left",
-                  "type": "Annotation",
-                  "motivation": "painting",
-                  "body": {
-                    "id": "https://example.org/iiif/fold/left-panel.jpg",
-                    "type": "Image",
-                    "format": "image/jpeg",
-                    "height": 3000,
-                    "width": 2000
-                  },
-                  "target": "https://example.org/iiif/fold/canvas/left-panel"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "id": "https://example.org/iiif/fold/canvas/right-panel",
-          "type": "Canvas",
-          "label": { "en": [ "Right Fold-out Panel" ] },
-          "height": 3000,
-          "width": 2000,
-          "items": [
-            {
-              "id": "https://example.org/iiif/fold/page/right/1",
-              "type": "AnnotationPage",
-              "items": [
-                {
-                  "id": "https://example.org/iiif/fold/annotation/right",
-                  "type": "Annotation",
-                  "motivation": "painting",
-                  "body": {
-                    "id": "https://example.org/iiif/fold/right-panel.jpg",
-                    "type": "Image",
-                    "format": "image/jpeg",
-                    "height": 3000,
-                    "width": 2000
-                  },
-                  "target": "https://example.org/iiif/fold/canvas/right-panel"
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    }
+  manifest: "https://cubap.github.io/movable-books/fixtures/manifests/all.json"
 ---
 
-## Additional Context
-
-Folds in books serve both practical and aesthetic purposes. Practically, they allow large images or documents to fit within the bound format. Aesthetically, they create moments of revelation and surprise as the reader unfolds hidden content.
-
-### Implementation Notes
+## Implementation Notes
 
 When implementing digital representations of folds:
 

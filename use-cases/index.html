@@ -1,0 +1,34 @@
+---
+layout: default
+title: "Use Cases"
+permalink: /use-cases/
+---
+
+<div class="use-cases-index">
+  <h1>Use Cases</h1>
+  <p class="lead">Browse all documented movable book patterns.</p>
+
+  {% assign cases = site.use_cases | sort: 'title' %}
+  {% if cases and cases.size > 0 %}
+  <div class="use-cases-list" role="list">
+    {% for uc in cases %}
+      <article class="use-case-item" role="listitem">
+        <h2><a href="{{ uc.url | relative_url }}">{{ uc.title }}</a></h2>
+        {% if uc.description %}
+          <p>{{ uc.description | strip_html | truncatewords: 40 }}</p>
+        {% endif %}
+      </article>
+    {% endfor %}
+  </div>
+  {% else %}
+    <p>No use cases found yet.</p>
+  {% endif %}
+</div>
+
+<style>
+  .use-cases-list { padding-left: 0; margin-top: 1.5rem; }
+  .use-case-item { margin: 1.25rem 0; padding: 1rem; border-left: 4px solid var(--primary-color, #0366d6); background: var(--light-gray, #f7f7f7); border-radius: 4px; }
+  .use-case-item h2 { margin: 0 0 .5rem 0; }
+  .use-case-item a { text-decoration: none; color: var(--primary-color, #0366d6); }
+  .use-case-item a:hover { color: var(--link-hover, #024ea2); }
+</style>
