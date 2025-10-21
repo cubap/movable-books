@@ -1,0 +1,106 @@
+{
+    "@context": "http://iiif.io/api/presentation/3/context.json",
+    "id": "https://cubap.github.io/movablebooks/fixtures/manifests/all.json",
+    "type": "Manifest",
+    "label": {
+        "en": ["Movable Book Manifest"]
+    },
+    "summary": {
+        "en": ["A IIIF Presentation API 3.0 manifest for movable books"]
+    },
+    "metadata": [
+        {
+            "label": { "en": ["Title"] },
+            "value": { "en": ["Movable Book Collection"] }
+        },
+        {
+            "label": { "en": ["Description"] },
+            "value": { "en": ["A collection of interactive movable book pages"] }
+        }
+    ],
+    "rights": "http://creativecommons.org/public-domain/cc0/",
+    "thumbnail": [
+        {
+            "id": "https://example.org/iiif/images/thumb.jpg",
+            "type": "Image",
+            "format": "image/jpeg",
+            "width": 300,
+            "height": 400
+        }
+    ],
+    "items": [
+        {
+            "id": "https://cubap.github.io/movablebooks/fixtures/canvases/1.json",
+            "type": "Canvas",
+            "label": { "en": ["Recto"] },
+            "height": 2000,
+            "width": 1500,
+            "items": [
+                {
+                    "id": "https://example.org/iiif/manifests/all/page/1",
+                    "type": "AnnotationPage",
+                    "items": [
+                        {
+                            "id": "https://example.org/iiif/manifests/all/annotation/1",
+                            "type": "Annotation",
+                            "motivation": "painting",
+                            "body": {
+                                "id": "https://example.org/iiif/images/page1.jpg",
+                                "type": "Image",
+                                "format": "image/jpeg",
+                                "width": 1500,
+                                "height": 2000
+                            },
+                            "target": "https://example.org/iiif/manifests/all/canvas/1"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "https://cubap.github.io/movablebooks/fixtures/canvases/2.json",
+            "type": "Canvas",
+            "label": { "en": ["Verso"] },
+            "height": 2000,
+            "width": 1500,
+            "items": [
+                {
+                    "id": "https://cubap.github.io/movablebooks/fixtures/page/2",
+                    "type": "AnnotationPage",
+                    "items": [
+                        {
+                            "id": "https://example.org/iiif/manifests/all/annotation/2",
+                            "type": "Annotation",
+                            "motivation": "painting",
+                            "body": {
+                                "id": "https://example.org/iiif/images/page2.jpg",
+                                "type": "Image",
+                                "format": "image/jpeg",
+                                "width": 1500,
+                                "height": 2000
+                            },
+                            "target": "https://cubap.github.io/movablebooks/fixtures/canvases/2.json"
+                        }
+                    ]
+                }
+            ],
+            "structures": [
+                {
+                    "id": "https://cubap.github.io/movablebooks/fixtures/manifests/all.json#range1",
+                    "type": "Range",
+                    "label": { "en": ["Flip a Card"] },
+                    "items": [
+                        {
+                            "id": "https://cubap.github.io/movablebooks/fixtures/canvases/1.json",
+                            "type": "Canvas"
+                        },
+                        {
+                            "id": "https://cubap.github.io/movablebooks/fixtures/canvases/2.json",
+                            "type": "Canvas"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
