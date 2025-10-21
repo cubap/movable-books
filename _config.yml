@@ -1,8 +1,10 @@
 # Site settings
 title: Movable Books
 description: Collecting use cases and generating fixtures for movable books in IIIF
-baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://cubap.github.io/movable-books" # the base hostname & protocol for your site
+# For project pages hosted at https://cubap.github.io/movable-books,
+# set url to the domain and baseurl to the repository-name path
+baseurl: "/movable-books" # the subpath of your site, e.g. /blog or /repo-name
+url: "https://cubap.github.io" # the base hostname & protocol for your site
 github_username: cubap
 repository: cubap/movable-books
 
