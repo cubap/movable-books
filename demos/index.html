@@ -1,0 +1,28 @@
+---
+layout: default
+title: "Demos"
+permalink: /demos/
+---
+
+<div class="demos-index">
+  <h1>Demos</h1>
+  <p class="lead">Lightweight interactive experiments to illustrate movable book behaviors—no full IIIF viewer required.</p>
+
+  <ul class="demo-list">
+    <li>
+      <h2><a href="{{ '/demos/fold-slider.html' | relative_url }}">Fold crossfade slider</a></h2>
+      <p>Blend between closed and open photographs of a flap to visualize the transformation.</p>
+    </li>
+    <li>
+      <h2><a href="{{ '/demos/fold-flip.html' | relative_url }}">Fold flip (manifest-driven)</a></h2>
+      <p>Animate a circular flap flipping using hinge and region data parsed from the local IIIF manifest.</p>
+    </li>
+  </ul>
+</div>
+
+<style>
+  .demo-list { list-style: none; padding-left: 0; }
+  .demo-list li { margin: 1rem 0; padding: 1rem; background: var(--light-gray, #f7f7f7); border-left: 4px solid var(--primary-color, #0366d6); border-radius: 4px; }
+  .demo-list a { text-decoration: none; color: var(--primary-color, #0366d6); }
+  .demo-list a:hover { color: var(--link-hover, #024ea2); }
+</style>

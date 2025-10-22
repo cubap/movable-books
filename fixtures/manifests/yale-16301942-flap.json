@@ -1,0 +1,833 @@
+{
+  "@context": [
+    "http://iiif.io/api/search/1/context.json",
+    "http://iiif.io/api/extension/navplace/context.json",
+    "http://iiif.io/api/presentation/3/context.json"
+  ],
+  "id": "https://collections.library.yale.edu/manifests/16301942",
+  "type": "Manifest",
+  "label": {
+    "none": [
+      "Jane Wodening and Stan Brakhage scrapbooks, 1958-1967"
+    ]
+  },
+  "metadata": [
+    {
+      "label": {
+        "en": [
+          "Creator"
+        ]
+      },
+      "value": {
+        "none": [
+          "Wodening, Jane, 1936-"
+        ]
+      }
+    },
+    {
+      "label": {
+        "en": [
+          "Contributor"
+        ]
+      },
+      "value": {
+        "none": [
+          "Brakhage, Stan.",
+          "Creeley, Robert, 1926-2005.",
+          "Dorn, Edward.",
+          "Gassen, Arnold.",
+          "Iwasaki, Minoru.",
+          "Kelly, Robert, 1935-",
+          "McClure, Michael."
+        ]
+      }
+    },
+    {
+      "label": {
+        "en": [
+          "Abstract"
+        ]
+      },
+      "value": {
+        "none": [
+          "Three scrapbooks, compiled by Jane Wodening, containing correspondence, photographs, manuscripts, printed material, artwork, cut film, and objects documenting the work and family life of Wodening (née Collom) and Stan Brakhage from 1958 to 1967. The correspondence consists chiefly of incoming letters and postcards from poets, filmmakers, and artists, many of whom came of age in the decades following WWII, and includes complete letters, often signed, and clippings or manuscript and typescript fragments of letters, initialed by Wodening. Letters discuss personal matters and the literature, film, and art of the period, as well as particular film projects by Brakhage. Correspondents include: Kenneth Anger, Robert Branaman, Jack Collom, Joseph Cornell, Robert Creeley, Guy Davenport, Edward Dorn, Robert Duncan, Clayton Eshleman, Jerome Hill, Robert Kelly, Peter Kubelka, Willard Maas, Gregory Markopolis, Michael McClure, Jonas Mekas, David Meltzer, Charles Olson, Carolee Schneemann, P. Adams Sitney, and Louis Zukofsky. There are also letters between Brakhage and Wodening and copies of outgoing letters",
+          "Photographs in the scrapbooks include black-and-white and color portraits and snapshots of members of the Brakhage and Collom families, the five children (Myrrena, Crystal, Neowyn, Bearthm, and Rarc), friends, and correspondents. Photographs of people not already identified among the correspondents include George Gamow, Allen Ginsberg, Claes Oldenburg, Peter Orlovsky, Parker Tyler, Philip Whalen, and Richard Wright.  There are photographs of Brakhage by both Arnold Gassen and by Life magazine photographer [Minoru?] Iwasaki. Manuscripts include holograph and typescript drafts and copies of work by Dorn, Kelly, McClure, and others. Printed materials consist chiefly of clippings of writings, often fragments, but there are also printed reproductions of pictures and announcements for events. Clippings feature the work of Robert Branaman, Charles Olson, Ezra Pound, and Walt Whitman. There is also a complete copy of Creeley's chapbook entitled A Snarling Garland of Xmas Verses. Artwork includes original sketches and paintings by Brakhage and Wodening, the Brakhage children, Angelo [DeBenedetti?], Charles DiJulio, McClure, Meltzer, and one sketch, dated 1958, by Schneemann. The scrapbooks are accompanied by a statement by Wodening describing the method (collage) of compiling the scrapbooks"
+        ]
+      }
+    },
+    {
+      "label": {
+        "en": [
+          "Description"
+        ]
+      },
+      "value": {
+        "none": [
+          "Jane Wodening (1936-), writer.",
+          "Stan Brakhage (1933-2003), filmmaker.",
+          "In English."
+        ]
+      }
+    },
+    {
+      "label": {
+        "en": [
+          "Provenance"
+        ]
+      },
+      "value": {
+        "none": [
+          "Purchased from Granary Books on the Elizabeth Wakeman Dwight Memorial Fund, 2006."
+        ]
+      }
+    },
+    {
+      "label": {
+        "en": [
+          "Extent"
+        ]
+      },
+      "value": {
+        "none": [
+          "3 v."
+        ]
+      }
+    },
+    {
+      "label": {
+        "en": [
+          "Language"
+        ]
+      },
+      "value": {
+        "none": [
+          "English"
+        ]
+      }
+    },
+    {
+      "label": {
+        "en": [
+          "Repository"
+        ]
+      },
+      "value": {
+        "none": [
+          "Beinecke Library"
+        ]
+      }
+    },
+    {
+      "label": {
+        "en": [
+          "Call Number"
+        ]
+      },
+      "value": {
+        "none": [
+          "YCAL MSS 229"
+        ]
+      }
+    },
+    {
+      "label": {
+        "en": [
+          "Container / Volume Information"
+        ]
+      },
+      "value": {
+        "none": [
+          "3"
+        ]
+      }
+    },
+    {
+      "label": {
+        "en": [
+          "Extent of Digitization"
+        ]
+      },
+      "value": {
+        "none": [
+          "Completely digitized"
+        ]
+      }
+    },
+    {
+      "label": {
+        "en": [
+          "Genre"
+        ]
+      },
+      "value": {
+        "none": [
+          "Clippings (information artifacts)",
+          "Collage (visual work)",
+          "Motion pictures (visual work)",
+          "Photographic prints",
+          "Printed ephemera",
+          "Scrapbooks"
+        ]
+      }
+    },
+    {
+      "label": {
+        "en": [
+          "Subject (Name)"
+        ]
+      },
+      "value": {
+        "none": [
+          "Anger, Kenneth.",
+          "Brakhage family.",
+          "Brakhage, Stan.",
+          "Branaman, Robert.",
+          "Collom, Jack, 1931-",
+          "Cornell, Joseph.",
+          "Creeley, Robert, 1926-2005.",
+          "Davenport, Guy.",
+          "DeBenedetti, Angelo.",
+          "DiJulio, Charles.",
+          "Dorn, Edward.",
+          "Duncan, Robert, 1919-1988.",
+          "Eshleman, Clayton.",
+          "Gamow, George, 1904-1968.",
+          "Gassen, Arnold.",
+          "Ginsberg, Allen, 1926-1997.",
+          "Hill, Jerome, 1905-1972.",
+          "Iwasaki, Minoru.",
+          "Kelly, Robert, 1935-",
+          "Kubelka, Peter.",
+          "Maas, Willard.",
+          "Markopolis, Gregory.",
+          "McClure, Michael.",
+          "Mekas, Jonas, 1922-",
+          "Meltzer, David.",
+          "Oldenburg, Claes, 1929-",
+          "Olson, Charles, 1910-1970.",
+          "Orlovsky, Peter, 1933-2010.",
+          "Pound, Ezra, 1885-1972.",
+          "Tyler, Parker.",
+          "Schneemann, Carolee, 1939-",
+          "Sitney, P. Adams.",
+          "Whalen, Philip.",
+          "Whitman, Walt, 1819-1892.",
+          "Wodening, Jane, 1936-",
+          "Wright, Richard, 1908-1960.",
+          "Zukofsky, Louis, 1904-1978."
+        ]
+      }
+    },
+    {
+      "label": {
+        "en": [
+          "Subject (Topic)"
+        ]
+      },
+      "value": {
+        "none": [
+          "American literature",
+          "Art, Modern",
+          "Avant-garde (Aesthetics)"
+        ]
+      }
+    },
+    {
+      "label": {
+        "en": [
+          "Access"
+        ]
+      },
+      "value": {
+        "none": [
+          "Public"
+        ]
+      }
+    },
+    {
+      "label": {
+        "en": [
+          "Rights"
+        ]
+      },
+      "value": {
+        "none": [
+          "The use of this image may be subject to the copyright law of the United States (Title 17, United States Code) or to site license or other rights management terms and conditions. The person using the image is liable for any infringement."
+        ]
+      }
+    },
+    {
+      "label": {
+        "en": [
+          "Citation"
+        ]
+      },
+      "value": {
+        "none": [
+          "Jane Wodening and Stan Brakhage Scrapbooks. Yale Collection of American Literature, Beinecke Rare Book and Manuscript Library."
+        ]
+      }
+    },
+    {
+      "label": {
+        "en": [
+          "Orbis ID"
+        ]
+      },
+      "value": {
+        "none": [
+          "7748458"
+        ]
+      }
+    },
+    {
+      "label": {
+        "en": [
+          "Object ID (OID)"
+        ]
+      },
+      "value": {
+        "none": [
+          "16301942"
+        ]
+      }
+    }
+  ],
+  "requiredStatement": {
+    "label": {
+      "en": [
+        "Provider"
+      ]
+    },
+    "value": {
+      "en": [
+        "Yale University Library"
+      ]
+    }
+  },
+  "navDate": "1958-01-01T00:00:00Z",
+  "thumbnail": [
+    {
+      "id": "https://collections.library.yale.edu/iiif/2/16595940/full/!300,300/0/default.jpg",
+      "type": "Image",
+      "format": "image/jpeg",
+      "height": 300,
+      "width": 247,
+      "service": [
+        {
+          "@id": "https://collections.library.yale.edu/iiif/2/16595940",
+          "@type": "ImageService2",
+          "profile": "http://iiif.io/api/image/2/level2.json"
+        }
+      ]
+    }
+  ],
+  "provider": [
+    {
+      "id": "https://www.wikidata.org/wiki/Q2583293",
+      "type": "Agent",
+      "label": {
+        "en": [
+          "Yale Library"
+        ]
+      },
+      "homepage": [
+        {
+          "id": "https://library.yale.edu/",
+          "type": "Text",
+          "format": "text/html",
+          "label": {
+            "en": [
+              "Yale Library homepage"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "seeAlso": [
+    {
+      "id": "https://collections.library.yale.edu/catalog/oai?verb=GetRecord&metadataPrefix=oai_mods&identifier=oai:collections.library.yale.edu:16301942",
+      "type": "Dataset",
+      "format": "application/mods+xml",
+      "profile": "http://www.loc.gov/mods/v3"
+    }
+  ],
+  "rendering": [
+    {
+      "id": "https://collections.library.yale.edu/pdfs/16301942.pdf",
+      "type": "Text",
+      "format": "application/pdf",
+      "label": {
+        "en": [
+          "Download as PDF"
+        ]
+      }
+    }
+  ],
+  "homepage": [
+    {
+      "id": "https://collections.library.yale.edu/catalog/16301942",
+      "type": "Text",
+      "format": "text/html",
+      "label": {
+        "en": [
+          "Yale Digital Collections page"
+        ]
+      }
+    }
+  ],
+  "start": {
+    "id": "https://collections.library.yale.edu/manifests/oid/16301942/canvas/16595940",
+    "type": "Canvas"
+  },
+  "items": [
+    {
+      "id": "https://collections.library.yale.edu/manifests/oid/16301942/canvas/16595950",
+      "type": "Canvas",
+      "height": 5752,
+      "width": 4696,
+      "label": {
+        "none": [
+          "5r"
+        ]
+      },
+      "metadata": [
+        {
+          "label": {
+            "en": [
+              "Image ID"
+            ]
+          },
+          "value": {
+            "none": [
+              "16595950"
+            ]
+          }
+        },
+        {
+          "label": {
+            "en": [
+              "Image Label"
+            ]
+          },
+          "value": {
+            "none": [
+              "5r"
+            ]
+          }
+        },
+        {
+          "label": {
+            "en": [
+              "Link to this Image"
+            ]
+          },
+          "value": {
+            "none": [
+              "https://collections.library.yale.edu/catalog/16301942?child_oid=16595950"
+            ]
+          }
+        }
+      ],
+      "thumbnail": [
+        {
+          "id": "https://collections.library.yale.edu/iiif/2/16595950/full/!300,300/0/default.jpg",
+          "type": "Image",
+          "format": "image/jpeg",
+          "height": 300,
+          "width": 245,
+          "service": [
+            {
+              "@id": "https://collections.library.yale.edu/iiif/2/16595950",
+              "@type": "ImageService2",
+              "profile": "http://iiif.io/api/image/2/level2.json"
+            }
+          ]
+        }
+      ],
+      "rendering": [
+        {
+          "id": "https://collections.library.yale.edu/iiif/2/16595950/full/full/0/default.jpg",
+          "type": "Image",
+          "format": "image/jpeg",
+          "label": {
+            "en": [
+              "Full size"
+            ]
+          }
+        },
+        {
+          "id": "https://collections.library.yale.edu/download/tiff/16595950",
+          "type": "Image",
+          "format": "image/tiff",
+          "label": {
+            "en": [
+              "Full size original"
+            ]
+          }
+        }
+      ],
+      "items": [
+        {
+          "id": "https://collections.library.yale.edu/manifests/oid/16301942/canvas/16595950/page/1",
+          "type": "AnnotationPage",
+          "items": [
+            {
+              "id": "https://collections.library.yale.edu/manifests/oid/16301942/canvas/16595950/image/1",
+              "type": "Annotation",
+              "motivation": "painting",
+              "target": "https://collections.library.yale.edu/manifests/oid/16301942/canvas/16595950",
+              "body": {
+                "id": "https://collections.library.yale.edu/iiif/2/16595950/full/full/0/default.jpg",
+                "type": "Image",
+                "format": "image/jpeg",
+                "height": 5752,
+                "width": 4696,
+                "service": [
+                  {
+                    "@id": "https://collections.library.yale.edu/iiif/2/16595950",
+                    "@type": "ImageService2",
+                    "profile": "http://iiif.io/api/image/2/level2.json"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "https://collections.library.yale.edu/manifests/oid/16301942/canvas/16595951",
+      "type": "Canvas",
+      "height": 5741,
+      "width": 4674,
+      "label": {
+        "none": [
+          "5r [with flap open]"
+        ]
+      },
+      "metadata": [
+        {
+          "label": {
+            "en": [
+              "Image ID"
+            ]
+          },
+          "value": {
+            "none": [
+              "16595951"
+            ]
+          }
+        },
+        {
+          "label": {
+            "en": [
+              "Image Label"
+            ]
+          },
+          "value": {
+            "none": [
+              "5r [with flap open]"
+            ]
+          }
+        },
+        {
+          "label": {
+            "en": [
+              "Link to this Image"
+            ]
+          },
+          "value": {
+            "none": [
+              "https://collections.library.yale.edu/catalog/16301942?child_oid=16595951"
+            ]
+          }
+        }
+      ],
+      "thumbnail": [
+        {
+          "id": "https://collections.library.yale.edu/iiif/2/16595951/full/!300,300/0/default.jpg",
+          "type": "Image",
+          "format": "image/jpeg",
+          "height": 300,
+          "width": 244,
+          "service": [
+            {
+              "@id": "https://collections.library.yale.edu/iiif/2/16595951",
+              "@type": "ImageService2",
+              "profile": "http://iiif.io/api/image/2/level2.json"
+            }
+          ]
+        }
+      ],
+      "rendering": [
+        {
+          "id": "https://collections.library.yale.edu/iiif/2/16595951/full/full/0/default.jpg",
+          "type": "Image",
+          "format": "image/jpeg",
+          "label": {
+            "en": [
+              "Full size"
+            ]
+          }
+        },
+        {
+          "id": "https://collections.library.yale.edu/download/tiff/16595951",
+          "type": "Image",
+          "format": "image/tiff",
+          "label": {
+            "en": [
+              "Full size original"
+            ]
+          }
+        }
+      ],
+      "items": [
+        {
+          "id": "https://collections.library.yale.edu/manifests/oid/16301942/canvas/16595951/page/1",
+          "type": "AnnotationPage",
+          "items": [
+            {
+              "id": "https://collections.library.yale.edu/manifests/oid/16301942/canvas/16595951/image/1",
+              "type": "Annotation",
+              "motivation": "painting",
+              "target": "https://collections.library.yale.edu/manifests/oid/16301942/canvas/16595951",
+              "body": {
+                "id": "https://collections.library.yale.edu/iiif/2/16595951/full/full/0/default.jpg",
+                "type": "Image",
+                "format": "image/jpeg",
+                "height": 5741,
+                "width": 4674,
+                "service": [
+                  {
+                    "@id": "https://collections.library.yale.edu/iiif/2/16595951",
+                    "@type": "ImageService2",
+                    "profile": "http://iiif.io/api/image/2/level2.json"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "https://cubap.github.io/movable-books/fixtures/canvases/yale-16301942-flap-interactive",
+      "type": "Canvas",
+      "height": 5752,
+      "width": 4696,
+      "label": {
+        "en": [
+          "5r [interactive circular flap]"
+        ]
+      },
+      "metadata": [
+        {
+          "label": {
+            "en": [
+              "Canvas Type"
+            ]
+          },
+          "value": {
+            "en": [
+              "Interactive movable element - circular flap"
+            ]
+          }
+        },
+        {
+          "label": {
+            "en": [
+              "Description"
+            ]
+          },
+          "value": {
+            "en": [
+              "This canvas represents the circular flap as an interactive element. It composites the visible front (from canvas 1) and back (from canvas 2) of the flap, clipped to the circular region. Annotations define the hinge axis for rotation."
+            ]
+          }
+        }
+      ],
+      "annotations": [
+        {
+          "id": "https://cubap.github.io/movable-books/fixtures/annotations/yale-16301942-hinge-axis",
+          "type": "AnnotationPage",
+          "label": {
+            "en": [
+              "Hinge Axis Definition"
+            ]
+          },
+          "items": [
+            {
+              "id": "https://cubap.github.io/movable-books/fixtures/annotations/yale-16301942-hinge-axis-1",
+              "type": "Annotation",
+              "motivation": "describing",
+              "body": {
+                "type": "TextualBody",
+                "value": "Hinge axis start point - top of circular flap rotation center",
+                "format": "text/plain",
+                "language": "en"
+              },
+              "target": {
+                "type": "SpecificResource",
+                "source": "https://cubap.github.io/movable-books/fixtures/canvases/yale-16301942-flap-interactive",
+                "selector": {
+                  "type": "PointSelector",
+                  "x": 2198.918066611849,
+                  "y": 1927.2436391397318
+                }
+              }
+            },
+            {
+              "id": "https://cubap.github.io/movable-books/fixtures/annotations/yale-16301942-hinge-axis-2",
+              "type": "Annotation",
+              "motivation": "describing",
+              "body": {
+                "type": "TextualBody",
+                "value": "Hinge axis end point - bottom of circular flap rotation center",
+                "format": "text/plain",
+                "language": "en"
+              },
+              "target": {
+                "type": "SpecificResource",
+                "source": "https://cubap.github.io/movable-books/fixtures/canvases/yale-16301942-flap-interactive",
+                "selector": {
+                  "type": "PointSelector",
+                  "x": 2203.1184188900656,
+                  "y": 2855.523386489034
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "https://cubap.github.io/movable-books/fixtures/annotations/yale-16301942-flap-region",
+          "type": "AnnotationPage",
+          "label": {
+            "en": [
+              "Circular Flap Region"
+            ]
+          },
+          "items": [
+            {
+              "id": "https://cubap.github.io/movable-books/fixtures/annotations/yale-16301942-flap-circle",
+              "type": "Annotation",
+              "motivation": "describing",
+              "body": {
+                "type": "TextualBody",
+                "value": "Approximate circular region of the movable flap. The flap rotates around a vertical axis through its center.",
+                "format": "text/plain",
+                "language": "en"
+              },
+              "target": {
+                "type": "SpecificResource",
+                "source": "https://cubap.github.io/movable-books/fixtures/canvases/yale-16301942-flap-interactive",
+                "selector": {
+                  "type": "SvgSelector",
+                  "value": "<svg xmlns='http://www.w3.org/2000/svg'><circle cx='2891.9867679067324' cy='2351.4801195622176' r='861.1776812027447' fill='none' stroke='hotpink' stroke-width='10'/></svg>"
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "items": [
+        {
+          "id": "https://cubap.github.io/movable-books/fixtures/canvases/yale-16301942-flap-interactive/page/1",
+          "type": "AnnotationPage",
+          "items": [
+            {
+              "id": "https://cubap.github.io/movable-books/fixtures/canvases/yale-16301942-flap-interactive/composite-base",
+              "type": "Annotation",
+              "motivation": "painting",
+              "label": {
+                "en": [
+                  "Base layer - background from closed state"
+                ]
+              },
+              "body": {
+                "id": "https://collections.library.yale.edu/iiif/2/16595950/full/full/0/default.jpg",
+                "type": "Image",
+                "format": "image/jpeg",
+                "height": 5752,
+                "width": 4696,
+                "service": [
+                  {
+                    "@id": "https://collections.library.yale.edu/iiif/2/16595950",
+                    "@type": "ImageService2",
+                    "profile": "http://iiif.io/api/image/2/level2.json"
+                  }
+                ]
+              },
+              "target": "https://cubap.github.io/movable-books/fixtures/canvases/yale-16301942-flap-interactive"
+            },
+            {
+              "id": "https://cubap.github.io/movable-books/fixtures/canvases/yale-16301942-flap-interactive/flap-front",
+              "type": "Annotation",
+              "motivation": "painting",
+              "label": {
+                "en": [
+                  "Flap front side - visible when closed (from canvas 1)"
+                ]
+              },
+              "body": {
+                "id": "https://collections.library.yale.edu/iiif/2/16595951/2031,1490,1722,1722/full/0/default.jpg",
+                "type": "Image",
+                "format": "image/jpeg",
+                "service": [
+                  {
+                    "@id": "https://collections.library.yale.edu/iiif/2/16595951",
+                    "@type": "ImageService2",
+                    "profile": "http://iiif.io/api/image/2/level2.json"
+                  }
+                ]
+              },
+              "target": {
+                "type": "SpecificResource",
+                "source": "https://cubap.github.io/movable-books/fixtures/canvases/yale-16301942-flap-interactive",
+                "selector": {
+                  "type": "FragmentSelector",
+                  "value": "xywh=2031,1490,1722,1722"
+                }
+              }
+            },
+            {
+              "id": "https://cubap.github.io/movable-books/fixtures/canvases/yale-16301942-flap-interactive/flap-back",
+              "type": "Annotation",
+              "motivation": "painting",
+              "label": {
+                "en": [
+                  "Flap back side - visible when open (from canvas 2)"
+                ]
+              },
+              "body": {
+                "id": "https://collections.library.yale.edu/iiif/2/16595951/642,1551,1722,1722/full/0/default.jpg",
+                "type": "Image",
+                "format": "image/jpeg",
+                "service": [
+                  {
+                    "@id": "https://collections.library.yale.edu/iiif/2/16595951",
+                    "@type": "ImageService2",
+                    "profile": "http://iiif.io/api/image/2/level2.json"
+                  }
+                ]
+              },
+              "target": {
+                "type": "SpecificResource",
+                "source": "https://cubap.github.io/movable-books/fixtures/canvases/yale-16301942-flap-interactive",
+                "selector": {
+                  "type": "FragmentSelector",
+                  "value": "xywh=642,1551,1722,1722"
+                },
+                "style": {
+                  "transform": "rotateY(180deg)",
+                  "transformOrigin": "center"
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,455 @@
+---
+layout: default
+title: "Fold flip (manifest-driven)"
+permalink: /demos/fold-flip.html
+---
+
+<div class="demo-fold-flip">
+  <h1>Fold flip (manifest-driven)</h1>
+  <p>
+    This demo fetches the local IIIF manifest and uses its annotations (hinge axis and circular region)
+    to animate a circular flap flipping between closed and open states.
+  </p>
+
+  <div class="panel-and-controls">
+    <div id="panel" class="image-panel" aria-live="polite" tabindex="0">
+      <img id="base-closed" alt="Closed state" crossorigin="anonymous" />
+      <img id="base-open" alt="Open state" crossorigin="anonymous" class="is-hidden" />
+
+      <!-- Guides overlay (SVG in canvas coordinates, scaled via viewBox) -->
+      <div id="overlay" class="overlay" aria-hidden="true">
+        <svg id="overlaySvg" viewBox="0 0 4696 5752" preserveAspectRatio="none">
+          <circle id="overlayCircle" cx="2348" cy="2800" r="700" />
+          <line id="overlayHinge" x1="2348" y1="2100" x2="2348" y2="3500" />
+          <!-- Drag handles -->
+          <circle id="handleCenter" class="handle" cx="2348" cy="2800" r="60" />
+          <circle id="handleRadius" class="handle" cx="3048" cy="2800" r="50" />
+          <circle id="handleH1" class="handle" cx="2348" cy="2100" r="50" />
+          <circle id="handleH2" class="handle" cx="2348" cy="3500" r="50" />
+        </svg>
+      </div>
+
+      <div id="flap" class="flap" aria-label="Movable flap">
+        <div class="flap-inner">
+          <img id="flap-front" alt="Flap front (closed)" crossorigin="anonymous" />
+          <img id="flap-back" alt="Flap back (open)" crossorigin="anonymous" />
+        </div>
+      </div>
+    </div>
+
+    <div class="controls">
+      <label for="angle">Angle (0° closed → 180° open)</label>
+      <input id="angle" type="range" min="0" max="180" value="0" step="1" aria-label="Rotation angle" />
+      <div class="ticks"><span>Closed</span><span>Open</span></div>
+      <details class="nudge">
+        <summary>Nudge (canvas px)</summary>
+        <div class="nudge-grid">
+          <label>CX <input id="cx" type="number" step="1" /></label>
+          <label>CY <input id="cy" type="number" step="1" /></label>
+          <label>R <input id="cr" type="number" step="1" /></label>
+          <label>Hinge x1 <input id="hx1" type="number" step="1" /></label>
+          <label>Hinge y1 <input id="hy1" type="number" step="1" /></label>
+          <label>Hinge x2 <input id="hx2" type="number" step="1" /></label>
+          <label>Hinge y2 <input id="hy2" type="number" step="1" /></label>
+        </div>
+        <div class="nudge-actions">
+          <button type="button" id="btnCopy">Copy config</button>
+          <button type="button" id="btnReset">Reset from manifest</button>
+          <span class="hint">Tip: with panel focused, use arrow keys to nudge center; +/- to change radius; hold Shift for ×10.</span>
+        </div>
+        <pre id="configOut" class="config-out" aria-live="polite"></pre>
+      </details>
+    </div>
+  </div>
+
+  <details>
+    <summary>Details</summary>
+    <ul>
+      <li>Parses hinge axis from two points on the flap canvas annotations.</li>
+      <li>Parses circular flap region from the SVG selector to position and size the flap.</li>
+      <li>Uses cropped IIIF Image API URLs for front/back textures.</li>
+      <li>Crossfades panel background (closed→open) proportionally to the rotation angle.</li>
+      <li>No pixel compositing on canvas is performed; this uses CSS 3D transforms and clip-path.</li>
+    </ul>
+  </details>
+</div>
+
+<style>
+  .panel-and-controls { display: grid; grid-template-columns: 1fr; gap: 1rem; align-items: start; }
+  @media (min-width: 980px){ .panel-and-controls { grid-template-columns: 2fr 1fr; } }
+  .image-panel { position: relative; width: 100%; max-width: 1024px; aspect-ratio: 4696 / 5752; background: #eee; border: 1px solid #ddd; overflow: hidden; }
+  .image-panel img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
+  .image-panel img.is-hidden { opacity: 0; }
+  .controls { display: flex; flex-direction: column; gap: .5rem; }
+  .ticks { display: flex; justify-content: space-between; font-size: .9rem; color: #555; }
+
+  /* Flap elements */
+  .flap { position: absolute; pointer-events: none; transform-style: preserve-3d; }
+  .flap-inner { position: absolute; inset: 0; transform-style: preserve-3d; transition: transform 150ms linear; }
+  .flap-inner img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; backface-visibility: hidden; clip-path: circle(50% at 50% 50%); }
+  /* Front face faces the viewer at 0deg; back face is rotated 180deg to face viewer when parent turns past 90deg */
+  #flap-back { transform: rotateY(180deg); }
+
+  /* Guides overlay */
+  .overlay { position: absolute; inset: 0; pointer-events: none; }
+  #overlayCircle { fill: none; stroke: hotpink; stroke-width: 10; opacity: .6; }
+  #overlayHinge { stroke: hotpink; stroke-width: 10; stroke-dasharray: 24 12; opacity: .8; }
+  .handle { fill: #fff; stroke: hotpink; stroke-width: 10; pointer-events: all; cursor: move; }
+
+  /* Nudge controls */
+  .nudge { margin-top: .5rem; }
+  .nudge-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .5rem; margin-top: .5rem; }
+  .nudge-grid label { display: flex; align-items: center; gap: .4rem; font-size: .9rem; }
+  .nudge-grid input { width: 100%; }
+  .nudge-actions { display: flex; align-items: center; gap: .75rem; margin-top: .5rem; }
+  .config-out { background: #f6f8fa; border: 1px solid #e1e4e8; padding: .5rem; border-radius: 4px; max-height: 12rem; overflow: auto; }
+  .hint { color: #666; font-size: .85rem; }
+</style>
+
+<script>
+  const manifestUrl = "{{ '/fixtures/manifests/yale-16301942-flap.json' | relative_url }}";
+  const panel = document.getElementById('panel');
+  const baseClosed = document.getElementById('base-closed');
+  const baseOpen = document.getElementById('base-open');
+  const flap = document.getElementById('flap');
+  const flapInner = flap.querySelector('.flap-inner');
+  const flapFront = document.getElementById('flap-front');
+  const flapBack = document.getElementById('flap-back');
+  const angleInput = document.getElementById('angle');
+  const overlayCircle = document.getElementById('overlayCircle');
+  const overlayHinge = document.getElementById('overlayHinge');
+  const overlaySvg = document.getElementById('overlaySvg');
+  const hCenter = document.getElementById('handleCenter');
+  const hRadius = document.getElementById('handleRadius');
+  const hH1 = document.getElementById('handleH1');
+  const hH2 = document.getElementById('handleH2');
+  const out = document.getElementById('configOut');
+  const cxInput = document.getElementById('cx');
+  const cyInput = document.getElementById('cy');
+  const crInput = document.getElementById('cr');
+  const hx1Input = document.getElementById('hx1');
+  const hy1Input = document.getElementById('hy1');
+  const hx2Input = document.getElementById('hx2');
+  const hy2Input = document.getElementById('hy2');
+  const btnCopy = document.getElementById('btnCopy');
+  const btnReset = document.getElementById('btnReset');
+
+  // Helpers
+  const parseCircleFromSvg = (svg) => {
+    const m = svg.match(/<circle[^>]*cx='?(\d+(?:\.\d+)?)'?[\s\S]*cy='?(\d+(?:\.\d+)?)'?[\s\S]*r='?(\d+(?:\.\d+)?)'/);
+    if(!m) return null; return { cx: parseFloat(m[1]), cy: parseFloat(m[2]), r: parseFloat(m[3]) };
+  };
+
+  let rotateAxis = 'Y'; // 'Y' for vertical hinge, 'X' for horizontal hinge
+  let circleState = { cx: 2348, cy: 2800, r: 700 };
+  let hingeState = { p1: { x: 2348, y: 2100 }, p2: { x: 2348, y: 3500 } };
+  const CANVAS_W = 4696, CANVAS_H = 5752;
+  let drag = null; // { type: 'center'|'radius'|'h1'|'h2' }
+  // Manifest baseline geometry and crops (used to compute relative rects)
+  let manifestCircle0 = null; // { cx, cy, r }
+  let frontRect0 = null;     // { x, y, w, h } from manifest
+  let backRect0 = null;      // { x, y, w, h } from manifest
+
+  // IIIF helpers for cropped flap textures
+  const iiifBaseClosed = 'https://collections.library.yale.edu/iiif/2/16595950';
+  const iiifBaseOpen = 'https://collections.library.yale.edu/iiif/2/16595951';
+  const buildCropUrl = (base, x, y, w, h) => {
+    const rx = Math.round(x), ry = Math.round(y), rw = Math.round(w), rh = Math.round(h);
+    return `${base}/${rx},${ry},${rw},${rh}/full/0/default.jpg`;
+  };
+
+  const setRotation = (deg) => {
+    flapInner.style.transform = rotateAxis === 'Y' ? `rotateY(${deg}deg)` : `rotateX(${deg}deg)`;
+    // Crossfade background proportionally (simple heuristic)
+    const t = Math.max(0, Math.min(1, deg / 180));
+    baseOpen.style.opacity = String(t);
+    baseOpen.classList.toggle('is-hidden', t === 0);
+  };
+
+  const layoutFlap = (circle, canvasW, canvasH, hinge) => {
+    // Panel client size and scale from canvas space to CSS pixels
+    const rect = panel.getBoundingClientRect();
+    const panelW = rect.width;
+    const panelH = rect.height;
+    const scaleX = panelW / canvasW;
+    const scaleY = panelH / canvasH;
+
+    const left = circle.cx * scaleX - circle.r * scaleX;
+    const top = circle.cy * scaleY - circle.r * scaleY;
+    const sizeW = circle.r * 2 * scaleX;
+    const sizeH = circle.r * 2 * scaleY;
+
+    flap.style.left = `${left}px`;
+    flap.style.top = `${top}px`;
+    flap.style.width = `${sizeW}px`;
+    flap.style.height = `${sizeH}px`;
+
+    // Compute transform origin relative to the flap box using hinge points if available
+    if (hinge && hinge.p1 && hinge.p2) {
+      const { p1, p2 } = hinge;
+      // Determine axis orientation: vertical if dx small, otherwise horizontal
+      const dx = Math.abs(p2.x - p1.x);
+      const dy = Math.abs(p2.y - p1.y);
+      rotateAxis = dx < dy ? 'Y' : 'X';
+
+      // Normalize origin in [0,1] within the flap box (circle bbox)
+      const bboxLeft = circle.cx - circle.r;
+      const bboxTop = circle.cy - circle.r;
+      let ox = 0.5, oy = 0.5;
+      if (rotateAxis === 'Y') {
+        const hingeX = (p1.x + p2.x) / 2;
+        ox = (hingeX - bboxLeft) / (2 * circle.r);
+        oy = 0.5;
+      } else {
+        const hingeY = (p1.y + p2.y) / 2;
+        ox = 0.5;
+        oy = (hingeY - bboxTop) / (2 * circle.r);
+      }
+      const oxPct = Math.max(0, Math.min(1, ox)) * 100;
+      const oyPct = Math.max(0, Math.min(1, oy)) * 100;
+      flapInner.style.transformOrigin = `${oxPct}% ${oyPct}%`;
+    } else {
+      flapInner.style.transformOrigin = '50% 50%';
+      rotateAxis = 'Y';
+    }
+  };
+
+  const updateOverlay = () => {
+    overlayCircle.setAttribute('cx', String(circleState.cx));
+    overlayCircle.setAttribute('cy', String(circleState.cy));
+    overlayCircle.setAttribute('r', String(circleState.r));
+    overlayHinge.setAttribute('x1', String(hingeState.p1.x));
+    overlayHinge.setAttribute('y1', String(hingeState.p1.y));
+    overlayHinge.setAttribute('x2', String(hingeState.p2.x));
+    overlayHinge.setAttribute('y2', String(hingeState.p2.y));
+    // Handles: center at circle center, radius at (cx+r, cy), hinge endpoints at p1/p2
+    hCenter.setAttribute('cx', String(circleState.cx));
+    hCenter.setAttribute('cy', String(circleState.cy));
+    hRadius.setAttribute('cx', String(circleState.cx + circleState.r));
+    hRadius.setAttribute('cy', String(circleState.cy));
+    hH1.setAttribute('cx', String(hingeState.p1.x));
+    hH1.setAttribute('cy', String(hingeState.p1.y));
+    hH2.setAttribute('cx', String(hingeState.p2.x));
+    hH2.setAttribute('cy', String(hingeState.p2.y));
+  };
+
+  const updateFlapTextures = () => {
+    // If manifest provided baseline crops, preserve their relative position/size to the circle bbox
+    const bboxNow = { x: circleState.cx - circleState.r, y: circleState.cy - circleState.r, s: circleState.r * 2 };
+    const bbox0 = manifestCircle0
+      ? { x: manifestCircle0.cx - manifestCircle0.r, y: manifestCircle0.cy - manifestCircle0.r, s: manifestCircle0.r * 2 }
+      : { x: bboxNow.x, y: bboxNow.y, s: bboxNow.s };
+
+    const toRectNow = (rect0) => {
+      if (!rect0) return { x: bboxNow.x, y: bboxNow.y, w: bboxNow.s, h: bboxNow.s };
+      const relX = (rect0.x - bbox0.x) / bbox0.s;
+      const relY = (rect0.y - bbox0.y) / bbox0.s;
+      const relW = rect0.w / bbox0.s;
+      const relH = rect0.h / bbox0.s;
+      return {
+        x: bboxNow.x + relX * bboxNow.s,
+        y: bboxNow.y + relY * bboxNow.s,
+        w: relW * bboxNow.s,
+        h: relH * bboxNow.s
+      };
+    };
+
+    const fRect = toRectNow(frontRect0);
+    const bRect = toRectNow(backRect0);
+    flapFront.src = buildCropUrl(iiifBaseClosed, fRect.x, fRect.y, fRect.w, fRect.h);
+    flapBack.src = buildCropUrl(iiifBaseOpen, bRect.x, bRect.y, bRect.w, bRect.h);
+  };
+
+  // Debounce texture updates during drag to avoid excessive network requests
+  let textureUpdateTimer = null;
+  const scheduleUpdateFlapTextures = () => {
+    if (textureUpdateTimer) clearTimeout(textureUpdateTimer);
+    textureUpdateTimer = setTimeout(() => {
+      textureUpdateTimer = null;
+      updateFlapTextures();
+    }, 120);
+  };
+
+  const syncInputs = () => {
+    cxInput.value = String(Math.round(circleState.cx));
+    cyInput.value = String(Math.round(circleState.cy));
+    crInput.value = String(Math.round(circleState.r));
+    hx1Input.value = String(Math.round(hingeState.p1.x));
+    hy1Input.value = String(Math.round(hingeState.p1.y));
+    hx2Input.value = String(Math.round(hingeState.p2.x));
+    hy2Input.value = String(Math.round(hingeState.p2.y));
+    out.textContent = JSON.stringify({
+      circle: circleState,
+      hinge: hingeState
+    }, null, 2);
+  };
+
+  const applyFromInputs = () => {
+    circleState = {
+      cx: Number(cxInput.value),
+      cy: Number(cyInput.value),
+      r: Math.max(1, Number(crInput.value))
+    };
+    hingeState = {
+      p1: { x: Number(hx1Input.value), y: Number(hy1Input.value) },
+      p2: { x: Number(hx2Input.value), y: Number(hy2Input.value) }
+    };
+    updateOverlay();
+    layoutFlap(circleState, CANVAS_W, CANVAS_H, hingeState);
+    updateFlapTextures();
+  };
+
+  const init = async () => {
+    const res = await fetch(manifestUrl, { cache: 'no-store' });
+    const mf = await res.json();
+  const W = CANVAS_W, H = CANVAS_H; // canvas dims
+
+    // Find canvases
+    const canvases = mf.items || [];
+    const closed = canvases.find(c => /16595950/.test(c.id)) || canvases[0];
+    const open = canvases.find(c => /16595951/.test(c.id)) || canvases[1];
+    const flapCanvas = canvases.find(c => /flap-interactive/.test(c.id)) || canvases[canvases.length - 1];
+
+    // Panel background images (full-size display urls)
+    baseClosed.src = 'https://collections.library.yale.edu/iiif/2/16595950/full/1024,/0/default.jpg';
+    baseOpen.src = 'https://collections.library.yale.edu/iiif/2/16595951/full/1024,/0/default.jpg';
+
+    // Parse annotations from flap canvas
+    const annotations = flapCanvas.annotations || [];
+    const regionPage = annotations.find(p => (p.label?.en?.[0] || '').includes('Circular Flap Region'));
+    const hingePage = annotations.find(p => (p.label?.en?.[0] || '').includes('Hinge Axis'));
+  let circle = { cx: 2348, cy: 2800, r: 700 };
+    if (regionPage?.items?.[0]?.target?.selector?.type === 'SvgSelector') {
+      const svg = regionPage.items[0].target.selector.value;
+      const parsed = parseCircleFromSvg(svg);
+      if (parsed) circle = parsed;
+    }
+
+    // Extract hinge points
+  let hinge = null;
+    if (hingePage?.items?.length) {
+      const pts = hingePage.items
+        .map(a => a?.target?.selector)
+        .filter(sel => sel?.type === 'PointSelector')
+        .map(sel => ({ x: sel.x, y: sel.y }))
+        .filter(p => Number.isFinite(p.x) && Number.isFinite(p.y));
+      if (pts.length >= 2) {
+        hinge = { p1: pts[0], p2: pts[1] };
+      }
+    }
+
+    // Painting items to get cropped region images
+    const paintPage = flapCanvas.items?.[0];
+    const paintItems = paintPage?.items || [];
+    const frontAnno = paintItems.find(a => /flap-front/.test(a.id));
+    const backAnno = paintItems.find(a => /flap-back/.test(a.id));
+
+    // Helper: parse xywh from FragmentSelector or from body.id
+    const parseRectFromAnno = (anno) => {
+      const selVal = anno?.target?.selector?.type === 'FragmentSelector' ? anno.target.selector.value : null;
+      let m = selVal ? selVal.match(/xywh=(\d+),(\d+),(\d+),(\d+)/) : null;
+      if (!m && typeof anno?.body?.id === 'string') {
+        m = anno.body.id.match(/\/(\d+),(\d+),(\d+),(\d+)\//);
+      }
+      if (!m) return null;
+      return { x: Number(m[1]), y: Number(m[2]), w: Number(m[3]), h: Number(m[4]) };
+    };
+
+    frontRect0 = parseRectFromAnno(frontAnno);
+    backRect0 = parseRectFromAnno(backAnno);
+    if (frontAnno?.body?.id) flapFront.src = frontAnno.body.id;
+    if (backAnno?.body?.id) flapBack.src = backAnno.body.id;
+
+    // Layout after images load to get correct panel size
+    const hydrate = () => {
+      circleState = circle;
+      manifestCircle0 = circle; // remember baseline for relative crops
+      hingeState = hinge || hingeState; // keep defaults if missing
+      updateOverlay();
+      syncInputs();
+      layoutFlap(circleState, W, H, hingeState);
+      updateFlapTextures();
+    };
+  if (document.readyState === 'complete') hydrate(); else window.addEventListener('load', hydrate, { once: true });
+  window.addEventListener('resize', () => layoutFlap(circleState, W, H, hingeState));
+
+    // Angle control
+    angleInput.addEventListener('input', (e) => setRotation(Number(e.target.value)));
+
+    // Nudge inputs wiring
+    [cxInput, cyInput, crInput, hx1Input, hy1Input, hx2Input, hy2Input].forEach(inp => inp.addEventListener('input', applyFromInputs));
+    btnCopy.addEventListener('click', async () => {
+      const text = out.textContent || '';
+      try { await navigator.clipboard.writeText(text); } catch {}
+    });
+    btnReset.addEventListener('click', () => { circle = { ...circle }; hinge = hinge; hydrate(); });
+
+    // Keyboard nudging
+    panel.addEventListener('keydown', (ev) => {
+      const step = ev.shiftKey ? 10 : 1;
+      let used = false;
+      if (ev.key === 'ArrowLeft') { circleState.cx -= step; used = true; }
+      if (ev.key === 'ArrowRight') { circleState.cx += step; used = true; }
+      if (ev.key === 'ArrowUp') { circleState.cy -= step; used = true; }
+      if (ev.key === 'ArrowDown') { circleState.cy += step; used = true; }
+      if (ev.key === '+') { circleState.r += step; used = true; }
+      if (ev.key === '-' || ev.key === '_') { circleState.r = Math.max(1, circleState.r - step); used = true; }
+      if (used) {
+        updateOverlay();
+        syncInputs();
+        layoutFlap(circleState, CANVAS_W, CANVAS_H, hingeState);
+        updateFlapTextures();
+        ev.preventDefault();
+      }
+    });
+
+    // Dragging: convert pointer events to canvas coords via SVG viewBox
+    const toCanvas = (evt) => {
+      const rect = overlaySvg.getBoundingClientRect();
+      const x = (evt.clientX - rect.left) * (CANVAS_W / rect.width);
+      const y = (evt.clientY - rect.top) * (CANVAS_H / rect.height);
+      return { x, y };
+    };
+
+    const startDrag = (type) => (e) => {
+      drag = { type };
+      overlaySvg.setPointerCapture(e.pointerId);
+      e.preventDefault();
+    };
+    const onMove = (e) => {
+      if (!drag) return;
+      const { x, y } = toCanvas(e);
+      if (drag.type === 'center') {
+        circleState.cx = x; circleState.cy = y;
+      } else if (drag.type === 'radius') {
+        const dx = x - circleState.cx; const dy = y - circleState.cy;
+        circleState.r = Math.max(1, Math.hypot(dx, dy));
+      } else if (drag.type === 'h1') {
+        hingeState.p1.x = x; hingeState.p1.y = y;
+      } else if (drag.type === 'h2') {
+        hingeState.p2.x = x; hingeState.p2.y = y;
+      }
+      updateOverlay();
+      syncInputs();
+      layoutFlap(circleState, CANVAS_W, CANVAS_H, hingeState);
+      scheduleUpdateFlapTextures();
+    };
+    const endDrag = (e) => {
+      if (!drag) return;
+      try { overlaySvg.releasePointerCapture(e.pointerId); } catch {}
+      drag = null;
+      updateFlapTextures();
+    };
+
+    hCenter.addEventListener('pointerdown', startDrag('center'));
+    hRadius.addEventListener('pointerdown', startDrag('radius'));
+    hH1.addEventListener('pointerdown', startDrag('h1'));
+    hH2.addEventListener('pointerdown', startDrag('h2'));
+    overlaySvg.addEventListener('pointermove', onMove);
+    overlaySvg.addEventListener('pointerup', endDrag);
+    overlaySvg.addEventListener('pointercancel', endDrag);
+    setRotation(0);
+  };
+
+  init().catch(err => console.error('Demo init failed:', err));
+</script>

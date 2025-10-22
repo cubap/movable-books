@@ -14,6 +14,9 @@ examples: |
   - **Gatefolds**: Two panels that fold out from the center, often used for panoramic images or large diagrams
   - **Pop-up Elements**: Folded paper structures that create three-dimensional forms when the page is opened
 instances:
+  - title: "Yale: Jane Wodening and Stan Brakhage scrapbooks — single flap (images 11 & 12)"
+    url: "https://stshetenhelm.github.io/IIIF-Workshop/manifests/manifest_HINGEonly_Yale_16301942.json"
+    description: "Two images show the flap closed and open; hinge is clearly defined and shot at similar angles for alignment."
   - title: "Please edit some examples here!"
     url: "#nothing"
     description: "17th-century atlas with large fold-out maps of continents"
@@ -21,6 +24,8 @@ instances:
 links:
   - title: "Book Structures and Formats"
     url: "https://www.nedcc.org/free-resources/preservation-leaflets/4.-storage-and-handling/4.10-storage-methods-and-handling-practices"
+  - title: "Yale manifest (local copy)"
+    url: "https://cubap.github.io/movable-books/fixtures/manifests/yale-16301942-flap.json"
 data:
   manifest: "https://cubap.github.io/movable-books/fixtures/manifests/all.json"
 ---
@@ -44,3 +49,17 @@ Different fold types require different viewing approaches:
 - **Gatefolds**: Allow progressive unfolding from center outward
 - **Accordion Folds**: Enable sequential navigation through connected panels
 - **Pop-ups**: Provide multiple angle views or interactive 3D models to show depth
+
+### Theseus Viewer (embedded)
+
+<iframe
+  title="Universal Viewer — Yale: Jane Wodening and Stan Brakhage scrapbooks — single flap"
+  src="https://theseusviewer.org/?iiif-content=https%3A%2F%2Fcubap.github.io%2Fmovable-books%2Ffixtures%2Fmanifests%2Fyale-16301942-flap.json"
+  allowfullscreen
+  loading="lazy"
+  referrerpolicy="no-referrer-when-downgrade"
+  style="width: 100%; height: 800px; border: 1px solid #ddd"
+></iframe>
+
+If the embed does not load, open directly:
+[https://theseusviewer.org/?iiif-content=https%3A%2F%2Fcubap.github.io%2Fmovable-books%2Ffixtures%2Fmanifests%2Fyale-16301942-flap.json](https://theseusviewer.org/?iiif-content=https%3A%2F%2Fcubap.github.io%2Fmovable-books%2Ffixtures%2Fmanifests%2Fyale-16301942-flap.json)

@@ -1,0 +1,83 @@
+---
+layout: default
+title: "Fold crossfade slider"
+permalink: /demos/fold-slider.html
+---
+
+<div class="demo-fold-slider">
+  <h1>Fold crossfade slider</h1>
+  <p>
+    Smoothly transition between the closed and open states of a single flap using a simple slider.
+    Images courtesy of Yale University Library.
+  </p>
+
+  <div class="panel-and-controls">
+    <div class="image-panel" aria-label="Image panel showing closed and open states">
+      <!-- Closed state (Canvas 16595950) at the bottom -->
+      <img
+        id="img-closed"
+        alt="Closed state"
+        src="https://collections.library.yale.edu/iiif/2/16595950/full/1024,/0/default.jpg"
+        crossorigin="anonymous"
+      />
+      <!-- Open state (Canvas 16595951) overlaid; opacity controlled by slider -->
+      <img
+        id="img-open"
+        alt="Open state"
+        src="https://collections.library.yale.edu/iiif/2/16595951/full/1024,/0/default.jpg"
+        crossorigin="anonymous"
+        class="is-hidden"
+      />
+    </div>
+
+    <div class="controls">
+      <label for="blend">Blend (Closed → Open)</label>
+      <input id="blend" type="range" min="0" max="100" value="0" step="1" aria-label="Blend between closed and open" />
+      <div class="ticks">
+        <span>Closed</span>
+        <span>Open</span>
+      </div>
+    </div>
+  </div>
+
+  <details>
+    <summary>Details and notes</summary>
+    <ul>
+      <li>This is a simple image crossfade; it does not model rotation or hinge behavior.</li>
+      <li>Images load from Yale IIIF Image API. For higher resolution, increase the width in the URLs.</li>
+      <li>To align precisely or mask to a circular flap, a future version could add SVG clip-paths and a rotation control.</li>
+      <li>Source record: <a href="https://collections.library.yale.edu/catalog/16301942?child_oid=16595950" target="_blank" rel="noopener">Yale Digital Collections</a></li>
+      <li>Local manifest used in the project: <a href="{{ '/fixtures/manifests/yale-16301942-flap.json' | relative_url }}" target="_blank" rel="noopener">yale-16301942-flap.json</a></li>
+    </ul>
+  </details>
+</div>
+
+<style>
+  .panel-and-controls { display: grid; grid-template-columns: 1fr; gap: 1rem; align-items: start; }
+  @media (min-width: 900px){ .panel-and-controls { grid-template-columns: 2fr 1fr; } }
+  .image-panel { position: relative; width: 100%; max-width: 1024px; aspect-ratio: 4696 / 5752; background: #eee; border: 1px solid #ddd; overflow: hidden; }
+  .image-panel img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; transition: opacity 120ms linear; }
+  .image-panel img.is-hidden { opacity: 0; }
+  .controls { display: flex; flex-direction: column; gap: .5rem; }
+  .controls input[type="range"]{ width: 100%; }
+  .ticks { display: flex; justify-content: space-between; font-size: .9rem; color: #555; }
+</style>
+
+<script>
+  // Minimal JS: crossfade by adjusting the opacity of the "open" image
+  const range = document.getElementById('blend');
+  const imgOpen = document.getElementById('img-open');
+  const imgClosed = document.getElementById('img-closed');
+
+  // Preload and sync natural dimensions if needed
+  const syncAspect = () => {
+    // If dimensions differ slightly, object-fit: contain keeps aspect; panel uses known aspect ratio
+  };
+  imgClosed.addEventListener('load', syncAspect, { once: true });
+  imgOpen.addEventListener('load', syncAspect, { once: true });
+
+  range.addEventListener('input', (e) => {
+    const t = Number(e.target.value) / 100; // 0..1
+    imgOpen.style.opacity = String(t);
+  });
+</script>
