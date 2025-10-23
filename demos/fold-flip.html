@@ -60,6 +60,177 @@ permalink: /demos/fold-flip.html
         <pre id="configOut" class="config-out" aria-live="polite"></pre>
       </details>
     </div>
+    <div>
+      <h3>Resources</h3>
+      <ul>
+        <li><a href="{{ '/fixtures/manifests/yale-16301942-flap.json' | relative_url }}">This Manifest</a></li>
+        <li><a href="https://stshetenhelm.github.io/IIIF-Workshop/manifests/manifest_HINGEonly_Yale_16301942.json">which extends this one</a></li>
+        <li><a href="https://collections.library.yale.edu/catalog/16301942?child_oid=16595950">found at Yale</a></li>
+      </ul>
+      <details>
+        <summary>View Canvas JSON</summary>
+        <pre><code>{
+"id": "https://cubap.github.io/movable-books/fixtures/canvases/yale-16301942-flap-interactive",
+"type": "Canvas",
+"height": 5752,
+"width": 4696,
+"label": { "en": [ "5r [interactive circular flap]" ] },
+"annotations": [
+  {
+    "id": "https://cubap.github.io/movable-books/fixtures/annotations/yale-16301942-hinge-axis",
+    "type": "AnnotationPage",
+    "label": { "en": [ "Hinge Axis Definition" ] },
+    "items": [
+      {
+        "id": "https://cubap.github.io/movable-books/fixtures/annotations/yale-16301942-hinge-axis-1",
+        "type": "Annotation",
+        "motivation": "describing",
+        "body": {
+          "type": "TextualBody",
+          "value": "Hinge axis start point - top of circular flap rotation center",
+          "format": "text/plain",
+          "language": "en"
+        },
+        "target": {
+          "type": "SpecificResource",
+          "source": "https://cubap.github.io/movable-books/fixtures/canvases/yale-16301942-flap-interactive",
+          "selector": {
+            "type": "PointSelector",
+            "x": 2198.918066611849,
+            "y": 1927.2436391397318
+          }
+        }
+      },
+      {
+        "id": "https://cubap.github.io/movable-books/fixtures/annotations/yale-16301942-hinge-axis-2",
+        "type": "Annotation",
+        "motivation": "describing",
+        "body": {
+          "type": "TextualBody",
+          "value": "Hinge axis end point - bottom of circular flap rotation center",
+          "format": "text/plain",
+          "language": "en"
+        },
+        "target": {
+          "type": "SpecificResource",
+          "source": "https://cubap.github.io/movable-books/fixtures/canvases/yale-16301942-flap-interactive",
+          "selector": {
+            "type": "PointSelector",
+            "x": 2203.1184188900656,
+            "y": 2855.523386489034
+          }
+        }
+      }
+    ]
+  },
+  {
+    "id": "https://cubap.github.io/movable-books/fixtures/annotations/yale-16301942-flap-region",
+    "type": "AnnotationPage",
+    "label": { "en": [ "Circular Flap Region" ] },
+    "items": [
+      {
+        "id": "https://cubap.github.io/movable-books/fixtures/annotations/yale-16301942-flap-circle",
+        "type": "Annotation",
+        "motivation": "describing",
+        "body": {
+          "type": "TextualBody",
+          "value": "Approximate circular region of the movable flap. The flap rotates around a vertical axis through its center.",
+          "format": "text/plain",
+          "language": "en"
+        },
+        "target": {
+          "type": "SpecificResource",
+          "source": "https://cubap.github.io/movable-books/fixtures/canvases/yale-16301942-flap-interactive",
+          "selector": {
+            "type": "SvgSelector",
+            "value": "&lt;svg xmlns='http://www.w3.org/2000/svg'>&lt;circle &hellip; &lt;/svg>"
+          }
+        }
+      }
+    ]
+  }
+],
+"items": [
+  {
+    "id": "https://cubap.github.io/movable-books/fixtures/canvases/yale-16301942-flap-interactive/page/1",
+    "type": "AnnotationPage",
+    "items": [
+      {
+        "id": "https://cubap.github.io/movable-books/fixtures/canvases/yale-16301942-flap-interactive/composite-base",
+        "type": "Annotation",
+        "motivation": "painting",
+        "label": { "en": [ "Base layer - background from closed state" ] },
+        "body": {
+          "id": "https://collections.library.yale.edu/iiif/2/16595950/full/full/0/default.jpg",
+          "type": "Image",
+          "format": "image/jpeg",
+          "height": 5752,
+          "width": 4696,
+          "service": [
+            {
+              "@id": "https://collections.library.yale.edu/iiif/2/16595950",
+              "@type": "ImageService2",
+              "profile": "http://iiif.io/api/image/2/level2.json"
+            }
+          ]
+        },
+        "target": "https://cubap.github.io/movable-books/fixtures/canvases/yale-16301942-flap-interactive"
+      },
+      {
+        "id": "https://cubap.github.io/movable-books/fixtures/canvases/yale-16301942-flap-interactive/flap-front",
+        "type": "Annotation",
+        "motivation": "painting",
+        "label": { "en": [ "Flap front side - visible when closed (from canvas 1)" ] },
+        "body": {
+          "id": "https://collections.library.yale.edu/iiif/2/16595951/2031,1490,1722,1722/full/0/default.jpg",
+          "type": "Image",
+          "format": "image/jpeg",
+          "service": [
+            {
+              "@id": "https://collections.library.yale.edu/iiif/2/16595951",
+              "@type": "ImageService2",
+              "profile": "http://iiif.io/api/image/2/level2.json"
+            }
+          ]
+        },
+        "target": "https://cubap.github.io/movable-books/fixtures/canvases/yale-16301942-flap-interactive#xywh=2031,1490,1722,1722",
+      },
+      {
+        "id": "https://cubap.github.io/movable-books/fixtures/canvases/yale-16301942-flap-interactive/flap-back",
+        "type": "Annotation",
+        "motivation": "painting",
+        "label": { "en": [ "Flap back side - visible when open (from canvas 2)" ] },
+        "body": {
+          "id": "https://collections.library.yale.edu/iiif/2/16595951/642,1551,1722,1722/full/0/default.jpg",
+          "type": "Image",
+          "format": "image/jpeg",
+          "service": [
+            {
+              "@id": "https://collections.library.yale.edu/iiif/2/16595951",
+              "@type": "ImageService2",
+              "profile": "http://iiif.io/api/image/2/level2.json"
+            }
+          ]
+        },
+        "target": {
+          "type": "SpecificResource",
+          "source": "https://cubap.github.io/movable-books/fixtures/canvases/yale-16301942-flap-interactive",
+          "selector": {
+            "type": "FragmentSelector",
+            "value": "xywh=642,1551,1722,1722"
+          },
+          "style": {
+            "transform": "rotateY(180deg)",
+            "transformOrigin": "center"
+          }
+        }
+      }
+    ]
+  }
+]
+}</code></pre>
+      </details>
+    </div>
   </div>
 
   <details>
