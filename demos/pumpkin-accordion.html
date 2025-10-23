@@ -1,0 +1,225 @@
+---
+layout: default
+title: "Pumpkin accordion fold"
+permalink: /demos/pumpkin-accordion.html
+---
+
+<div class="demo-accordion">
+  <h1>Pumpkin accordion fold</h1>
+  <p>
+    An accordion-fold card with four horizontal panels. When closed, the top and bottom quarters meet to form a jack-o-lantern face; when open, the full vampire drawing is revealed.
+  </p>
+
+  <div class="panel-and-controls">
+    <div id="stage" class="stage" aria-live="polite" tabindex="0">
+      <div id="accordion" class="accordion">
+        <div class="panel panel-0" data-panel="0">
+          <img src="{{ '/assets/images/pumpkin/vampire.png' | relative_url }}" alt="Panel 0" class="panel-img" />
+        </div>
+        <div class="panel panel-1" data-panel="1">
+          <img src="{{ '/assets/images/pumpkin/vampire.png' | relative_url }}" alt="Panel 1" class="panel-img" />
+        </div>
+        <div class="panel panel-2" data-panel="2">
+          <img src="{{ '/assets/images/pumpkin/vampire.png' | relative_url }}" alt="Panel 2" class="panel-img" />
+        </div>
+        <div class="panel panel-3" data-panel="3">
+          <img src="{{ '/assets/images/pumpkin/vampire.png' | relative_url }}" alt="Panel 3" class="panel-img" />
+        </div>
+      </div>
+    </div>
+
+    <div class="controls">
+      <label for="fold">Fold state (0 = closed jack-o-lantern, 100 = open vampire)</label>
+      <input id="fold" type="range" min="0" max="100" value="0" step="1" aria-label="Fold percentage" />
+      <div class="ticks"><span>Closed</span><span>Open</span></div>
+      <button type="button" id="btnAnimate">Animate open/close</button>
+      <details class="details-info">
+        <summary>Fold pattern</summary>
+        <p>
+          The card is divided into four horizontal quarters (top to bottom: panel 0, 1, 2, 3). 
+          Dotted lines indicate mountain/valley folds that create an accordion. 
+          When closed, panels 1 and 2 fold back (hidden) and panels 0 and 3 meet face-to-face.
+        </p>
+      </details>
+    </div>
+  </div>
+</div>
+
+<style>
+  .panel-and-controls { display: grid; grid-template-columns: 1fr; gap: 1rem; align-items: start; }
+  @media (min-width: 980px){ .panel-and-controls { grid-template-columns: 2fr 1fr; } }
+  .stage { 
+    position: relative; 
+    width: 100%; 
+    max-width: 600px; 
+    aspect-ratio: 1 / 1.6; 
+    background: linear-gradient(135deg, #e0e0e0 25%, #f5f5f5 25%, #f5f5f5 50%, #e0e0e0 50%, #e0e0e0 75%, #f5f5f5 75%);
+    background-size: 40px 40px;
+    border: 1px solid #ccc; 
+    overflow: visible;
+    perspective: 2000px;
+    perspective-origin: 50% 50%;
+  }
+  .accordion {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 80%;
+    height: 80%;
+    transform-style: preserve-3d;
+    transform: translate(-50%, -50%);
+  }
+  .panel {
+    position: relative;
+    width: 100%;
+    height: 25%; /* each panel is 1/4 of the accordion */
+    transform-style: preserve-3d;
+    transform-origin: top center;
+    overflow: hidden;
+    backface-visibility: hidden;
+  }
+  .panel-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 400%; /* The full image is 4x the panel height */
+    object-fit: cover;
+    object-position: center top;
+  }
+  /* Panel image offsets are controlled by JS to allow seam tweaking */
+
+  /* Panel 2 rotates around its BOTTOM edge to stay connected to panel 3 */
+  .panel-2 { transform-origin: bottom center; }
+
+  .controls { display: flex; flex-direction: column; gap: .5rem; }
+  .ticks { display: flex; justify-content: space-between; font-size: .9rem; color: #555; }
+</style>
+
+<script>
+  const foldInput = document.getElementById('fold');
+  const btnAnimate = document.getElementById('btnAnimate');
+  const accordion = document.getElementById('accordion');
+  const panels = Array.from(document.querySelectorAll('.panel'));
+  const panelImgs = panels.map(p => p.querySelector('img'));
+
+  // Seam positions (locked to calibrated values for this image)
+  const SEAM_01 = 30.5;
+  const SEAM_12 = 53.0;
+  const SEAM_23 = 81.0;
+  const MEET_OFFSET = 0.0;
+
+  // Load image to get its aspect ratio and size the accordion properly
+  const img = new Image();
+  img.onload = () => {
+    const aspectRatio = img.width / img.height;
+    const stage = document.getElementById('stage');
+    // Adjust stage aspect to match the image
+    stage.style.aspectRatio = `${aspectRatio} / 1`;
+  };
+  img.src = panels[0].querySelector('img').src;
+
+  // Seam positions are fixed constants
+  const getSeams = () => {
+    return { s1: SEAM_01, s2: SEAM_12, s3: SEAM_23 };
+  };
+
+  const applyLayoutFromSeams = () => {
+    const { s1, s2, s3 } = getSeams();
+    const h0 = s1;             // percent of container
+    const h1 = s2 - s1;
+    const h2 = s3 - s2;
+    const h3 = 100 - s3;
+
+    const heights = [h0, h1, h2, h3];
+    const cum = [0, h0, h0 + h1, s3];
+
+    panels.forEach((p, i) => {
+      const hp = Math.max(0.001, heights[i]);
+      p.style.height = `${hp}%`;
+      const img = panelImgs[i];
+      img.style.height = `${(100 / hp) * 100}%`; // image spans full container height
+      img.style.transform = `translateY(-${cum[i]}%)`;
+    });
+
+    return { h0, h1, h2, h3 };
+  };
+
+  // Fold state: 0 = closed (jack-o-lantern), 100 = open (vampire fully extended)
+  // Accordion fold: 
+  //   - Panel 0 (top): stays flat at the top
+  //   - Panel 1: folds backward 90° (perpendicular to viewer) when closed
+  //   - Panel 2: connected to panel 1, also folds backward 90°
+  //   - Panel 3 (bottom): stays flat but slides up to meet panel 0 when closed
+
+  const applyFold = (t) => {
+    // t = 0 (closed) to 1 (open)
+    const { s1, s2, s3 } = getSeams();
+    const h0 = s1, h1 = s2 - s1, h2 = s3 - s2, h3 = 100 - s3;
+    
+    // Panel 0 (top): always flat, no movement
+    panels[0].style.transform = 'rotateX(0deg)';
+
+    // Panel 1: folds backward from its TOP edge - starts at -90° (perpendicular), goes to 0° (flat)
+    const angle1 = -90 * (1 - t);
+    panels[1].style.transform = `rotateX(${angle1}deg)`;
+
+    // Meet/seam adjustment applied to translations for panels 2 and 3
+    const meetAdj = MEET_OFFSET; // percent-of-container at closed
+
+    // Panel 2: connected to panel 1 along the SHARED edge; rotate around BOTTOM edge and slide with panel 3
+    // When panel 1 rotates -90°, its bottom edge moves up by h1 * sin(90°) = h1 in container space
+    // Panel 2 must translate up by that amount (plus the slide for panel 3) to stay connected
+    const angle2 = 90 * (1 - t);
+    const panel1Collapse = h1 * Math.sin(Math.abs(angle1) * Math.PI / 180); // height lost by panel 1 rotation
+    const D = Math.max(0, panel1Collapse + h2 + meetAdj); // total upward movement needed
+    const slide2 = - (h2 > 0 ? (D / h2) * 100 : 0) * (1 - t); // percent relative to panel 2 height
+    panels[2].style.transform = `translateY(${slide2}%) rotateX(${angle2}deg)`;
+
+    // Panel 3: stays flat but slides UP to meet panel 0 when closed
+    // translateY(%) is relative to panel 3's own height; each panel is 25% of the accordion height.
+    //  - t=0 (closed): translateY(-200% + meetAdj) → panel 3 meets panel 0
+    //  - t=1 (open):   translateY(0%)
+  const slide3 = - (h3 > 0 ? (D / h3) * 100 : 0) * (1 - t); // percent relative to panel 3 height
+  panels[3].style.transform = `translateY(${slide3}%)`;
+    
+    // Z-index: middle panels should be behind the outer panels
+    panels[0].style.zIndex = '10';
+    panels[1].style.zIndex = '5';
+    panels[2].style.zIndex = '5';
+    panels[3].style.zIndex = '10';
+  };
+
+  foldInput.addEventListener('input', (e) => {
+    const val = Number(e.target.value);
+    applyLayoutFromSeams();
+    applyFold(val / 100);
+  });
+
+  // Animate
+  let animating = false;
+  btnAnimate.addEventListener('click', () => {
+    if (animating) return;
+    animating = true;
+    const start = Number(foldInput.value);
+    const target = start < 50 ? 100 : 0;
+    const duration = 2000;
+    const startTime = performance.now();
+    const animate = (now) => {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = progress < 0.5 ? 2*progress*progress : 1 - Math.pow(-2*progress + 2, 2)/2; // easeInOutQuad
+      const val = start + (target - start) * eased;
+      foldInput.value = String(Math.round(val));
+  applyLayoutFromSeams();
+  applyFold(val / 100);
+      if (progress < 1) requestAnimationFrame(animate);
+      else animating = false;
+    };
+    requestAnimationFrame(animate);
+  });
+
+  // Init
+  applyLayoutFromSeams();
+  applyFold(0);
+</script>
