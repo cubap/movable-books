@@ -1,0 +1,216 @@
+---
+layout: default
+title: "Recto–Verso flip (Imperiia 315)"
+permalink: /demos/recto-verso.html
+---
+
+<div class="demo-recto-verso">
+  <h1>Recto–Verso flip</h1>
+  <p>This demo uses a local derivative IIIF manifest to show a card that can flip between front (recto) and back (verso).</p>
+
+  <div class="panel-and-controls">
+    <div id="panel" class="image-panel" aria-live="polite" tabindex="0">
+      <div id="card" class="card" aria-label="Recto–Verso card">
+        <div class="card-inner">
+          <img id="card-front" alt="Card front (recto)" crossorigin="anonymous" />
+          <img id="card-back" alt="Card back (verso)" crossorigin="anonymous" />
+          <!-- Pins overlay (two faces so pins rotate with each side) -->
+          <div id="pins" class="pins" aria-hidden="false">
+            <div class="pins-face pins-front"></div>
+            <div class="pins-face pins-back"></div>
+          </div>
+          <!-- Guides overlay -->
+          <div class="guides" aria-hidden="true"><div class="centerline"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="controls">
+      <label for="angle">Angle (0° recto → 180° verso)</label>
+      <input id="angle" type="range" min="0" max="180" value="0" step="1" aria-label="Rotation angle" />
+      <div class="ticks"><span>Front</span><span>Back</span></div>
+      <div class="buttons">
+        <button id="btnFlip" type="button">Flip</button>
+        <label class="swap"><input id="swapSides" type="checkbox" /> Swap sides</label>
+        <label class="mirror"><input id="showMirror" type="checkbox" checked /> Show mirrored pins</label>
+        <button id="btnClearPins" type="button">Clear pins</button>
+      </div>
+    </div>
+  </div>
+
+  <details>
+    <summary>Details</summary>
+    <ul>
+      <li>Source: <a href="https://imperiia.omeka.fas.harvard.edu/oa/items/315/manifest.json" target="_blank" rel="noopener">Imperiia item 315</a>.</li>
+      <li>Derivative manifest: <code>{{ '/fixtures/manifests/imperiia-315-recto-verso.json' | relative_url }}</code>.</li>
+      <li>Uses CSS 3D transform to rotate the card around its vertical axis.</li>
+    </ul>
+  </details>
+</div>
+
+<style>
+  .panel-and-controls { display: grid; grid-template-columns: 1fr; gap: 1rem; align-items: start; }
+  @media (min-width: 880px){ .panel-and-controls { grid-template-columns: 2fr 1fr; } }
+  .image-panel { position: relative; width: 100%; max-width: 640px; aspect-ratio: 2 / 3; background: #eee; border: 1px solid #ddd; overflow: hidden; }
+  .controls { display: flex; flex-direction: column; gap: .5rem; }
+  .ticks { display: flex; justify-content: space-between; font-size: .9rem; color: #555; }
+  .buttons { display: flex; gap: .5rem; align-items: center; }
+
+  .card { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 66%; aspect-ratio: 2 / 3; perspective: 1000px; }
+  .card-inner { position: relative; width: 100%; height: 100%; transform-style: preserve-3d; transition: transform 200ms linear; }
+  .card-inner img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; backface-visibility: hidden; border-radius: 6px; box-shadow: 0 1px 4px rgba(0,0,0,.12); }
+  #card-back { transform: rotateY(180deg); }
+
+  /* Pins overlay */
+  .pins { position: absolute; inset: 0; transform-style: preserve-3d; z-index: 2; }
+  .pins-face { position: absolute; inset: 0; backface-visibility: hidden; pointer-events: none; }
+  .pins-back { transform: rotateY(180deg); }
+  .pin { position: absolute; transform: translate(-50%, -50%); width: 14px; height: 14px; border-radius: 50%; border: 2px solid currentColor; background: white; box-shadow: 0 1px 2px rgba(0,0,0,.2); display: grid; place-items: center; font: 600 10px/1 system-ui, sans-serif; pointer-events: auto; cursor: grab; }
+  .pin.dragging { cursor: grabbing; }
+  .pin.front { color: #e91e63; background: #fff0f7; }
+  .pin.back { color: #3f51b5; background: #eef1ff; }
+  .pin.mirror { opacity: .65; border-style: dashed; }
+
+  /* Guides */
+  .guides { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
+  .guides .centerline { position: absolute; top: 0; bottom: 0; left: 50%; width: 0; border-left: 1px dashed rgba(0,0,0,.25); transform: translateX(-0.5px); opacity:0;}
+  .card-inner.disallowed { cursor: not-allowed; }
+</style>
+
+<script>
+  const manifestUrl = "{{ '/fixtures/manifests/imperiia-315-recto-verso.json' | relative_url }}";
+  const cardInner = document.querySelector('.card-inner');
+  const cardFront = document.getElementById('card-front');
+  const cardBack = document.getElementById('card-back');
+  const angleInput = document.getElementById('angle');
+  const btnFlip = document.getElementById('btnFlip');
+  const swap = document.getElementById('swapSides');
+  const pinsRoot = document.getElementById('pins');
+  const pinsFront = document.querySelector('.pins-front');
+  const pinsBack = document.querySelector('.pins-back');
+  const showMirror = document.getElementById('showMirror');
+  const btnClearPins = document.getElementById('btnClearPins');
+
+  const FACE_GUARD = 10; // degrees threshold near 0° or 180°
+  const setRotation = (deg) => {
+    cardInner.style.transform = `rotateY(${deg}deg)`;
+    const allowed = (deg <= FACE_GUARD) || (deg >= 180 - FACE_GUARD);
+    cardInner.classList.toggle('disallowed', !allowed);
+    cardInner.title = allowed ? '' : `Pin placement disabled unless angle ≤ ${FACE_GUARD}° or ≥ ${180 - FACE_GUARD}°`;
+  };
+
+  // Pins model and rendering
+  const pins = []; // { id, face: 'front'|'back', x:0..1, y:0..1 }
+  const createPinEl = (pin, face, mirrored = false) => {
+    const el = document.createElement('div');
+    el.className = `pin ${face} ${mirrored ? 'mirror' : ''}`;
+    const x = mirrored ? 1 - pin.x : pin.x;
+    const y = pin.y;
+    el.style.left = `${(x * 100).toFixed(3)}%`;
+    el.style.top = `${(y * 100).toFixed(3)}%`;
+    el.setAttribute('aria-label', `Pin ${pin.id} (${face}${mirrored ? ' mirrored' : ''})`);
+    el.textContent = pin.id;
+    el.dataset.id = String(pin.id);
+    el.dataset.mirrored = mirrored ? '1' : '0';
+    el.dataset.face = face;
+    return el;
+  };
+  const renderPins = () => {
+    pinsFront.innerHTML = '';
+    pinsBack.innerHTML = '';
+    for (const pin of pins) {
+      if (pin.face === 'front') {
+        pinsFront.appendChild(createPinEl(pin, 'front', false));
+        if (showMirror.checked) pinsBack.appendChild(createPinEl(pin, 'back', true));
+      } else {
+        pinsBack.appendChild(createPinEl(pin, 'back', false));
+        if (showMirror.checked) pinsFront.appendChild(createPinEl(pin, 'front', true));
+      }
+    }
+  };
+  // Dragging pins
+  let dragPin = null; // { id, mirrored: boolean }
+  const toNorm = (ev) => {
+    const rect = cardInner.getBoundingClientRect();
+    const x = (ev.clientX - rect.left) / rect.width;
+    const y = (ev.clientY - rect.top) / rect.height;
+    return { x: Math.min(1, Math.max(0, x)), y: Math.min(1, Math.max(0, y)) };
+  };
+  pinsRoot.addEventListener('pointerdown', (ev) => {
+    const target = ev.target;
+    if (!(target instanceof HTMLElement)) return;
+    if (!target.classList.contains('pin')) return;
+    ev.stopPropagation(); ev.preventDefault();
+    dragPin = { id: Number(target.dataset.id), mirrored: target.dataset.mirrored === '1' };
+    target.classList.add('dragging');
+    (target).setPointerCapture?.(ev.pointerId);
+  });
+  const onPinMove = (ev) => {
+    if (!dragPin) return;
+    const pin = pins.find(p => p.id === dragPin.id);
+    if (!pin) return;
+    const { x, y } = toNorm(ev);
+    if (dragPin.mirrored) {
+      pin.x = 1 - x; pin.y = y;
+    } else {
+      pin.x = x; pin.y = y;
+    }
+    renderPins();
+  };
+  const onPinUp = (ev) => {
+    if (!dragPin) return;
+    dragPin = null;
+  };
+  window.addEventListener('pointermove', onPinMove);
+  window.addEventListener('pointerup', onPinUp);
+  const addPinAt = (xPct, yPct) => {
+    const id = pins.length + 1;
+    const angle = Number(angleInput.value);
+    const face = angle < 90 ? 'front' : 'back';
+    const pin = { id, face, x: xPct, y: yPct };
+    pins.push(pin);
+    renderPins();
+  };
+
+  const init = async () => {
+    const res = await fetch(manifestUrl, { cache: 'no-store' });
+    const mf = await res.json();
+    const canvas = mf.items?.[0];
+    const page = canvas?.items?.[0];
+    const items = page?.items || [];
+    const frontAnno = items.find(a => /card-front/.test(a.id)) || items[0];
+    const backAnno = items.find(a => /card-back/.test(a.id)) || items[1];
+    if (frontAnno?.body?.id) cardFront.src = frontAnno.body.id;
+    if (backAnno?.body?.id) cardBack.src = backAnno.body.id;
+
+    // Controls
+    angleInput.addEventListener('input', (e) => setRotation(Number(e.target.value)));
+    btnFlip.addEventListener('click', () => {
+      const a = Number(angleInput.value);
+      const next = a < 90 ? 180 : 0;
+      angleInput.value = String(next);
+      setRotation(next);
+    });
+    swap.addEventListener('change', () => {
+      const f = cardFront.src; cardFront.src = cardBack.src; cardBack.src = f;
+    });
+    showMirror.addEventListener('change', renderPins);
+    btnClearPins.addEventListener('click', () => { pins.length = 0; renderPins(); });
+
+    // Click to add pin (use card inner bounds to normalize); guard for face-on only
+    cardInner.addEventListener('click', (ev) => {
+      const rect = cardInner.getBoundingClientRect();
+      const x = (ev.clientX - rect.left) / rect.width; // 0..1
+      const y = (ev.clientY - rect.top) / rect.height; // 0..1
+      if (x < 0 || x > 1 || y < 0 || y > 1) return;
+      const angle = Number(angleInput.value);
+      if (!((angle <= FACE_GUARD) || (angle >= 180 - FACE_GUARD))) return;
+      addPinAt(Math.min(1, Math.max(0, x)), Math.min(1, Math.max(0, y)));
+    });
+
+    setRotation(0);
+    renderPins();
+  };
+
+  init().catch(err => console.error('Recto–Verso init failed:', err));
+</script>

@@ -1,0 +1,67 @@
+{
+  "@context": [
+    "http://iiif.io/api/presentation/3/context.json"
+  ],
+  "id": "https://cubap.github.io/movable-books/fixtures/manifests/imperiia-315-recto-verso.json",
+  "type": "Manifest",
+  "label": { "en": ["Recto-Verso Card (Imperiia 315)"] },
+  "items": [
+    {
+      "id": "https://cubap.github.io/movable-books/fixtures/canvases/imperiia-315-card",
+      "type": "Canvas",
+      "height": 480,
+      "width": 320,
+      "label": { "en": ["Card (front/back)"] },
+      "items": [
+        {
+          "id": "https://cubap.github.io/movable-books/fixtures/canvases/imperiia-315-card/page/1",
+          "type": "AnnotationPage",
+          "items": [
+            {
+              "id": "https://cubap.github.io/movable-books/fixtures/canvases/imperiia-315-card/card-front",
+              "type": "Annotation",
+              "motivation": "painting",
+              "label": { "en": ["Card front (recto)"] },
+              "body": {
+                "id": "https://iiif.omeka.fas.harvard.edu/loris/atg-prod-oaas-files/imperiia/original/a91bd7ce26f64b848dd1dbe5ef71abcb.jpg/0,0,320,480/full/0/default.jpg",
+                "type": "Image",
+                "format": "image/jpeg",
+                "height": 480,
+                "width": 320,
+                "service": [
+                  {
+                    "@id": "https://iiif.omeka.fas.harvard.edu/loris/atg-prod-oaas-files/imperiia/original/a91bd7ce26f64b848dd1dbe5ef71abcb.jpg",
+                    "@type": "ImageService2",
+                    "profile": "http://iiif.io/api/image/2/level2.json"
+                  }
+                ]
+              },
+              "target": "https://cubap.github.io/movable-books/fixtures/canvases/imperiia-315-card"
+            },
+            {
+              "id": "https://cubap.github.io/movable-books/fixtures/canvases/imperiia-315-card/card-back",
+              "type": "Annotation",
+              "motivation": "painting",
+              "label": { "en": ["Card back (verso)"] },
+              "body": {
+                "id": "https://iiif.omeka.fas.harvard.edu/loris/atg-prod-oaas-files/imperiia/original/a91bd7ce26f64b848dd1dbe5ef71abcb.jpg/320,0,320,480/full/0/default.jpg",
+                "type": "Image",
+                "format": "image/jpeg",
+                "height": 480,
+                "width": 320,
+                "service": [
+                  {
+                    "@id": "https://iiif.omeka.fas.harvard.edu/loris/atg-prod-oaas-files/imperiia/original/a91bd7ce26f64b848dd1dbe5ef71abcb.jpg",
+                    "@type": "ImageService2",
+                    "profile": "http://iiif.io/api/image/2/level2.json"
+                  }
+                ]
+              },
+              "target": "https://cubap.github.io/movable-books/fixtures/canvases/imperiia-315-card"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
