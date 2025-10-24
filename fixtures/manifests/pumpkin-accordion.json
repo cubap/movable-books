@@ -1,0 +1,168 @@
+{
+  "@context": "http://iiif.io/api/presentation/3/context.json",
+  "id": "https://cubap.github.io/movable-books/fixtures/manifests/pumpkin-accordion.json",
+  "type": "Manifest",
+  "label": { "en": ["Pumpkin Accordion Fold Card"] },
+  "summary": {
+    "en": ["A hand-drawn Halloween card with a four-panel accordion fold. When closed, it shows a jack-o-lantern face; when opened, it reveals a vampire character emerging from a pumpkin."]
+  },
+  "metadata": [
+    {
+      "label": { "en": ["Artist"] },
+      "value": { "en": ["Unknown child artist"] }
+    },
+    {
+      "label": { "en": ["Date"] },
+      "value": { "en": ["2025"] }
+    },
+    {
+      "label": { "en": ["Medium"] },
+      "value": { "en": ["Marker and crayon on paper"] }
+    },
+    {
+      "label": { "en": ["Fold Type"] },
+      "value": { "en": ["Accordion fold (4 panels)"] }
+    }
+  ],
+  "rights": "http://creativecommons.org/licenses/by/4.0/",
+  "provider": [
+    {
+      "id": "https://github.com/cubap/movable-books",
+      "type": "Agent",
+      "label": { "en": ["Movable Books Demo Project"] },
+      "homepage": [
+        {
+          "id": "https://cubap.github.io/movable-books/",
+          "type": "Text",
+          "label": { "en": ["Movable Books"] },
+          "format": "text/html"
+        }
+      ]
+    }
+  ],
+  "items": [
+    {
+      "id": "https://cubap.github.io/movable-books/fixtures/manifests/pumpkin-accordion.json/canvas/full",
+      "type": "Canvas",
+      "label": { "en": ["Full extended view"] },
+      "height": 2000,
+      "width": 1500,
+      "items": [
+        {
+          "id": "https://cubap.github.io/movable-books/fixtures/manifests/pumpkin-accordion.json/canvas/full/page",
+          "type": "AnnotationPage",
+          "items": [
+            {
+              "id": "https://cubap.github.io/movable-books/fixtures/manifests/pumpkin-accordion.json/canvas/full/page/image",
+              "type": "Annotation",
+              "motivation": "painting",
+              "body": {
+                "id": "https://cubap.github.io/movable-books/assets/images/pumpkin/vampire.png",
+                "type": "Image",
+                "format": "image/png",
+                "height": 2000,
+                "width": 1500
+              },
+              "target": "https://cubap.github.io/movable-books/fixtures/manifests/pumpkin-accordion.json/canvas/full"
+            }
+          ]
+        }
+      ],
+      "annotations": [
+        {
+          "id": "https://cubap.github.io/movable-books/fixtures/manifests/pumpkin-accordion.json/canvas/full/fold-lines",
+          "type": "AnnotationPage",
+          "label": { "en": ["Fold line annotations"] },
+          "items": [
+            {
+              "id": "https://cubap.github.io/movable-books/fixtures/manifests/pumpkin-accordion.json/annotation/fold-seam-01",
+              "type": "Annotation",
+              "motivation": "describing",
+              "label": { "en": ["Fold seam 0-1"] },
+              "body": {
+                "type": "TextualBody",
+                "value": "Mountain fold at 30.5% of image height. Separates panel 0 (pumpkin hat) from panel 1 (upper vampire body).",
+                "format": "text/plain",
+                "language": "en"
+              },
+              "target": {
+                "type": "SpecificResource",
+                "source": "https://cubap.github.io/movable-books/fixtures/manifests/pumpkin-accordion.json/canvas/full",
+                "selector": {
+                  "type": "FragmentSelector",
+                  "conformsTo": "http://www.w3.org/TR/media-frags/",
+                  "value": "xywh=0,610,1500,5"
+                }
+              }
+            },
+            {
+              "id": "https://cubap.github.io/movable-books/fixtures/manifests/pumpkin-accordion.json/annotation/fold-seam-12",
+              "type": "Annotation",
+              "motivation": "describing",
+              "label": { "en": ["Fold seam 1-2"] },
+              "body": {
+                "type": "TextualBody",
+                "value": "Valley fold at 53.0% of image height. Separates panel 1 (upper vampire body) from panel 2 (lower vampire body).",
+                "format": "text/plain",
+                "language": "en"
+              },
+              "target": {
+                "type": "SpecificResource",
+                "source": "https://cubap.github.io/movable-books/fixtures/manifests/pumpkin-accordion.json/canvas/full",
+                "selector": {
+                  "type": "FragmentSelector",
+                  "conformsTo": "http://www.w3.org/TR/media-frags/",
+                  "value": "xywh=0,1060,1500,5"
+                }
+              }
+            },
+            {
+              "id": "https://cubap.github.io/movable-books/fixtures/manifests/pumpkin-accordion.json/annotation/fold-seam-23",
+              "type": "Annotation",
+              "motivation": "describing",
+              "label": { "en": ["Fold seam 2-3"] },
+              "body": {
+                "type": "TextualBody",
+                "value": "Mountain fold at 81.0% of image height. Separates panel 2 (lower vampire body) from panel 3 (jack-o-lantern base).",
+                "format": "text/plain",
+                "language": "en"
+              },
+              "target": {
+                "type": "SpecificResource",
+                "source": "https://cubap.github.io/movable-books/fixtures/manifests/pumpkin-accordion.json/canvas/full",
+                "selector": {
+                  "type": "FragmentSelector",
+                  "conformsTo": "http://www.w3.org/TR/media-frags/",
+                  "value": "xywh=0,1620,1500,5"
+                }
+              }
+            },
+            {
+              "id": "https://cubap.github.io/movable-books/fixtures/manifests/pumpkin-accordion.json/annotation/behavior",
+              "type": "Annotation",
+              "motivation": "describing",
+              "label": { "en": ["Accordion fold behavior"] },
+              "body": {
+                "type": "TextualBody",
+                "value": "Four-panel accordion fold. Panels 1 and 2 fold backward (away from viewer) when closed. Panel 0 (top) and Panel 3 (bottom) meet face-to-face in closed state, showing only the jack-o-lantern face. Opening reveals the full vampire character.",
+                "format": "text/plain",
+                "language": "en"
+              },
+              "target": "https://cubap.github.io/movable-books/fixtures/manifests/pumpkin-accordion.json/canvas/full"
+            }
+          ]
+        }
+      ],
+      "behavior": ["individuals"]
+    }
+  ],
+  "behavior": ["individuals"],
+  "seeAlso": [
+    {
+      "id": "https://cubap.github.io/movable-books/demos/pumpkin-accordion.html",
+      "type": "Text",
+      "label": { "en": ["Interactive Demo"] },
+      "format": "text/html"
+    }
+  ]
+}
