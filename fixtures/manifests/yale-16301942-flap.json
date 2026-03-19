@@ -724,7 +724,7 @@
                 "source": "https://cubap.github.io/movable-books/fixtures/canvases/yale-16301942-flap-interactive",
                 "selector": {
                   "type": "SvgSelector",
-                  "value": "<svg xmlns='http://www.w3.org/2000/svg'><circle cx='2891.9867679067324' cy='2351.4801195622176' r='861.1776812027447' fill='none' stroke='hotpink' stroke-width='10'/></svg>"
+                  "value": "<svg xmlns='http://www.w3.org/2000/svg'><circle cx='2891.9867679067324' cy='2351.4801195622176' r='861.1776812027447' stroke='hotpink' stroke-width='10'/></svg>"
                 }
               }
             }

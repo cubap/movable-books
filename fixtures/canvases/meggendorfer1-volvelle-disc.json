@@ -1,14 +1,19 @@
 {
+  "@context": "http://iiif.io/api/presentation/3/context.json",
   "id": "https://cubap.github.io/movable-books/fixtures/canvases/meggendorfer1-volvelle-disc.json",
   "type": "Canvas",
   "height": 1600,
   "width": 1600,
-  "label": {"en": ["Volvelle Disc"]},
-  "items": [],
-  "annotations": [
-    { 
-        "id": "https://cubap.github.io/movable-books/fixtures/pages/meggendorfer1-volvelle-disc-faces.json", 
-        "type": "AnnotationPage" 
+  "label": {
+    "en": [
+      "Volvelle Disc"
+    ]
+  },
+  "items": [
+    {
+      "id": "https://cubap.github.io/movable-books/fixtures/pages/meggendorfer1-volvelle-disc-faces.json",
+      "type": "AnnotationPage"
     }
-  ]
+  ],
+  "annotations": []
 }

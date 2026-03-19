@@ -1,11 +1,20 @@
 {
+  "@context": "http://iiif.io/api/presentation/3/context.json",
   "id": "https://cubap.github.io/movable-books/fixtures/canvases/meggendorfer1-volvelle-guide.json",
   "type": "Canvas",
   "height": 4000,
   "width": 3000,
-  "label": {"en": ["Guide Page (main volvelle)"]},
+  "label": {
+    "en": [
+      "Guide Page (main volvelle)"
+    ]
+  },
   "thumbnail": [
-    {"id": "assets/images/volvelles/meggendorfer1/IMG_1010.HEIC", "type": "Image", "format": "image/heic"}
+    {
+      "id": "assets/images/volvelles/meggendorfer1/IMG_1010.webp",
+      "type": "Image",
+      "format": "image/webp"
+    }
   ],
   "items": [
     {
@@ -14,7 +23,9 @@
     }
   ],
   "annotations": [
-    { "id": "https://cubap.github.io/movable-books/fixtures/pages/meggendorfer1-cutout.json", "type": "AnnotationPage" },
-    { "id": "https://cubap.github.io/movable-books/fixtures/pages/meggendorfer1-volvelle-disc.json", "type": "AnnotationPage" }
+    {
+      "id": "https://cubap.github.io/movable-books/fixtures/pages/meggendorfer1-volvelle-disc.json",
+      "type": "AnnotationPage"
+    }
   ]
 }

@@ -1,4 +1,5 @@
 {
+  "@context": "http://iiif.io/api/presentation/3/context.json",
   "id": "https://cubap.github.io/movable-books/fixtures/pages/meggendorfer1-volvelle-guide-painting.json",
   "type": "AnnotationPage",
   "items": [
@@ -7,13 +8,32 @@
       "type": "Annotation",
       "motivation": "painting",
       "body": {
-        "id": "assets/images/volvelles/meggendorfer1/IMG_1010.HEIC",
+        "id": "assets/images/volvelles/meggendorfer1/IMG_1010.webp",
         "type": "Image",
-        "format": "image/heic",
+        "format": "image/webp",
         "height": 4000,
         "width": 3000
       },
       "target": "https://cubap.github.io/movable-books/fixtures/canvases/meggendorfer1-volvelle-guide.json"
+    },
+    {
+      "id": "https://cubap.github.io/movable-books/fixtures/pages/meggendorfer1-cutout/1.json",
+      "type": "Annotation",
+      "motivation": "painting",
+      "body": {
+        "type": "TextualBody",
+        "value": "Irregular cutout region for face reveal (SVG path, approximate)",
+        "format": "text/plain",
+        "language": "en"
+      },
+      "target": {
+        "type": "SpecificResource",
+        "source": "https://cubap.github.io/movable-books/fixtures/canvases/meggendorfer1-volvelle-guide.json",
+        "selector": {
+          "type": "SvgSelector",
+          "value": "<svg xmlns='http://www.w3.org/2000/svg'><path d='M1500,1200 Q1550,1100 1600,1200 Q1650,1300 1600,1400 Q1550,1500 1500,1400 Q1450,1300 1500,1200 Z' fill='none' stroke='magenta' stroke-width='10'/></svg>"
+        }
+      }
     }
   ]
 }

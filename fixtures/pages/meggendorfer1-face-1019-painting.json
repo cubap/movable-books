@@ -1,4 +1,4 @@
-{
+{"@context": "http://iiif.io/api/presentation/3/context.json",
   "id": "https://cubap.github.io/movable-books/fixtures/pages/meggendorfer1-face-1019-painting.json",
   "type": "AnnotationPage",
   "items": [
@@ -7,13 +7,20 @@
       "type": "Annotation",
       "motivation": "painting",
       "body": {
-        "id": "assets/images/volvelles/meggendorfer1/IMG_1019.HEIC",
+        "id": "assets/images/volvelles/meggendorfer1/IMG_1019.webp",
         "type": "Image",
-        "format": "image/heic",
+        "format": "image/webp",
         "height": 4000,
         "width": 3000
       },
-      "target": "https://cubap.github.io/movable-books/fixtures/canvases/meggendorfer1-face-1019.json"
+      "target": {
+        "type": "SpecificResource",
+        "source": "https://cubap.github.io/movable-books/fixtures/canvases/meggendorfer1-face-1019.json",
+          "selector": {
+            "type": "SvgSelector",
+            "value": "<svg xmlns='http://www.w3.org/2000/svg'><path d='M1500,1200 Q1550,1100 1600,1200 Q1650,1300 1600,1400 Q1550,1500 1500,1400 Q1450,1300 1500,1200 Z' stroke='hotpink' stroke-width='10'/></svg>"
+          }
+      }
     }
   ]
 }

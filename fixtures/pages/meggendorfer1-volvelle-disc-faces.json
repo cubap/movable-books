@@ -1,7 +1,12 @@
 {
+  "@context": "http://iiif.io/api/presentation/3/context.json",
   "id": "https://cubap.github.io/movable-books/fixtures/pages/meggendorfer1-volvelle-disc-faces.json",
   "type": "AnnotationPage",
-  "label": {"en": ["Face Positions"]},
+  "label": {
+    "en": [
+      "Face Positions"
+    ]
+  },
   "items": [
     {
       "id": "https://cubap.github.io/movable-books/fixtures/pages/meggendorfer1-volvelle-disc-faces/1.json",
@@ -18,10 +23,218 @@
         "source": "https://cubap.github.io/movable-books/fixtures/canvases/meggendorfer1-volvelle-disc.json",
         "selector": {
           "type": "SvgSelector",
-          "value": "<svg xmlns='http://www.w3.org/2000/svg'><g transform='translate(1500,2000) rotate(270)'><ellipse cx='0' cy='-800' rx='200' ry='250'/></g></svg>"
+          "value": "<svg xmlns='http://www.w3.org/2000/svg'><g transform='translate(800,800) rotate(0)'><ellipse cx='0' cy='-550' rx='200' ry='250'/></g></svg>"
+        }
+      }
+    },
+    {
+      "id": "https://cubap.github.io/movable-books/fixtures/pages/meggendorfer1-volvelle-disc-faces/2.json",
+      "type": "Annotation",
+      "motivation": "painting",
+      "body": {
+        "type": "Canvas",
+        "id": "https://cubap.github.io/movable-books/fixtures/canvases/meggendorfer1-face-1011.json",
+        "height": 4000,
+        "width": 3000
+      },
+      "target": {
+        "type": "SpecificResource",
+        "source": "https://cubap.github.io/movable-books/fixtures/canvases/meggendorfer1-volvelle-disc.json",
+        "selector": {
+          "type": "SvgSelector",
+          "value": "<svg xmlns='http://www.w3.org/2000/svg'><g transform='translate(800,800) rotate(30)'><ellipse cx='0' cy='-550' rx='200' ry='250'/></g></svg>"
+        }
+      }
+    },
+    {
+      "id": "https://cubap.github.io/movable-books/fixtures/pages/meggendorfer1-volvelle-disc-faces/3.json",
+      "type": "Annotation",
+      "motivation": "painting",
+      "body": {
+        "type": "Canvas",
+        "id": "https://cubap.github.io/movable-books/fixtures/canvases/meggendorfer1-face-1012.json",
+        "height": 4000,
+        "width": 3000
+      },
+      "target": {
+        "type": "SpecificResource",
+        "source": "https://cubap.github.io/movable-books/fixtures/canvases/meggendorfer1-volvelle-disc.json",
+        "selector": {
+          "type": "SvgSelector",
+          "value": "<svg xmlns='http://www.w3.org/2000/svg'><g transform='translate(800,800) rotate(60)'><ellipse cx='0' cy='-550' rx='200' ry='250'/></g></svg>"
+        }
+      }
+    },
+    {
+      "id": "https://cubap.github.io/movable-books/fixtures/pages/meggendorfer1-volvelle-disc-faces/4.json",
+      "type": "Annotation",
+      "motivation": "painting",
+      "body": {
+        "type": "Canvas",
+        "id": "https://cubap.github.io/movable-books/fixtures/canvases/meggendorfer1-face-1013.json",
+        "height": 4000,
+        "width": 3000
+      },
+      "target": {
+        "type": "SpecificResource",
+        "source": "https://cubap.github.io/movable-books/fixtures/canvases/meggendorfer1-volvelle-disc.json",
+        "selector": {
+          "type": "SvgSelector",
+          "value": "<svg xmlns='http://www.w3.org/2000/svg'><g transform='translate(800,800) rotate(90)'><ellipse cx='0' cy='-550' rx='200' ry='250'/></g></svg>"
+        }
+      }
+    },
+    {
+      "id": "https://cubap.github.io/movable-books/fixtures/pages/meggendorfer1-volvelle-disc-faces/5.json",
+      "type": "Annotation",
+      "motivation": "painting",
+      "body": {
+        "type": "Canvas",
+        "id": "https://cubap.github.io/movable-books/fixtures/canvases/meggendorfer1-face-1014.json",
+        "height": 4000,
+        "width": 3000
+      },
+      "target": {
+        "type": "SpecificResource",
+        "source": "https://cubap.github.io/movable-books/fixtures/canvases/meggendorfer1-volvelle-disc.json",
+        "selector": {
+          "type": "SvgSelector",
+          "value": "<svg xmlns='http://www.w3.org/2000/svg'><g transform='translate(800,800) rotate(120)'><ellipse cx='0' cy='-550' rx='200' ry='250'/></g></svg>"
+        }
+      }
+    },
+    {
+      "id": "https://cubap.github.io/movable-books/fixtures/pages/meggendorfer1-volvelle-disc-faces/6.json",
+      "type": "Annotation",
+      "motivation": "painting",
+      "body": {
+        "type": "Canvas",
+        "id": "https://cubap.github.io/movable-books/fixtures/canvases/meggendorfer1-face-1015.json",
+        "height": 4000,
+        "width": 3000
+      },
+      "target": {
+        "type": "SpecificResource",
+        "source": "https://cubap.github.io/movable-books/fixtures/canvases/meggendorfer1-volvelle-disc.json",
+        "selector": {
+          "type": "SvgSelector",
+          "value": "<svg xmlns='http://www.w3.org/2000/svg'><g transform='translate(800,800) rotate(150)'><ellipse cx='0' cy='-550' rx='200' ry='250'/></g></svg>"
+        }
+      }
+    },
+    {
+      "id": "https://cubap.github.io/movable-books/fixtures/pages/meggendorfer1-volvelle-disc-faces/7.json",
+      "type": "Annotation",
+      "motivation": "painting",
+      "body": {
+        "type": "Canvas",
+        "id": "https://cubap.github.io/movable-books/fixtures/canvases/meggendorfer1-face-1016.json",
+        "height": 4000,
+        "width": 3000
+      },
+      "target": {
+        "type": "SpecificResource",
+        "source": "https://cubap.github.io/movable-books/fixtures/canvases/meggendorfer1-volvelle-disc.json",
+        "selector": {
+          "type": "SvgSelector",
+          "value": "<svg xmlns='http://www.w3.org/2000/svg'><g transform='translate(800,800) rotate(180)'><ellipse cx='0' cy='-550' rx='200' ry='250'/></g></svg>"
+        }
+      }
+    },
+    {
+      "id": "https://cubap.github.io/movable-books/fixtures/pages/meggendorfer1-volvelle-disc-faces/8.json",
+      "type": "Annotation",
+      "motivation": "painting",
+      "body": {
+        "type": "Canvas",
+        "id": "https://cubap.github.io/movable-books/fixtures/canvases/meggendorfer1-face-1017.json",
+        "height": 4000,
+        "width": 3000
+      },
+      "target": {
+        "type": "SpecificResource",
+        "source": "https://cubap.github.io/movable-books/fixtures/canvases/meggendorfer1-volvelle-disc.json",
+        "selector": {
+          "type": "SvgSelector",
+          "value": "<svg xmlns='http://www.w3.org/2000/svg'><g transform='translate(800,800) rotate(210)'><ellipse cx='0' cy='-550' rx='200' ry='250'/></g></svg>"
+        }
+      }
+    },
+    {
+      "id": "https://cubap.github.io/movable-books/fixtures/pages/meggendorfer1-volvelle-disc-faces/9.json",
+      "type": "Annotation",
+      "motivation": "painting",
+      "body": {
+        "type": "Canvas",
+        "id": "https://cubap.github.io/movable-books/fixtures/canvases/meggendorfer1-face-1018.json",
+        "height": 4000,
+        "width": 3000
+      },
+      "target": {
+        "type": "SpecificResource",
+        "source": "https://cubap.github.io/movable-books/fixtures/canvases/meggendorfer1-volvelle-disc.json",
+        "selector": {
+          "type": "SvgSelector",
+          "value": "<svg xmlns='http://www.w3.org/2000/svg'><g transform='translate(800,800) rotate(240)'><ellipse cx='0' cy='-550' rx='200' ry='250'/></g></svg>"
+        }
+      }
+    },
+    {
+      "id": "https://cubap.github.io/movable-books/fixtures/pages/meggendorfer1-volvelle-disc-faces/10.json",
+      "type": "Annotation",
+      "motivation": "painting",
+      "body": {
+        "type": "Canvas",
+        "id": "https://cubap.github.io/movable-books/fixtures/canvases/meggendorfer1-face-1019.json",
+        "height": 4000,
+        "width": 3000
+      },
+      "target": {
+        "type": "SpecificResource",
+        "source": "https://cubap.github.io/movable-books/fixtures/canvases/meggendorfer1-volvelle-disc.json",
+        "selector": {
+          "type": "SvgSelector",
+          "value": "<svg xmlns='http://www.w3.org/2000/svg'><g transform='translate(800,800) rotate(270)'><ellipse cx='0' cy='-550' rx='200' ry='250'/></g></svg>"
+        }
+      }
+    },
+    {
+      "id": "https://cubap.github.io/movable-books/fixtures/pages/meggendorfer1-volvelle-disc-faces/11.json",
+      "type": "Annotation",
+      "motivation": "painting",
+      "body": {
+        "type": "Canvas",
+        "id": "https://cubap.github.io/movable-books/fixtures/canvases/meggendorfer1-face-1020.json",
+        "height": 4000,
+        "width": 3000
+      },
+      "target": {
+        "type": "SpecificResource",
+        "source": "https://cubap.github.io/movable-books/fixtures/canvases/meggendorfer1-volvelle-disc.json",
+        "selector": {
+          "type": "SvgSelector",
+          "value": "<svg xmlns='http://www.w3.org/2000/svg'><g transform='translate(800,800) rotate(300)'><ellipse cx='0' cy='-550' rx='200' ry='250'/></g></svg>"
+        }
+      }
+    },
+    {
+      "id": "https://cubap.github.io/movable-books/fixtures/pages/meggendorfer1-volvelle-disc-faces/12.json",
+      "type": "Annotation",
+      "motivation": "painting",
+      "body": {
+        "type": "Canvas",
+        "id": "https://cubap.github.io/movable-books/fixtures/canvases/meggendorfer1-face-1021.json",
+        "height": 4000,
+        "width": 3000
+      },
+      "target": {
+        "type": "SpecificResource",
+        "source": "https://cubap.github.io/movable-books/fixtures/canvases/meggendorfer1-volvelle-disc.json",
+        "selector": {
+          "type": "SvgSelector",
+          "value": "<svg xmlns='http://www.w3.org/2000/svg'><g transform='translate(800,800) rotate(330)'><ellipse cx='0' cy='-550' rx='200' ry='250'/></g></svg>"
         }
       }
     }
-    // ...repeat for faces 2-12, incrementing rotation by 30deg each
   ]
 }
