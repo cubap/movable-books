@@ -1,0 +1,24 @@
+{
+  "id": "https://cubap.github.io/movable-books/fixtures/pages/meggendorfer1-volvelle-disc.json",
+  "type": "AnnotationPage",
+  "label": {"en": ["Volvelle Disc Region"]},
+  "items": [
+    {
+      "id": "https://cubap.github.io/movable-books/fixtures/pages/meggendorfer1-volvelle-disc/1.json",
+      "type": "Annotation",
+      "motivation": "describing",
+        "body": {
+          "type": "Canvas",
+          "id": "https://cubap.github.io/movable-books/fixtures/canvases/meggendorfer1-volvelle-disc.json"
+        },
+        "target": {
+          "type": "SpecificResource",
+          "source": "https://cubap.github.io/movable-books/fixtures/canvases/meggendorfer1-volvelle-guide.json",
+          "selector": {
+            "type": "FragmentSelector",
+            "value": "xywh=600,1100,1600,1600"
+          }
+        }
+    }
+  ]
+}

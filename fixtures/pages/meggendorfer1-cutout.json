@@ -1,0 +1,26 @@
+{
+  "id": "https://cubap.github.io/movable-books/fixtures/pages/meggendorfer1-cutout.json",
+  "type": "AnnotationPage",
+  "label": {"en": ["Face Cutout Region"]},
+  "items": [
+    {
+      "id": "https://cubap.github.io/movable-books/fixtures/pages/meggendorfer1-cutout/1.json",
+      "type": "Annotation",
+      "motivation": "describing",
+      "body": {
+        "type": "TextualBody",
+        "value": "Irregular cutout region for face reveal (SVG path, approximate)",
+        "format": "text/plain",
+        "language": "en"
+      },
+      "target": {
+        "type": "SpecificResource",
+        "source": "https://cubap.github.io/movable-books/fixtures/canvases/meggendorfer1-volvelle-guide.json",
+        "selector": {
+          "type": "SvgSelector",
+          "value": "<svg xmlns='http://www.w3.org/2000/svg'><path d='M1500,1200 Q1550,1100 1600,1200 Q1650,1300 1600,1400 Q1550,1500 1500,1400 Q1450,1300 1500,1200 Z' fill='none' stroke='hotpink' stroke-width='10'/></svg>"
+        }
+      }
+    }
+  ]
+}

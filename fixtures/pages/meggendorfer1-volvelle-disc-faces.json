@@ -1,0 +1,27 @@
+{
+  "id": "https://cubap.github.io/movable-books/fixtures/pages/meggendorfer1-volvelle-disc-faces.json",
+  "type": "AnnotationPage",
+  "label": {"en": ["Face Positions"]},
+  "items": [
+    {
+      "id": "https://cubap.github.io/movable-books/fixtures/pages/meggendorfer1-volvelle-disc-faces/1.json",
+      "type": "Annotation",
+      "motivation": "painting",
+      "body": {
+        "type": "Canvas",
+        "id": "https://cubap.github.io/movable-books/fixtures/canvases/meggendorfer1-face-1010.json",
+        "height": 4000,
+        "width": 3000
+      },
+      "target": {
+        "type": "SpecificResource",
+        "source": "https://cubap.github.io/movable-books/fixtures/canvases/meggendorfer1-volvelle-disc.json",
+        "selector": {
+          "type": "SvgSelector",
+          "value": "<svg xmlns='http://www.w3.org/2000/svg'><g transform='translate(1500,2000) rotate(270)'><ellipse cx='0' cy='-800' rx='200' ry='250'/></g></svg>"
+        }
+      }
+    }
+    // ...repeat for faces 2-12, incrementing rotation by 30deg each
+  ]
+}

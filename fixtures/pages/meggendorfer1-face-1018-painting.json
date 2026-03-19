@@ -1,0 +1,19 @@
+{
+  "id": "https://cubap.github.io/movable-books/fixtures/pages/meggendorfer1-face-1018-painting.json",
+  "type": "AnnotationPage",
+  "items": [
+    {
+      "id": "https://cubap.github.io/movable-books/fixtures/pages/meggendorfer1-face-1018-painting/1.json",
+      "type": "Annotation",
+      "motivation": "painting",
+      "body": {
+        "id": "assets/images/volvelles/meggendorfer1/IMG_1018.HEIC",
+        "type": "Image",
+        "format": "image/heic",
+        "height": 4000,
+        "width": 3000
+      },
+      "target": "https://cubap.github.io/movable-books/fixtures/canvases/meggendorfer1-face-1018.json"
+    }
+  ]
+}

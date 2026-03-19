@@ -1,0 +1,13 @@
+{
+  "id": "https://cubap.github.io/movable-books/fixtures/canvases/meggendorfer1-face-1021.json",
+  "type": "Canvas",
+  "height": 4000,
+  "width": 3000,
+  "label": {"en": ["Face 12"]},
+  "thumbnail": [
+    {"id": "assets/images/volvelles/meggendorfer1/IMG_1021.HEIC", "type": "Image", "format": "image/heic"}
+  ],
+  "items": [
+    { "id": "https://cubap.github.io/movable-books/fixtures/pages/meggendorfer1-face-1021-painting.json", "type": "AnnotationPage" }
+  ]
+}
