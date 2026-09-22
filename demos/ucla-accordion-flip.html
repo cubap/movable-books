@@ -38,7 +38,7 @@ permalink: /demos/ucla-accordion-flip.html
       <details class="details-info">
         <summary>Fold pattern</summary>
         <p>
-          The front of the trade card is divided into four vertical panels by three fold seams. 
+          The front of the trade card is divided into four stacked panels by three horizontal fold seams. 
           When collapsed, panels 1 and 2 fold behind and panels 0 and 3 meet in front.
         </p>
         <p>
@@ -103,7 +103,13 @@ permalink: /demos/ucla-accordion-flip.html
     inset: 0;
     backface-visibility: hidden;
     transform-style: preserve-3d;
+    /* Blink ignores backface-visibility on a preserve-3d element, so the faces
+       are hidden explicitly as well. The 0s/300ms transition defers every
+       visibility change to the edge-on midpoint of the 600ms flip below. */
+    transition: visibility 0s linear 300ms;
   }
+  .flipper.show-back .face-front { visibility: hidden; }
+  .flipper:not(.show-back) .face-back { visibility: hidden; }
   .face-back { transform: rotateY(180deg); }
   .face-back img {
     position: absolute;
@@ -166,10 +172,13 @@ permalink: /demos/ucla-accordion-flip.html
   const panelImgs = panels.map(p => p.querySelector('img'));
   const backImg = document.getElementById('backImg');
 
-  // Fold seam percentages for the expanded front image
-  const SEAM_01 = 34.7;
-  const SEAM_12 = 52.6;
-  const SEAM_23 = 82.4;
+  // Fold seam percentages, measured from the UCLA photographs as fractions of
+  // the full expanded image. Creases appear at image rows 433 / 747 / 1020 of
+  // 1620; the first is independently confirmed by the collapsed and expanded
+  // photos matching 1:1 down to exactly that row and no further.
+  const SEAM_01 = 26.7;
+  const SEAM_12 = 46.1;
+  const SEAM_23 = 63.0;
   const MEET_OFFSET = 0;
   const FRONT = 'front';
   const BACK = 'back';

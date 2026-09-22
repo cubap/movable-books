@@ -19,7 +19,7 @@
       },
       "body": {
         "type": "TextualBody",
-        "value": "Valley fold at approximately 34.7% of the expanded image height. Panel 1 folds backward behind panel 2 when the card is closed.",
+        "value": "Valley fold at approximately 26.7% of the expanded image height. Panel 1 folds backward behind panel 2 when the card is closed.",
         "format": "text/plain",
         "language": "en"
       },
@@ -29,7 +29,7 @@
         "selector": {
           "type": "FragmentSelector",
           "conformsTo": "http://www.w3.org/TR/media-frags/",
-          "value": "xywh=0,1075,1913,10"
+          "value": "xywh=0,828,1913,10"
         }
       }
     },
@@ -42,7 +42,7 @@
       },
       "body": {
         "type": "TextualBody",
-        "value": "Mountain fold at approximately 52.6% of the expanded image height. The card doubles back so that panels 0 and 3 meet in front when collapsed.",
+        "value": "Mountain fold at approximately 46.1% of the expanded image height. The card doubles back so that panels 0 and 3 meet in front when collapsed.",
         "format": "text/plain",
         "language": "en"
       },
@@ -52,7 +52,7 @@
         "selector": {
           "type": "FragmentSelector",
           "conformsTo": "http://www.w3.org/TR/media-frags/",
-          "value": "xywh=0,1630,1913,10"
+          "value": "xywh=0,1428,1913,10"
         }
       }
     },
@@ -65,7 +65,7 @@
       },
       "body": {
         "type": "TextualBody",
-        "value": "Valley fold at approximately 82.4% of the expanded image height. Panel 3 folds upward to meet panel 0 in the closed state.",
+        "value": "Valley fold at approximately 63.0% of the expanded image height. Panel 3 folds upward to meet panel 0 in the closed state.",
         "format": "text/plain",
         "language": "en"
       },
@@ -75,7 +75,7 @@
         "selector": {
           "type": "FragmentSelector",
           "conformsTo": "http://www.w3.org/TR/media-frags/",
-          "value": "xywh=0,2553,1913,10"
+          "value": "xywh=0,1951,1913,10"
         }
       }
     },
