@@ -1,0 +1,350 @@
+---
+layout: default
+title: "UCLA flap fold and flip"
+permalink: /demos/ucla-flap-fold.html
+---
+
+<div class="demo-flap-fold">
+  <h1>UCLA flap fold and flip</h1>
+  <p>
+    A trade card from UCLA’s Patent Medicine Trade Cards collection with a single fold-up flap.
+    The lower part of the front sheet hinges upward on one crease and lies face-down over the card,
+    revealing a different portrait printed on its verso. Use the slider to swing the flap, animate it,
+    or flip the card to view the back. The flap is hinged to the sheet rather than
+    printed on one face, so it stays put across a flip: seen from the back it hangs
+    below the card showing its verso upside-down, just as it would on the real object.
+  </p>
+
+  <div class="panel-and-controls">
+    <div id="stage" class="stage" aria-live="polite" tabindex="0">
+      <div id="flipper" class="flipper">
+        <div id="frontFace" class="face face-front">
+          <div class="card">
+            <div id="sheet" class="sheet">
+              <img id="sheetImg" alt="Front of the card, upper sheet" crossorigin="anonymous" />
+            </div>
+          </div>
+        </div>
+        <div id="backFace" class="face face-back">
+          <img id="backImg" alt="Back side, collapsed" crossorigin="anonymous" />
+        </div>
+        <!-- The flap is hinged to the sheet, not printed onto either face, so it hangs
+             off the flipper itself and stays visible as the card turns over. -->
+        <div id="flap" class="flap">
+          <div class="flap-face flap-recto">
+            <img id="flapRectoImg" alt="Front of the card, lower flap" crossorigin="anonymous" />
+          </div>
+          <div class="flap-face flap-verso">
+            <img id="flapVersoImg" alt="Verso of the lower flap" crossorigin="anonymous" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="controls">
+      <label for="fold">Flap state (0 = folded up, 100 = lying flat)</label>
+      <input id="fold" type="range" min="0" max="100" value="0" step="0.1" aria-label="Flap angle percentage" />
+      <div class="ticks"><span>Folded up</span><span>Flat</span></div>
+      <button type="button" id="btnAnimate">Animate open/close</button>
+      <button type="button" id="btnFlip">Flip to back</button>
+      <details class="details-info">
+        <summary>Fold pattern</summary>
+        <p>
+          The front is one continuous sheet with a single horizontal crease at about 62.75% of its height.
+          Everything below that crease is a flap 37.25% long, hinged on its upper edge. Swinging it upward
+          through 180&deg; carries the free edge to about 25.5% of the sheet and turns the flap's verso to
+          the viewer. There is no accordion: the upper sheet never moves, and the flap is the only hinged part.
+        </p>
+        <p>
+          The expanded photograph is cropped to the region
+          <code>15,12,1888,3071</code> of the source image so that the card fills the same width in both
+          exposures; without it the two photographs are about 1.4% apart in scale and the flap does not
+          line up with the sheet.
+        </p>
+        <p>
+          The verso is invisible in the fully expanded photograph, because in that state it is face-down.
+          It is recovered here as a region of the collapsed photograph, so the flap can show real printed
+          content on both of its sides.
+        </p>
+        <p>
+          Because the flap is hinged to the sheet rather than printed onto a face, it survives a flip.
+          Turn the card over with the flap open and its verso hangs below the card, upside-down; fold it up
+          first and the flap passes behind the sheet and disappears from view. Only the collapsed back was
+          photographed, so the open back is assembled from that exposure plus the flap's verso.
+        </p>
+        <p>
+          <a href="{{ '/fixtures/manifests/ucla-zz0002hh5q-flap-fold.json' | relative_url }}" target="_blank">View IIIF Manifest</a>
+          ·
+          <a href="{{ '/fixtures/pages/ucla-zz0002hh5q-fold-annotations.json' | relative_url }}" target="_blank">View fold annotations</a>
+        </p>
+      </details>
+    </div>
+  </div>
+
+  <div class="attribution">
+    <h2>About this item</h2>
+    <p>
+      <strong>Original item:</strong> 
+      <a href="https://digital.library.ucla.edu/catalog/ark:/21198/zz0002hh5q" target="_blank" rel="noopener">
+        <em>Alphonso &amp; Imogene: an idyl of Henry's Carbolic Salve [inscribed]</em> (ark:/21198/zz0002hh5q)
+      </a>, 
+      UCLA Digital Library.
+    </p>
+    <p>
+      The original record lists the item as a trade card published by John F. Henry &amp; Co. of New York
+      between 1870 and 1906, held by the Louise M. Darling Biomedical Library, History and Special Collections for the Sciences.
+      The source rights statement is “public domain.”
+    </p>
+    <p>
+      The <a href="https://iiif.library.ucla.edu/ark%3A%2F21198%2Fzz0002hh5q/manifest" target="_blank" rel="noopener">UCLA IIIF Manifest</a>
+      supplies three canvases: the front collapsed, the front fully expanded, and the back collapsed.
+      This demo references the full-resolution IIIF Image resources directly rather than making local copies,
+      and adds Web Annotation markup that describes the fold geometry non-destructively.
+    </p>
+  </div>
+</div>
+
+<style>
+  .panel-and-controls { display: grid; grid-template-columns: 1fr; gap: 1rem; align-items: start; }
+  @media (min-width: 980px){ .panel-and-controls { grid-template-columns: 2fr 1fr; } }
+
+  .stage {
+    position: relative;
+    width: 100%;
+    max-width: 640px;
+    aspect-ratio: 1888 / 3071;
+    margin: 0 auto;
+    background: linear-gradient(135deg, #e0e0e0 25%, #f5f5f5 25%, #f5f5f5 50%, #e0e0e0 50%, #e0e0e0 75%, #f5f5f5 75%);
+    background-size: 40px 40px;
+    border: 1px solid #ccc;
+    perspective: 2200px;
+    perspective-origin: 50% 50%;
+  }
+
+  /* The theme's `img { margin: 1rem 0 }` would offset every absolutely positioned
+     slice by 16px, breaking registration between the sheet, the flap and the back. */
+  .stage img { margin: 0; }
+
+  .flipper {
+    position: absolute;
+    inset: 0;
+    transform-style: preserve-3d;
+    transition: transform 600ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .flipper.show-back { transform: rotateY(180deg); }
+
+  .face {
+    position: absolute;
+    inset: 0;
+    backface-visibility: hidden;
+    transform-style: preserve-3d;
+    /* Blink ignores backface-visibility on a preserve-3d element, so the faces
+       are hidden explicitly as well. The 0s/300ms transition defers every
+       visibility change to the edge-on midpoint of the 600ms flip below. */
+    transition: visibility 0s linear 300ms;
+  }
+  .flipper.show-back .face-front { visibility: hidden; }
+  .flipper:not(.show-back) .face-back { visibility: hidden; }
+  .face-back { transform: rotateY(180deg); }
+  /* Top-aligned, not centred: the collapsed back is only ~63% of the stage tall,
+     so centring it makes the card snap downward on flip. Anchored at the top it
+     lands where the folded front already sits. */
+  .face-back img {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: auto;
+  }
+
+  .card {
+    position: absolute;
+    inset: 0;
+    transform-style: preserve-3d;
+  }
+
+  /* The upper sheet is fixed; only the flap is hinged. */
+  .sheet {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    overflow: hidden;
+  }
+  .sheet img { position: absolute; left: 0; top: 0; width: 100%; }
+
+  .flap {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    transform-origin: top center;
+    transform-style: preserve-3d;
+    will-change: transform;
+  }
+
+  /* Both flap faces are leaf elements, so backface-visibility culls correctly
+     here (unlike .face above, which must also be preserve-3d). */
+  .flap-face {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    backface-visibility: hidden;
+  }
+  .flap-recto img { position: absolute; left: 0; top: 0; width: 100%; }
+  .flap-verso { transform: rotateX(180deg); }
+  .flap-verso img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: fill; }
+
+  .controls { display: flex; flex-direction: column; gap: .5rem; }
+  .ticks { display: flex; justify-content: space-between; font-size: .9rem; color: #555; }
+  .controls button { padding: .45rem .8rem; cursor: pointer; }
+
+  .attribution { margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #ddd; }
+  .attribution h2 { font-size: 1.2rem; margin-bottom: .5rem; }
+  .attribution p { margin: .4rem 0; line-height: 1.5; }
+</style>
+
+<script>
+  const manifestUrl = "{{ '/fixtures/manifests/ucla-zz0002hh5q-flap-fold.json' | relative_url }}";
+  const foldInput = document.getElementById('fold');
+  const btnAnimate = document.getElementById('btnAnimate');
+  const btnFlip = document.getElementById('btnFlip');
+  const flipper = document.getElementById('flipper');
+  const sheet = document.getElementById('sheet');
+  const sheetImg = document.getElementById('sheetImg');
+  const flap = document.getElementById('flap');
+  const flapRectoImg = document.getElementById('flapRectoImg');
+  const flapVersoImg = document.getElementById('flapVersoImg');
+  const backImg = document.getElementById('backImg');
+
+  // The crease, measured from the UCLA photographs as a fraction of the cropped
+  // expanded image height. Located by the notch the crease cuts in the card's
+  // right edge (row 1021 of 1627) and cross-checked two ways: the collapsed
+  // card's lower edge coincides with it, and the collapsed and expanded
+  // photographs match 1:1 only above it. The flap is everything below the crease.
+  const CREASE = 62.75;
+  const FLAP_LEN = 100 - CREASE;
+  const FRONT = 'front';
+  const BACK = 'back';
+
+  let currentFace = FRONT;
+  let animating = false;
+
+  const setFace = (face) => {
+    currentFace = face;
+    flipper.classList.toggle('show-back', face === BACK);
+    btnFlip.textContent = face === BACK ? 'Flip to front' : 'Flip to back';
+  };
+
+  const setFold = (percent) => {
+    foldInput.value = String(percent);
+    applyFold(percent / 100);
+  };
+
+  // Each element shows a slice of the same full-resolution image. Sizing the img
+  // to (100 / sliceHeight)% of its container makes it exactly one card tall, so a
+  // translateY of -offsetPercent lands on the wanted slice.
+  const applyLayout = () => {
+    sheet.style.height = `${CREASE}%`;
+    sheetImg.style.height = `${(100 / CREASE) * 100}%`;
+
+    flap.style.top = `${CREASE}%`;
+    flap.style.height = `${FLAP_LEN}%`;
+    flapRectoImg.style.height = `${(100 / FLAP_LEN) * 100}%`;
+    flapRectoImg.style.transform = `translateY(-${CREASE}%)`;
+  };
+
+  // t = 0 -> flap folded up over the card (verso showing); t = 1 -> lying flat.
+  // rotateX about the flap's top edge carries its lower edge toward the viewer
+  // and over the top, so a closed flap lies on top of the sheet. The small z lift
+  // avoids coplanar z-fighting with the sheet at the ends of the swing.
+  const applyFold = (t) => {
+    const angle = 180 * (1 - t);
+    flap.style.transform = `translateZ(0.4px) rotateX(${angle}deg)`;
+  };
+
+  // Prefer the body id when it already encodes a IIIF region (a cropped canvas);
+  // otherwise ask the image service for the whole image.
+  const imageUrlFor = (resource) => {
+    if (!resource) return null;
+    const id = resource.id || '';
+    if (id && !/\/full\/full\//.test(id)) return id;
+    const svc = resource.service?.[0]?.id;
+    return svc ? `${svc}/full/full/0/default.jpg` : id || null;
+  };
+
+  const loadManifest = async () => {
+    const res = await fetch(manifestUrl, { cache: 'no-store' });
+    const mf = await res.json();
+
+    const labelOf = (canvas) => {
+      const l = canvas.label?.en;
+      return Array.isArray(l) ? String(l[0] ?? '') : String(l ?? '');
+    };
+    const bodyOf = (canvas) => canvas?.items?.[0]?.items?.[0]?.body;
+    const findCanvas = (re) => mf.items?.find(c => re.test(labelOf(c)));
+
+    const expandedUrl = imageUrlFor(bodyOf(findCanvas(/expanded/i)));
+    if (expandedUrl) {
+      sheetImg.src = expandedUrl;
+      flapRectoImg.src = expandedUrl;
+    }
+
+    // The verso is face-down when the flap is open, so it is a region of the
+    // collapsed photograph rather than a separate exposure.
+    const versoUrl = imageUrlFor(bodyOf(findCanvas(/verso/i)));
+    if (versoUrl) flapVersoImg.src = versoUrl;
+
+    const backUrl = imageUrlFor(bodyOf(findCanvas(/back/i)));
+    if (backUrl) backImg.src = backUrl;
+
+    return mf;
+  };
+
+  const animateFold = (targetPercent, duration = 1200) => {
+    return new Promise((resolve) => {
+      if (animating) { resolve(); return; }
+      animating = true;
+      const start = Number(foldInput.value);
+      const startTime = performance.now();
+      const tick = (now) => {
+        const elapsed = now - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const eased = progress < 0.5
+          ? 2 * progress * progress
+          : 1 - Math.pow(-2 * progress + 2, 2) / 2;
+        const value = start + (targetPercent - start) * eased;
+        setFold(value);
+        if (progress < 1) {
+          requestAnimationFrame(tick);
+        } else {
+          animating = false;
+          resolve();
+        }
+      };
+      requestAnimationFrame(tick);
+    });
+  };
+
+  foldInput.addEventListener('input', () => {
+    if (animating) return;
+    applyFold(Number(foldInput.value) / 100);
+  });
+
+  btnAnimate.addEventListener('click', () => {
+    if (animating) return;
+    animateFold(Number(foldInput.value) < 50 ? 100 : 0);
+  });
+
+  // The flap keeps whatever position it was left in. It is hinged to the sheet rather
+  // than printed onto a face, so it swings over with the card and reads correctly from
+  // either side: face-down over the front when folded, upside-down below the card when open.
+  btnFlip.addEventListener('click', () => {
+    if (animating) return;
+    setFace(currentFace === FRONT ? BACK : FRONT);
+  });
+
+  loadManifest().then(() => {
+    applyLayout();
+    applyFold(0);
+  }).catch(err => console.error('Demo init failed:', err));
+</script>

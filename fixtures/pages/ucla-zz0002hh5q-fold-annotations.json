@@ -6,76 +6,53 @@
     "en": ["Fold line annotations for UCLA Alphonso & Imogene trade card"]
   },
   "partOf": {
-    "id": "https://cubap.github.io/movable-books/fixtures/manifests/ucla-zz0002hh5q-accordion-flip.json",
+    "id": "https://cubap.github.io/movable-books/fixtures/manifests/ucla-zz0002hh5q-flap-fold.json",
     "type": "Manifest"
   },
   "items": [
     {
-      "id": "https://cubap.github.io/movable-books/fixtures/pages/ucla-zz0002hh5q-fold-annotations.json/annotation/fold-seam-01",
+      "id": "https://cubap.github.io/movable-books/fixtures/pages/ucla-zz0002hh5q-fold-annotations.json/annotation/crease",
       "type": "Annotation",
       "motivation": "describing",
       "label": {
-        "en": ["Fold seam 0-1"]
+        "en": ["Flap crease"]
       },
       "body": {
         "type": "TextualBody",
-        "value": "Valley fold at approximately 34.7% of the expanded image height. Panel 1 folds backward behind panel 2 when the card is closed.",
+        "value": "Hinge of the lower flap at approximately 62.75% of the expanded image height. Located by the notch the crease cuts in the card's right edge in the expanded photograph, and confirmed by the collapsed card's lower edge coinciding with the same row. Everything below this line is the flap.",
         "format": "text/plain",
         "language": "en"
       },
       "target": {
         "type": "SpecificResource",
-        "source": "https://cubap.github.io/movable-books/fixtures/manifests/ucla-zz0002hh5q-accordion-flip.json/canvas/front-expanded",
+        "source": "https://cubap.github.io/movable-books/fixtures/manifests/ucla-zz0002hh5q-flap-fold.json/canvas/front-expanded",
         "selector": {
           "type": "FragmentSelector",
           "conformsTo": "http://www.w3.org/TR/media-frags/",
-          "value": "xywh=0,1075,1913,10"
+          "value": "xywh=0,1927,1888,10"
         }
       }
     },
     {
-      "id": "https://cubap.github.io/movable-books/fixtures/pages/ucla-zz0002hh5q-fold-annotations.json/annotation/fold-seam-12",
+      "id": "https://cubap.github.io/movable-books/fixtures/pages/ucla-zz0002hh5q-fold-annotations.json/annotation/flap-edge",
       "type": "Annotation",
       "motivation": "describing",
       "label": {
-        "en": ["Fold seam 1-2"]
+        "en": ["Flap free edge when folded"]
       },
       "body": {
         "type": "TextualBody",
-        "value": "Mountain fold at approximately 52.6% of the expanded image height. The card doubles back so that panels 0 and 3 meet in front when collapsed.",
+        "value": "Approximately 25.5% of the expanded image height. This is where the flap's free edge lands when it is folded up through 180 degrees, derived as the crease position minus the flap length (37.25%). It is not a fold in the paper.",
         "format": "text/plain",
         "language": "en"
       },
       "target": {
         "type": "SpecificResource",
-        "source": "https://cubap.github.io/movable-books/fixtures/manifests/ucla-zz0002hh5q-accordion-flip.json/canvas/front-expanded",
+        "source": "https://cubap.github.io/movable-books/fixtures/manifests/ucla-zz0002hh5q-flap-fold.json/canvas/front-expanded",
         "selector": {
           "type": "FragmentSelector",
           "conformsTo": "http://www.w3.org/TR/media-frags/",
-          "value": "xywh=0,1630,1913,10"
-        }
-      }
-    },
-    {
-      "id": "https://cubap.github.io/movable-books/fixtures/pages/ucla-zz0002hh5q-fold-annotations.json/annotation/fold-seam-23",
-      "type": "Annotation",
-      "motivation": "describing",
-      "label": {
-        "en": ["Fold seam 2-3"]
-      },
-      "body": {
-        "type": "TextualBody",
-        "value": "Valley fold at approximately 82.4% of the expanded image height. Panel 3 folds upward to meet panel 0 in the closed state.",
-        "format": "text/plain",
-        "language": "en"
-      },
-      "target": {
-        "type": "SpecificResource",
-        "source": "https://cubap.github.io/movable-books/fixtures/manifests/ucla-zz0002hh5q-accordion-flip.json/canvas/front-expanded",
-        "selector": {
-          "type": "FragmentSelector",
-          "conformsTo": "http://www.w3.org/TR/media-frags/",
-          "value": "xywh=0,2553,1913,10"
+          "value": "xywh=0,783,1888,10"
         }
       }
     },
@@ -84,15 +61,15 @@
       "type": "Annotation",
       "motivation": "describing",
       "label": {
-        "en": ["Accordion fold behavior"]
+        "en": ["Flap fold behavior"]
       },
       "body": {
         "type": "TextualBody",
-        "value": "Four-panel vertical accordion. When closed, panels 1 and 2 are hidden behind the facing panels 0 and 3, showing the outer front design. Flipping the closed card reveals the back. The UCLA source set contains only a collapsed photograph of the back, so the animation fully closes the front before flipping to the obverse. Returning to the front restores the last open state.",
+        "value": "One continuous front sheet with a single hinged flap below the crease; the upper sheet never moves. Swinging the flap upward through 180 degrees turns its verso to the viewer and covers the lower part of the sheet, including the sitters' bodies, so that only their faces remain visible. The verso is not visible in the fully expanded photograph, because in that state it is face-down; it is recovered as a region of the collapsed photograph. The flap is hinged to the sheet rather than printed onto a face, so it persists across a flip: with the flap open, the back is the collapsed back exposure above the crease plus the flap's verso, upside-down, below it; with the flap folded, the flap passes behind the sheet and is hidden.",
         "format": "text/plain",
         "language": "en"
       },
-      "target": "https://cubap.github.io/movable-books/fixtures/manifests/ucla-zz0002hh5q-accordion-flip.json/canvas/front-expanded"
+      "target": "https://cubap.github.io/movable-books/fixtures/manifests/ucla-zz0002hh5q-flap-fold.json/canvas/front-expanded"
     }
   ]
 }
