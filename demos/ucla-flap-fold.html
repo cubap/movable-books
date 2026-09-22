@@ -10,8 +10,9 @@ permalink: /demos/ucla-flap-fold.html
     A trade card from UCLA’s Patent Medicine Trade Cards collection with a single fold-up flap.
     The lower part of the front sheet hinges upward on one crease and lies face-down over the card,
     revealing a different portrait printed on its verso. Use the slider to swing the flap, animate it,
-    or flip the card to view the back. The back was photographed only in its collapsed state,
-    so the flap closes automatically before flipping over.
+    or flip the card to view the back. The flap is hinged to the sheet rather than
+    printed on one face, so it stays put across a flip: seen from the back it hangs
+    below the card showing its verso upside-down, just as it would on the real object.
   </p>
 
   <div class="panel-and-controls">
@@ -22,18 +23,20 @@ permalink: /demos/ucla-flap-fold.html
             <div id="sheet" class="sheet">
               <img id="sheetImg" alt="Front of the card, upper sheet" crossorigin="anonymous" />
             </div>
-            <div id="flap" class="flap">
-              <div class="flap-face flap-recto">
-                <img id="flapRectoImg" alt="Front of the card, lower flap" crossorigin="anonymous" />
-              </div>
-              <div class="flap-face flap-verso">
-                <img id="flapVersoImg" alt="Verso of the lower flap" crossorigin="anonymous" />
-              </div>
-            </div>
           </div>
         </div>
         <div id="backFace" class="face face-back">
           <img id="backImg" alt="Back side, collapsed" crossorigin="anonymous" />
+        </div>
+        <!-- The flap is hinged to the sheet, not printed onto either face, so it hangs
+             off the flipper itself and stays visible as the card turns over. -->
+        <div id="flap" class="flap">
+          <div class="flap-face flap-recto">
+            <img id="flapRectoImg" alt="Front of the card, lower flap" crossorigin="anonymous" />
+          </div>
+          <div class="flap-face flap-verso">
+            <img id="flapVersoImg" alt="Verso of the lower flap" crossorigin="anonymous" />
+          </div>
         </div>
       </div>
     </div>
@@ -62,6 +65,12 @@ permalink: /demos/ucla-flap-fold.html
           The verso is invisible in the fully expanded photograph, because in that state it is face-down.
           It is recovered here as a region of the collapsed photograph, so the flap can show real printed
           content on both of its sides.
+        </p>
+        <p>
+          Because the flap is hinged to the sheet rather than printed onto a face, it survives a flip.
+          Turn the card over with the flap open and its verso hangs below the card, upside-down; fold it up
+          first and the flap passes behind the sheet and disappears from view. Only the collapsed back was
+          photographed, so the open back is assembled from that exposure plus the flap's verso.
         </p>
         <p>
           <a href="{{ '/fixtures/manifests/ucla-zz0002hh5q-flap-fold.json' | relative_url }}" target="_blank">View IIIF Manifest</a>
@@ -218,7 +227,6 @@ permalink: /demos/ucla-flap-fold.html
   const BACK = 'back';
 
   let currentFace = FRONT;
-  let lastOpenFold = 100;
   let animating = false;
 
   const setFace = (face) => {
@@ -320,30 +328,19 @@ permalink: /demos/ucla-flap-fold.html
   foldInput.addEventListener('input', () => {
     if (animating) return;
     applyFold(Number(foldInput.value) / 100);
-    if (currentFace === FRONT) lastOpenFold = Number(foldInput.value);
   });
 
   btnAnimate.addEventListener('click', () => {
-    if (animating || currentFace === BACK) return;
-    const current = Number(foldInput.value);
-    const target = current < 50 ? 100 : 0;
-    animateFold(target).then(() => { lastOpenFold = target; });
+    if (animating) return;
+    animateFold(Number(foldInput.value) < 50 ? 100 : 0);
   });
 
-  btnFlip.addEventListener('click', async () => {
+  // The flap keeps whatever position it was left in. It is hinged to the sheet rather
+  // than printed onto a face, so it swings over with the card and reads correctly from
+  // either side: face-down over the front when folded, upside-down below the card when open.
+  btnFlip.addEventListener('click', () => {
     if (animating) return;
-    if (currentFace === FRONT) {
-      // Going to back requires folding the flap flat first: only the collapsed back was photographed.
-      await animateFold(0, 1000);
-      setFace(BACK);
-    } else {
-      // Returning to front: restore the last flap position.
-      setFace(FRONT);
-      // Wait briefly for the flip transition to start, then move the flap.
-      setTimeout(() => {
-        animateFold(lastOpenFold, 1000);
-      }, 100);
-    }
+    setFace(currentFace === FRONT ? BACK : FRONT);
   });
 
   loadManifest().then(() => {

@@ -212,7 +212,7 @@
               "label": { "en": ["Flap fold behavior"] },
               "body": {
                 "type": "TextualBody",
-                "value": "One continuous front sheet with a single hinged flap below the crease; the upper sheet never moves. Swinging the flap upward through 180 degrees turns its verso to the viewer and covers the lower part of the sheet, including the sitters' bodies, so that only their faces remain visible. The verso is face-down and therefore unrecorded in the fully expanded photograph; it is recovered as a region of the collapsed photograph. Flipping the card reveals the back, for which only a collapsed photograph is available; therefore the demo folds the flap flat before flipping.",
+                "value": "One continuous front sheet with a single hinged flap below the crease; the upper sheet never moves. Swinging the flap upward through 180 degrees turns its verso to the viewer and covers the lower part of the sheet, including the sitters' bodies, so that only their faces remain visible. The verso is face-down and therefore unrecorded in the fully expanded photograph; it is recovered as a region of the collapsed photograph. The flap is hinged to the sheet rather than printed onto a face, so it persists across a flip: with the flap open, the back is the collapsed back exposure above the crease plus the flap's verso, upside-down, below it; with the flap folded, the flap passes behind the sheet and is hidden.",
                 "format": "text/plain",
                 "language": "en"
               },
