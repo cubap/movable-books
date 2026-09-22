@@ -1,26 +1,35 @@
 ---
 layout: default
-title: "UCLA accordion fold and flip"
-permalink: /demos/ucla-accordion-flip.html
+title: "UCLA flap fold and flip"
+permalink: /demos/ucla-flap-fold.html
 ---
 
-<div class="demo-accordion-flip">
-  <h1>UCLA accordion fold and flip</h1>
+<div class="demo-flap-fold">
+  <h1>UCLA flap fold and flip</h1>
   <p>
-    An accordion-fold trade card from UCLA’s Patent Medicine Trade Cards collection. 
-    Use the slider to open or close the front, animate the fold, or flip the card to view the back.
-    The back was photographed only in its collapsed state, so the card folds closed automatically before flipping over.
+    A trade card from UCLA’s Patent Medicine Trade Cards collection with a single fold-up flap.
+    The lower part of the front sheet hinges upward on one crease and lies face-down over the card,
+    revealing a different portrait printed on its verso. Use the slider to swing the flap, animate it,
+    or flip the card to view the back. The back was photographed only in its collapsed state,
+    so the flap closes automatically before flipping over.
   </p>
 
   <div class="panel-and-controls">
     <div id="stage" class="stage" aria-live="polite" tabindex="0">
       <div id="flipper" class="flipper">
         <div id="frontFace" class="face face-front">
-          <div id="accordion" class="accordion">
-            <div class="panel panel-0" data-panel="0"><img id="img-0" alt="Front panel 0" crossorigin="anonymous" /></div>
-            <div class="panel panel-1" data-panel="1"><img id="img-1" alt="Front panel 1" crossorigin="anonymous" /></div>
-            <div class="panel panel-2" data-panel="2"><img id="img-2" alt="Front panel 2" crossorigin="anonymous" /></div>
-            <div class="panel panel-3" data-panel="3"><img id="img-3" alt="Front panel 3" crossorigin="anonymous" /></div>
+          <div class="card">
+            <div id="sheet" class="sheet">
+              <img id="sheetImg" alt="Front of the card, upper sheet" crossorigin="anonymous" />
+            </div>
+            <div id="flap" class="flap">
+              <div class="flap-face flap-recto">
+                <img id="flapRectoImg" alt="Front of the card, lower flap" crossorigin="anonymous" />
+              </div>
+              <div class="flap-face flap-verso">
+                <img id="flapVersoImg" alt="Verso of the lower flap" crossorigin="anonymous" />
+              </div>
+            </div>
           </div>
         </div>
         <div id="backFace" class="face face-back">
@@ -30,19 +39,26 @@ permalink: /demos/ucla-accordion-flip.html
     </div>
 
     <div class="controls">
-      <label for="fold">Fold state (0 = collapsed, 100 = fully expanded)</label>
-      <input id="fold" type="range" min="0" max="100" value="0" step="0.1" aria-label="Fold percentage" />
-      <div class="ticks"><span>Collapsed</span><span>Expanded</span></div>
+      <label for="fold">Flap state (0 = folded up, 100 = lying flat)</label>
+      <input id="fold" type="range" min="0" max="100" value="0" step="0.1" aria-label="Flap angle percentage" />
+      <div class="ticks"><span>Folded up</span><span>Flat</span></div>
       <button type="button" id="btnAnimate">Animate open/close</button>
       <button type="button" id="btnFlip">Flip to back</button>
       <details class="details-info">
         <summary>Fold pattern</summary>
         <p>
-          The front of the trade card is divided into four stacked panels by three horizontal fold seams. 
-          When collapsed, panels 1 and 2 fold behind and panels 0 and 3 meet in front.
+          The front is one continuous sheet with a single horizontal crease at about 62.6% of its height.
+          Everything below that crease is a flap 37.4% long, hinged on its upper edge. Swinging it upward
+          through 180&deg; carries the free edge to about 25.2% of the sheet and turns the flap's verso to
+          the viewer. There is no accordion: the upper sheet never moves, and the flap is the only hinged part.
         </p>
         <p>
-          <a href="{{ '/fixtures/manifests/ucla-zz0002hh5q-accordion-flip.json' | relative_url }}" target="_blank">View IIIF Manifest</a>
+          The verso is invisible in the fully expanded photograph, because in that state it is face-down.
+          It is recovered here as a region of the collapsed photograph, so the flap can show real printed
+          content on both of its sides.
+        </p>
+        <p>
+          <a href="{{ '/fixtures/manifests/ucla-zz0002hh5q-flap-fold.json' | relative_url }}" target="_blank">View IIIF Manifest</a>
           ·
           <a href="{{ '/fixtures/pages/ucla-zz0002hh5q-fold-annotations.json' | relative_url }}" target="_blank">View fold annotations</a>
         </p>
@@ -123,34 +139,42 @@ permalink: /demos/ucla-accordion-flip.html
     object-fit: contain;
   }
 
-  .accordion {
+  .card {
     position: absolute;
-    left: 50%;
-    top: 50%;
-    width: 100%;
-    height: 100%;
-    transform: translate(-50%, -50%);
+    inset: 0;
     transform-style: preserve-3d;
   }
 
-  .panel {
-    position: relative;
+  /* The upper sheet is fixed; only the flap is hinged. */
+  .sheet {
+    position: absolute;
+    left: 0;
+    top: 0;
     width: 100%;
-    height: 25%;
-    transform-style: preserve-3d;
-    transform-origin: top center;
     overflow: hidden;
-    backface-visibility: hidden;
   }
-  .panel img {
+  .sheet img { position: absolute; left: 0; top: 0; width: 100%; }
+
+  .flap {
     position: absolute;
     left: 0;
     width: 100%;
-    height: 400%;
-    object-fit: cover;
-    object-position: center top;
+    transform-origin: top center;
+    transform-style: preserve-3d;
+    will-change: transform;
   }
-  .panel-2 { transform-origin: bottom center; }
+
+  /* Both flap faces are leaf elements, so backface-visibility culls correctly
+     here (unlike .face above, which must also be preserve-3d). */
+  .flap-face {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    backface-visibility: hidden;
+  }
+  .flap-recto img { position: absolute; left: 0; top: 0; width: 100%; }
+  .flap-verso { transform: rotateX(180deg); }
+  .flap-verso img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: fill; }
 
   .controls { display: flex; flex-direction: column; gap: .5rem; }
   .ticks { display: flex; justify-content: space-between; font-size: .9rem; color: #555; }
@@ -162,24 +186,25 @@ permalink: /demos/ucla-accordion-flip.html
 </style>
 
 <script>
-  const manifestUrl = "{{ '/fixtures/manifests/ucla-zz0002hh5q-accordion-flip.json' | relative_url }}";
+  const manifestUrl = "{{ '/fixtures/manifests/ucla-zz0002hh5q-flap-fold.json' | relative_url }}";
   const foldInput = document.getElementById('fold');
   const btnAnimate = document.getElementById('btnAnimate');
   const btnFlip = document.getElementById('btnFlip');
   const flipper = document.getElementById('flipper');
-  const accordion = document.getElementById('accordion');
-  const panels = Array.from(document.querySelectorAll('.panel'));
-  const panelImgs = panels.map(p => p.querySelector('img'));
+  const sheet = document.getElementById('sheet');
+  const sheetImg = document.getElementById('sheetImg');
+  const flap = document.getElementById('flap');
+  const flapRectoImg = document.getElementById('flapRectoImg');
+  const flapVersoImg = document.getElementById('flapVersoImg');
   const backImg = document.getElementById('backImg');
 
-  // Fold seam percentages, measured from the UCLA photographs as fractions of
-  // the full expanded image. Creases appear at image rows 433 / 747 / 1020 of
-  // 1620; the first is independently confirmed by the collapsed and expanded
-  // photos matching 1:1 down to exactly that row and no further.
-  const SEAM_01 = 26.7;
-  const SEAM_12 = 46.1;
-  const SEAM_23 = 63.0;
-  const MEET_OFFSET = 0;
+  // The crease, measured from the UCLA photographs as a fraction of the full
+  // expanded image height. Located by the notch the crease cuts in the card's
+  // right edge (expanded row 1014 of 1620) and cross-checked two ways: the
+  // collapsed card's lower edge coincides with it, and the collapsed and expanded
+  // photographs match 1:1 only above it. The flap is everything below the crease.
+  const CREASE = 62.6;
+  const FLAP_LEN = 100 - CREASE;
   const FRONT = 'front';
   const BACK = 'back';
 
@@ -198,76 +223,62 @@ permalink: /demos/ucla-accordion-flip.html
     applyFold(percent / 100);
   };
 
-  const applyLayoutFromSeams = () => {
-    const h0 = SEAM_01;
-    const h1 = SEAM_12 - SEAM_01;
-    const h2 = SEAM_23 - SEAM_12;
-    const h3 = 100 - SEAM_23;
+  // Each element shows a slice of the same full-resolution image. Sizing the img
+  // to (100 / sliceHeight)% of its container makes it exactly one card tall, so a
+  // translateY of -offsetPercent lands on the wanted slice.
+  const applyLayout = () => {
+    sheet.style.height = `${CREASE}%`;
+    sheetImg.style.height = `${(100 / CREASE) * 100}%`;
 
-    const heights = [h0, h1, h2, h3];
-    const cum = [0, h0, h0 + h1, SEAM_23];
-
-    panels.forEach((p, i) => {
-      const hp = Math.max(0.001, heights[i]);
-      p.style.height = `${hp}%`;
-      const img = panelImgs[i];
-      img.style.height = `${(100 / hp) * 100}%`;
-      img.style.transform = `translateY(-${cum[i]}%)`;
-    });
+    flap.style.top = `${CREASE}%`;
+    flap.style.height = `${FLAP_LEN}%`;
+    flapRectoImg.style.height = `${(100 / FLAP_LEN) * 100}%`;
+    flapRectoImg.style.transform = `translateY(-${CREASE}%)`;
   };
 
+  // t = 0 -> flap folded up over the card (verso showing); t = 1 -> lying flat.
+  // rotateX about the flap's top edge carries its lower edge toward the viewer
+  // and over the top, so a closed flap lies on top of the sheet. The small z lift
+  // avoids coplanar z-fighting with the sheet at the ends of the swing.
   const applyFold = (t) => {
-    const h0 = SEAM_01;
-    const h1 = SEAM_12 - SEAM_01;
-    const h2 = SEAM_23 - SEAM_12;
-    const h3 = 100 - SEAM_23;
+    const angle = 180 * (1 - t);
+    flap.style.transform = `translateZ(0.4px) rotateX(${angle}deg)`;
+  };
 
-    panels[0].style.transform = 'rotateX(0deg)';
-
-    const angle1 = -90 * (1 - t);
-    panels[1].style.transform = `rotateX(${angle1}deg)`;
-
-    const angle2 = 90 * (1 - t);
-    const panel1Collapse = h1 * Math.sin(Math.abs(angle1) * Math.PI / 180);
-    const D = Math.max(0, panel1Collapse + h2 + MEET_OFFSET);
-    const slide2 = -(h2 > 0 ? (D / h2) * 100 : 0) * (1 - t);
-    panels[2].style.transform = `translateY(${slide2}%) rotateX(${angle2}deg)`;
-
-    const slide3 = -(h3 > 0 ? (D / h3) * 100 : 0) * (1 - t);
-    panels[3].style.transform = `translateY(${slide3}%)`;
-
-    panels[0].style.zIndex = '10';
-    panels[1].style.zIndex = '5';
-    panels[2].style.zIndex = '5';
-    panels[3].style.zIndex = '10';
+  const imageUrlFor = (resource) => {
+    if (!resource) return null;
+    const svc = resource.service?.[0]?.id;
+    return svc ? `${svc}/full/full/0/default.jpg` : resource.id || null;
   };
 
   const loadManifest = async () => {
     const res = await fetch(manifestUrl, { cache: 'no-store' });
     const mf = await res.json();
 
-    const findCanvas = (labelTest) =>
-      mf.items?.find(c => c.label?.en?.some(l => labelTest(l))) || mf.items?.[0];
+    const labelOf = (canvas) => {
+      const l = canvas.label?.en;
+      return Array.isArray(l) ? String(l[0] ?? '') : String(l ?? '');
+    };
+    const bodyOf = (canvas) => canvas?.items?.[0]?.items?.[0]?.body;
+    const findCanvas = (re) => mf.items?.find(c => re.test(labelOf(c)));
 
-    const expanded = findCanvas(l => /expanded/i.test(l));
-    const back = findCanvas(l => /back/i.test(l));
+    const expanded = findCanvas(/expanded/i);
+    const back = findCanvas(/back/i);
+    // The verso is a region of the collapsed photograph, so its body id already
+    // carries the IIIF region and must be used verbatim, not rebuilt.
+    const verso = findCanvas(/verso/i);
 
-    const expandedImage = expanded?.items?.[0]?.items?.[0]?.body;
-    const backImage = back?.items?.[0]?.items?.[0]?.body;
-
-    if (expandedImage?.id) {
-      const fullUrl = expandedImage.service?.[0]?.id
-        ? `${expandedImage.service[0].id}/full/full/0/default.jpg`
-        : expandedImage.id;
-      panelImgs.forEach(img => { img.src = fullUrl; });
+    const expandedUrl = imageUrlFor(bodyOf(expanded));
+    if (expandedUrl) {
+      sheetImg.src = expandedUrl;
+      flapRectoImg.src = expandedUrl;
     }
 
-    if (backImage?.id) {
-      const fullUrl = backImage.service?.[0]?.id
-        ? `${backImage.service[0].id}/full/full/0/default.jpg`
-        : backImage.id;
-      backImg.src = fullUrl;
-    }
+    const versoBody = bodyOf(verso);
+    if (versoBody?.id) flapVersoImg.src = versoBody.id;
+
+    const backUrl = imageUrlFor(bodyOf(back));
+    if (backUrl) backImg.src = backUrl;
 
     return mf;
   };
@@ -299,7 +310,6 @@ permalink: /demos/ucla-accordion-flip.html
 
   foldInput.addEventListener('input', () => {
     if (animating) return;
-    applyLayoutFromSeams();
     applyFold(Number(foldInput.value) / 100);
     if (currentFace === FRONT) lastOpenFold = Number(foldInput.value);
   });
@@ -314,13 +324,13 @@ permalink: /demos/ucla-accordion-flip.html
   btnFlip.addEventListener('click', async () => {
     if (animating) return;
     if (currentFace === FRONT) {
-      // Going to back requires closing first, because only the collapsed back was photographed.
+      // Going to back requires folding the flap flat first: only the collapsed back was photographed.
       await animateFold(0, 1000);
       setFace(BACK);
     } else {
-      // Returning to front: reopen to the last open fold state.
+      // Returning to front: restore the last flap position.
       setFace(FRONT);
-      // Wait briefly for the flip transition to start, then open.
+      // Wait briefly for the flip transition to start, then move the flap.
       setTimeout(() => {
         animateFold(lastOpenFold, 1000);
       }, 100);
@@ -328,7 +338,7 @@ permalink: /demos/ucla-accordion-flip.html
   });
 
   loadManifest().then(() => {
-    applyLayoutFromSeams();
+    applyLayout();
     applyFold(0);
   }).catch(err => console.error('Demo init failed:', err));
 </script>
