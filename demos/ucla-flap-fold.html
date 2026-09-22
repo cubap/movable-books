@@ -133,18 +133,16 @@ permalink: /demos/ucla-flap-fold.html
   }
   .flipper.show-back { transform: rotateY(180deg); }
 
+  /* The faces hold only flat content now that the flap hangs off the flipper,
+     so they must NOT be preserve-3d: Blink ignores backface-visibility on a
+     preserve-3d element, which is what forced an explicit visibility swap.
+     Culling the back face is then exact and compositor-driven, instead of
+     firing on a fixed delay that has to guess when the flip goes edge-on. */
   .face {
     position: absolute;
     inset: 0;
     backface-visibility: hidden;
-    transform-style: preserve-3d;
-    /* Blink ignores backface-visibility on a preserve-3d element, so the faces
-       are hidden explicitly as well. The 0s/300ms transition defers every
-       visibility change to the edge-on midpoint of the 600ms flip below. */
-    transition: visibility 0s linear 300ms;
   }
-  .flipper.show-back .face-front { visibility: hidden; }
-  .flipper:not(.show-back) .face-back { visibility: hidden; }
   .face-back { transform: rotateY(180deg); }
   /* Top-aligned, not centred: the collapsed back is only ~63% of the stage tall,
      so centring it makes the card snap downward on flip. Anchored at the top it
