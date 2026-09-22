@@ -14,6 +14,14 @@ permalink: /demos/ucla-flap-fold.html
     printed on one face, so it stays put across a flip: seen from the back it hangs
     below the card showing its verso upside-down, just as it would on the real object.
   </p>
+  <p>
+    Nothing about the fold is stored in a manifest of our own. The page reads UCLA's
+    published IIIF manifest over the network together with one standalone
+    <a href="{{ '/fixtures/pages/ucla-zz0002hh5q-fold-annotations.json' | relative_url }}">Annotation Page</a>
+    that says which canvas plays which role and where the crease falls, and derives
+    every crop, region and percentage from the two at load time. The diagram at the
+    bottom of the page shows that assembly with the numbers it actually produced.
+  </p>
 
   <div class="panel-and-controls">
     <div id="stage" class="stage" aria-live="polite" tabindex="0">
@@ -47,6 +55,7 @@ permalink: /demos/ucla-flap-fold.html
       <div class="ticks"><span>Folded up</span><span>Flat</span></div>
       <button type="button" id="btnAnimate">Animate open/close</button>
       <button type="button" id="btnFlip">Flip to back</button>
+      <p id="loadStatus" class="load-status" role="status">Assembling fold model&#8230;</p>
       <details class="details-info">
         <summary>Fold pattern</summary>
         <p>
@@ -73,9 +82,9 @@ permalink: /demos/ucla-flap-fold.html
           photographed, so the open back is assembled from that exposure plus the flap's verso.
         </p>
         <p>
-          <a href="{{ '/fixtures/manifests/ucla-zz0002hh5q-flap-fold.json' | relative_url }}" target="_blank">View IIIF Manifest</a>
-          ·
-          <a href="{{ '/fixtures/pages/ucla-zz0002hh5q-fold-annotations.json' | relative_url }}" target="_blank">View fold annotations</a>
+          <a href="https://iiif.library.ucla.edu/ark%3A%2F21198%2Fzz0002hh5q/manifest" target="_blank" rel="noopener">UCLA IIIF Manifest</a>
+          &middot;
+          <a href="{{ '/fixtures/pages/ucla-zz0002hh5q-fold-annotations.json' | relative_url }}" target="_blank">Fold Annotation Page</a>
         </p>
       </details>
     </div>
@@ -98,9 +107,66 @@ permalink: /demos/ucla-flap-fold.html
     <p>
       The <a href="https://iiif.library.ucla.edu/ark%3A%2F21198%2Fzz0002hh5q/manifest" target="_blank" rel="noopener">UCLA IIIF Manifest</a>
       supplies three canvases: the front collapsed, the front fully expanded, and the back collapsed.
-      This demo references the full-resolution IIIF Image resources directly rather than making local copies,
-      and adds Web Annotation markup that describes the fold geometry non-destructively.
+      Its labels only number the pages, so they cannot say which canvas is the back of a card or where
+      a crease falls. That is the gap this demo fills: it leaves UCLA's record untouched and fetches it
+      as published, and carries the fold in a separate Annotation Page that targets UCLA's canvas ids
+      directly. No derivative manifest, and no local copies of the images, are involved.
     </p>
+  </div>
+
+  <div class="assembly">
+    <h2>How this page is assembled</h2>
+    <p>
+      No derivative manifest is stored here. The fold is described entirely by one
+      Annotation Page, and the numbers below are computed from it at load time, so
+      this diagram shows what the page actually did rather than an idealised version
+      of it.
+    </p>
+    <svg viewBox="0 0 720 462" role="img" aria-labelledby="asmTitle" class="asm-svg">
+      <title id="asmTitle">Data flow from the UCLA manifest and the fold Annotation Page into the rendered card</title>
+      <defs>
+        <marker id="asmArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M0,0 L10,5 L0,10 z" class="asm-arrowhead" />
+        </marker>
+      </defs>
+
+      <rect x="8" y="14" width="336" height="150" class="asm-box asm-box-remote" />
+      <text x="20" y="36" class="asm-h">UCLA IIIF Manifest</text>
+      <text x="20" y="53" class="asm-sub">Presentation API 2.1 &middot; iiif.library.ucla.edu</text>
+      <text x="20" y="78" class="asm-mono">s218fn4d   1913&#215;3098   "Page 2"</text>
+      <text x="20" y="96" class="asm-mono">3q288c9w   1901&#215;1962   "Page 1"</text>
+      <text x="20" y="114" class="asm-mono">tt589n93   1899&#215;1962   "Page 3"</text>
+      <text x="20" y="140" class="asm-note">canvas ids, sizes and image services &#8212; but no</text>
+      <text x="20" y="155" class="asm-note">indication that the object folds</text>
+
+      <rect x="376" y="14" width="336" height="150" class="asm-box asm-box-ours" />
+      <text x="388" y="36" class="asm-h">Fold Annotation Page</text>
+      <text x="388" y="53" class="asm-sub">Web Annotation &middot; the only file we author</text>
+      <text x="388" y="78" class="asm-mono">tag  front-expanded  15,12,1888,3071</text>
+      <text x="388" y="96" class="asm-mono">desc crease          0,1939,1913,10</text>
+      <text x="388" y="114" class="asm-mono">tag  flap-verso      11,807,1879,1148</text>
+      <text x="388" y="132" class="asm-mono">tag  back            whole canvas</text>
+      <text x="388" y="155" class="asm-note">+ flap-edge and behavior annotations</text>
+
+      <path d="M176,164 C176,190 260,186 300,204" class="asm-flow" marker-end="url(#asmArrow)" />
+      <path d="M544,164 C544,190 460,186 420,204" class="asm-flow" marker-end="url(#asmArrow)" />
+
+      <rect x="112" y="206" width="496" height="120" class="asm-box asm-box-compute" />
+      <text x="124" y="228" class="asm-h">assembleFoldModel()</text>
+      <text x="124" y="252" class="asm-mono" id="asmCrease">crease = (1939 &#8722; 12) / 3071 = 62.75%</text>
+      <text x="124" y="270" class="asm-mono" id="asmSpace">working space = 1888 &#215; 3071</text>
+      <text x="124" y="288" class="asm-mono">url = {service}/{region}/full/0/default.jpg</text>
+      <text x="124" y="312" class="asm-note">selectors are stated in the published canvas's own coordinates;</text>
+      <text x="124" y="325" class="asm-note">the registration crop is what converts them into card coordinates</text>
+
+      <path d="M360,326 L360,352" class="asm-flow" marker-end="url(#asmArrow)" />
+
+      <rect x="112" y="354" width="496" height="96" class="asm-box" />
+      <text x="124" y="376" class="asm-h">the card, drawn</text>
+      <text x="124" y="400" class="asm-mono">sheet + flap recto  &#8592;  front-expanded, cropped</text>
+      <text x="124" y="418" class="asm-mono">flap verso        &#8592;  a region of the collapsed front</text>
+      <text x="124" y="436" class="asm-mono">back              &#8592;  the collapsed back, whole</text>
+    </svg>
   </div>
 </div>
 
@@ -112,6 +178,7 @@ permalink: /demos/ucla-flap-fold.html
     position: relative;
     width: 100%;
     max-width: 640px;
+    /* pre-load default; replaced by the crop that the annotation page specifies */
     aspect-ratio: 1888 / 3071;
     margin: 0 auto;
     background: linear-gradient(135deg, #e0e0e0 25%, #f5f5f5 25%, #f5f5f5 50%, #e0e0e0 50%, #e0e0e0 75%, #f5f5f5 75%);
@@ -133,18 +200,16 @@ permalink: /demos/ucla-flap-fold.html
   }
   .flipper.show-back { transform: rotateY(180deg); }
 
+  /* The faces hold only flat content now that the flap hangs off the flipper,
+     so they must NOT be preserve-3d: Blink ignores backface-visibility on a
+     preserve-3d element, which is what forced an explicit visibility swap.
+     Culling the back face is then exact and compositor-driven, instead of
+     firing on a fixed delay that has to guess when the flip goes edge-on. */
   .face {
     position: absolute;
     inset: 0;
     backface-visibility: hidden;
-    transform-style: preserve-3d;
-    /* Blink ignores backface-visibility on a preserve-3d element, so the faces
-       are hidden explicitly as well. The 0s/300ms transition defers every
-       visibility change to the edge-on midpoint of the 600ms flip below. */
-    transition: visibility 0s linear 300ms;
   }
-  .flipper.show-back .face-front { visibility: hidden; }
-  .flipper:not(.show-back) .face-back { visibility: hidden; }
   .face-back { transform: rotateY(180deg); }
   /* Top-aligned, not centred: the collapsed back is only ~63% of the stage tall,
      so centring it makes the card snap downward on flip. Anchored at the top it
@@ -201,14 +266,56 @@ permalink: /demos/ucla-flap-fold.html
   .attribution { margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #ddd; }
   .attribution h2 { font-size: 1.2rem; margin-bottom: .5rem; }
   .attribution p { margin: .4rem 0; line-height: 1.5; }
+
+  .load-status { font-size: .85rem; color: #555; margin: .25rem 0 0; line-height: 1.4; }
+  .load-status.error { color: #b3261e; }
+
+  .assembly { margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #ddd; }
+  .assembly h2 { font-size: 1.2rem; margin-bottom: .5rem; }
+  .assembly > p { margin: .4rem 0 1rem; line-height: 1.5; max-width: 62ch; }
+  .asm-svg { width: 100%; height: auto; display: block; }
+  .asm-box { fill: #fafafa; stroke: #bbb; stroke-width: 1; rx: 6px; }
+  .asm-box-remote { fill: #f2f6fb; stroke: #9db6d6; }
+  .asm-box-ours { fill: #f4faf1; stroke: #a3c98f; }
+  .asm-box-compute { fill: #fffaf0; stroke: #d9b96a; }
+  .asm-h { font: 600 13px system-ui, sans-serif; fill: #111; }
+  .asm-sub { font: 11px system-ui, sans-serif; fill: #666; }
+  .asm-mono { font: 11.5px ui-monospace, SFMono-Regular, Consolas, monospace; fill: #1a1a1a; }
+  .asm-note { font: italic 11px system-ui, sans-serif; fill: #666; }
+  .asm-flow { fill: none; stroke: #888; stroke-width: 1.5; }
+  .asm-arrowhead { fill: #888; }
+  @media (prefers-color-scheme: dark) {
+    .asm-box { fill: #1c1c1c; stroke: #555; }
+    .asm-box-remote { fill: #131b26; stroke: #3d5a80; }
+    .asm-box-ours { fill: #131d11; stroke: #4a7040; }
+    .asm-box-compute { fill: #211a08; stroke: #8a6d24; }
+    .asm-h { fill: #eee; }
+    .asm-mono { fill: #ddd; }
+    .asm-sub, .asm-note { fill: #999; }
+    .asm-flow { stroke: #777; }
+    .asm-arrowhead { fill: #777; }
+  }
 </style>
 
 <script>
-  const manifestUrl = "{{ '/fixtures/manifests/ucla-zz0002hh5q-flap-fold.json' | relative_url }}";
+  // This demo is assembled at runtime out of two documents, and neither the fold
+  // geometry nor any image URL is hard-coded:
+  //
+  //   1. UCLA's own IIIF manifest, fetched from their server. We do not copy it.
+  //   2. A single standalone Web Annotation Page that supplies only what a source
+  //      record cannot know: which canvas plays which role in the fold, and where
+  //      the crease falls.
+  //
+  // assembleFoldModel() is the whole of the assembly. The diagram at the bottom of
+  // the page is drawn from the values it actually produces.
+  const UCLA_MANIFEST = 'https://iiif.library.ucla.edu/ark%3A%2F21198%2Fzz0002hh5q/manifest';
+  const FOLD_PAGE_URL = "{{ '/fixtures/pages/ucla-zz0002hh5q-fold-annotations.json' | relative_url }}";
+
   const foldInput = document.getElementById('fold');
   const btnAnimate = document.getElementById('btnAnimate');
   const btnFlip = document.getElementById('btnFlip');
   const flipper = document.getElementById('flipper');
+  const stage = document.getElementById('stage');
   const sheet = document.getElementById('sheet');
   const sheetImg = document.getElementById('sheetImg');
   const flap = document.getElementById('flap');
@@ -216,13 +323,12 @@ permalink: /demos/ucla-flap-fold.html
   const flapVersoImg = document.getElementById('flapVersoImg');
   const backImg = document.getElementById('backImg');
 
-  // The crease, measured from the UCLA photographs as a fraction of the cropped
-  // expanded image height. Located by the notch the crease cuts in the card's
-  // right edge (row 1021 of 1627) and cross-checked two ways: the collapsed
-  // card's lower edge coincides with it, and the collapsed and expanded
-  // photographs match 1:1 only above it. The flap is everything below the crease.
-  const CREASE = 62.75;
-  const FLAP_LEN = 100 - CREASE;
+  const statusEl = document.getElementById('loadStatus');
+
+  // The crease and flap length, in percent of the working space. Both are derived
+  // from the annotation selectors at load time; neither is a constant here.
+  let CREASE = 0;
+  let FLAP_LEN = 0;
   const FRONT = 'front';
   const BACK = 'back';
 
@@ -262,42 +368,110 @@ permalink: /demos/ucla-flap-fold.html
     flap.style.transform = `translateZ(0.4px) rotateX(${angle}deg)`;
   };
 
-  // Prefer the body id when it already encodes a IIIF region (a cropped canvas);
-  // otherwise ask the image service for the whole image.
-  const imageUrlFor = (resource) => {
-    if (!resource) return null;
-    const id = resource.id || '';
-    if (id && !/\/full\/full\//.test(id)) return id;
-    const svc = resource.service?.[0]?.id;
-    return svc ? `${svc}/full/full/0/default.jpg` : id || null;
+  // --- reading the two documents -------------------------------------------
+
+  // UCLA mints canvas ids under a per-deployment host that is not part of the
+  // object's ark, so canvases are matched on the terminal path token rather than
+  // on the whole id string. The tokens themselves are stable across requests.
+  const tokenOf = (id) => String(id || '').split('/').pop();
+
+  const sourceOf = (target) => (typeof target === 'string' ? target : target?.source);
+
+  const fragOf = (target) => {
+    const value = (typeof target === 'string' ? null : target?.selector)?.value || '';
+    const m = /xywh=([\d.]+),([\d.]+),([\d.]+),([\d.]+)/.exec(value);
+    return m ? { x: +m[1], y: +m[2], w: +m[3], h: +m[4] } : null;
   };
 
-  const loadManifest = async () => {
-    const res = await fetch(manifestUrl, { cache: 'no-store' });
-    const mf = await res.json();
+  const roleOf = (a) => {
+    if (a.motivation !== 'tagging') return null;
+    const tag = [].concat(a.body || []).find(b => /^movable-books:/.test(b?.value || ''));
+    return tag ? tag.value.slice('movable-books:'.length) : null;
+  };
 
-    const labelOf = (canvas) => {
-      const l = canvas.label?.en;
-      return Array.isArray(l) ? String(l[0] ?? '') : String(l ?? '');
+  // Presentation 2 keeps pixels under sequences[].canvases[].images[].resource;
+  // Presentation 3 under items[].items[].body. Only the service base is needed --
+  // the resource id UCLA publishes is a 600px thumbnail.
+  const canvasesOf = (mf) => (mf.items || mf.sequences?.[0]?.canvases || []).map((c) => {
+    const res = c.images?.[0]?.resource || c.items?.[0]?.items?.[0]?.body;
+    const svc = res?.service?.['@id'] || res?.service?.[0]?.['@id'] || res?.service?.[0]?.id;
+    return { id: c['@id'] || c.id, width: c.width, height: c.height, service: svc };
+  });
+
+  const regionUrl = (canvas, region) =>
+    `${canvas.service}/${region ? `${region.x},${region.y},${region.w},${region.h}` : 'full'}/full/0/default.jpg`;
+
+  // --- the assembly ---------------------------------------------------------
+
+  const assembleFoldModel = (mf, page) => {
+    const byToken = new Map(canvasesOf(mf).map(c => [tokenOf(c.id), c]));
+    const items = page.items || [];
+    const tagged = (role) => items.find(a => roleOf(a) === role);
+    const described = (name) => items.find(a => a.id.endsWith('/' + name));
+
+    const canvasFor = (a) => {
+      const c = byToken.get(tokenOf(sourceOf(a.target)));
+      if (!c) throw new Error(`annotation "${a.id}" targets an unknown canvas`);
+      return c;
     };
-    const bodyOf = (canvas) => canvas?.items?.[0]?.items?.[0]?.body;
-    const findCanvas = (re) => mf.items?.find(c => re.test(labelOf(c)));
 
-    const expandedUrl = imageUrlFor(bodyOf(findCanvas(/expanded/i)));
-    if (expandedUrl) {
-      sheetImg.src = expandedUrl;
-      flapRectoImg.src = expandedUrl;
-    }
+    // The registration crop defines the space the card is drawn in. Everything
+    // else stated against this canvas is in the published canvas's coordinates,
+    // so it has to be converted through the crop origin.
+    const expanded = tagged('front-expanded');
+    const expandedCanvas = canvasFor(expanded);
+    const crop = fragOf(expanded.target);
 
-    // The verso is face-down when the flap is open, so it is a region of the
-    // collapsed photograph rather than a separate exposure.
-    const versoUrl = imageUrlFor(bodyOf(findCanvas(/verso/i)));
-    if (versoUrl) flapVersoImg.src = versoUrl;
+    const inWorkingSpace = (a) => ((fragOf(a.target).y - crop.y) / crop.h) * 100;
+    const crease = inWorkingSpace(described('crease'));
+    const flapEdge = inWorkingSpace(described('flap-edge'));
 
-    const backUrl = imageUrlFor(bodyOf(findCanvas(/back/i)));
-    if (backUrl) backImg.src = backUrl;
+    const verso = tagged('flap-verso');
+    const back = tagged('back');
 
-    return mf;
+    return {
+      canvases: canvasesOf(mf),
+      crop,
+      crease,
+      flapEdge,
+      creaseRaw: fragOf(described('crease').target).y,
+      edgeRaw: fragOf(described('flap-edge').target).y,
+      // sanity check on the model: the flap runs from the crease to the bottom edge
+      flapLength: 100 - crease,
+      sheetUrl: regionUrl(expandedCanvas, crop),
+      versoUrl: regionUrl(canvasFor(verso), fragOf(verso.target)),
+      backUrl: regionUrl(canvasFor(back), null),
+      backCanvas: canvasFor(back),
+    };
+  };
+
+  const loadFoldModel = async () => {
+    const [mfRes, pageRes] = await Promise.all([
+      fetch(UCLA_MANIFEST, { cache: 'no-store' }),
+      fetch(FOLD_PAGE_URL, { cache: 'no-store' }),
+    ]);
+    if (!mfRes.ok) throw new Error(`UCLA manifest returned ${mfRes.status}`);
+    if (!pageRes.ok) throw new Error(`fold annotations returned ${pageRes.status}`);
+
+    const model = assembleFoldModel(await mfRes.json(), await pageRes.json());
+
+    CREASE = model.crease;
+    FLAP_LEN = model.flapLength;
+
+    // The stage is the cropped region, so its shape comes from the crop too.
+    stage.style.aspectRatio = `${model.crop.w} / ${model.crop.h}`;
+
+    sheetImg.src = model.sheetUrl;
+    flapRectoImg.src = model.sheetUrl;
+    flapVersoImg.src = model.versoUrl;
+    backImg.src = model.backUrl;
+
+    statusEl.textContent =
+      `Assembled from ${model.canvases.length} UCLA canvases + ${FOLD_PAGE_URL.split('/').pop()}. ` +
+      `Crop ${model.crop.x},${model.crop.y},${model.crop.w},${model.crop.h} · ` +
+      `crease ${CREASE.toFixed(2)}% · free edge ${model.flapEdge.toFixed(2)}%.`;
+
+    return model;
   };
 
   const animateFold = (targetPercent, duration = 1200) => {
@@ -343,8 +517,20 @@ permalink: /demos/ucla-flap-fold.html
     setFace(currentFace === FRONT ? BACK : FRONT);
   });
 
-  loadManifest().then(() => {
+  loadFoldModel().then((model) => {
     applyLayout();
     applyFold(0);
-  }).catch(err => console.error('Demo init failed:', err));
+
+    // The diagram reports the numbers the assembly actually produced.
+    document.getElementById('asmCrease').textContent =
+      `crease = (${model.creaseRaw} \u2212 ${model.crop.y}) / ${model.crop.h} = ${CREASE.toFixed(2)}%`;
+    document.getElementById('asmSpace').textContent =
+      `working space = ${model.crop.w} \u00d7 ${model.crop.h}  \u00b7  flap = ${FLAP_LEN.toFixed(2)}%`;
+  }).catch(err => {
+    statusEl.classList.add('error');
+    statusEl.textContent =
+      `Could not assemble the fold model (${err.message}). The demo reads UCLA's live ` +
+      `IIIF manifest, so it needs that server to be reachable.`;
+    console.error('Demo init failed:', err);
+  });
 </script>
