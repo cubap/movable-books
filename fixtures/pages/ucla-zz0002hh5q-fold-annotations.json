@@ -3,33 +3,69 @@
   "id": "https://cubap.github.io/movable-books/fixtures/pages/ucla-zz0002hh5q-fold-annotations.json",
   "type": "AnnotationPage",
   "label": {
-    "en": ["Fold line annotations for UCLA Alphonso & Imogene trade card"]
+    "en": ["Fold model for the UCLA \"Alphonso & Imogene\" trade card"]
   },
-  "partOf": {
-    "id": "https://cubap.github.io/movable-books/fixtures/manifests/ucla-zz0002hh5q-flap-fold.json",
-    "type": "Manifest"
+  "summary": {
+    "en": [
+      "Everything the interactive demo needs to fold this object, expressed as annotations on UCLA's own IIIF manifest. Nothing here is copied into a derivative manifest: the canvases, their dimensions and their image services all stay under iiif.library.ucla.edu, and this page adds only the two things the source record cannot know, namely which canvas plays which role in the fold and where the crease falls. Every number the demo draws is derived from these selectors at runtime."
+    ]
   },
+  "seeAlso": [
+    {
+      "id": "https://iiif.library.ucla.edu/ark%3A%2F21198%2Fzz0002hh5q/manifest",
+      "type": "Manifest",
+      "label": { "en": ["UCLA source IIIF Manifest (Presentation API 2.1)"] },
+      "format": "application/ld+json"
+    }
+  ],
   "items": [
+    {
+      "id": "https://cubap.github.io/movable-books/fixtures/pages/ucla-zz0002hh5q-fold-annotations.json/annotation/front-expanded",
+      "type": "Annotation",
+      "motivation": "tagging",
+      "label": { "en": ["Role: front sheet and flap recto"] },
+      "body": [
+        {
+          "type": "TextualBody",
+          "value": "movable-books:front-expanded",
+          "format": "text/plain",
+          "language": "en"
+        },
+        {
+          "type": "TextualBody",
+          "value": "The upper sheet plus the recto of the flap, taken from the fully opened photograph. The selector is a registration crop, not a crop of the object: the published canvas is 1913x3098, but the card itself only occupies x=15, y=12, w=1888, h=3071. At that region the card measures the same width as the two collapsed exposures, which drops the card-width error against the collapsed front from -1.39% to -0.11%. The demo renders this region as its working space, so the crop origin also becomes the offset that the fold-line annotations have to be converted through.",
+          "format": "text/plain",
+          "language": "en"
+        }
+      ],
+      "target": {
+        "type": "SpecificResource",
+        "source": "http://b1dbe4a0-443c-479f-bf0a-25c352df0d8f.iiif.library.ucla.edu/ark%3A%2F21198%2Fzz0002hh5q/manifest/canvas/s218fn4d",
+        "selector": {
+          "type": "FragmentSelector",
+          "conformsTo": "http://www.w3.org/TR/media-frags/",
+          "value": "xywh=15,12,1888,3071"
+        }
+      }
+    },
     {
       "id": "https://cubap.github.io/movable-books/fixtures/pages/ucla-zz0002hh5q-fold-annotations.json/annotation/crease",
       "type": "Annotation",
       "motivation": "describing",
-      "label": {
-        "en": ["Flap crease"]
-      },
+      "label": { "en": ["Flap crease"] },
       "body": {
         "type": "TextualBody",
-        "value": "Hinge of the lower flap at approximately 62.75% of the expanded image height. Located by the notch the crease cuts in the card's right edge in the expanded photograph, and confirmed by the collapsed card's lower edge coinciding with the same row. Everything below this line is the flap.",
+        "value": "The hinge of the lower flap. Located by the notch the crease cuts in the card's right edge in the opened photograph, and cross-checked two ways: the lower edge of the collapsed card lands on the same row, and the collapsed and opened exposures match 1:1 only above it. The selector is a 10px band in the published canvas's own coordinates, so its y of 1939 is measured from the top of the full 3098px canvas. To use it, convert into the working space of the front-expanded crop: (1939 - 12) / 3071 = 62.75%. Everything below that line is the flap.",
         "format": "text/plain",
         "language": "en"
       },
       "target": {
         "type": "SpecificResource",
-        "source": "https://cubap.github.io/movable-books/fixtures/manifests/ucla-zz0002hh5q-flap-fold.json/canvas/front-expanded",
+        "source": "http://b1dbe4a0-443c-479f-bf0a-25c352df0d8f.iiif.library.ucla.edu/ark%3A%2F21198%2Fzz0002hh5q/manifest/canvas/s218fn4d",
         "selector": {
           "type": "FragmentSelector",
           "conformsTo": "http://www.w3.org/TR/media-frags/",
-          "value": "xywh=0,1927,1888,10"
+          "value": "xywh=0,1939,1913,10"
         }
       }
     },
@@ -37,39 +73,85 @@
       "id": "https://cubap.github.io/movable-books/fixtures/pages/ucla-zz0002hh5q-fold-annotations.json/annotation/flap-edge",
       "type": "Annotation",
       "motivation": "describing",
-      "label": {
-        "en": ["Flap free edge when folded"]
-      },
+      "label": { "en": ["Flap free edge when folded"] },
       "body": {
         "type": "TextualBody",
-        "value": "Approximately 25.5% of the expanded image height. This is where the flap's free edge lands when it is folded up through 180 degrees, derived as the crease position minus the flap length (37.25%). It is not a fold in the paper.",
+        "value": "Where the flap's loose edge comes to rest once it has swung up through 180 degrees, expressed the same way as the crease: a 10px band in the published canvas's coordinates, so (795 - 12) / 3071 = 25.50%. It is derived rather than observed, being the crease position minus the flap length, and it is not a fold in the paper. The demo uses it as a check on the model: if the crease and this line disagree with the flap length, the geometry is wrong.",
         "format": "text/plain",
         "language": "en"
       },
       "target": {
         "type": "SpecificResource",
-        "source": "https://cubap.github.io/movable-books/fixtures/manifests/ucla-zz0002hh5q-flap-fold.json/canvas/front-expanded",
+        "source": "http://b1dbe4a0-443c-479f-bf0a-25c352df0d8f.iiif.library.ucla.edu/ark%3A%2F21198%2Fzz0002hh5q/manifest/canvas/s218fn4d",
         "selector": {
           "type": "FragmentSelector",
           "conformsTo": "http://www.w3.org/TR/media-frags/",
-          "value": "xywh=0,783,1888,10"
+          "value": "xywh=0,795,1913,10"
         }
       }
+    },
+    {
+      "id": "https://cubap.github.io/movable-books/fixtures/pages/ucla-zz0002hh5q-fold-annotations.json/annotation/flap-verso",
+      "type": "Annotation",
+      "motivation": "tagging",
+      "label": { "en": ["Role: verso of the flap"] },
+      "body": [
+        {
+          "type": "TextualBody",
+          "value": "movable-books:flap-verso",
+          "format": "text/plain",
+          "language": "en"
+        },
+        {
+          "type": "TextualBody",
+          "value": "The second portrait printed on the underside of the flap. There is no separate photograph of it: in the opened state the flap lies face down, and in the collapsed state it is covering the very area where it would be visible. It is legible only in the collapsed front exposure, as the lower region x=11, y=807, w=1879, h=1148 of the canvas that also carries the front sheet. So one UCLA canvas supplies two roles here, the whole of it being the collapsed front and this region of it being the flap's verso.",
+          "format": "text/plain",
+          "language": "en"
+        }
+      ],
+      "target": {
+        "type": "SpecificResource",
+        "source": "http://b1dbe4a0-443c-479f-bf0a-25c352df0d8f.iiif.library.ucla.edu/ark%3A%2F21198%2Fzz0002hh5q/manifest/canvas/3q288c9w",
+        "selector": {
+          "type": "FragmentSelector",
+          "conformsTo": "http://www.w3.org/TR/media-frags/",
+          "value": "xywh=11,807,1879,1148"
+        }
+      }
+    },
+    {
+      "id": "https://cubap.github.io/movable-books/fixtures/pages/ucla-zz0002hh5q-fold-annotations.json/annotation/back",
+      "type": "Annotation",
+      "motivation": "tagging",
+      "label": { "en": ["Role: back of the card"] },
+      "body": [
+        {
+          "type": "TextualBody",
+          "value": "movable-books:back",
+          "format": "text/plain",
+          "language": "en"
+        },
+        {
+          "type": "TextualBody",
+          "value": "The reverse of the card, used whole. It was photographed only in the collapsed state, so the demo shows the open back by composing this exposure above the crease with the flap's verso below it, rather than by inventing a second back image.",
+          "format": "text/plain",
+          "language": "en"
+        }
+      ],
+      "target": "http://b1dbe4a0-443c-479f-bf0a-25c352df0d8f.iiif.library.ucla.edu/ark%3A%2F21198%2Fzz0002hh5q/manifest/canvas/tt589n93"
     },
     {
       "id": "https://cubap.github.io/movable-books/fixtures/pages/ucla-zz0002hh5q-fold-annotations.json/annotation/behavior",
       "type": "Annotation",
       "motivation": "describing",
-      "label": {
-        "en": ["Flap fold behavior"]
-      },
+      "label": { "en": ["Flap fold behavior"] },
       "body": {
         "type": "TextualBody",
-        "value": "One continuous front sheet with a single hinged flap below the crease; the upper sheet never moves. Swinging the flap upward through 180 degrees turns its verso to the viewer and covers the lower part of the sheet, including the sitters' bodies, so that only their faces remain visible. The verso is not visible in the fully expanded photograph, because in that state it is face-down; it is recovered as a region of the collapsed photograph. The flap is hinged to the sheet rather than printed onto a face, so it persists across a flip: with the flap open, the back is the collapsed back exposure above the crease plus the flap's verso, upside-down, below it; with the flap folded, the flap passes behind the sheet and is hidden.",
+        "value": "One continuous front sheet with a single hinged flap below the crease; the upper sheet never moves. Swinging the flap upward through 180 degrees turns its verso to the viewer and covers the lower part of the sheet, including the sitters' bodies, so that only their faces remain visible. The flap is hinged to the sheet rather than printed onto a face, so it persists across a flip: with the flap open, the back is the collapsed back exposure above the crease plus the flap's verso, upside-down, below it; with the flap folded, the flap passes behind the sheet and is hidden.",
         "format": "text/plain",
         "language": "en"
       },
-      "target": "https://cubap.github.io/movable-books/fixtures/manifests/ucla-zz0002hh5q-flap-fold.json/canvas/front-expanded"
+      "target": "http://b1dbe4a0-443c-479f-bf0a-25c352df0d8f.iiif.library.ucla.edu/ark%3A%2F21198%2Fzz0002hh5q/manifest/canvas/s218fn4d"
     }
   ]
 }
