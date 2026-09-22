@@ -1,0 +1,280 @@
+{
+  "@context": "http://iiif.io/api/presentation/3/context.json",
+  "id": "https://cubap.github.io/movable-books/fixtures/manifests/ucla-zz0002hh5q-accordion-flip.json",
+  "type": "Manifest",
+  "label": {
+    "en": ["Alphonso & Imogene: an idyl of Henry's Carbolic Salve [inscribed] — Accordion Flip"]
+  },
+  "summary": {
+    "en": ["A patent-medicine trade card with a vertical accordion fold. The item has three surviving photographs: the front side collapsed, the front side fully opened, and the back side collapsed. This manifest references the original UCLA IIIF resources and supplies Web Annotation mark-up describing the fold geometry and behavior."]
+  },
+  "requiredStatement": {
+    "label": { "en": ["Attribution"] },
+    "value": {
+      "en": ["Original item courtesy of the Louise M. Darling Biomedical Library. History and Special Collections for the Sciences, UCLA. Via UCLA Digital Library: https://digital.library.ucla.edu/catalog/ark:/21198/zz0002hh5q"]
+    }
+  },
+  "rights": "https://creativecommons.org/publicdomain/mark/1.0/",
+  "metadata": [
+    {
+      "label": { "en": ["Title"] },
+      "value": { "en": ["Alphonso & Imogene: an idyl of Henry's Carbolic Salve [inscribed]"] }
+    },
+    {
+      "label": { "en": ["Alternative Title"] },
+      "value": { "en": ["Henry's Carbolic Salve"] }
+    },
+    {
+      "label": { "en": ["Publisher"] },
+      "value": { "en": ["John F. Henry & Co. (New York, N.Y.)"] }
+    },
+    {
+      "label": { "en": ["Date Created"] },
+      "value": { "en": ["[between 1870 and 1906?]"] }
+    },
+    {
+      "label": { "en": ["Collection"] },
+      "value": { "en": ["Patent Medicine Trade Cards; History and Special Collections for the Sciences Collection"] }
+    },
+    {
+      "label": { "en": ["Repository"] },
+      "value": { "en": ["Louise M. Darling Biomedical Library. History and Special Collections for the Sciences, UCLA"] }
+    },
+    {
+      "label": { "en": ["Rights Statement"] },
+      "value": { "en": ["public domain"] }
+    },
+    {
+      "label": { "en": ["Fold Type"] },
+      "value": { "en": ["Vertical accordion fold, three observed states"] }
+    }
+  ],
+  "provider": [
+    {
+      "id": "https://digital.library.ucla.edu/",
+      "type": "Agent",
+      "label": { "en": ["UCLA Digital Library"] },
+      "homepage": [
+        {
+          "id": "https://digital.library.ucla.edu/catalog/ark:/21198/zz0002hh5q",
+          "type": "Text",
+          "label": { "en": ["Catalog record for Alphonso & Imogene trade card"] },
+          "format": "text/html"
+        }
+      ]
+    }
+  ],
+  "seeAlso": [
+    {
+      "id": "https://iiif.library.ucla.edu/ark%3A%2F21198%2Fzz0002hh5q/manifest",
+      "type": "Manifest",
+      "label": { "en": ["UCLA source IIIF Manifest (Presentation API 2.1)"] },
+      "format": "application/ld+json"
+    },
+    {
+      "id": "https://digital.library.ucla.edu/catalog/ark:/21198/zz0002hh5q",
+      "type": "Text",
+      "label": { "en": ["UCLA catalog record"] },
+      "format": "text/html"
+    },
+    {
+      "id": "https://cubap.github.io/movable-books/demos/ucla-accordion-flip.html",
+      "type": "Text",
+      "label": { "en": ["Interactive Accordion Flip Demo"] },
+      "format": "text/html"
+    }
+  ],
+  "items": [
+    {
+      "id": "https://cubap.github.io/movable-books/fixtures/manifests/ucla-zz0002hh5q-accordion-flip.json/canvas/front-collapsed",
+      "type": "Canvas",
+      "label": { "en": ["Front side, collapsed"] },
+      "height": 1962,
+      "width": 1901,
+      "items": [
+        {
+          "id": "https://cubap.github.io/movable-books/fixtures/manifests/ucla-zz0002hh5q-accordion-flip.json/canvas/front-collapsed/page",
+          "type": "AnnotationPage",
+          "items": [
+            {
+              "id": "https://cubap.github.io/movable-books/fixtures/manifests/ucla-zz0002hh5q-accordion-flip.json/canvas/front-collapsed/page/image",
+              "type": "Annotation",
+              "motivation": "painting",
+              "body": {
+                "id": "https://iiif.library.ucla.edu/iiif/2/ark%3A%2F21198%2Fzz0002hh5q%2F3q288c9w/full/full/0/default.jpg",
+                "type": "Image",
+                "format": "image/jpeg",
+                "height": 1962,
+                "width": 1901,
+                "service": [
+                  {
+                    "id": "https://iiif.library.ucla.edu/iiif/2/ark%3A%2F21198%2Fzz0002hh5q%2F3q288c9w",
+                    "type": "ImageService2",
+                    "profile": "http://iiif.io/api/image/2/level2.json"
+                  }
+                ]
+              },
+              "target": "https://cubap.github.io/movable-books/fixtures/manifests/ucla-zz0002hh5q-accordion-flip.json/canvas/front-collapsed"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "https://cubap.github.io/movable-books/fixtures/manifests/ucla-zz0002hh5q-accordion-flip.json/canvas/front-expanded",
+      "type": "Canvas",
+      "label": { "en": ["Front side, fully expanded"] },
+      "height": 3098,
+      "width": 1913,
+      "items": [
+        {
+          "id": "https://cubap.github.io/movable-books/fixtures/manifests/ucla-zz0002hh5q-accordion-flip.json/canvas/front-expanded/page",
+          "type": "AnnotationPage",
+          "items": [
+            {
+              "id": "https://cubap.github.io/movable-books/fixtures/manifests/ucla-zz0002hh5q-accordion-flip.json/canvas/front-expanded/page/image",
+              "type": "Annotation",
+              "motivation": "painting",
+              "body": {
+                "id": "https://iiif.library.ucla.edu/iiif/2/ark%3A%2F21198%2Fzz0002hh5q%2Fs218fn4d/full/full/0/default.jpg",
+                "type": "Image",
+                "format": "image/jpeg",
+                "height": 3098,
+                "width": 1913,
+                "service": [
+                  {
+                    "id": "https://iiif.library.ucla.edu/iiif/2/ark%3A%2F21198%2Fzz0002hh5q%2Fs218fn4d",
+                    "type": "ImageService2",
+                    "profile": "http://iiif.io/api/image/2/level2.json"
+                  }
+                ]
+              },
+              "target": "https://cubap.github.io/movable-books/fixtures/manifests/ucla-zz0002hh5q-accordion-flip.json/canvas/front-expanded"
+            }
+          ]
+        }
+      ],
+      "annotations": [
+        {
+          "id": "https://cubap.github.io/movable-books/fixtures/manifests/ucla-zz0002hh5q-accordion-flip.json/canvas/front-expanded/fold-lines",
+          "type": "AnnotationPage",
+          "label": { "en": ["Fold line annotations"] },
+          "items": [
+            {
+              "id": "https://cubap.github.io/movable-books/fixtures/manifests/ucla-zz0002hh5q-accordion-flip.json/annotation/fold-seam-01",
+              "type": "Annotation",
+              "motivation": "describing",
+              "label": { "en": ["Fold seam 0-1"] },
+              "body": {
+                "type": "TextualBody",
+                "value": "Valley fold at approximately 34.7% of the expanded image height. Panel 1 folds backward behind panel 2 when the card is closed.",
+                "format": "text/plain",
+                "language": "en"
+              },
+              "target": {
+                "type": "SpecificResource",
+                "source": "https://cubap.github.io/movable-books/fixtures/manifests/ucla-zz0002hh5q-accordion-flip.json/canvas/front-expanded",
+                "selector": {
+                  "type": "FragmentSelector",
+                  "conformsTo": "http://www.w3.org/TR/media-frags/",
+                  "value": "xywh=0,1075,1913,10"
+                }
+              }
+            },
+            {
+              "id": "https://cubap.github.io/movable-books/fixtures/manifests/ucla-zz0002hh5q-accordion-flip.json/annotation/fold-seam-12",
+              "type": "Annotation",
+              "motivation": "describing",
+              "label": { "en": ["Fold seam 1-2"] },
+              "body": {
+                "type": "TextualBody",
+                "value": "Mountain fold at approximately 52.6% of the expanded image height. The card doubles back so that panels 0 and 3 meet in front when collapsed.",
+                "format": "text/plain",
+                "language": "en"
+              },
+              "target": {
+                "type": "SpecificResource",
+                "source": "https://cubap.github.io/movable-books/fixtures/manifests/ucla-zz0002hh5q-accordion-flip.json/canvas/front-expanded",
+                "selector": {
+                  "type": "FragmentSelector",
+                  "conformsTo": "http://www.w3.org/TR/media-frags/",
+                  "value": "xywh=0,1630,1913,10"
+                }
+              }
+            },
+            {
+              "id": "https://cubap.github.io/movable-books/fixtures/manifests/ucla-zz0002hh5q-accordion-flip.json/annotation/fold-seam-23",
+              "type": "Annotation",
+              "motivation": "describing",
+              "label": { "en": ["Fold seam 2-3"] },
+              "body": {
+                "type": "TextualBody",
+                "value": "Valley fold at approximately 82.4% of the expanded image height. Panel 3 folds upward to meet panel 0 in the closed state.",
+                "format": "text/plain",
+                "language": "en"
+              },
+              "target": {
+                "type": "SpecificResource",
+                "source": "https://cubap.github.io/movable-books/fixtures/manifests/ucla-zz0002hh5q-accordion-flip.json/canvas/front-expanded",
+                "selector": {
+                  "type": "FragmentSelector",
+                  "conformsTo": "http://www.w3.org/TR/media-frags/",
+                  "value": "xywh=0,2553,1913,10"
+                }
+              }
+            },
+            {
+              "id": "https://cubap.github.io/movable-books/fixtures/manifests/ucla-zz0002hh5q-accordion-flip.json/annotation/behavior",
+              "type": "Annotation",
+              "motivation": "describing",
+              "label": { "en": ["Accordion fold behavior"] },
+              "body": {
+                "type": "TextualBody",
+                "value": "Four-panel vertical accordion. When closed, panels 1 and 2 are hidden behind the facing panels 0 and 3, showing the outer front design. Flipping the closed card reveals the back, for which only a collapsed photograph is available; therefore the demo finishes folding closed before flipping.",
+                "format": "text/plain",
+                "language": "en"
+              },
+              "target": "https://cubap.github.io/movable-books/fixtures/manifests/ucla-zz0002hh5q-accordion-flip.json/canvas/front-expanded"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "https://cubap.github.io/movable-books/fixtures/manifests/ucla-zz0002hh5q-accordion-flip.json/canvas/back-collapsed",
+      "type": "Canvas",
+      "label": { "en": ["Back side, collapsed"] },
+      "height": 1962,
+      "width": 1899,
+      "items": [
+        {
+          "id": "https://cubap.github.io/movable-books/fixtures/manifests/ucla-zz0002hh5q-accordion-flip.json/canvas/back-collapsed/page",
+          "type": "AnnotationPage",
+          "items": [
+            {
+              "id": "https://cubap.github.io/movable-books/fixtures/manifests/ucla-zz0002hh5q-accordion-flip.json/canvas/back-collapsed/page/image",
+              "type": "Annotation",
+              "motivation": "painting",
+              "body": {
+                "id": "https://iiif.library.ucla.edu/iiif/2/ark%3A%2F21198%2Fzz0002hh5q%2Ftt589n93/full/full/0/default.jpg",
+                "type": "Image",
+                "format": "image/jpeg",
+                "height": 1962,
+                "width": 1899,
+                "service": [
+                  {
+                    "id": "https://iiif.library.ucla.edu/iiif/2/ark%3A%2F21198%2Fzz0002hh5q%2Ftt589n93",
+                    "type": "ImageService2",
+                    "profile": "http://iiif.io/api/image/2/level2.json"
+                  }
+                ]
+              },
+              "target": "https://cubap.github.io/movable-books/fixtures/manifests/ucla-zz0002hh5q-accordion-flip.json/canvas/back-collapsed"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "behavior": ["individuals"]
+}
