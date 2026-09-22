@@ -47,10 +47,16 @@ permalink: /demos/ucla-flap-fold.html
       <details class="details-info">
         <summary>Fold pattern</summary>
         <p>
-          The front is one continuous sheet with a single horizontal crease at about 62.6% of its height.
-          Everything below that crease is a flap 37.4% long, hinged on its upper edge. Swinging it upward
-          through 180&deg; carries the free edge to about 25.2% of the sheet and turns the flap's verso to
+          The front is one continuous sheet with a single horizontal crease at about 62.75% of its height.
+          Everything below that crease is a flap 37.25% long, hinged on its upper edge. Swinging it upward
+          through 180&deg; carries the free edge to about 25.5% of the sheet and turns the flap's verso to
           the viewer. There is no accordion: the upper sheet never moves, and the flap is the only hinged part.
+        </p>
+        <p>
+          The expanded photograph is cropped to the region
+          <code>15,12,1888,3071</code> of the source image so that the card fills the same width in both
+          exposures; without it the two photographs are about 1.4% apart in scale and the flap does not
+          line up with the sheet.
         </p>
         <p>
           The verso is invisible in the fully expanded photograph, because in that state it is face-down.
@@ -97,7 +103,7 @@ permalink: /demos/ucla-flap-fold.html
     position: relative;
     width: 100%;
     max-width: 640px;
-    aspect-ratio: 1913 / 3098;
+    aspect-ratio: 1888 / 3071;
     margin: 0 auto;
     background: linear-gradient(135deg, #e0e0e0 25%, #f5f5f5 25%, #f5f5f5 50%, #e0e0e0 50%, #e0e0e0 75%, #f5f5f5 75%);
     background-size: 40px 40px;
@@ -105,6 +111,10 @@ permalink: /demos/ucla-flap-fold.html
     perspective: 2200px;
     perspective-origin: 50% 50%;
   }
+
+  /* The theme's `img { margin: 1rem 0 }` would offset every absolutely positioned
+     slice by 16px, breaking registration between the sheet, the flap and the back. */
+  .stage img { margin: 0; }
 
   .flipper {
     position: absolute;
@@ -127,16 +137,15 @@ permalink: /demos/ucla-flap-fold.html
   .flipper.show-back .face-front { visibility: hidden; }
   .flipper:not(.show-back) .face-back { visibility: hidden; }
   .face-back { transform: rotateY(180deg); }
+  /* Top-aligned, not centred: the collapsed back is only ~63% of the stage tall,
+     so centring it makes the card snap downward on flip. Anchored at the top it
+     lands where the folded front already sits. */
   .face-back img {
     position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    max-width: 100%;
-    max-height: 100%;
+    left: 0;
+    top: 0;
     width: 100%;
     height: auto;
-    object-fit: contain;
   }
 
   .card {
@@ -198,12 +207,12 @@ permalink: /demos/ucla-flap-fold.html
   const flapVersoImg = document.getElementById('flapVersoImg');
   const backImg = document.getElementById('backImg');
 
-  // The crease, measured from the UCLA photographs as a fraction of the full
+  // The crease, measured from the UCLA photographs as a fraction of the cropped
   // expanded image height. Located by the notch the crease cuts in the card's
-  // right edge (expanded row 1014 of 1620) and cross-checked two ways: the
-  // collapsed card's lower edge coincides with it, and the collapsed and expanded
+  // right edge (row 1021 of 1627) and cross-checked two ways: the collapsed
+  // card's lower edge coincides with it, and the collapsed and expanded
   // photographs match 1:1 only above it. The flap is everything below the crease.
-  const CREASE = 62.6;
+  const CREASE = 62.75;
   const FLAP_LEN = 100 - CREASE;
   const FRONT = 'front';
   const BACK = 'back';
@@ -245,10 +254,14 @@ permalink: /demos/ucla-flap-fold.html
     flap.style.transform = `translateZ(0.4px) rotateX(${angle}deg)`;
   };
 
+  // Prefer the body id when it already encodes a IIIF region (a cropped canvas);
+  // otherwise ask the image service for the whole image.
   const imageUrlFor = (resource) => {
     if (!resource) return null;
+    const id = resource.id || '';
+    if (id && !/\/full\/full\//.test(id)) return id;
     const svc = resource.service?.[0]?.id;
-    return svc ? `${svc}/full/full/0/default.jpg` : resource.id || null;
+    return svc ? `${svc}/full/full/0/default.jpg` : id || null;
   };
 
   const loadManifest = async () => {
@@ -262,22 +275,18 @@ permalink: /demos/ucla-flap-fold.html
     const bodyOf = (canvas) => canvas?.items?.[0]?.items?.[0]?.body;
     const findCanvas = (re) => mf.items?.find(c => re.test(labelOf(c)));
 
-    const expanded = findCanvas(/expanded/i);
-    const back = findCanvas(/back/i);
-    // The verso is a region of the collapsed photograph, so its body id already
-    // carries the IIIF region and must be used verbatim, not rebuilt.
-    const verso = findCanvas(/verso/i);
-
-    const expandedUrl = imageUrlFor(bodyOf(expanded));
+    const expandedUrl = imageUrlFor(bodyOf(findCanvas(/expanded/i)));
     if (expandedUrl) {
       sheetImg.src = expandedUrl;
       flapRectoImg.src = expandedUrl;
     }
 
-    const versoBody = bodyOf(verso);
-    if (versoBody?.id) flapVersoImg.src = versoBody.id;
+    // The verso is face-down when the flap is open, so it is a region of the
+    // collapsed photograph rather than a separate exposure.
+    const versoUrl = imageUrlFor(bodyOf(findCanvas(/verso/i)));
+    if (versoUrl) flapVersoImg.src = versoUrl;
 
-    const backUrl = imageUrlFor(bodyOf(back));
+    const backUrl = imageUrlFor(bodyOf(findCanvas(/back/i)));
     if (backUrl) backImg.src = backUrl;
 
     return mf;

@@ -19,7 +19,7 @@
       },
       "body": {
         "type": "TextualBody",
-        "value": "Hinge of the lower flap at approximately 62.6% of the expanded image height. Located by the notch the crease cuts in the card's right edge in the expanded photograph, and confirmed by the collapsed card's lower edge coinciding with the same row. Everything below this line is the flap.",
+        "value": "Hinge of the lower flap at approximately 62.75% of the expanded image height. Located by the notch the crease cuts in the card's right edge in the expanded photograph, and confirmed by the collapsed card's lower edge coinciding with the same row. Everything below this line is the flap.",
         "format": "text/plain",
         "language": "en"
       },
@@ -29,7 +29,7 @@
         "selector": {
           "type": "FragmentSelector",
           "conformsTo": "http://www.w3.org/TR/media-frags/",
-          "value": "xywh=0,1939,1913,10"
+          "value": "xywh=0,1927,1888,10"
         }
       }
     },
@@ -42,7 +42,7 @@
       },
       "body": {
         "type": "TextualBody",
-        "value": "Approximately 25.2% of the expanded image height. This is where the flap's free edge lands when it is folded up through 180 degrees, derived as the crease position minus the flap length (37.4%). It is not a fold in the paper.",
+        "value": "Approximately 25.5% of the expanded image height. This is where the flap's free edge lands when it is folded up through 180 degrees, derived as the crease position minus the flap length (37.25%). It is not a fold in the paper.",
         "format": "text/plain",
         "language": "en"
       },
@@ -52,7 +52,7 @@
         "selector": {
           "type": "FragmentSelector",
           "conformsTo": "http://www.w3.org/TR/media-frags/",
-          "value": "xywh=0,781,1913,10"
+          "value": "xywh=0,783,1888,10"
         }
       }
     },

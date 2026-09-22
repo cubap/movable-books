@@ -124,8 +124,11 @@
       "id": "https://cubap.github.io/movable-books/fixtures/manifests/ucla-zz0002hh5q-flap-fold.json/canvas/front-expanded",
       "type": "Canvas",
       "label": { "en": ["Front side, fully expanded"] },
-      "height": 3098,
-      "width": 1913,
+      "summary": {
+        "en": ["Cropped to region 15,12,1888,3071 of the source image so that the card fills the same width as the collapsed exposures; the uncropped canvas is 1913x3098."]
+      },
+      "height": 3071,
+      "width": 1888,
       "items": [
         {
           "id": "https://cubap.github.io/movable-books/fixtures/manifests/ucla-zz0002hh5q-flap-fold.json/canvas/front-expanded/page",
@@ -136,11 +139,11 @@
               "type": "Annotation",
               "motivation": "painting",
               "body": {
-                "id": "https://iiif.library.ucla.edu/iiif/2/ark%3A%2F21198%2Fzz0002hh5q%2Fs218fn4d/full/full/0/default.jpg",
+                "id": "https://iiif.library.ucla.edu/iiif/2/ark%3A%2F21198%2Fzz0002hh5q%2Fs218fn4d/15,12,1888,3071/full/0/default.jpg",
                 "type": "Image",
                 "format": "image/jpeg",
-                "height": 3098,
-                "width": 1913,
+                "height": 3071,
+                "width": 1888,
                 "service": [
                   {
                     "id": "https://iiif.library.ucla.edu/iiif/2/ark%3A%2F21198%2Fzz0002hh5q%2Fs218fn4d",
@@ -167,7 +170,7 @@
               "label": { "en": ["Flap crease"] },
               "body": {
                 "type": "TextualBody",
-                "value": "Hinge of the lower flap at approximately 62.6% of the expanded image height. Located by the notch the crease cuts in the card's right edge in the expanded photograph, and confirmed by the collapsed card's lower edge coinciding with the same row. Everything below this line is the flap.",
+                "value": "Hinge of the lower flap at approximately 62.75% of the expanded image height. Located by the notch the crease cuts in the card's right edge in the expanded photograph, and confirmed by the collapsed card's lower edge coinciding with the same row. Everything below this line is the flap.",
                 "format": "text/plain",
                 "language": "en"
               },
@@ -177,7 +180,7 @@
                 "selector": {
                   "type": "FragmentSelector",
                   "conformsTo": "http://www.w3.org/TR/media-frags/",
-                  "value": "xywh=0,1939,1913,10"
+                  "value": "xywh=0,1927,1888,10"
                 }
               }
             },
@@ -188,7 +191,7 @@
               "label": { "en": ["Flap free edge when folded"] },
               "body": {
                 "type": "TextualBody",
-                "value": "Approximately 25.2% of the expanded image height. This is where the flap's free edge lands when it is folded up through 180 degrees, derived as the crease position minus the flap length (37.4%). It is not a fold in the paper.",
+                "value": "Approximately 25.5% of the expanded image height. This is where the flap's free edge lands when it is folded up through 180 degrees, derived as the crease position minus the flap length (37.25%). It is not a fold in the paper.",
                 "format": "text/plain",
                 "language": "en"
               },
@@ -198,7 +201,7 @@
                 "selector": {
                   "type": "FragmentSelector",
                   "conformsTo": "http://www.w3.org/TR/media-frags/",
-                  "value": "xywh=0,781,1913,10"
+                  "value": "xywh=0,783,1888,10"
                 }
               }
             },
