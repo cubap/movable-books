@@ -1,0 +1,3671 @@
+{
+  "@context": "http://iiif.io/api/presentation/3/context.json",
+  "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json",
+  "type": "Manifest",
+  "label": {
+    "none": [
+      "Paper dolls and paper outfits painted by Zelda Fitzgerald, cut out again"
+    ]
+  },
+  "summary": {
+    "en": [
+      "Derivative view of Beinecke MS 11873654 for the movable-books Cutout use case. Yale's copy of this object is already cut out, so their published manifest has one canvas per physical piece and no sheet at all. This manifest keeps that per-piece shape, and adds a leading derived canvas that lays the fourteen pieces back down on a virtual uncut sheet at the home positions recorded in the accompanying annotation page. Every image is still served by Yale: each piece is a region of its own Yale canvas, requested from Yale's IIIF Image service. Nothing is re-hosted here.",
+      "Read together with https://github.com/cubap/movable-books/blob/gh-pages/fixtures/pages/yale-11873654-paper-doll-annotations.json, which is the document the demo actually consumes, and with the live source manifest https://collections.library.yale.edu/manifests/11873654."
+    ]
+  },
+  "requiredStatement": {
+    "label": {
+      "en": [
+        "Attribution"
+      ]
+    },
+    "value": {
+      "en": [
+        "Paper dolls and paper outfits painted by Zelda Fitzgerald [graphic], ca. 1927. Beinecke Rare Book & Manuscript Library, Yale University, General Collection, MS 11873654. Images © Yale University Library; this derivative adds only descriptive metadata. See the catalog record for the current rights statement."
+      ]
+    }
+  },
+  "language": [
+    "en"
+  ],
+  "provider": [
+    {
+      "id": "https://beinecke.library.yale.edu/",
+      "type": "Organization",
+      "label": {
+        "en": [
+          "Beinecke Rare Book & Manuscript Library, Yale University"
+        ]
+      },
+      "homepage": [
+        {
+          "id": "https://beinecke.library.yale.edu/",
+          "type": "Text",
+          "label": {
+            "en": [
+              "Beinecke Library"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "thumbnail": [
+    {
+      "id": "https://collections.library.yale.edu/iiif/2/11873745/full/!400,400/0/default.jpg",
+      "type": "Image",
+      "format": "image/jpeg"
+    }
+  ],
+  "homepage": [
+    {
+      "id": "https://github.com/cubap/movable-books/demos/paper-doll-zelda.html",
+      "type": "Text",
+      "label": {
+        "en": [
+          "Paper-doll demo built on this object"
+        ]
+      },
+      "format": "text/html"
+    },
+    {
+      "id": "https://collections.library.yale.edu/catalog/11873654",
+      "type": "Text",
+      "label": {
+        "en": [
+          "Yale University Library catalog record 11873654"
+        ]
+      }
+    }
+  ],
+  "seeAlso": [
+    {
+      "id": "https://github.com/cubap/movable-books/fixtures/pages/yale-11873654-paper-doll-annotations.json",
+      "type": "AnnotationPage",
+      "label": {
+        "en": [
+          "Paper-doll model annotation page (roles, anchors, home positions)"
+        ]
+      },
+      "format": "application/ld+json"
+    },
+    {
+      "id": "https://collections.library.yale.edu/manifests/11873654",
+      "type": "Manifest",
+      "label": {
+        "en": [
+          "Yale source manifest (Presentation API 3)"
+        ]
+      },
+      "format": "application/ld+json"
+    }
+  ],
+  "rendering": [
+    {
+      "id": "https://github.com/cubap/movable-books/demos/paper-doll-zelda.html",
+      "type": "Text",
+      "label": {
+        "en": [
+          "Interactive demo"
+        ]
+      },
+      "format": "text/html"
+    }
+  ],
+  "metadata": [
+    {
+      "label": {
+        "en": [
+          "Creator"
+        ]
+      },
+      "value": {
+        "en": [
+          "Fitzgerald, Zelda Sayre, 1900-1948"
+        ]
+      }
+    },
+    {
+      "label": {
+        "en": [
+          "Date"
+        ]
+      },
+      "value": {
+        "en": [
+          "ca. 1927"
+        ]
+      }
+    },
+    {
+      "label": {
+        "en": [
+          "Repository"
+        ]
+      },
+      "value": {
+        "en": [
+          "Beinecke Rare Book and Manuscript Library (New Haven, Conn.)"
+        ]
+      }
+    },
+    {
+      "label": {
+        "en": [
+          "Call number"
+        ]
+      },
+      "value": {
+        "en": [
+          "General Collection. MS 11873654"
+        ]
+      }
+    },
+    {
+      "label": {
+        "en": [
+          "Extent"
+        ]
+      },
+      "value": {
+        "en": [
+          "8 paper dolls (5 male, 3 female) and 6 paper outfits (4 men's, 2 women's); graphite, watercolor and gouache; 28-31 cm"
+        ]
+      }
+    },
+    {
+      "label": {
+        "en": [
+          "Form"
+        ]
+      },
+      "value": {
+        "en": [
+          "Paper dolls",
+          "Costumes (mode of style)",
+          "Watercolor drawings"
+        ]
+      }
+    },
+    {
+      "label": {
+        "en": [
+          "Digitisation"
+        ]
+      },
+      "value": {
+        "en": [
+          "14 recto/verso pairs, 28 canvases, served by Yale"
+        ]
+      }
+    },
+    {
+      "label": {
+        "en": [
+          "Scale assumption"
+        ]
+      },
+      "value": {
+        "en": [
+          "All fourteen recto exposures are 3421-3468 x 5609 px, i.e. one fixed camera setup photographing pieces the catalogue measures at 28-31 cm. The pixel-to-millimetre ratio is therefore common to every piece, so an outfit can be laid on a figure at a 1:1 ratio with no resizing. A future instance mixing plates photographed at different magnifications would need a per-piece scale factor."
+        ]
+      }
+    },
+    {
+      "label": {
+        "en": [
+          "Derived sheet"
+        ]
+      },
+      "value": {
+        "en": [
+          "The first canvas is not a scan. It is a virtual rectangle 17090 x 11030 units, one unit per pixel of the Yale scans, onto which each piece is painted at its authored home position. It stands in for the uncut sheet this copy no longer has."
+        ]
+      }
+    }
+  ],
+  "start": {
+    "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/sheet",
+    "type": "Canvas"
+  },
+  "items": [
+    {
+      "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/sheet",
+      "type": "Canvas",
+      "width": 17090,
+      "height": 11030,
+      "label": {
+        "en": [
+          "Derived uncut sheet (all fourteen pieces at their home positions)"
+        ]
+      },
+      "metadata": [
+        {
+          "label": {
+            "en": [
+              "Provenance"
+            ]
+          },
+          "value": {
+            "en": [
+              "Composed, not photographed. See the `sheet-model` annotation in the accompanying annotation page."
+            ]
+          }
+        }
+      ],
+      "items": [
+        {
+          "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/sheet/page/1",
+          "type": "AnnotationPage",
+          "items": [
+            {
+              "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/sheet-female-1",
+              "type": "Annotation",
+              "motivation": "painting",
+              "label": {
+                "en": [
+                  "female-1 (figure) at its home position"
+                ]
+              },
+              "body": {
+                "id": "https://collections.library.yale.edu/iiif/2/11873743/688,885,2081,4094/full/0/default.jpg",
+                "type": "Image",
+                "format": "image/jpeg",
+                "width": 2081,
+                "height": 4094,
+                "service": [
+                  {
+                    "@id": "https://collections.library.yale.edu/iiif/2/11873743",
+                    "@type": "ImageService2",
+                    "profile": "http://iiif.io/api/image/2/level2.json"
+                  }
+                ],
+                "thumbnail": [
+                  {
+                    "id": "https://collections.library.yale.edu/iiif/2/11873743/688,885,2081,4094/!400,400/0/default.jpg",
+                    "type": "Image",
+                    "format": "image/jpeg"
+                  }
+                ]
+              },
+              "target": {
+                "type": "SpecificResource",
+                "source": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/sheet",
+                "selector": {
+                  "type": "FragmentSelector",
+                  "conformsTo": "http://www.w3.org/TR/media-frags/",
+                  "value": "xywh=pixel:7278.9728,1185.9456,2081.0493,4094.0051"
+                }
+              }
+            },
+            {
+              "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/sheet-female-2",
+              "type": "Annotation",
+              "motivation": "painting",
+              "label": {
+                "en": [
+                  "female-2 (figure) at its home position"
+                ]
+              },
+              "body": {
+                "id": "https://collections.library.yale.edu/iiif/2/11873745/601,382,2006,4846/full/0/default.jpg",
+                "type": "Image",
+                "format": "image/jpeg",
+                "width": 2006,
+                "height": 4846,
+                "service": [
+                  {
+                    "@id": "https://collections.library.yale.edu/iiif/2/11873745",
+                    "@type": "ImageService2",
+                    "profile": "http://iiif.io/api/image/2/level2.json"
+                  }
+                ],
+                "thumbnail": [
+                  {
+                    "id": "https://collections.library.yale.edu/iiif/2/11873745/601,382,2006,4846/!400,400/0/default.jpg",
+                    "type": "Image",
+                    "format": "image/jpeg"
+                  }
+                ]
+              },
+              "target": {
+                "type": "SpecificResource",
+                "source": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/sheet",
+                "selector": {
+                  "type": "FragmentSelector",
+                  "conformsTo": "http://www.w3.org/TR/media-frags/",
+                  "value": "xywh=pixel:708.0387,434.0305,2006.0242,4846.0305"
+                }
+              }
+            },
+            {
+              "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/sheet-gown-pink",
+              "type": "Annotation",
+              "motivation": "painting",
+              "label": {
+                "en": [
+                  "gown-pink (garment) at its home position"
+                ]
+              },
+              "body": {
+                "id": "https://collections.library.yale.edu/iiif/2/11873747/746,387,2318,4996/full/0/default.jpg",
+                "type": "Image",
+                "format": "image/jpeg",
+                "width": 2318,
+                "height": 4996,
+                "service": [
+                  {
+                    "@id": "https://collections.library.yale.edu/iiif/2/11873747",
+                    "@type": "ImageService2",
+                    "profile": "http://iiif.io/api/image/2/level2.json"
+                  }
+                ],
+                "thumbnail": [
+                  {
+                    "id": "https://collections.library.yale.edu/iiif/2/11873747/746,387,2318,4996/!400,400/0/default.jpg",
+                    "type": "Image",
+                    "format": "image/jpeg"
+                  }
+                ]
+              },
+              "target": {
+                "type": "SpecificResource",
+                "source": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/sheet",
+                "selector": {
+                  "type": "FragmentSelector",
+                  "conformsTo": "http://www.w3.org/TR/media-frags/",
+                  "value": "xywh=pixel:2914.0159,284.0225,2317.9167,4996.0385"
+                }
+              }
+            },
+            {
+              "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/sheet-gown-cream",
+              "type": "Annotation",
+              "motivation": "painting",
+              "label": {
+                "en": [
+                  "gown-cream (garment) at its home position"
+                ]
+              },
+              "body": {
+                "id": "https://collections.library.yale.edu/iiif/2/11873749/705,734,1647,4308/full/0/default.jpg",
+                "type": "Image",
+                "format": "image/jpeg",
+                "width": 1647,
+                "height": 4308,
+                "service": [
+                  {
+                    "@id": "https://collections.library.yale.edu/iiif/2/11873749",
+                    "@type": "ImageService2",
+                    "profile": "http://iiif.io/api/image/2/level2.json"
+                  }
+                ],
+                "thumbnail": [
+                  {
+                    "id": "https://collections.library.yale.edu/iiif/2/11873749/705,734,1647,4308/!400,400/0/default.jpg",
+                    "type": "Image",
+                    "format": "image/jpeg"
+                  }
+                ]
+              },
+              "target": {
+                "type": "SpecificResource",
+                "source": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/sheet",
+                "selector": {
+                  "type": "FragmentSelector",
+                  "conformsTo": "http://www.w3.org/TR/media-frags/",
+                  "value": "xywh=pixel:5432.0565,971.9636,1646.9633,4307.9871"
+                }
+              }
+            },
+            {
+              "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/sheet-male-1",
+              "type": "Annotation",
+              "motivation": "painting",
+              "label": {
+                "en": [
+                  "male-1 (figure) at its home position"
+                ]
+              },
+              "body": {
+                "id": "https://collections.library.yale.edu/iiif/2/11873751/653,509,2364,4724/full/0/default.jpg",
+                "type": "Image",
+                "format": "image/jpeg",
+                "width": 2364,
+                "height": 4724,
+                "service": [
+                  {
+                    "@id": "https://collections.library.yale.edu/iiif/2/11873751",
+                    "@type": "ImageService2",
+                    "profile": "http://iiif.io/api/image/2/level2.json"
+                  }
+                ],
+                "thumbnail": [
+                  {
+                    "id": "https://collections.library.yale.edu/iiif/2/11873751/653,509,2364,4724/!400,400/0/default.jpg",
+                    "type": "Image",
+                    "format": "image/jpeg"
+                  }
+                ]
+              },
+              "target": {
+                "type": "SpecificResource",
+                "source": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/sheet",
+                "selector": {
+                  "type": "FragmentSelector",
+                  "conformsTo": "http://www.w3.org/TR/media-frags/",
+                  "value": "xywh=pixel:11910.021,556.0223,2364.0597,4724.0387"
+                }
+              }
+            },
+            {
+              "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/sheet-female-3",
+              "type": "Annotation",
+              "motivation": "painting",
+              "label": {
+                "en": [
+                  "female-3 (figure) at its home position"
+                ]
+              },
+              "body": {
+                "id": "https://collections.library.yale.edu/iiif/2/11873753/462,382,2150,4938/full/0/default.jpg",
+                "type": "Image",
+                "format": "image/jpeg",
+                "width": 2150,
+                "height": 4938,
+                "service": [
+                  {
+                    "@id": "https://collections.library.yale.edu/iiif/2/11873753",
+                    "@type": "ImageService2",
+                    "profile": "http://iiif.io/api/image/2/level2.json"
+                  }
+                ],
+                "thumbnail": [
+                  {
+                    "id": "https://collections.library.yale.edu/iiif/2/11873753/462,382,2150,4938/!400,400/0/default.jpg",
+                    "type": "Image",
+                    "format": "image/jpeg"
+                  }
+                ]
+              },
+              "target": {
+                "type": "SpecificResource",
+                "source": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/sheet",
+                "selector": {
+                  "type": "FragmentSelector",
+                  "conformsTo": "http://www.w3.org/TR/media-frags/",
+                  "value": "xywh=pixel:9559.9751,342.0403,2149.922,4938.0207"
+                }
+              }
+            },
+            {
+              "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/sheet-coat-maroon",
+              "type": "Annotation",
+              "motivation": "painting",
+              "label": {
+                "en": [
+                  "coat-maroon (garment) at its home position"
+                ]
+              },
+              "body": {
+                "id": "https://collections.library.yale.edu/iiif/2/11873755/670,538,1994,4429/full/0/default.jpg",
+                "type": "Image",
+                "format": "image/jpeg",
+                "width": 1994,
+                "height": 4429,
+                "service": [
+                  {
+                    "@id": "https://collections.library.yale.edu/iiif/2/11873755",
+                    "@type": "ImageService2",
+                    "profile": "http://iiif.io/api/image/2/level2.json"
+                  }
+                ],
+                "thumbnail": [
+                  {
+                    "id": "https://collections.library.yale.edu/iiif/2/11873755/670,538,1994,4429/!400,400/0/default.jpg",
+                    "type": "Image",
+                    "format": "image/jpeg"
+                  }
+                ]
+              },
+              "target": {
+                "type": "SpecificResource",
+                "source": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/sheet",
+                "selector": {
+                  "type": "FragmentSelector",
+                  "conformsTo": "http://www.w3.org/TR/media-frags/",
+                  "value": "xywh=pixel:7224.9684,6421.0042,1994.0612,4428.9862"
+                }
+              }
+            },
+            {
+              "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/sheet-male-2",
+              "type": "Annotation",
+              "motivation": "painting",
+              "label": {
+                "en": [
+                  "male-2 (figure) at its home position"
+                ]
+              },
+              "body": {
+                "id": "https://collections.library.yale.edu/iiif/2/11873757/705,202,1907,5100/full/0/default.jpg",
+                "type": "Image",
+                "format": "image/jpeg",
+                "width": 1907,
+                "height": 5100,
+                "service": [
+                  {
+                    "@id": "https://collections.library.yale.edu/iiif/2/11873757",
+                    "@type": "ImageService2",
+                    "profile": "http://iiif.io/api/image/2/level2.json"
+                  }
+                ],
+                "thumbnail": [
+                  {
+                    "id": "https://collections.library.yale.edu/iiif/2/11873757/705,202,1907,5100/!400,400/0/default.jpg",
+                    "type": "Image",
+                    "format": "image/jpeg"
+                  }
+                ]
+              },
+              "target": {
+                "type": "SpecificResource",
+                "source": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/sheet",
+                "selector": {
+                  "type": "FragmentSelector",
+                  "conformsTo": "http://www.w3.org/TR/media-frags/",
+                  "value": "xywh=pixel:14474.0337,180.0096,1907.0731,5100.0514"
+                }
+              }
+            },
+            {
+              "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/sheet-male-3",
+              "type": "Annotation",
+              "motivation": "painting",
+              "label": {
+                "en": [
+                  "male-3 (figure) at its home position"
+                ]
+              },
+              "body": {
+                "id": "https://collections.library.yale.edu/iiif/2/11873759/694,347,2381,4684/full/0/default.jpg",
+                "type": "Image",
+                "format": "image/jpeg",
+                "width": 2381,
+                "height": 4684,
+                "service": [
+                  {
+                    "@id": "https://collections.library.yale.edu/iiif/2/11873759",
+                    "@type": "ImageService2",
+                    "profile": "http://iiif.io/api/image/2/level2.json"
+                  }
+                ],
+                "thumbnail": [
+                  {
+                    "id": "https://collections.library.yale.edu/iiif/2/11873759/694,347,2381,4684/!400,400/0/default.jpg",
+                    "type": "Image",
+                    "format": "image/jpeg"
+                  }
+                ]
+              },
+              "target": {
+                "type": "SpecificResource",
+                "source": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/sheet",
+                "selector": {
+                  "type": "FragmentSelector",
+                  "conformsTo": "http://www.w3.org/TR/media-frags/",
+                  "value": "xywh=pixel:179.9577,6165.9906,2380.9788,4683.9998"
+                }
+              }
+            },
+            {
+              "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/sheet-male-4",
+              "type": "Annotation",
+              "motivation": "painting",
+              "label": {
+                "en": [
+                  "male-4 (figure) at its home position"
+                ]
+              },
+              "body": {
+                "id": "https://collections.library.yale.edu/iiif/2/11873761/1040,688,1405,4395/full/0/default.jpg",
+                "type": "Image",
+                "format": "image/jpeg",
+                "width": 1405,
+                "height": 4395,
+                "service": [
+                  {
+                    "@id": "https://collections.library.yale.edu/iiif/2/11873761",
+                    "@type": "ImageService2",
+                    "profile": "http://iiif.io/api/image/2/level2.json"
+                  }
+                ],
+                "thumbnail": [
+                  {
+                    "id": "https://collections.library.yale.edu/iiif/2/11873761/1040,688,1405,4395/!400,400/0/default.jpg",
+                    "type": "Image",
+                    "format": "image/jpeg"
+                  }
+                ]
+              },
+              "target": {
+                "type": "SpecificResource",
+                "source": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/sheet",
+                "selector": {
+                  "type": "FragmentSelector",
+                  "conformsTo": "http://www.w3.org/TR/media-frags/",
+                  "value": "xywh=pixel:2761.0604,6454.9766,1404.9689,4395.0138"
+                }
+              }
+            },
+            {
+              "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/sheet-male-5",
+              "type": "Annotation",
+              "motivation": "painting",
+              "label": {
+                "en": [
+                  "male-5 (figure) at its home position"
+                ]
+              },
+              "body": {
+                "id": "https://collections.library.yale.edu/iiif/2/11873763/98,312,2659,5250/full/0/default.jpg",
+                "type": "Image",
+                "format": "image/jpeg",
+                "width": 2659,
+                "height": 5250,
+                "service": [
+                  {
+                    "@id": "https://collections.library.yale.edu/iiif/2/11873763",
+                    "@type": "ImageService2",
+                    "profile": "http://iiif.io/api/image/2/level2.json"
+                  }
+                ],
+                "thumbnail": [
+                  {
+                    "id": "https://collections.library.yale.edu/iiif/2/11873763/98,312,2659,5250/!400,400/0/default.jpg",
+                    "type": "Image",
+                    "format": "image/jpeg"
+                  }
+                ]
+              },
+              "target": {
+                "type": "SpecificResource",
+                "source": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/sheet",
+                "selector": {
+                  "type": "FragmentSelector",
+                  "conformsTo": "http://www.w3.org/TR/media-frags/",
+                  "value": "xywh=pixel:4365.9823,5600.0413,2659.0331,5249.9491"
+                }
+              }
+            },
+            {
+              "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/sheet-suit-buttons",
+              "type": "Annotation",
+              "motivation": "painting",
+              "label": {
+                "en": [
+                  "suit-buttons (garment) at its home position"
+                ]
+              },
+              "body": {
+                "id": "https://collections.library.yale.edu/iiif/2/11873765/266,295,2791,5031/full/0/default.jpg",
+                "type": "Image",
+                "format": "image/jpeg",
+                "width": 2791,
+                "height": 5031,
+                "service": [
+                  {
+                    "@id": "https://collections.library.yale.edu/iiif/2/11873765",
+                    "@type": "ImageService2",
+                    "profile": "http://iiif.io/api/image/2/level2.json"
+                  }
+                ],
+                "thumbnail": [
+                  {
+                    "id": "https://collections.library.yale.edu/iiif/2/11873765/266,295,2791,5031/!400,400/0/default.jpg",
+                    "type": "Image",
+                    "format": "image/jpeg"
+                  }
+                ]
+              },
+              "target": {
+                "type": "SpecificResource",
+                "source": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/sheet",
+                "selector": {
+                  "type": "FragmentSelector",
+                  "conformsTo": "http://www.w3.org/TR/media-frags/",
+                  "value": "xywh=pixel:9418.9826,5818.9868,2790.9679,5031.0036"
+                }
+              }
+            },
+            {
+              "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/sheet-suit-evening",
+              "type": "Annotation",
+              "motivation": "painting",
+              "label": {
+                "en": [
+                  "suit-evening (garment) at its home position"
+                ]
+              },
+              "body": {
+                "id": "https://collections.library.yale.edu/iiif/2/11873767/474,1058,2358,3926/full/0/default.jpg",
+                "type": "Image",
+                "format": "image/jpeg",
+                "width": 2358,
+                "height": 3926,
+                "service": [
+                  {
+                    "@id": "https://collections.library.yale.edu/iiif/2/11873767",
+                    "@type": "ImageService2",
+                    "profile": "http://iiif.io/api/image/2/level2.json"
+                  }
+                ],
+                "thumbnail": [
+                  {
+                    "id": "https://collections.library.yale.edu/iiif/2/11873767/474,1058,2358,3926/!400,400/0/default.jpg",
+                    "type": "Image",
+                    "format": "image/jpeg"
+                  }
+                ]
+              },
+              "target": {
+                "type": "SpecificResource",
+                "source": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/sheet",
+                "selector": {
+                  "type": "FragmentSelector",
+                  "conformsTo": "http://www.w3.org/TR/media-frags/",
+                  "value": "xywh=pixel:12410.0744,6923.9722,2358.0782,3926.0182"
+                }
+              }
+            },
+            {
+              "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/sheet-tailcoat",
+              "type": "Annotation",
+              "motivation": "painting",
+              "label": {
+                "en": [
+                  "tailcoat (garment) at its home position"
+                ]
+              },
+              "body": {
+                "id": "https://collections.library.yale.edu/iiif/2/11873769/728,1018,1942,3764/full/0/default.jpg",
+                "type": "Image",
+                "format": "image/jpeg",
+                "width": 1942,
+                "height": 3764,
+                "service": [
+                  {
+                    "@id": "https://collections.library.yale.edu/iiif/2/11873769",
+                    "@type": "ImageService2",
+                    "profile": "http://iiif.io/api/image/2/level2.json"
+                  }
+                ],
+                "thumbnail": [
+                  {
+                    "id": "https://collections.library.yale.edu/iiif/2/11873769/728,1018,1942,3764/!400,400/0/default.jpg",
+                    "type": "Image",
+                    "format": "image/jpeg"
+                  }
+                ]
+              },
+              "target": {
+                "type": "SpecificResource",
+                "source": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/sheet",
+                "selector": {
+                  "type": "FragmentSelector",
+                  "conformsTo": "http://www.w3.org/TR/media-frags/",
+                  "value": "xywh=pixel:14967.9347,7086.0029,1941.9367,3763.9875"
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/female-1",
+      "type": "Canvas",
+      "width": 2081,
+      "height": 4094,
+      "label": {
+        "en": [
+          "female-1 — figure"
+        ]
+      },
+      "metadata": [
+        {
+          "label": {
+            "en": [
+              "Role"
+            ]
+          },
+          "value": {
+            "en": [
+              "figure"
+            ]
+          }
+        },
+        {
+          "label": {
+            "en": [
+              "Fits"
+            ]
+          },
+          "value": {
+            "en": [
+              "female"
+            ]
+          }
+        },
+        {
+          "label": {
+            "en": [
+              "Source canvas"
+            ]
+          },
+          "value": {
+            "en": [
+              "https://collections.library.yale.edu/manifests/oid/11873654/canvas/11873743"
+            ]
+          }
+        },
+        {
+          "label": {
+            "en": [
+              "Region on source canvas"
+            ]
+          },
+          "value": {
+            "en": [
+              "688,885,2081,4094"
+            ]
+          }
+        },
+        {
+          "label": {
+            "en": [
+              "Home position on derived sheet"
+            ]
+          },
+          "value": {
+            "en": [
+              "0.42592,0.10752 normalised"
+            ]
+          }
+        }
+      ],
+      "sameAs": [
+        "https://collections.library.yale.edu/manifests/oid/11873654/canvas/11873743"
+      ],
+      "items": [
+        {
+          "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/female-1/page/1",
+          "type": "AnnotationPage",
+          "items": [
+            {
+              "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/female-1/annotation/1",
+              "type": "Annotation",
+              "motivation": "painting",
+              "body": {
+                "id": "https://collections.library.yale.edu/iiif/2/11873743/688,885,2081,4094/full/0/default.jpg",
+                "type": "Image",
+                "format": "image/jpeg",
+                "width": 2081,
+                "height": 4094,
+                "service": [
+                  {
+                    "@id": "https://collections.library.yale.edu/iiif/2/11873743",
+                    "@type": "ImageService2",
+                    "profile": "http://iiif.io/api/image/2/level2.json"
+                  }
+                ],
+                "thumbnail": [
+                  {
+                    "id": "https://collections.library.yale.edu/iiif/2/11873743/688,885,2081,4094/!400,400/0/default.jpg",
+                    "type": "Image",
+                    "format": "image/jpeg"
+                  }
+                ]
+              },
+              "target": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/female-1"
+            }
+          ]
+        },
+        {
+          "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/female-1/page/tags",
+          "type": "AnnotationPage",
+          "label": {
+            "en": [
+              "Paper-doll model for this piece"
+            ]
+          },
+          "items": [
+            {
+              "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/female-1-role",
+              "type": "Annotation",
+              "motivation": "tagging",
+              "label": {
+                "en": [
+                  "Figure: young woman with dark hair in a blue skirt over a white petticoat, arms lost"
+                ]
+              },
+              "body": [
+                {
+                  "type": "TextualBody",
+                  "value": "figure",
+                  "purpose": "tagging",
+                  "format": "text/plain"
+                },
+                {
+                  "type": "TextualBody",
+                  "value": "fits female",
+                  "purpose": "tagging",
+                  "format": "text/plain"
+                },
+                {
+                  "type": "TextualBody",
+                  "value": "movable-books:piece",
+                  "purpose": "describing",
+                  "format": "text/plain",
+                  "language": "en"
+                },
+                {
+                  "type": "TextualBody",
+                  "value": "movable-books:role.figure",
+                  "purpose": "describing",
+                  "format": "text/plain",
+                  "language": "en"
+                },
+                {
+                  "type": "TextualBody",
+                  "value": "movable-books:id.female-1",
+                  "purpose": "describing",
+                  "format": "text/plain",
+                  "language": "en"
+                },
+                {
+                  "type": "TextualBody",
+                  "value": "movable-books:sex.female",
+                  "purpose": "describing",
+                  "format": "text/plain",
+                  "language": "en"
+                }
+              ],
+              "target": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/female-1/annotation/1"
+            },
+            {
+              "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/female-1-torso",
+              "type": "Annotation",
+              "motivation": "commenting",
+              "label": {
+                "en": [
+                  "Torso anchor for female-1"
+                ]
+              },
+              "body": [
+                {
+                  "type": "TextualBody",
+                  "value": "{\"point\": {\"x\": 0.36932, \"y\": 0.24965}, \"space\": \"normalised to this piece (the cropped region)\", \"meaning\": \"upper chest, at the armpit line\", \"sourcePoint\": {\"x\": 0.42, \"y\": 0.34}, \"sourceSpace\": \"normalised to the whole Yale canvas image\"}",
+                  "format": "application/json",
+                  "label": {
+                    "en": [
+                      "Anchor point"
+                    ]
+                  }
+                }
+              ],
+              "target": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/female-1/annotation/1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/female-2",
+      "type": "Canvas",
+      "width": 2006,
+      "height": 4846,
+      "label": {
+        "en": [
+          "female-2 — figure"
+        ]
+      },
+      "metadata": [
+        {
+          "label": {
+            "en": [
+              "Role"
+            ]
+          },
+          "value": {
+            "en": [
+              "figure"
+            ]
+          }
+        },
+        {
+          "label": {
+            "en": [
+              "Fits"
+            ]
+          },
+          "value": {
+            "en": [
+              "female"
+            ]
+          }
+        },
+        {
+          "label": {
+            "en": [
+              "Source canvas"
+            ]
+          },
+          "value": {
+            "en": [
+              "https://collections.library.yale.edu/manifests/oid/11873654/canvas/11873745"
+            ]
+          }
+        },
+        {
+          "label": {
+            "en": [
+              "Region on source canvas"
+            ]
+          },
+          "value": {
+            "en": [
+              "601,382,2006,4846"
+            ]
+          }
+        },
+        {
+          "label": {
+            "en": [
+              "Home position on derived sheet"
+            ]
+          },
+          "value": {
+            "en": [
+              "0.04143,0.03935 normalised"
+            ]
+          }
+        }
+      ],
+      "sameAs": [
+        "https://collections.library.yale.edu/manifests/oid/11873654/canvas/11873745"
+      ],
+      "items": [
+        {
+          "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/female-2/page/1",
+          "type": "AnnotationPage",
+          "items": [
+            {
+              "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/female-2/annotation/1",
+              "type": "Annotation",
+              "motivation": "painting",
+              "body": {
+                "id": "https://collections.library.yale.edu/iiif/2/11873745/601,382,2006,4846/full/0/default.jpg",
+                "type": "Image",
+                "format": "image/jpeg",
+                "width": 2006,
+                "height": 4846,
+                "service": [
+                  {
+                    "@id": "https://collections.library.yale.edu/iiif/2/11873745",
+                    "@type": "ImageService2",
+                    "profile": "http://iiif.io/api/image/2/level2.json"
+                  }
+                ],
+                "thumbnail": [
+                  {
+                    "id": "https://collections.library.yale.edu/iiif/2/11873745/601,382,2006,4846/!400,400/0/default.jpg",
+                    "type": "Image",
+                    "format": "image/jpeg"
+                  }
+                ]
+              },
+              "target": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/female-2"
+            }
+          ]
+        },
+        {
+          "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/female-2/page/tags",
+          "type": "AnnotationPage",
+          "label": {
+            "en": [
+              "Paper-doll model for this piece"
+            ]
+          },
+          "items": [
+            {
+              "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/female-2-role",
+              "type": "Annotation",
+              "motivation": "tagging",
+              "label": {
+                "en": [
+                  "Figure: young woman with auburn hair, undressed, both arms lost below the shoulder"
+                ]
+              },
+              "body": [
+                {
+                  "type": "TextualBody",
+                  "value": "figure",
+                  "purpose": "tagging",
+                  "format": "text/plain"
+                },
+                {
+                  "type": "TextualBody",
+                  "value": "fits female",
+                  "purpose": "tagging",
+                  "format": "text/plain"
+                },
+                {
+                  "type": "TextualBody",
+                  "value": "movable-books:piece",
+                  "purpose": "describing",
+                  "format": "text/plain",
+                  "language": "en"
+                },
+                {
+                  "type": "TextualBody",
+                  "value": "movable-books:role.figure",
+                  "purpose": "describing",
+                  "format": "text/plain",
+                  "language": "en"
+                },
+                {
+                  "type": "TextualBody",
+                  "value": "movable-books:id.female-2",
+                  "purpose": "describing",
+                  "format": "text/plain",
+                  "language": "en"
+                },
+                {
+                  "type": "TextualBody",
+                  "value": "movable-books:sex.female",
+                  "purpose": "describing",
+                  "format": "text/plain",
+                  "language": "en"
+                }
+              ],
+              "target": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/female-2/annotation/1"
+            },
+            {
+              "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/female-2-torso",
+              "type": "Annotation",
+              "motivation": "commenting",
+              "label": {
+                "en": [
+                  "Torso anchor for female-2"
+                ]
+              },
+              "body": [
+                {
+                  "type": "TextualBody",
+                  "value": "{\"point\": {\"x\": 0.34882, \"y\": 0.22211}, \"space\": \"normalised to this piece (the cropped region)\", \"meaning\": \"upper chest, at the armpit line\", \"sourcePoint\": {\"x\": 0.38, \"y\": 0.26}, \"sourceSpace\": \"normalised to the whole Yale canvas image\"}",
+                  "format": "application/json",
+                  "label": {
+                    "en": [
+                      "Anchor point"
+                    ]
+                  }
+                }
+              ],
+              "target": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/female-2/annotation/1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/gown-pink",
+      "type": "Canvas",
+      "width": 2318,
+      "height": 4996,
+      "label": {
+        "en": [
+          "gown-pink — garment"
+        ]
+      },
+      "metadata": [
+        {
+          "label": {
+            "en": [
+              "Role"
+            ]
+          },
+          "value": {
+            "en": [
+              "garment"
+            ]
+          }
+        },
+        {
+          "label": {
+            "en": [
+              "Fits"
+            ]
+          },
+          "value": {
+            "en": [
+              "female"
+            ]
+          }
+        },
+        {
+          "label": {
+            "en": [
+              "Source canvas"
+            ]
+          },
+          "value": {
+            "en": [
+              "https://collections.library.yale.edu/manifests/oid/11873654/canvas/11873747"
+            ]
+          }
+        },
+        {
+          "label": {
+            "en": [
+              "Region on source canvas"
+            ]
+          },
+          "value": {
+            "en": [
+              "746,387,2318,4996"
+            ]
+          }
+        },
+        {
+          "label": {
+            "en": [
+              "Home position on derived sheet"
+            ]
+          },
+          "value": {
+            "en": [
+              "0.17051,0.02575 normalised"
+            ]
+          }
+        }
+      ],
+      "sameAs": [
+        "https://collections.library.yale.edu/manifests/oid/11873654/canvas/11873747"
+      ],
+      "items": [
+        {
+          "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/gown-pink/page/1",
+          "type": "AnnotationPage",
+          "items": [
+            {
+              "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/gown-pink/annotation/1",
+              "type": "Annotation",
+              "motivation": "painting",
+              "body": {
+                "id": "https://collections.library.yale.edu/iiif/2/11873747/746,387,2318,4996/full/0/default.jpg",
+                "type": "Image",
+                "format": "image/jpeg",
+                "width": 2318,
+                "height": 4996,
+                "service": [
+                  {
+                    "@id": "https://collections.library.yale.edu/iiif/2/11873747",
+                    "@type": "ImageService2",
+                    "profile": "http://iiif.io/api/image/2/level2.json"
+                  }
+                ],
+                "thumbnail": [
+                  {
+                    "id": "https://collections.library.yale.edu/iiif/2/11873747/746,387,2318,4996/!400,400/0/default.jpg",
+                    "type": "Image",
+                    "format": "image/jpeg"
+                  }
+                ]
+              },
+              "target": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/gown-pink"
+            }
+          ]
+        },
+        {
+          "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/gown-pink/page/tags",
+          "type": "AnnotationPage",
+          "label": {
+            "en": [
+              "Paper-doll model for this piece"
+            ]
+          },
+          "items": [
+            {
+              "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/gown-pink-role",
+              "type": "Annotation",
+              "motivation": "tagging",
+              "label": {
+                "en": [
+                  "Garment: pink and lavender evening gown with a white collar and a green sash"
+                ]
+              },
+              "body": [
+                {
+                  "type": "TextualBody",
+                  "value": "garment",
+                  "purpose": "tagging",
+                  "format": "text/plain"
+                },
+                {
+                  "type": "TextualBody",
+                  "value": "fits female",
+                  "purpose": "tagging",
+                  "format": "text/plain"
+                },
+                {
+                  "type": "TextualBody",
+                  "value": "movable-books:piece",
+                  "purpose": "describing",
+                  "format": "text/plain",
+                  "language": "en"
+                },
+                {
+                  "type": "TextualBody",
+                  "value": "movable-books:role.garment",
+                  "purpose": "describing",
+                  "format": "text/plain",
+                  "language": "en"
+                },
+                {
+                  "type": "TextualBody",
+                  "value": "movable-books:id.gown-pink",
+                  "purpose": "describing",
+                  "format": "text/plain",
+                  "language": "en"
+                },
+                {
+                  "type": "TextualBody",
+                  "value": "movable-books:fits.female",
+                  "purpose": "describing",
+                  "format": "text/plain",
+                  "language": "en"
+                }
+              ],
+              "target": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/gown-pink/annotation/1"
+            },
+            {
+              "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/gown-pink-torso",
+              "type": "Annotation",
+              "motivation": "commenting",
+              "label": {
+                "en": [
+                  "Torso anchor for gown-pink"
+                ]
+              },
+              "body": [
+                {
+                  "type": "TextualBody",
+                  "value": "{\"point\": {\"x\": 0.30654, \"y\": 0.12462}, \"space\": \"normalised to this piece (the cropped region)\", \"meaning\": \"upper chest, at the armpit line\", \"sourcePoint\": {\"x\": 0.42, \"y\": 0.18}, \"sourceSpace\": \"normalised to the whole Yale canvas image\"}",
+                  "format": "application/json",
+                  "label": {
+                    "en": [
+                      "Anchor point"
+                    ]
+                  }
+                }
+              ],
+              "target": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/gown-pink/annotation/1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/gown-cream",
+      "type": "Canvas",
+      "width": 1647,
+      "height": 4308,
+      "label": {
+        "en": [
+          "gown-cream — garment"
+        ]
+      },
+      "metadata": [
+        {
+          "label": {
+            "en": [
+              "Role"
+            ]
+          },
+          "value": {
+            "en": [
+              "garment"
+            ]
+          }
+        },
+        {
+          "label": {
+            "en": [
+              "Fits"
+            ]
+          },
+          "value": {
+            "en": [
+              "female"
+            ]
+          }
+        },
+        {
+          "label": {
+            "en": [
+              "Source canvas"
+            ]
+          },
+          "value": {
+            "en": [
+              "https://collections.library.yale.edu/manifests/oid/11873654/canvas/11873749"
+            ]
+          }
+        },
+        {
+          "label": {
+            "en": [
+              "Region on source canvas"
+            ]
+          },
+          "value": {
+            "en": [
+              "705,734,1647,4308"
+            ]
+          }
+        },
+        {
+          "label": {
+            "en": [
+              "Home position on derived sheet"
+            ]
+          },
+          "value": {
+            "en": [
+              "0.31785,0.08812 normalised"
+            ]
+          }
+        }
+      ],
+      "sameAs": [
+        "https://collections.library.yale.edu/manifests/oid/11873654/canvas/11873749"
+      ],
+      "items": [
+        {
+          "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/gown-cream/page/1",
+          "type": "AnnotationPage",
+          "items": [
+            {
+              "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/gown-cream/annotation/1",
+              "type": "Annotation",
+              "motivation": "painting",
+              "body": {
+                "id": "https://collections.library.yale.edu/iiif/2/11873749/705,734,1647,4308/full/0/default.jpg",
+                "type": "Image",
+                "format": "image/jpeg",
+                "width": 1647,
+                "height": 4308,
+                "service": [
+                  {
+                    "@id": "https://collections.library.yale.edu/iiif/2/11873749",
+                    "@type": "ImageService2",
+                    "profile": "http://iiif.io/api/image/2/level2.json"
+                  }
+                ],
+                "thumbnail": [
+                  {
+                    "id": "https://collections.library.yale.edu/iiif/2/11873749/705,734,1647,4308/!400,400/0/default.jpg",
+                    "type": "Image",
+                    "format": "image/jpeg"
+                  }
+                ]
+              },
+              "target": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/gown-cream"
+            }
+          ]
+        },
+        {
+          "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/gown-cream/page/tags",
+          "type": "AnnotationPage",
+          "label": {
+            "en": [
+              "Paper-doll model for this piece"
+            ]
+          },
+          "items": [
+            {
+              "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/gown-cream-role",
+              "type": "Annotation",
+              "motivation": "tagging",
+              "label": {
+                "en": [
+                  "Garment: cream dress with a pink sash and pink-trimmed skirt"
+                ]
+              },
+              "body": [
+                {
+                  "type": "TextualBody",
+                  "value": "garment",
+                  "purpose": "tagging",
+                  "format": "text/plain"
+                },
+                {
+                  "type": "TextualBody",
+                  "value": "fits female",
+                  "purpose": "tagging",
+                  "format": "text/plain"
+                },
+                {
+                  "type": "TextualBody",
+                  "value": "movable-books:piece",
+                  "purpose": "describing",
+                  "format": "text/plain",
+                  "language": "en"
+                },
+                {
+                  "type": "TextualBody",
+                  "value": "movable-books:role.garment",
+                  "purpose": "describing",
+                  "format": "text/plain",
+                  "language": "en"
+                },
+                {
+                  "type": "TextualBody",
+                  "value": "movable-books:id.gown-cream",
+                  "purpose": "describing",
+                  "format": "text/plain",
+                  "language": "en"
+                },
+                {
+                  "type": "TextualBody",
+                  "value": "movable-books:fits.female",
+                  "purpose": "describing",
+                  "format": "text/plain",
+                  "language": "en"
+                }
+              ],
+              "target": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/gown-cream/annotation/1"
+            },
+            {
+              "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/gown-cream-torso",
+              "type": "Annotation",
+              "motivation": "commenting",
+              "label": {
+                "en": [
+                  "Torso anchor for gown-cream"
+                ]
+              },
+              "body": [
+                {
+                  "type": "TextualBody",
+                  "value": "{\"point\": {\"x\": 0.41421, \"y\": 0.12908}, \"space\": \"normalised to this piece (the cropped region)\", \"meaning\": \"upper chest, at the armpit line\", \"sourcePoint\": {\"x\": 0.4, \"y\": 0.23}, \"sourceSpace\": \"normalised to the whole Yale canvas image\"}",
+                  "format": "application/json",
+                  "label": {
+                    "en": [
+                      "Anchor point"
+                    ]
+                  }
+                }
+              ],
+              "target": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/gown-cream/annotation/1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-1",
+      "type": "Canvas",
+      "width": 2364,
+      "height": 4724,
+      "label": {
+        "en": [
+          "male-1 — figure"
+        ]
+      },
+      "metadata": [
+        {
+          "label": {
+            "en": [
+              "Role"
+            ]
+          },
+          "value": {
+            "en": [
+              "figure"
+            ]
+          }
+        },
+        {
+          "label": {
+            "en": [
+              "Fits"
+            ]
+          },
+          "value": {
+            "en": [
+              "male"
+            ]
+          }
+        },
+        {
+          "label": {
+            "en": [
+              "Source canvas"
+            ]
+          },
+          "value": {
+            "en": [
+              "https://collections.library.yale.edu/manifests/oid/11873654/canvas/11873751"
+            ]
+          }
+        },
+        {
+          "label": {
+            "en": [
+              "Region on source canvas"
+            ]
+          },
+          "value": {
+            "en": [
+              "653,509,2364,4724"
+            ]
+          }
+        },
+        {
+          "label": {
+            "en": [
+              "Home position on derived sheet"
+            ]
+          },
+          "value": {
+            "en": [
+              "0.6969,0.05041 normalised"
+            ]
+          }
+        }
+      ],
+      "sameAs": [
+        "https://collections.library.yale.edu/manifests/oid/11873654/canvas/11873751"
+      ],
+      "items": [
+        {
+          "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-1/page/1",
+          "type": "AnnotationPage",
+          "items": [
+            {
+              "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-1/annotation/1",
+              "type": "Annotation",
+              "motivation": "painting",
+              "body": {
+                "id": "https://collections.library.yale.edu/iiif/2/11873751/653,509,2364,4724/full/0/default.jpg",
+                "type": "Image",
+                "format": "image/jpeg",
+                "width": 2364,
+                "height": 4724,
+                "service": [
+                  {
+                    "@id": "https://collections.library.yale.edu/iiif/2/11873751",
+                    "@type": "ImageService2",
+                    "profile": "http://iiif.io/api/image/2/level2.json"
+                  }
+                ],
+                "thumbnail": [
+                  {
+                    "id": "https://collections.library.yale.edu/iiif/2/11873751/653,509,2364,4724/!400,400/0/default.jpg",
+                    "type": "Image",
+                    "format": "image/jpeg"
+                  }
+                ]
+              },
+              "target": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-1"
+            }
+          ]
+        },
+        {
+          "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-1/page/tags",
+          "type": "AnnotationPage",
+          "label": {
+            "en": [
+              "Paper-doll model for this piece"
+            ]
+          },
+          "items": [
+            {
+              "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/male-1-role",
+              "type": "Annotation",
+              "motivation": "tagging",
+              "label": {
+                "en": [
+                  "Figure: young man with dark hair, bare chest and a long navy lower garment"
+                ]
+              },
+              "body": [
+                {
+                  "type": "TextualBody",
+                  "value": "figure",
+                  "purpose": "tagging",
+                  "format": "text/plain"
+                },
+                {
+                  "type": "TextualBody",
+                  "value": "fits male",
+                  "purpose": "tagging",
+                  "format": "text/plain"
+                },
+                {
+                  "type": "TextualBody",
+                  "value": "movable-books:piece",
+                  "purpose": "describing",
+                  "format": "text/plain",
+                  "language": "en"
+                },
+                {
+                  "type": "TextualBody",
+                  "value": "movable-books:role.figure",
+                  "purpose": "describing",
+                  "format": "text/plain",
+                  "language": "en"
+                },
+                {
+                  "type": "TextualBody",
+                  "value": "movable-books:id.male-1",
+                  "purpose": "describing",
+                  "format": "text/plain",
+                  "language": "en"
+                },
+                {
+                  "type": "TextualBody",
+                  "value": "movable-books:sex.male",
+                  "purpose": "describing",
+                  "format": "text/plain",
+                  "language": "en"
+                }
+              ],
+              "target": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-1/annotation/1"
+            },
+            {
+              "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/male-1-torso",
+              "type": "Annotation",
+              "motivation": "commenting",
+              "label": {
+                "en": [
+                  "Torso anchor for male-1"
+                ]
+              },
+              "body": [
+                {
+                  "type": "TextualBody",
+                  "value": "{\"point\": {\"x\": 0.33992, \"y\": 0.21283}, \"space\": \"normalised to this piece (the cropped region)\", \"meaning\": \"upper chest, at the armpit line\", \"sourcePoint\": {\"x\": 0.42, \"y\": 0.27}, \"sourceSpace\": \"normalised to the whole Yale canvas image\"}",
+                  "format": "application/json",
+                  "label": {
+                    "en": [
+                      "Anchor point"
+                    ]
+                  }
+                }
+              ],
+              "target": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-1/annotation/1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/female-3",
+      "type": "Canvas",
+      "width": 2150,
+      "height": 4938,
+      "label": {
+        "en": [
+          "female-3 — figure"
+        ]
+      },
+      "metadata": [
+        {
+          "label": {
+            "en": [
+              "Role"
+            ]
+          },
+          "value": {
+            "en": [
+              "figure"
+            ]
+          }
+        },
+        {
+          "label": {
+            "en": [
+              "Fits"
+            ]
+          },
+          "value": {
+            "en": [
+              "female"
+            ]
+          }
+        },
+        {
+          "label": {
+            "en": [
+              "Source canvas"
+            ]
+          },
+          "value": {
+            "en": [
+              "https://collections.library.yale.edu/manifests/oid/11873654/canvas/11873753"
+            ]
+          }
+        },
+        {
+          "label": {
+            "en": [
+              "Region on source canvas"
+            ]
+          },
+          "value": {
+            "en": [
+              "462,382,2150,4938"
+            ]
+          }
+        },
+        {
+          "label": {
+            "en": [
+              "Home position on derived sheet"
+            ]
+          },
+          "value": {
+            "en": [
+              "0.55939,0.03101 normalised"
+            ]
+          }
+        }
+      ],
+      "sameAs": [
+        "https://collections.library.yale.edu/manifests/oid/11873654/canvas/11873753"
+      ],
+      "items": [
+        {
+          "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/female-3/page/1",
+          "type": "AnnotationPage",
+          "items": [
+            {
+              "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/female-3/annotation/1",
+              "type": "Annotation",
+              "motivation": "painting",
+              "body": {
+                "id": "https://collections.library.yale.edu/iiif/2/11873753/462,382,2150,4938/full/0/default.jpg",
+                "type": "Image",
+                "format": "image/jpeg",
+                "width": 2150,
+                "height": 4938,
+                "service": [
+                  {
+                    "@id": "https://collections.library.yale.edu/iiif/2/11873753",
+                    "@type": "ImageService2",
+                    "profile": "http://iiif.io/api/image/2/level2.json"
+                  }
+                ],
+                "thumbnail": [
+                  {
+                    "id": "https://collections.library.yale.edu/iiif/2/11873753/462,382,2150,4938/!400,400/0/default.jpg",
+                    "type": "Image",
+                    "format": "image/jpeg"
+                  }
+                ]
+              },
+              "target": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/female-3"
+            }
+          ]
+        },
+        {
+          "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/female-3/page/tags",
+          "type": "AnnotationPage",
+          "label": {
+            "en": [
+              "Paper-doll model for this piece"
+            ]
+          },
+          "items": [
+            {
+              "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/female-3-role",
+              "type": "Annotation",
+              "motivation": "tagging",
+              "label": {
+                "en": [
+                  "Figure: young woman with auburn hair in a maroon skirt, white apron and blue sash"
+                ]
+              },
+              "body": [
+                {
+                  "type": "TextualBody",
+                  "value": "figure",
+                  "purpose": "tagging",
+                  "format": "text/plain"
+                },
+                {
+                  "type": "TextualBody",
+                  "value": "fits female",
+                  "purpose": "tagging",
+                  "format": "text/plain"
+                },
+                {
+                  "type": "TextualBody",
+                  "value": "movable-books:piece",
+                  "purpose": "describing",
+                  "format": "text/plain",
+                  "language": "en"
+                },
+                {
+                  "type": "TextualBody",
+                  "value": "movable-books:role.figure",
+                  "purpose": "describing",
+                  "format": "text/plain",
+                  "language": "en"
+                },
+                {
+                  "type": "TextualBody",
+                  "value": "movable-books:id.female-3",
+                  "purpose": "describing",
+                  "format": "text/plain",
+                  "language": "en"
+                },
+                {
+                  "type": "TextualBody",
+                  "value": "movable-books:sex.female",
+                  "purpose": "describing",
+                  "format": "text/plain",
+                  "language": "en"
+                }
+              ],
+              "target": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/female-3/annotation/1"
+            },
+            {
+              "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/female-3-torso",
+              "type": "Annotation",
+              "motivation": "commenting",
+              "label": {
+                "en": [
+                  "Torso anchor for female-3"
+                ]
+              },
+              "body": [
+                {
+                  "type": "TextualBody",
+                  "value": "{\"point\": {\"x\": 0.38193, \"y\": 0.20661}, \"space\": \"normalised to this piece (the cropped region)\", \"meaning\": \"upper chest, at the armpit line\", \"sourcePoint\": {\"x\": 0.37, \"y\": 0.25}, \"sourceSpace\": \"normalised to the whole Yale canvas image\"}",
+                  "format": "application/json",
+                  "label": {
+                    "en": [
+                      "Anchor point"
+                    ]
+                  }
+                }
+              ],
+              "target": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/female-3/annotation/1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/coat-maroon",
+      "type": "Canvas",
+      "width": 1994,
+      "height": 4429,
+      "label": {
+        "en": [
+          "coat-maroon — garment"
+        ]
+      },
+      "metadata": [
+        {
+          "label": {
+            "en": [
+              "Role"
+            ]
+          },
+          "value": {
+            "en": [
+              "garment"
+            ]
+          }
+        },
+        {
+          "label": {
+            "en": [
+              "Fits"
+            ]
+          },
+          "value": {
+            "en": [
+              "male"
+            ]
+          }
+        },
+        {
+          "label": {
+            "en": [
+              "Source canvas"
+            ]
+          },
+          "value": {
+            "en": [
+              "https://collections.library.yale.edu/manifests/oid/11873654/canvas/11873755"
+            ]
+          }
+        },
+        {
+          "label": {
+            "en": [
+              "Region on source canvas"
+            ]
+          },
+          "value": {
+            "en": [
+              "670,538,1994,4429"
+            ]
+          }
+        },
+        {
+          "label": {
+            "en": [
+              "Home position on derived sheet"
+            ]
+          },
+          "value": {
+            "en": [
+              "0.42276,0.58214 normalised"
+            ]
+          }
+        }
+      ],
+      "sameAs": [
+        "https://collections.library.yale.edu/manifests/oid/11873654/canvas/11873755"
+      ],
+      "items": [
+        {
+          "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/coat-maroon/page/1",
+          "type": "AnnotationPage",
+          "items": [
+            {
+              "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/coat-maroon/annotation/1",
+              "type": "Annotation",
+              "motivation": "painting",
+              "body": {
+                "id": "https://collections.library.yale.edu/iiif/2/11873755/670,538,1994,4429/full/0/default.jpg",
+                "type": "Image",
+                "format": "image/jpeg",
+                "width": 1994,
+                "height": 4429,
+                "service": [
+                  {
+                    "@id": "https://collections.library.yale.edu/iiif/2/11873755",
+                    "@type": "ImageService2",
+                    "profile": "http://iiif.io/api/image/2/level2.json"
+                  }
+                ],
+                "thumbnail": [
+                  {
+                    "id": "https://collections.library.yale.edu/iiif/2/11873755/670,538,1994,4429/!400,400/0/default.jpg",
+                    "type": "Image",
+                    "format": "image/jpeg"
+                  }
+                ]
+              },
+              "target": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/coat-maroon"
+            }
+          ]
+        },
+        {
+          "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/coat-maroon/page/tags",
+          "type": "AnnotationPage",
+          "label": {
+            "en": [
+              "Paper-doll model for this piece"
+            ]
+          },
+          "items": [
+            {
+              "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/coat-maroon-role",
+              "type": "Annotation",
+              "motivation": "tagging",
+              "label": {
+                "en": [
+                  "Garment: maroon full-length coat with a white collar, green belt and gold buttons"
+                ]
+              },
+              "body": [
+                {
+                  "type": "TextualBody",
+                  "value": "garment",
+                  "purpose": "tagging",
+                  "format": "text/plain"
+                },
+                {
+                  "type": "TextualBody",
+                  "value": "fits male",
+                  "purpose": "tagging",
+                  "format": "text/plain"
+                },
+                {
+                  "type": "TextualBody",
+                  "value": "movable-books:piece",
+                  "purpose": "describing",
+                  "format": "text/plain",
+                  "language": "en"
+                },
+                {
+                  "type": "TextualBody",
+                  "value": "movable-books:role.garment",
+                  "purpose": "describing",
+                  "format": "text/plain",
+                  "language": "en"
+                },
+                {
+                  "type": "TextualBody",
+                  "value": "movable-books:id.coat-maroon",
+                  "purpose": "describing",
+                  "format": "text/plain",
+                  "language": "en"
+                },
+                {
+                  "type": "TextualBody",
+                  "value": "movable-books:fits.male",
+                  "purpose": "describing",
+                  "format": "text/plain",
+                  "language": "en"
+                }
+              ],
+              "target": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/coat-maroon/annotation/1"
+            },
+            {
+              "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/coat-maroon-torso",
+              "type": "Annotation",
+              "motivation": "commenting",
+              "label": {
+                "en": [
+                  "Torso anchor for coat-maroon"
+                ]
+              },
+              "body": [
+                {
+                  "type": "TextualBody",
+                  "value": "{\"point\": {\"x\": 0.39446, \"y\": 0.13181}, \"space\": \"normalised to this piece (the cropped region)\", \"meaning\": \"upper chest, at the armpit line\", \"sourcePoint\": {\"x\": 0.42, \"y\": 0.2}, \"sourceSpace\": \"normalised to the whole Yale canvas image\"}",
+                  "format": "application/json",
+                  "label": {
+                    "en": [
+                      "Anchor point"
+                    ]
+                  }
+                }
+              ],
+              "target": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/coat-maroon/annotation/1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-2",
+      "type": "Canvas",
+      "width": 1907,
+      "height": 5100,
+      "label": {
+        "en": [
+          "male-2 — figure"
+        ]
+      },
+      "metadata": [
+        {
+          "label": {
+            "en": [
+              "Role"
+            ]
+          },
+          "value": {
+            "en": [
+              "figure"
+            ]
+          }
+        },
+        {
+          "label": {
+            "en": [
+              "Fits"
+            ]
+          },
+          "value": {
+            "en": [
+              "male"
+            ]
+          }
+        },
+        {
+          "label": {
+            "en": [
+              "Source canvas"
+            ]
+          },
+          "value": {
+            "en": [
+              "https://collections.library.yale.edu/manifests/oid/11873654/canvas/11873757"
+            ]
+          }
+        },
+        {
+          "label": {
+            "en": [
+              "Region on source canvas"
+            ]
+          },
+          "value": {
+            "en": [
+              "705,202,1907,5100"
+            ]
+          }
+        },
+        {
+          "label": {
+            "en": [
+              "Home position on derived sheet"
+            ]
+          },
+          "value": {
+            "en": [
+              "0.84693,0.01632 normalised"
+            ]
+          }
+        }
+      ],
+      "sameAs": [
+        "https://collections.library.yale.edu/manifests/oid/11873654/canvas/11873757"
+      ],
+      "items": [
+        {
+          "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-2/page/1",
+          "type": "AnnotationPage",
+          "items": [
+            {
+              "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-2/annotation/1",
+              "type": "Annotation",
+              "motivation": "painting",
+              "body": {
+                "id": "https://collections.library.yale.edu/iiif/2/11873757/705,202,1907,5100/full/0/default.jpg",
+                "type": "Image",
+                "format": "image/jpeg",
+                "width": 1907,
+                "height": 5100,
+                "service": [
+                  {
+                    "@id": "https://collections.library.yale.edu/iiif/2/11873757",
+                    "@type": "ImageService2",
+                    "profile": "http://iiif.io/api/image/2/level2.json"
+                  }
+                ],
+                "thumbnail": [
+                  {
+                    "id": "https://collections.library.yale.edu/iiif/2/11873757/705,202,1907,5100/!400,400/0/default.jpg",
+                    "type": "Image",
+                    "format": "image/jpeg"
+                  }
+                ]
+              },
+              "target": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-2"
+            }
+          ]
+        },
+        {
+          "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-2/page/tags",
+          "type": "AnnotationPage",
+          "label": {
+            "en": [
+              "Paper-doll model for this piece"
+            ]
+          },
+          "items": [
+            {
+              "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/male-2-role",
+              "type": "Annotation",
+              "motivation": "tagging",
+              "label": {
+                "en": [
+                  "Figure: young man with dark hair in a navy skirt over a white petticoat"
+                ]
+              },
+              "body": [
+                {
+                  "type": "TextualBody",
+                  "value": "figure",
+                  "purpose": "tagging",
+                  "format": "text/plain"
+                },
+                {
+                  "type": "TextualBody",
+                  "value": "fits male",
+                  "purpose": "tagging",
+                  "format": "text/plain"
+                },
+                {
+                  "type": "TextualBody",
+                  "value": "movable-books:piece",
+                  "purpose": "describing",
+                  "format": "text/plain",
+                  "language": "en"
+                },
+                {
+                  "type": "TextualBody",
+                  "value": "movable-books:role.figure",
+                  "purpose": "describing",
+                  "format": "text/plain",
+                  "language": "en"
+                },
+                {
+                  "type": "TextualBody",
+                  "value": "movable-books:id.male-2",
+                  "purpose": "describing",
+                  "format": "text/plain",
+                  "language": "en"
+                },
+                {
+                  "type": "TextualBody",
+                  "value": "movable-books:sex.male",
+                  "purpose": "describing",
+                  "format": "text/plain",
+                  "language": "en"
+                }
+              ],
+              "target": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-2/annotation/1"
+            },
+            {
+              "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/male-2-torso",
+              "type": "Annotation",
+              "motivation": "commenting",
+              "label": {
+                "en": [
+                  "Torso anchor for male-2"
+                ]
+              },
+              "body": [
+                {
+                  "type": "TextualBody",
+                  "value": "{\"point\": {\"x\": 0.39411, \"y\": 0.19135}, \"space\": \"normalised to this piece (the cropped region)\", \"meaning\": \"upper chest, at the armpit line\", \"sourcePoint\": {\"x\": 0.42, \"y\": 0.21}, \"sourceSpace\": \"normalised to the whole Yale canvas image\"}",
+                  "format": "application/json",
+                  "label": {
+                    "en": [
+                      "Anchor point"
+                    ]
+                  }
+                }
+              ],
+              "target": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-2/annotation/1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-3",
+      "type": "Canvas",
+      "width": 2381,
+      "height": 4684,
+      "label": {
+        "en": [
+          "male-3 — figure"
+        ]
+      },
+      "metadata": [
+        {
+          "label": {
+            "en": [
+              "Role"
+            ]
+          },
+          "value": {
+            "en": [
+              "figure"
+            ]
+          }
+        },
+        {
+          "label": {
+            "en": [
+              "Fits"
+            ]
+          },
+          "value": {
+            "en": [
+              "male"
+            ]
+          }
+        },
+        {
+          "label": {
+            "en": [
+              "Source canvas"
+            ]
+          },
+          "value": {
+            "en": [
+              "https://collections.library.yale.edu/manifests/oid/11873654/canvas/11873759"
+            ]
+          }
+        },
+        {
+          "label": {
+            "en": [
+              "Region on source canvas"
+            ]
+          },
+          "value": {
+            "en": [
+              "694,347,2381,4684"
+            ]
+          }
+        },
+        {
+          "label": {
+            "en": [
+              "Home position on derived sheet"
+            ]
+          },
+          "value": {
+            "en": [
+              "0.01053,0.55902 normalised"
+            ]
+          }
+        }
+      ],
+      "sameAs": [
+        "https://collections.library.yale.edu/manifests/oid/11873654/canvas/11873759"
+      ],
+      "items": [
+        {
+          "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-3/page/1",
+          "type": "AnnotationPage",
+          "items": [
+            {
+              "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-3/annotation/1",
+              "type": "Annotation",
+              "motivation": "painting",
+              "body": {
+                "id": "https://collections.library.yale.edu/iiif/2/11873759/694,347,2381,4684/full/0/default.jpg",
+                "type": "Image",
+                "format": "image/jpeg",
+                "width": 2381,
+                "height": 4684,
+                "service": [
+                  {
+                    "@id": "https://collections.library.yale.edu/iiif/2/11873759",
+                    "@type": "ImageService2",
+                    "profile": "http://iiif.io/api/image/2/level2.json"
+                  }
+                ],
+                "thumbnail": [
+                  {
+                    "id": "https://collections.library.yale.edu/iiif/2/11873759/694,347,2381,4684/!400,400/0/default.jpg",
+                    "type": "Image",
+                    "format": "image/jpeg"
+                  }
+                ]
+              },
+              "target": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-3"
+            }
+          ]
+        },
+        {
+          "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-3/page/tags",
+          "type": "AnnotationPage",
+          "label": {
+            "en": [
+              "Paper-doll model for this piece"
+            ]
+          },
+          "items": [
+            {
+              "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/male-3-role",
+              "type": "Annotation",
+              "motivation": "tagging",
+              "label": {
+                "en": [
+                  "Figure: young man with dark hair in a dark green skirt"
+                ]
+              },
+              "body": [
+                {
+                  "type": "TextualBody",
+                  "value": "figure",
+                  "purpose": "tagging",
+                  "format": "text/plain"
+                },
+                {
+                  "type": "TextualBody",
+                  "value": "fits male",
+                  "purpose": "tagging",
+                  "format": "text/plain"
+                },
+                {
+                  "type": "TextualBody",
+                  "value": "movable-books:piece",
+                  "purpose": "describing",
+                  "format": "text/plain",
+                  "language": "en"
+                },
+                {
+                  "type": "TextualBody",
+                  "value": "movable-books:role.figure",
+                  "purpose": "describing",
+                  "format": "text/plain",
+                  "language": "en"
+                },
+                {
+                  "type": "TextualBody",
+                  "value": "movable-books:id.male-3",
+                  "purpose": "describing",
+                  "format": "text/plain",
+                  "language": "en"
+                },
+                {
+                  "type": "TextualBody",
+                  "value": "movable-books:sex.male",
+                  "purpose": "describing",
+                  "format": "text/plain",
+                  "language": "en"
+                }
+              ],
+              "target": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-3/annotation/1"
+            },
+            {
+              "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/male-3-torso",
+              "type": "Annotation",
+              "motivation": "commenting",
+              "label": {
+                "en": [
+                  "Torso anchor for male-3"
+                ]
+              },
+              "body": [
+                {
+                  "type": "TextualBody",
+                  "value": "{\"point\": {\"x\": 0.29114, \"y\": 0.21331}, \"space\": \"normalised to this piece (the cropped region)\", \"meaning\": \"upper chest, at the armpit line\", \"sourcePoint\": {\"x\": 0.4, \"y\": 0.24}, \"sourceSpace\": \"normalised to the whole Yale canvas image\"}",
+                  "format": "application/json",
+                  "label": {
+                    "en": [
+                      "Anchor point"
+                    ]
+                  }
+                }
+              ],
+              "target": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-3/annotation/1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-4",
+      "type": "Canvas",
+      "width": 1405,
+      "height": 4395,
+      "label": {
+        "en": [
+          "male-4 — figure"
+        ]
+      },
+      "metadata": [
+        {
+          "label": {
+            "en": [
+              "Role"
+            ]
+          },
+          "value": {
+            "en": [
+              "figure"
+            ]
+          }
+        },
+        {
+          "label": {
+            "en": [
+              "Fits"
+            ]
+          },
+          "value": {
+            "en": [
+              "male"
+            ]
+          }
+        },
+        {
+          "label": {
+            "en": [
+              "Source canvas"
+            ]
+          },
+          "value": {
+            "en": [
+              "https://collections.library.yale.edu/manifests/oid/11873654/canvas/11873761"
+            ]
+          }
+        },
+        {
+          "label": {
+            "en": [
+              "Region on source canvas"
+            ]
+          },
+          "value": {
+            "en": [
+              "1040,688,1405,4395"
+            ]
+          }
+        },
+        {
+          "label": {
+            "en": [
+              "Home position on derived sheet"
+            ]
+          },
+          "value": {
+            "en": [
+              "0.16156,0.58522 normalised"
+            ]
+          }
+        }
+      ],
+      "sameAs": [
+        "https://collections.library.yale.edu/manifests/oid/11873654/canvas/11873761"
+      ],
+      "items": [
+        {
+          "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-4/page/1",
+          "type": "AnnotationPage",
+          "items": [
+            {
+              "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-4/annotation/1",
+              "type": "Annotation",
+              "motivation": "painting",
+              "body": {
+                "id": "https://collections.library.yale.edu/iiif/2/11873761/1040,688,1405,4395/full/0/default.jpg",
+                "type": "Image",
+                "format": "image/jpeg",
+                "width": 1405,
+                "height": 4395,
+                "service": [
+                  {
+                    "@id": "https://collections.library.yale.edu/iiif/2/11873761",
+                    "@type": "ImageService2",
+                    "profile": "http://iiif.io/api/image/2/level2.json"
+                  }
+                ],
+                "thumbnail": [
+                  {
+                    "id": "https://collections.library.yale.edu/iiif/2/11873761/1040,688,1405,4395/!400,400/0/default.jpg",
+                    "type": "Image",
+                    "format": "image/jpeg"
+                  }
+                ]
+              },
+              "target": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-4"
+            }
+          ]
+        },
+        {
+          "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-4/page/tags",
+          "type": "AnnotationPage",
+          "label": {
+            "en": [
+              "Paper-doll model for this piece"
+            ]
+          },
+          "items": [
+            {
+              "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/male-4-role",
+              "type": "Annotation",
+              "motivation": "tagging",
+              "label": {
+                "en": [
+                  "Figure: young man with dark hair in a black coat over a white shirt"
+                ]
+              },
+              "body": [
+                {
+                  "type": "TextualBody",
+                  "value": "figure",
+                  "purpose": "tagging",
+                  "format": "text/plain"
+                },
+                {
+                  "type": "TextualBody",
+                  "value": "fits male",
+                  "purpose": "tagging",
+                  "format": "text/plain"
+                },
+                {
+                  "type": "TextualBody",
+                  "value": "movable-books:piece",
+                  "purpose": "describing",
+                  "format": "text/plain",
+                  "language": "en"
+                },
+                {
+                  "type": "TextualBody",
+                  "value": "movable-books:role.figure",
+                  "purpose": "describing",
+                  "format": "text/plain",
+                  "language": "en"
+                },
+                {
+                  "type": "TextualBody",
+                  "value": "movable-books:id.male-4",
+                  "purpose": "describing",
+                  "format": "text/plain",
+                  "language": "en"
+                },
+                {
+                  "type": "TextualBody",
+                  "value": "movable-books:sex.male",
+                  "purpose": "describing",
+                  "format": "text/plain",
+                  "language": "en"
+                }
+              ],
+              "target": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-4/annotation/1"
+            },
+            {
+              "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/male-4-torso",
+              "type": "Annotation",
+              "motivation": "commenting",
+              "label": {
+                "en": [
+                  "Torso anchor for male-4"
+                ]
+              },
+              "body": [
+                {
+                  "type": "TextualBody",
+                  "value": "{\"point\": {\"x\": 0.4199, \"y\": 0.21356}, \"space\": \"normalised to this piece (the cropped region)\", \"meaning\": \"upper chest, at the armpit line\", \"sourcePoint\": {\"x\": 0.47, \"y\": 0.29}, \"sourceSpace\": \"normalised to the whole Yale canvas image\"}",
+                  "format": "application/json",
+                  "label": {
+                    "en": [
+                      "Anchor point"
+                    ]
+                  }
+                }
+              ],
+              "target": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-4/annotation/1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-5",
+      "type": "Canvas",
+      "width": 2659,
+      "height": 5250,
+      "label": {
+        "en": [
+          "male-5 — figure"
+        ]
+      },
+      "metadata": [
+        {
+          "label": {
+            "en": [
+              "Role"
+            ]
+          },
+          "value": {
+            "en": [
+              "figure"
+            ]
+          }
+        },
+        {
+          "label": {
+            "en": [
+              "Fits"
+            ]
+          },
+          "value": {
+            "en": [
+              "male"
+            ]
+          }
+        },
+        {
+          "label": {
+            "en": [
+              "Source canvas"
+            ]
+          },
+          "value": {
+            "en": [
+              "https://collections.library.yale.edu/manifests/oid/11873654/canvas/11873763"
+            ]
+          }
+        },
+        {
+          "label": {
+            "en": [
+              "Region on source canvas"
+            ]
+          },
+          "value": {
+            "en": [
+              "98,312,2659,5250"
+            ]
+          }
+        },
+        {
+          "label": {
+            "en": [
+              "Home position on derived sheet"
+            ]
+          },
+          "value": {
+            "en": [
+              "0.25547,0.50771 normalised"
+            ]
+          }
+        }
+      ],
+      "sameAs": [
+        "https://collections.library.yale.edu/manifests/oid/11873654/canvas/11873763"
+      ],
+      "items": [
+        {
+          "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-5/page/1",
+          "type": "AnnotationPage",
+          "items": [
+            {
+              "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-5/annotation/1",
+              "type": "Annotation",
+              "motivation": "painting",
+              "body": {
+                "id": "https://collections.library.yale.edu/iiif/2/11873763/98,312,2659,5250/full/0/default.jpg",
+                "type": "Image",
+                "format": "image/jpeg",
+                "width": 2659,
+                "height": 5250,
+                "service": [
+                  {
+                    "@id": "https://collections.library.yale.edu/iiif/2/11873763",
+                    "@type": "ImageService2",
+                    "profile": "http://iiif.io/api/image/2/level2.json"
+                  }
+                ],
+                "thumbnail": [
+                  {
+                    "id": "https://collections.library.yale.edu/iiif/2/11873763/98,312,2659,5250/!400,400/0/default.jpg",
+                    "type": "Image",
+                    "format": "image/jpeg"
+                  }
+                ]
+              },
+              "target": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-5"
+            }
+          ]
+        },
+        {
+          "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-5/page/tags",
+          "type": "AnnotationPage",
+          "label": {
+            "en": [
+              "Paper-doll model for this piece"
+            ]
+          },
+          "items": [
+            {
+              "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/male-5-role",
+              "type": "Annotation",
+              "motivation": "tagging",
+              "label": {
+                "en": [
+                  "Figure: young man with dark hair in a navy skirt, one hand on the hip"
+                ]
+              },
+              "body": [
+                {
+                  "type": "TextualBody",
+                  "value": "figure",
+                  "purpose": "tagging",
+                  "format": "text/plain"
+                },
+                {
+                  "type": "TextualBody",
+                  "value": "fits male",
+                  "purpose": "tagging",
+                  "format": "text/plain"
+                },
+                {
+                  "type": "TextualBody",
+                  "value": "movable-books:piece",
+                  "purpose": "describing",
+                  "format": "text/plain",
+                  "language": "en"
+                },
+                {
+                  "type": "TextualBody",
+                  "value": "movable-books:role.figure",
+                  "purpose": "describing",
+                  "format": "text/plain",
+                  "language": "en"
+                },
+                {
+                  "type": "TextualBody",
+                  "value": "movable-books:id.male-5",
+                  "purpose": "describing",
+                  "format": "text/plain",
+                  "language": "en"
+                },
+                {
+                  "type": "TextualBody",
+                  "value": "movable-books:sex.male",
+                  "purpose": "describing",
+                  "format": "text/plain",
+                  "language": "en"
+                }
+              ],
+              "target": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-5/annotation/1"
+            },
+            {
+              "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/male-5-torso",
+              "type": "Annotation",
+              "motivation": "commenting",
+              "label": {
+                "en": [
+                  "Torso anchor for male-5"
+                ]
+              },
+              "body": [
+                {
+                  "type": "TextualBody",
+                  "value": "{\"point\": {\"x\": 0.57614, \"y\": 0.1863}, \"space\": \"normalised to this piece (the cropped region)\", \"meaning\": \"upper chest, at the armpit line\", \"sourcePoint\": {\"x\": 0.47, \"y\": 0.23}, \"sourceSpace\": \"normalised to the whole Yale canvas image\"}",
+                  "format": "application/json",
+                  "label": {
+                    "en": [
+                      "Anchor point"
+                    ]
+                  }
+                }
+              ],
+              "target": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-5/annotation/1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/suit-buttons",
+      "type": "Canvas",
+      "width": 2791,
+      "height": 5031,
+      "label": {
+        "en": [
+          "suit-buttons — garment"
+        ]
+      },
+      "metadata": [
+        {
+          "label": {
+            "en": [
+              "Role"
+            ]
+          },
+          "value": {
+            "en": [
+              "garment"
+            ]
+          }
+        },
+        {
+          "label": {
+            "en": [
+              "Fits"
+            ]
+          },
+          "value": {
+            "en": [
+              "male"
+            ]
+          }
+        },
+        {
+          "label": {
+            "en": [
+              "Source canvas"
+            ]
+          },
+          "value": {
+            "en": [
+              "https://collections.library.yale.edu/manifests/oid/11873654/canvas/11873765"
+            ]
+          }
+        },
+        {
+          "label": {
+            "en": [
+              "Region on source canvas"
+            ]
+          },
+          "value": {
+            "en": [
+              "266,295,2791,5031"
+            ]
+          }
+        },
+        {
+          "label": {
+            "en": [
+              "Home position on derived sheet"
+            ]
+          },
+          "value": {
+            "en": [
+              "0.55114,0.52756 normalised"
+            ]
+          }
+        }
+      ],
+      "sameAs": [
+        "https://collections.library.yale.edu/manifests/oid/11873654/canvas/11873765"
+      ],
+      "items": [
+        {
+          "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/suit-buttons/page/1",
+          "type": "AnnotationPage",
+          "items": [
+            {
+              "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/suit-buttons/annotation/1",
+              "type": "Annotation",
+              "motivation": "painting",
+              "body": {
+                "id": "https://collections.library.yale.edu/iiif/2/11873765/266,295,2791,5031/full/0/default.jpg",
+                "type": "Image",
+                "format": "image/jpeg",
+                "width": 2791,
+                "height": 5031,
+                "service": [
+                  {
+                    "@id": "https://collections.library.yale.edu/iiif/2/11873765",
+                    "@type": "ImageService2",
+                    "profile": "http://iiif.io/api/image/2/level2.json"
+                  }
+                ],
+                "thumbnail": [
+                  {
+                    "id": "https://collections.library.yale.edu/iiif/2/11873765/266,295,2791,5031/!400,400/0/default.jpg",
+                    "type": "Image",
+                    "format": "image/jpeg"
+                  }
+                ]
+              },
+              "target": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/suit-buttons"
+            }
+          ]
+        },
+        {
+          "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/suit-buttons/page/tags",
+          "type": "AnnotationPage",
+          "label": {
+            "en": [
+              "Paper-doll model for this piece"
+            ]
+          },
+          "items": [
+            {
+              "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/suit-buttons-role",
+              "type": "Annotation",
+              "motivation": "tagging",
+              "label": {
+                "en": [
+                  "Garment: black suit with gold buttons, white shirt and black bow tie"
+                ]
+              },
+              "body": [
+                {
+                  "type": "TextualBody",
+                  "value": "garment",
+                  "purpose": "tagging",
+                  "format": "text/plain"
+                },
+                {
+                  "type": "TextualBody",
+                  "value": "fits male",
+                  "purpose": "tagging",
+                  "format": "text/plain"
+                },
+                {
+                  "type": "TextualBody",
+                  "value": "movable-books:piece",
+                  "purpose": "describing",
+                  "format": "text/plain",
+                  "language": "en"
+                },
+                {
+                  "type": "TextualBody",
+                  "value": "movable-books:role.garment",
+                  "purpose": "describing",
+                  "format": "text/plain",
+                  "language": "en"
+                },
+                {
+                  "type": "TextualBody",
+                  "value": "movable-books:id.suit-buttons",
+                  "purpose": "describing",
+                  "format": "text/plain",
+                  "language": "en"
+                },
+                {
+                  "type": "TextualBody",
+                  "value": "movable-books:fits.male",
+                  "purpose": "describing",
+                  "format": "text/plain",
+                  "language": "en"
+                }
+              ],
+              "target": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/suit-buttons/annotation/1"
+            },
+            {
+              "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/suit-buttons-torso",
+              "type": "Annotation",
+              "motivation": "commenting",
+              "label": {
+                "en": [
+                  "Torso anchor for suit-buttons"
+                ]
+              },
+              "body": [
+                {
+                  "type": "TextualBody",
+                  "value": "{\"point\": {\"x\": 0.48078, \"y\": 0.14204}, \"space\": \"normalised to this piece (the cropped region)\", \"meaning\": \"upper chest, at the armpit line\", \"sourcePoint\": {\"x\": 0.47, \"y\": 0.18}, \"sourceSpace\": \"normalised to the whole Yale canvas image\"}",
+                  "format": "application/json",
+                  "label": {
+                    "en": [
+                      "Anchor point"
+                    ]
+                  }
+                }
+              ],
+              "target": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/suit-buttons/annotation/1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/suit-evening",
+      "type": "Canvas",
+      "width": 2358,
+      "height": 3926,
+      "label": {
+        "en": [
+          "suit-evening — garment"
+        ]
+      },
+      "metadata": [
+        {
+          "label": {
+            "en": [
+              "Role"
+            ]
+          },
+          "value": {
+            "en": [
+              "garment"
+            ]
+          }
+        },
+        {
+          "label": {
+            "en": [
+              "Fits"
+            ]
+          },
+          "value": {
+            "en": [
+              "male"
+            ]
+          }
+        },
+        {
+          "label": {
+            "en": [
+              "Source canvas"
+            ]
+          },
+          "value": {
+            "en": [
+              "https://collections.library.yale.edu/manifests/oid/11873654/canvas/11873767"
+            ]
+          }
+        },
+        {
+          "label": {
+            "en": [
+              "Region on source canvas"
+            ]
+          },
+          "value": {
+            "en": [
+              "474,1058,2358,3926"
+            ]
+          }
+        },
+        {
+          "label": {
+            "en": [
+              "Home position on derived sheet"
+            ]
+          },
+          "value": {
+            "en": [
+              "0.72616,0.62774 normalised"
+            ]
+          }
+        }
+      ],
+      "sameAs": [
+        "https://collections.library.yale.edu/manifests/oid/11873654/canvas/11873767"
+      ],
+      "items": [
+        {
+          "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/suit-evening/page/1",
+          "type": "AnnotationPage",
+          "items": [
+            {
+              "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/suit-evening/annotation/1",
+              "type": "Annotation",
+              "motivation": "painting",
+              "body": {
+                "id": "https://collections.library.yale.edu/iiif/2/11873767/474,1058,2358,3926/full/0/default.jpg",
+                "type": "Image",
+                "format": "image/jpeg",
+                "width": 2358,
+                "height": 3926,
+                "service": [
+                  {
+                    "@id": "https://collections.library.yale.edu/iiif/2/11873767",
+                    "@type": "ImageService2",
+                    "profile": "http://iiif.io/api/image/2/level2.json"
+                  }
+                ],
+                "thumbnail": [
+                  {
+                    "id": "https://collections.library.yale.edu/iiif/2/11873767/474,1058,2358,3926/!400,400/0/default.jpg",
+                    "type": "Image",
+                    "format": "image/jpeg"
+                  }
+                ]
+              },
+              "target": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/suit-evening"
+            }
+          ]
+        },
+        {
+          "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/suit-evening/page/tags",
+          "type": "AnnotationPage",
+          "label": {
+            "en": [
+              "Paper-doll model for this piece"
+            ]
+          },
+          "items": [
+            {
+              "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/suit-evening-role",
+              "type": "Annotation",
+              "motivation": "tagging",
+              "label": {
+                "en": [
+                  "Garment: black evening jacket with a white shirt, black bow tie and trousers"
+                ]
+              },
+              "body": [
+                {
+                  "type": "TextualBody",
+                  "value": "garment",
+                  "purpose": "tagging",
+                  "format": "text/plain"
+                },
+                {
+                  "type": "TextualBody",
+                  "value": "fits male",
+                  "purpose": "tagging",
+                  "format": "text/plain"
+                },
+                {
+                  "type": "TextualBody",
+                  "value": "movable-books:piece",
+                  "purpose": "describing",
+                  "format": "text/plain",
+                  "language": "en"
+                },
+                {
+                  "type": "TextualBody",
+                  "value": "movable-books:role.garment",
+                  "purpose": "describing",
+                  "format": "text/plain",
+                  "language": "en"
+                },
+                {
+                  "type": "TextualBody",
+                  "value": "movable-books:id.suit-evening",
+                  "purpose": "describing",
+                  "format": "text/plain",
+                  "language": "en"
+                },
+                {
+                  "type": "TextualBody",
+                  "value": "movable-books:fits.male",
+                  "purpose": "describing",
+                  "format": "text/plain",
+                  "language": "en"
+                }
+              ],
+              "target": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/suit-evening/annotation/1"
+            },
+            {
+              "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/suit-evening-torso",
+              "type": "Annotation",
+              "motivation": "commenting",
+              "label": {
+                "en": [
+                  "Torso anchor for suit-evening"
+                ]
+              },
+              "body": [
+                {
+                  "type": "TextualBody",
+                  "value": "{\"point\": {\"x\": 0.49023, \"y\": 0.13055}, \"space\": \"normalised to this piece (the cropped region)\", \"meaning\": \"upper chest, at the armpit line\", \"sourcePoint\": {\"x\": 0.47, \"y\": 0.28}, \"sourceSpace\": \"normalised to the whole Yale canvas image\"}",
+                  "format": "application/json",
+                  "label": {
+                    "en": [
+                      "Anchor point"
+                    ]
+                  }
+                }
+              ],
+              "target": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/suit-evening/annotation/1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/tailcoat",
+      "type": "Canvas",
+      "width": 1942,
+      "height": 3764,
+      "label": {
+        "en": [
+          "tailcoat — garment"
+        ]
+      },
+      "metadata": [
+        {
+          "label": {
+            "en": [
+              "Role"
+            ]
+          },
+          "value": {
+            "en": [
+              "garment"
+            ]
+          }
+        },
+        {
+          "label": {
+            "en": [
+              "Fits"
+            ]
+          },
+          "value": {
+            "en": [
+              "male"
+            ]
+          }
+        },
+        {
+          "label": {
+            "en": [
+              "Source canvas"
+            ]
+          },
+          "value": {
+            "en": [
+              "https://collections.library.yale.edu/manifests/oid/11873654/canvas/11873769"
+            ]
+          }
+        },
+        {
+          "label": {
+            "en": [
+              "Region on source canvas"
+            ]
+          },
+          "value": {
+            "en": [
+              "728,1018,1942,3764"
+            ]
+          }
+        },
+        {
+          "label": {
+            "en": [
+              "Home position on derived sheet"
+            ]
+          },
+          "value": {
+            "en": [
+              "0.87583,0.64243 normalised"
+            ]
+          }
+        }
+      ],
+      "sameAs": [
+        "https://collections.library.yale.edu/manifests/oid/11873654/canvas/11873769"
+      ],
+      "items": [
+        {
+          "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/tailcoat/page/1",
+          "type": "AnnotationPage",
+          "items": [
+            {
+              "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/tailcoat/annotation/1",
+              "type": "Annotation",
+              "motivation": "painting",
+              "body": {
+                "id": "https://collections.library.yale.edu/iiif/2/11873769/728,1018,1942,3764/full/0/default.jpg",
+                "type": "Image",
+                "format": "image/jpeg",
+                "width": 1942,
+                "height": 3764,
+                "service": [
+                  {
+                    "@id": "https://collections.library.yale.edu/iiif/2/11873769",
+                    "@type": "ImageService2",
+                    "profile": "http://iiif.io/api/image/2/level2.json"
+                  }
+                ],
+                "thumbnail": [
+                  {
+                    "id": "https://collections.library.yale.edu/iiif/2/11873769/728,1018,1942,3764/!400,400/0/default.jpg",
+                    "type": "Image",
+                    "format": "image/jpeg"
+                  }
+                ]
+              },
+              "target": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/tailcoat"
+            }
+          ]
+        },
+        {
+          "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/tailcoat/page/tags",
+          "type": "AnnotationPage",
+          "label": {
+            "en": [
+              "Paper-doll model for this piece"
+            ]
+          },
+          "items": [
+            {
+              "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/tailcoat-role",
+              "type": "Annotation",
+              "motivation": "tagging",
+              "label": {
+                "en": [
+                  "Garment: black tailcoat with gold buttons, white shirt and black bow tie"
+                ]
+              },
+              "body": [
+                {
+                  "type": "TextualBody",
+                  "value": "garment",
+                  "purpose": "tagging",
+                  "format": "text/plain"
+                },
+                {
+                  "type": "TextualBody",
+                  "value": "fits male",
+                  "purpose": "tagging",
+                  "format": "text/plain"
+                },
+                {
+                  "type": "TextualBody",
+                  "value": "movable-books:piece",
+                  "purpose": "describing",
+                  "format": "text/plain",
+                  "language": "en"
+                },
+                {
+                  "type": "TextualBody",
+                  "value": "movable-books:role.garment",
+                  "purpose": "describing",
+                  "format": "text/plain",
+                  "language": "en"
+                },
+                {
+                  "type": "TextualBody",
+                  "value": "movable-books:id.tailcoat",
+                  "purpose": "describing",
+                  "format": "text/plain",
+                  "language": "en"
+                },
+                {
+                  "type": "TextualBody",
+                  "value": "movable-books:fits.male",
+                  "purpose": "describing",
+                  "format": "text/plain",
+                  "language": "en"
+                }
+              ],
+              "target": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/tailcoat/annotation/1"
+            },
+            {
+              "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/tailcoat-torso",
+              "type": "Annotation",
+              "motivation": "commenting",
+              "label": {
+                "en": [
+                  "Torso anchor for tailcoat"
+                ]
+              },
+              "body": [
+                {
+                  "type": "TextualBody",
+                  "value": "{\"point\": {\"x\": 0.46445, \"y\": 0.14679}, \"space\": \"normalised to this piece (the cropped region)\", \"meaning\": \"upper chest, at the armpit line\", \"sourcePoint\": {\"x\": 0.47, \"y\": 0.28}, \"sourceSpace\": \"normalised to the whole Yale canvas image\"}",
+                  "format": "application/json",
+                  "label": {
+                    "en": [
+                      "Anchor point"
+                    ]
+                  }
+                }
+              ],
+              "target": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/tailcoat/annotation/1"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "structures": [
+    {
+      "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/range/root",
+      "type": "Range",
+      "label": {
+        "en": [
+          "Contents"
+        ]
+      },
+      "items": [
+        {
+          "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/sheet",
+          "type": "Canvas"
+        },
+        {
+          "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/female-1",
+          "type": "Canvas"
+        },
+        {
+          "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/female-2",
+          "type": "Canvas"
+        },
+        {
+          "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/gown-pink",
+          "type": "Canvas"
+        },
+        {
+          "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/gown-cream",
+          "type": "Canvas"
+        },
+        {
+          "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-1",
+          "type": "Canvas"
+        },
+        {
+          "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/female-3",
+          "type": "Canvas"
+        },
+        {
+          "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/coat-maroon",
+          "type": "Canvas"
+        },
+        {
+          "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-2",
+          "type": "Canvas"
+        },
+        {
+          "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-3",
+          "type": "Canvas"
+        },
+        {
+          "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-4",
+          "type": "Canvas"
+        },
+        {
+          "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-5",
+          "type": "Canvas"
+        },
+        {
+          "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/suit-buttons",
+          "type": "Canvas"
+        },
+        {
+          "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/suit-evening",
+          "type": "Canvas"
+        },
+        {
+          "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/tailcoat",
+          "type": "Canvas"
+        }
+      ]
+    }
+  ]
+}

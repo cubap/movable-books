@@ -14,6 +14,9 @@ examples: |
   - **Game Pieces**: Playing pieces, cards, or tokens that are cut from a printed sheet to be used in board games or educational activities
   - **Masks and Costumes**: Wearable items like masks or crowns that are printed as part of a book but intended to be removed and worn
 instances:
+  - title: "Paper dolls and paper outfits painted by Zelda Fitzgerald"
+    url: "https://cubap.github.io/movable-books/demos/paper-doll-zelda.html"
+    description: "Beinecke MS 11873654, ca. 1927. Eight figures and six outfits, already cut out in this copy, so each piece is its own Yale canvas; the demo drags them, derives their silhouettes in the browser, and reconstructs the uncut sheet from authored home positions."
   - title: "Victorian Paper Doll Collection"
     url: "#"
     description: "19th-century children's book with elaborately illustrated paper dolls and costumes"
