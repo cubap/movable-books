@@ -1,0 +1,756 @@
+---
+layout: default
+title: "Yale paper dolls (Zelda Fitzgerald)"
+permalink: /demos/paper-doll-zelda.html
+---
+
+<div class="demo-paper-doll">
+  <h1>Paper dolls and paper outfits, cut out again</h1>
+  <p>
+    Zelda Fitzgerald's paper dolls at the Beinecke Library: eight figures and six outfits, each one a
+    separate piece of painted paper about 30 cm tall. Every piece here is its own draggable layer, pulled
+    from Yale's IIIF Image service as a region of its own canvas, with the black photographic board it was
+    shot on removed in the browser so the silhouette floats. Drag an outfit onto a figure and it stays
+    exactly where you let go, painted above the figure; drop a second outfit on the same figure and it
+    lands on top of the first.
+  </p>
+  <p>
+    The <strong>Sheet</strong> view shows the uncut arrangement. It is a reconstruction, not a photograph:
+    this copy is already cut, so Yale's manifest has one canvas per piece and no sheet to quote. The sheet
+    is derived from home positions recorded in one standalone
+    <a href="{{ '/fixtures/pages/yale-11873654-paper-doll-annotations.json' | relative_url }}">Annotation Page</a>,
+    and <strong>Dress-up</strong> spreads the same pieces over a workspace. The page reads that
+    annotation page together with Yale's own manifest, so the geometry it draws is assembled at load
+    time rather than baked in; a
+    <a href="{{ '/fixtures/manifests/yale-11873654-paper-dolls.json' | relative_url }}">derivative Manifest</a>
+    publishes the same model for viewers that cannot read a standalone annotation page, and it still
+    points at Yale's image service &#8212; no image is copied here.
+  </p>
+
+  <div class="panel-and-controls">
+    <div id="stage" class="stage" aria-label="Paper doll sheet">
+      <div id="world" class="world"></div>
+    </div>
+
+    <div class="controls">
+      <div class="mode-switch" role="group" aria-label="View mode">
+        <button type="button" id="btnSheet" aria-pressed="true">Sheet</button>
+        <button type="button" id="btnDress" aria-pressed="false">Dress-up</button>
+      </div>
+      <label class="toggle" for="snap">
+        <input type="checkbox" id="snap" checked />
+        Snap outfits to the torso
+      </label>
+      <button type="button" id="btnReset">Reset to the sheet</button>
+      <button type="button" id="btnAnchors" aria-pressed="false">Show torso anchors</button>
+      <p id="loadStatus" class="load-status" role="status">Assembling paper-doll model&#8230;</p>
+      <p id="dragStatus" class="load-status" role="status" aria-live="polite"></p>
+
+      <details class="details-info">
+        <summary>How the interaction works</summary>
+        <p>
+          <strong>Registration.</strong> A garment is never re-scaled to fit. All fourteen recto exposures
+          come from one fixed camera photographing pieces of 28&#8211;31 cm, so a pixel of an outfit and a
+          pixel of a figure are the same piece of the real world, and an outfit lands on a figure at 1:1.
+          Where you let go is where it stays: the point under the pointer does not move.
+        </p>
+        <p>
+          <strong>Soft snap.</strong> Each figure carries one torso anchor, an upper-chest point recorded in
+          the annotation page. If a garment's own anchor lands within 5% of the sheet width of a figure's,
+          the garment eases the rest of the way so the two coincide. Turn the toggle off to see the
+          difference: free placement still works, it is just less forgiving.
+        </p>
+        <p>
+          <strong>Stacking.</strong> There is no layer panel. Garments occupy a z band above every figure,
+          and within that band each drop takes the next counter value, so the most recently dropped outfit
+          is the one on top. Figures restack among themselves the same way.
+        </p>
+        <p>
+          <strong>Wearing.</strong> Once an outfit is on a figure it stays on it: dragging the figure takes
+          its clothes with it, at the offset you left them. Dragging the outfit off detaches it again.
+        </p>
+        <p>
+          <strong>Transparency.</strong> Yale publishes JPEGs, which have no alpha, and the pieces are
+          photographed on a near-black board rather than a white one. The page therefore floods inward from
+          the border of each crop through pixels close to that border's median colour and marks everything
+          it reaches as transparent, once per piece, and keeps the resulting bitmap. The tolerance was
+          picked by checking the result against an independent segmentation of the same crops (mean
+          intersection over union 0.989).
+        </p>
+        <p>
+          <a href="https://collections.library.yale.edu/catalog/11873654" target="_blank" rel="noopener">Yale catalog record</a>
+          &middot;
+          <a href="https://collections.library.yale.edu/manifests/11873654" target="_blank" rel="noopener">Yale IIIF Manifest</a>
+          &middot;
+          <a href="{{ '/fixtures/pages/yale-11873654-paper-doll-annotations.json' | relative_url }}" target="_blank">Paper-doll Annotation Page</a>
+          &middot;
+          <a href="{{ '/fixtures/manifests/yale-11873654-paper-dolls.json' | relative_url }}" target="_blank">Derivative Manifest</a>
+        </p>
+      </details>
+    </div>
+  </div>
+
+  <div class="attribution">
+    <h2>About this item</h2>
+    <p>
+      <strong>Original item:</strong>
+      <a href="https://collections.library.yale.edu/catalog/11873654" target="_blank" rel="noopener">
+        <em>Paper dolls and paper outfits painted by Zelda Fitzgerald [graphic]</em>
+      </a>,
+      ca. 1927. Beinecke Rare Book &amp; Manuscript Library, Yale University, General Collection 11873654.
+    </p>
+    <p>
+      The catalogue describes 8 paper dolls (5 male, 3 female) and 6 paper outfits (4 men's, 2 women's) in
+      graphite, watercolor and gouache, 28&#8211;31 cm, and notes that several dolls have lost arms, hands
+      or feet and that two outfits are taped onto figures in this copy. The fourteen recto canvases in
+      Yale's manifest are exactly that set, one per piece.
+    </p>
+    <p>
+      Yale's rights statement is the usual caveat that the material may be subject to copyright. This demo
+      stores no copies: it fetches Yale's manifest and asks Yale's image server for regions at display size,
+      and it attributes the object and links the catalogue record above. The reading of the object encoded in
+      the annotation page &#8212; which piece is a figure and which an outfit, the sex each is cut for, the
+      torso anchors &#8212; is ours, and the two figures whose sex is not obvious on the scan were assigned
+      so that the counts match the catalogue rather than from certainty about the drawing.
+    </p>
+  </div>
+
+  <div class="assembly">
+    <h2>How this page is assembled</h2>
+    <p>
+      Two documents, and the numbers below are the ones the page actually derived at load time.
+    </p>
+    <svg viewBox="0 0 720 470" role="img" aria-labelledby="asmTitle" class="asm-svg">
+      <title id="asmTitle">Data flow from the Yale manifest and the paper-doll Annotation Page into the draggable sheet</title>
+      <defs>
+        <marker id="asmArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M0,0 L10,5 L0,10 z" class="asm-arrowhead" />
+        </marker>
+      </defs>
+
+      <rect x="8" y="14" width="336" height="158" class="asm-box asm-box-remote" />
+      <text x="20" y="36" class="asm-h">Yale IIIF Manifest</text>
+      <text x="20" y="53" class="asm-sub">Presentation API 3 &#183; collections.library.yale.edu</text>
+      <text x="20" y="78" class="asm-mono" id="asmCanvases">28 canvases &#183; 14 recto/verso pairs</text>
+      <text x="20" y="96" class="asm-mono" id="asmDims">3421&#8211;3468 &#215; 5609 px each</text>
+      <text x="20" y="114" class="asm-mono">/iiif/2/11873743 &#8594; ImageService2</text>
+      <text x="20" y="140" class="asm-note">one canvas per cut piece, and no sheet canvas;</text>
+      <text x="20" y="155" class="asm-note">nothing that says which piece is a person</text>
+
+      <rect x="376" y="14" width="336" height="158" class="asm-box asm-box-ours" />
+      <text x="388" y="36" class="asm-h">Paper-doll Annotation Page</text>
+      <text x="388" y="53" class="asm-sub">Web Annotation &#183; the only file we author</text>
+      <text x="388" y="78" class="asm-mono" id="asmTag1">tag female-2  601,382,2006,4846</text>
+      <text x="388" y="96" class="asm-mono" id="asmTag2">tag gown-pink 746,387,2318,4996</text>
+      <text x="388" y="114" class="asm-mono" id="asmSheet">desc sheet 17090 &#215; 11030 units</text>
+      <text x="388" y="132" class="asm-mono">desc scale &#183; snap &#183; flood-fill tolerance</text>
+      <text x="388" y="155" class="asm-note">+ role, fits, torso anchor and home per piece</text>
+
+      <path d="M176,172 C176,198 260,194 300,212" class="asm-flow" marker-end="url(#asmArrow)" />
+      <path d="M544,172 C544,198 460,194 420,212" class="asm-flow" marker-end="url(#asmArrow)" />
+
+      <rect x="112" y="214" width="496" height="128" class="asm-box asm-box-compute" />
+      <text x="124" y="236" class="asm-h">assembleDollModel()</text>
+      <text x="124" y="260" class="asm-mono">anchorLocal = (anchor &#215; canvas &#8722; region) / region</text>
+      <text x="124" y="278" class="asm-mono" id="asmSnap">snap = 0.05 &#215; sheet width = 855 units</text>
+      <text x="124" y="296" class="asm-mono">url = {service}/{region}/!1200,1200/0/default.jpg</text>
+      <text x="124" y="320" class="asm-note">the anchor is stated against the whole canvas, so it has to</text>
+      <text x="124" y="333" class="asm-note">be carried through the region selector to be piece-relative</text>
+
+      <path d="M360,342 L360,368" class="asm-flow" marker-end="url(#asmArrow)" />
+
+      <rect x="112" y="370" width="496" height="88" class="asm-box" />
+      <text x="124" y="392" class="asm-h">the sheet, drawn</text>
+      <text x="124" y="416" class="asm-mono" id="asmPieces">14 crops &#8594; 14 flood-filled layers at their home positions</text>
+      <text x="124" y="434" class="asm-mono">drop &#8594; garment above figure, next z counter</text>
+      <text x="124" y="452" class="asm-mono">snap &#8594; the two torso anchors coincide</text>
+    </svg>
+  </div>
+</div>
+
+<style>
+  .panel-and-controls { display: grid; grid-template-columns: 1fr; gap: 1rem; align-items: start; }
+  @media (min-width: 1080px){ .panel-and-controls { grid-template-columns: 3fr 2fr; } }
+
+  .stage {
+    position: relative;
+    width: 100%;
+    max-width: 860px;
+    /* placeholder; replaced by the sheet rectangle the annotation page specifies */
+    aspect-ratio: 17090 / 11030;
+    margin: 0 auto;
+    background:
+      radial-gradient(circle at 30% 20%, #efe9dd 0%, #e4dccd 55%, #d8cfbe 100%);
+    border: 1px solid #c3bbaa;
+    overflow: hidden;
+  }
+
+  /* The theme's `img { margin: 1rem 0 }` would push every absolutely positioned
+     layer down by 16px, and 16px of a 1103px stage is a fifth of a doll's height:
+     the garments would land on the figure's knees. Neutralise it for both element
+     types before anything else here. */
+  .stage img, .stage canvas { margin: 0; }
+
+  .world { position: absolute; inset: 0; }
+
+  .piece {
+    position: absolute;
+    touch-action: none;
+    cursor: grab;
+    user-select: none;
+    -webkit-user-drag: none;
+  }
+  .piece.dragging { cursor: grabbing; }
+  .piece:focus-visible { outline: 2px solid #0366d6; outline-offset: 1px; }
+  .world:not(.draggable) .piece { cursor: default; }
+  .world.ease .piece { transition: left 200ms ease-out, top 200ms ease-out; }
+  .world:not(.draggable) .piece { pointer-events: none; }
+
+  .anchor-dot {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    margin: -5px 0 0 -5px;
+    border: 1px solid #fff;
+    border-radius: 50%;
+    background: #e40303;
+    pointer-events: none;
+    /* Above every piece, including the garment band at z-index 1000+. */
+    z-index: 100000;
+  }
+  .anchor-dot.garment { background: #0066ff; }
+
+  .controls { display: flex; flex-direction: column; gap: .55rem; }
+  .mode-switch { display: flex; gap: .4rem; }
+  .mode-switch button, .controls button { padding: .45rem .8rem; cursor: pointer; }
+  .mode-switch button[aria-pressed="true"] { background: #0366d6; color: #fff; border-color: #0366d6; }
+  .toggle { display: flex; align-items: center; gap: .4rem; }
+  .details-info { margin-top: .5rem; }
+  .details-info p { line-height: 1.5; }
+
+  .attribution { margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #ddd; }
+  .attribution h2 { font-size: 1.2rem; margin-bottom: .5rem; }
+  .attribution p { margin: .4rem 0; line-height: 1.5; max-width: 78ch; }
+
+  .load-status { font-size: .85rem; color: #555; margin: .25rem 0 0; line-height: 1.4; }
+  .load-status.error { color: #b3261e; }
+
+  .assembly { margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #ddd; }
+  .assembly h2 { font-size: 1.2rem; margin-bottom: .5rem; }
+  .assembly > p { margin: .4rem 0 1rem; line-height: 1.5; max-width: 62ch; }
+  .asm-svg { width: 100%; height: auto; display: block; }
+  .asm-box { fill: #fafafa; stroke: #bbb; stroke-width: 1; rx: 6px; }
+  .asm-box-remote { fill: #f2f6fb; stroke: #9db6d6; }
+  .asm-box-ours { fill: #f4faf1; stroke: #a3c98f; }
+  .asm-box-compute { fill: #fffaf0; stroke: #d9b96a; }
+  .asm-h { font: 600 13px system-ui, sans-serif; fill: #111; }
+  .asm-sub { font: 11px system-ui, sans-serif; fill: #666; }
+  .asm-mono { font: 11.5px ui-monospace, SFMono-Regular, Consolas, monospace; fill: #1a1a1a; }
+  .asm-note { font: italic 11px system-ui, sans-serif; fill: #666; }
+  .asm-flow { fill: none; stroke: #888; stroke-width: 1.5; }
+  .asm-arrowhead { fill: #888; }
+  @media (prefers-color-scheme: dark) {
+    .asm-box { fill: #1c1c1c; stroke: #555; }
+    .asm-box-remote { fill: #131b26; stroke: #3d5a80; }
+    .asm-box-ours { fill: #131d11; stroke: #4a7040; }
+    .asm-box-compute { fill: #211a08; stroke: #8a6d24; }
+    .asm-h { fill: #eee; }
+    .asm-mono { fill: #ddd; }
+    .asm-sub, .asm-note { fill: #999; }
+    .asm-flow { stroke: #777; }
+    .asm-arrowhead { fill: #777; }
+    .stage { background: radial-gradient(circle at 30% 20%, #3a3630 0%, #2e2b26 55%, #26241f 100%); border-color: #4a463d; }
+  }
+
+  /* Deterministic geometry for the headless verification pass: the stage is
+     pinned to the viewport origin at exactly 1/10 of a sheet unit per pixel,
+     so 1709 x 1103 CSS px means a piece at home position (x, y) is drawn at
+     device pixel (x/10, y/10) with no layout of the page around it involved. */
+  body.test-mode .stage {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 1709px;
+    height: 1103px;
+    max-width: none;
+    aspect-ratio: auto;
+    margin: 0;
+    border: 0;
+    z-index: 2147483647;
+  }
+  body.test-mode .demo-paper-doll > p,
+  body.test-mode .controls,
+  body.test-mode .attribution,
+  body.test-mode .assembly { display: none; }
+</style>
+
+<script>
+  // Two documents, and neither the geometry nor any image URL is hard-coded:
+  //
+  //   1. Yale's own IIIF manifest, fetched from their server. We do not copy it.
+  //   2. One standalone Web Annotation Page carrying what a source record cannot
+  //      say: which of the fourteen cut pieces is a figure, which is an outfit,
+  //      where each sits on the derived sheet, and where a torso is.
+  //
+  // assembleDollModel() is the whole of the assembly, and the diagram at the
+  // bottom of the page reports the numbers it actually produced.
+  const YALE_MANIFEST = 'https://collections.library.yale.edu/manifests/11873654';
+  const DOLL_PAGE_URL = "{{ '/fixtures/pages/yale-11873654-paper-doll-annotations.json' | relative_url }}";
+
+  // Pieces are fetched at display resolution, not at 3468x5609: the sheet is never
+  // drawn wider than ~1700 px, so a 1200 px long side is already oversampled.
+  const WORK_LONG_SIDE = 1200;
+
+  const stage = document.getElementById('stage');
+  const world = document.getElementById('world');
+  const loadStatus = document.getElementById('loadStatus');
+  const dragStatus = document.getElementById('dragStatus');
+  const snapInput = document.getElementById('snap');
+
+  const params = new URLSearchParams(location.search);
+  const TEST = params.get('test');
+  if (TEST) document.body.classList.add('test-mode');
+
+  let SHEET = { width: 1, height: 1 };
+  let SNAP = 0.05;
+  let TOL = 46;
+  let pieces = [];
+  let mode = 'sheet';
+  let zFig = 10;
+  let zGar = 1000;
+  let drag = null;
+
+  // --- reading the two documents -------------------------------------------
+
+  const tokenOf = (id) => String(id || '').split('/').pop();
+  const sourceOf = (t) => (typeof t === 'string' ? t : t && t.source);
+
+  const jsonBody = (a) => {
+    const hit = [].concat(a.body || []).find(b => b && b.format === 'application/json');
+    return hit ? JSON.parse(hit.value) : null;
+  };
+
+  // Presentation 3 keeps pixels under items[].items[].body; the service id is
+  // published as @id rather than id here, so accept either.
+  const canvasesOf = (mf) => (mf.items || []).map((c) => {
+    const res = c.items && c.items[0] && c.items[0].items && c.items[0].items[0].body;
+    const svc = res && res.service && (res.service[0] && (res.service[0]['@id'] || res.service[0].id) || res.service['@id']);
+    return { id: c.id || c['@id'], width: c.width, height: c.height, service: svc };
+  });
+
+  function assembleDollModel(mf, page) {
+    const canvases = canvasesOf(mf);
+    const byToken = new Map(canvases.map(c => [tokenOf(c.id), c]));
+
+    const model = jsonBody(page.items.find(a => a.id.endsWith('/sheet-model')));
+    if (!model) throw new Error('annotation page has no /sheet-model description');
+    SHEET = model.sheet;
+    SNAP = model.snap.threshold;
+    TOL = model.alpha.tolerance;
+
+    const out = [];
+    for (const a of page.items) {
+      if (a.motivation !== 'tagging') continue;
+      const geo = jsonBody(a);
+      const canvas = byToken.get(tokenOf(sourceOf(a.target)));
+      if (!canvas) throw new Error(`annotation ${a.id} targets an unknown canvas`);
+      if (!canvas.service) throw new Error(`canvas ${canvas.id} publishes no image service`);
+
+      const r = geo.region;
+      // The anchor is stated against the whole canvas; the layer we draw is the
+      // region, so carry it through the selector to get a piece-relative point.
+      const ax = (geo.anchor.x * canvas.width - r.x) / r.w;
+      const ay = (geo.anchor.y * canvas.height - r.y) / r.h;
+      if (ax < 0 || ax > 1 || ay < 0 || ay > 1) {
+        throw new Error(`anchor for ${geo.piece} falls outside its region (${ax.toFixed(3)}, ${ay.toFixed(3)})`);
+      }
+
+      const scale = Math.min(1, WORK_LONG_SIDE / Math.max(r.w, r.h));
+      out.push({
+        id: geo.piece,
+        role: geo.role,
+        fits: geo.fits,
+        label: (a.label && a.label.en && a.label.en[0]) || geo.piece,
+        canvasId: canvas.id,
+        region: r,
+        anchorLocal: { x: ax, y: ay },
+        home: { x: geo.home.x, y: geo.home.y },
+        size: { w: geo.size.w, h: geo.size.h },
+        obj: { w: geo.size.w * SHEET.width, h: geo.size.h * SHEET.height },
+        url: `${canvas.service}/${r.x},${r.y},${r.w},${r.h}/!${Math.round(r.w * scale)},${Math.round(r.h * scale)}/0/default.jpg`,
+        pos: { x: geo.home.x, y: geo.home.y },
+        scale: 1,
+        wornOn: null,
+        rel: { x: 0, y: 0 },
+        el: null
+      });
+    }
+    return { canvases, model, pieces: out };
+  }
+
+  // --- transparency: flood fill inward from the crop border ------------------
+
+  const cutOut = (source, tol) => {
+    const w = source.naturalWidth, h = source.naturalHeight;
+    const cv = document.createElement('canvas');
+    cv.width = w; cv.height = h;
+    const ctx = cv.getContext('2d', { willReadFrequently: true });
+    ctx.drawImage(source, 0, 0);
+    const frame = ctx.getImageData(0, 0, w, h);
+    const px = frame.data;
+    const n = w * h;
+
+    const border = [];
+    for (let x = 0; x < w; x++) border.push(x, (h - 1) * w + x);
+    for (let y = 1; y < h - 1; y++) border.push(y * w, y * w + w - 1);
+    const ref = [0, 1, 2].map(c => {
+      const v = new Uint8Array(border.length);
+      border.forEach((i, k) => { v[k] = px[i * 4 + c]; });
+      v.sort();
+      return v[v.length >> 1];
+    });
+
+    const near = new Uint8Array(n);
+    for (let i = 0; i < n; i++) {
+      const o = i * 4;
+      near[i] = (Math.abs(px[o] - ref[0]) <= tol &&
+                 Math.abs(px[o + 1] - ref[1]) <= tol &&
+                 Math.abs(px[o + 2] - ref[2]) <= tol) ? 1 : 0;
+    }
+
+    const bg = new Uint8Array(n);
+    const stack = new Int32Array(n);
+    let sp = 0;
+    for (let k = 0; k < border.length; k++) {
+      const i = border[k];
+      if (near[i] && !bg[i]) { bg[i] = 1; stack[sp++] = i; }
+    }
+    while (sp > 0) {
+      const i = stack[--sp];
+      const x = i % w;
+      if (x > 0 && near[i - 1] && !bg[i - 1]) { bg[i - 1] = 1; stack[sp++] = i - 1; }
+      if (x < w - 1 && near[i + 1] && !bg[i + 1]) { bg[i + 1] = 1; stack[sp++] = i + 1; }
+      if (i >= w && near[i - w] && !bg[i - w]) { bg[i - w] = 1; stack[sp++] = i - w; }
+      if (i < n - w && near[i + w] && !bg[i + w]) { bg[i + w] = 1; stack[sp++] = i + w; }
+    }
+
+    for (let i = 0; i < n; i++) px[i * 4 + 3] = bg[i] ? 0 : 255;
+    // One pixel of the surviving edge is half alpha, so the silhouette is not stair-stepped.
+    for (let y = 0; y < h; y++) {
+      for (let x = 0; x < w; x++) {
+        const i = y * w + x;
+        if (bg[i]) continue;
+        const open = (x > 0 && bg[i - 1]) || (x < w - 1 && bg[i + 1]) ||
+                     (y > 0 && bg[i - w]) || (y < h - 1 && bg[i + w]);
+        if (open) px[i * 4 + 3] = 140;
+      }
+    }
+    ctx.putImageData(frame, 0, 0);
+    return cv;
+  };
+
+  const loadImage = (url) => new Promise((resolve, reject) => {
+    const im = new Image();
+    im.crossOrigin = 'anonymous';
+    im.onload = () => resolve(im);
+    im.onerror = () => reject(new Error(`could not fetch ${url}`));
+    im.src = url;
+  });
+
+  // Four at a time: enough to keep the network busy, few enough that the
+  // per-piece flood fill does not stall the pointer.
+  async function processAll(list) {
+    const queue = list.slice();
+    const worker = async () => {
+      while (queue.length) {
+        const p = queue.shift();
+        const img = await loadImage(p.url);
+        p.el = cutOut(img, TOL);
+        p.el.className = 'piece';
+        p.el.dataset.piece = p.id;
+        p.el.tabIndex = 0;
+        p.el.setAttribute('role', 'img');
+        p.el.setAttribute('aria-label', `${p.role} ${p.id}: ${p.label}`);
+        wire(p);
+        world.appendChild(p.el);
+        applySize(p);
+        applyPos(p);
+      }
+    };
+    await Promise.all([worker(), worker(), worker(), worker()]);
+  }
+
+  // --- placement -------------------------------------------------------------
+
+  const applySize = (p) => {
+    p.el.style.width = (p.size.w * p.scale * 100) + '%';
+    p.el.style.height = (p.size.h * p.scale * 100) + '%';
+  };
+  const applyPos = (p) => {
+    p.el.style.left = (p.pos.x * 100) + '%';
+    p.el.style.top = (p.pos.y * 100) + '%';
+    if (p.dot) {
+      p.dot.style.left = ((p.pos.x + p.anchorLocal.x * p.size.w * p.scale) * 100) + '%';
+      p.dot.style.top = ((p.pos.y + p.anchorLocal.y * p.size.h * p.scale) * 100) + '%';
+    }
+  };
+  const setPos = (p, x, y) => { p.pos.x = x; p.pos.y = y; applyPos(p); };
+  const anchorPoint = (p) => ({
+    x: p.pos.x + p.anchorLocal.x * p.size.w * p.scale,
+    y: p.pos.y + p.anchorLocal.y * p.size.h * p.scale
+  });
+  const footprint = (p) => ({ w: p.size.w * p.scale, h: p.size.h * p.scale });
+  const bumpZ = (p) => { p.el.style.zIndex = String(p.role === 'garment' ? ++zGar : ++zFig); };
+
+  const figures = () => pieces.filter(p => p.role === 'figure');
+
+  function layoutHome() {
+    for (const p of pieces) {
+      p.scale = 1;
+      p.wornOn = null;
+      applySize(p);
+      setPos(p, p.home.x, p.home.y);
+    }
+  }
+
+  // Dress-up puts figures in one band and outfits in another, at a single
+  // uniform scale so the 1:1 fit between them survives.
+  function layoutWorkspace() {
+    const rows = [figures(), pieces.filter(p => p.role === 'garment')];
+    const gap = 220;
+    const widthOf = (r) => r.reduce((s, p) => s + p.obj.w, 0) + gap * (r.length - 1);
+    const heightOf = (r) => Math.max(...r.map(p => p.obj.h));
+    const s = Math.min(1,
+      (0.94 * SHEET.width) / Math.max(...rows.map(widthOf)),
+      (0.43 * SHEET.height) / Math.max(...rows.map(heightOf)));
+    const bands = [{ y0: 0.035, h: 0.44 }, { y0: 0.53, h: 0.44 }];
+    rows.forEach((row, i) => {
+      let x = (SHEET.width - widthOf(row) * s) / 2;
+      const bandTop = bands[i].y0 * SHEET.height;
+      const bandH = bands[i].h * SHEET.height;
+      for (const p of row) {
+        p.scale = s;
+        p.wornOn = null;
+        applySize(p);
+        const h = p.obj.h * s;
+        setPos(p, x / SHEET.width, (bandTop + bandH - h) / SHEET.height);
+        x += p.obj.w * s + gap * s;
+      }
+    });
+  }
+
+  function setMode(next) {
+    mode = next;
+    world.classList.toggle('draggable', next === 'dress');
+    document.getElementById('btnSheet').setAttribute('aria-pressed', String(next === 'sheet'));
+    document.getElementById('btnDress').setAttribute('aria-pressed', String(next === 'dress'));
+    if (!TEST) {
+      world.classList.add('ease');
+      setTimeout(() => world.classList.remove('ease'), 260);
+    }
+    if (next === 'sheet') layoutHome(); else layoutWorkspace();
+  }
+
+  // --- dragging --------------------------------------------------------------
+
+  function wire(p) {
+    p.el.addEventListener('pointerdown', (e) => {
+      if (!world.classList.contains('draggable')) return;
+      e.preventDefault();
+      p.el.setPointerCapture(e.pointerId);
+      p.el.classList.add('dragging');
+      drag = { p, id: e.pointerId, x0: e.clientX, y0: e.clientY, ox: p.pos.x, oy: p.pos.y };
+      if (p.role === 'garment') p.wornOn = null;
+      bumpZ(p);
+    });
+    p.el.addEventListener('pointermove', (e) => {
+      if (!drag || drag.id !== e.pointerId || drag.p !== p) return;
+      const r = stage.getBoundingClientRect();
+      const fp = footprint(p);
+      let nx = drag.ox + (e.clientX - drag.x0) / r.width;
+      let ny = drag.oy + (e.clientY - drag.y0) / r.height;
+      nx = Math.min(Math.max(nx, -fp.w * 0.5), 1 - fp.w * 0.5);
+      ny = Math.min(Math.max(ny, -fp.h * 0.5), 1 - fp.h * 0.5);
+      setPos(p, nx, ny);
+      if (p.role === 'figure') {
+        for (const g of pieces) if (g.wornOn === p) setPos(g, nx + g.rel.x, ny + g.rel.y);
+      }
+    });
+    const end = (e) => {
+      if (!drag || drag.p !== p) return;
+      const d = drag; drag = null;
+      p.el.classList.remove('dragging');
+      finishDrop(d.p, e);
+    };
+    p.el.addEventListener('pointerup', end);
+    p.el.addEventListener('pointercancel', (e) => { if (drag && drag.p === p) { drag = null; p.el.classList.remove('dragging'); } });
+    p.el.addEventListener('keydown', (e) => {
+      if (!world.classList.contains('draggable')) return;
+      const step = e.shiftKey ? 0.02 : 0.004;
+      const k = { ArrowLeft: [-step, 0], ArrowRight: [step, 0], ArrowUp: [0, -step], ArrowDown: [0, step] }[e.key];
+      if (!k) return;
+      e.preventDefault();
+      setPos(p, p.pos.x + k[0], p.pos.y + k[1]);
+      if (p.role === 'figure') for (const g of pieces) if (g.wornOn === p) setPos(g, g.pos.x + k[0], g.pos.y + k[1]);
+    });
+  }
+
+  function finishDrop(p, e) {
+    if (p.role !== 'garment') {
+      dragStatus.textContent = `${p.id} moved; its outfits came with it.`;
+      return;
+    }
+    const r = stage.getBoundingClientRect();
+    const cursor = { x: (e.clientX - r.left) / r.width, y: (e.clientY - r.top) / r.height };
+    const ap = anchorPoint(p);
+    const fp = footprint(p);
+
+    let nearest = null, best = Infinity;
+    for (const f of figures()) {
+      const fa = anchorPoint(f);
+      const d = Math.hypot((ap.x - fa.x) * SHEET.width, (ap.y - fa.y) * SHEET.height) / SHEET.width;
+      if (d < best) { best = d; nearest = f; }
+    }
+    const underCursor = figures().find(f =>
+      cursor.x >= f.pos.x && cursor.x <= f.pos.x + footprint(f).w &&
+      cursor.y >= f.pos.y && cursor.y <= f.pos.y + footprint(f).h);
+
+    const snapped = snapInput.checked && nearest && best <= SNAP;
+    if (snapped) {
+      const fa = anchorPoint(nearest);
+      setPos(p, fa.x - p.anchorLocal.x * fp.w, fa.y - p.anchorLocal.y * fp.h);
+      p.wornOn = nearest;
+      p.rel = { x: p.pos.x - nearest.pos.x, y: p.pos.y - nearest.pos.y };
+      dragStatus.textContent = `${p.id} snapped to ${nearest.id} (anchor gap ${(best * 100).toFixed(1)}%).`;
+    } else if (underCursor) {
+      p.wornOn = underCursor;
+      p.rel = { x: p.pos.x - underCursor.pos.x, y: p.pos.y - underCursor.pos.y };
+      dragStatus.textContent = `${p.id} left on ${underCursor.id} where you dropped it` +
+        (nearest ? `; nearest torso was ${(best * 100).toFixed(1)}% away.` : '.');
+    } else {
+      p.wornOn = null;
+      dragStatus.textContent = `${p.id} dropped loose on the sheet.`;
+    }
+    bumpZ(p);
+  }
+
+  // --- anchors overlay -------------------------------------------------------
+
+  function toggleAnchors() {
+    const on = !world.classList.contains('show-anchors');
+    world.classList.toggle('show-anchors', on);
+    document.getElementById('btnAnchors').setAttribute('aria-pressed', String(on));
+    for (const p of pieces) {
+      if (on && !p.dot) {
+        p.dot = document.createElement('div');
+        p.dot.className = 'anchor-dot' + (p.role === 'garment' ? ' garment' : '');
+        world.appendChild(p.dot);
+      }
+      if (p.dot) p.dot.style.display = on ? 'block' : 'none';
+      applyPos(p);
+    }
+  }
+
+  // --- boot ------------------------------------------------------------------
+
+  const fillDiagram = (model) => {
+    const set = (id, text) => { const el = document.getElementById(id); if (el) el.textContent = text; };
+    set('asmCanvases', `${model.count} canvases · ${model.pairs} recto/verso pairs`);
+    set('asmDims', `${model.minW}–${model.maxW} × ${model.heights} px each`);
+    set('asmSheet', `desc sheet ${SHEET.width} × ${SHEET.height} units`);
+    set('asmSnap', `snap = ${SNAP} × sheet width = ${Math.round(SNAP * SHEET.width)} units`);
+    set('asmPieces', `${pieces.length} crops → ${pieces.length} flood-filled layers at their home positions`);
+    const a = pieces.find(p => p.id === 'female-2'), b = pieces.find(p => p.id === 'gown-pink');
+    if (a) set('asmTag1', `tag ${a.id}  ${a.region.x},${a.region.y},${a.region.w},${a.region.h}`);
+    if (b) set('asmTag2', `tag ${b.id}  ${b.region.x},${b.region.y},${b.region.w},${b.region.h}`);
+  };
+
+  const load = async () => {
+    const [mfRes, pageRes] = await Promise.all([
+      fetch(YALE_MANIFEST, { cache: 'no-store' }),
+      fetch(DOLL_PAGE_URL, { cache: 'no-store' })
+    ]);
+    if (!mfRes.ok) throw new Error(`Yale manifest returned ${mfRes.status}`);
+    if (!pageRes.ok) throw new Error(`paper-doll annotations returned ${pageRes.status}`);
+
+    const mf = await mfRes.json();
+    const model = assembleDollModel(mf, await pageRes.json());
+    pieces = model.pieces;
+
+    stage.style.aspectRatio = `${SHEET.width} / ${SHEET.height}`;
+    const widths = model.canvases.map(c => c.width);
+    fillDiagram({
+      count: model.canvases.length,
+      pairs: model.canvases.length / 2,
+      minW: Math.min(...widths),
+      maxW: Math.max(...widths),
+      heights: [...new Set(model.canvases.map(c => c.height))].join('/')
+    });
+
+    const t0 = performance.now();
+    await processAll(pieces);
+    layoutHome();
+    for (const p of pieces) bumpZ(p);
+
+    loadStatus.textContent =
+      `Assembled from ${model.canvases.length} Yale canvases + ${DOLL_PAGE_URL.split('/').pop()}. ` +
+      `${pieces.filter(p => p.role === 'figure').length} figures, ` +
+      `${pieces.filter(p => p.role === 'garment').length} outfits, sheet ${SHEET.width}×${SHEET.height}, ` +
+      `alpha in ${Math.round(performance.now() - t0)} ms.`;
+
+    if (TEST) await runScenario(TEST);
+    window.paperDoll = {
+      ready: true,
+      pieces: new Map(pieces.map(p => [p.id, p])),
+      setMode, layoutHome, layoutWorkspace, toggleAnchors,
+      snapGarment,
+      place: (id, x, y) => { const p = pieces.find(q => q.id === id); if (p) setPos(p, x, y); }
+    };
+    if (TEST) window.__pdTest = 'ready';
+  };
+
+  // Deterministic placement used by the ?test= scenarios (sheet | dress | one |
+  // two | free&garment=&x=&y=) and available to the console.
+  function snapGarment(garmentId, figureId) {
+    const g = pieces.find(p => p.id === garmentId);
+    const f = pieces.find(p => p.id === figureId);
+    if (!g || !f) throw new Error(`unknown piece in snapGarment(${garmentId}, ${figureId})`);
+    const fa = anchorPoint(f);
+    const fp = footprint(g);
+    setPos(g, fa.x - g.anchorLocal.x * fp.w, fa.y - g.anchorLocal.y * fp.h);
+    g.wornOn = f;
+    g.rel = { x: g.pos.x - f.pos.x, y: g.pos.y - f.pos.y };
+    bumpZ(g);
+    return g.pos;
+  }
+
+  async function runScenario(name) {
+    // Every scenario starts from the home layout so the expected geometry is the
+    // one written in the annotation page, not one this file computed.
+    setMode('sheet');
+    layoutHome();
+    world.classList.add('draggable');
+    if (name === 'sheet') return;
+    if (name === 'dress') { setMode('dress'); return; }
+    if (name === 'one') { snapGarment('gown-pink', 'female-2'); return; }
+    if (name === 'two') { snapGarment('gown-pink', 'female-2'); snapGarment('gown-cream', 'female-2'); return; }
+    if (name === 'free') {
+      const g = params.get('garment') || 'gown-pink';
+      const x = parseFloat(params.get('x')), y = parseFloat(params.get('y'));
+      setPos(pieces.find(p => p.id === g), x, y);
+      return;
+    }
+    throw new Error(`unknown test scenario "${name}"`);
+  }
+
+  document.getElementById('btnSheet').addEventListener('click', () => setMode('sheet'));
+  document.getElementById('btnDress').addEventListener('click', () => setMode('dress'));
+  document.getElementById('btnReset').addEventListener('click', () => { layoutHome(); dragStatus.textContent = 'Every piece is back on the sheet.'; });
+  document.getElementById('btnAnchors').addEventListener('click', toggleAnchors);
+
+  load().catch((err) => {
+    loadStatus.classList.add('error');
+    loadStatus.textContent = `Could not assemble the model: ${err.message}`;
+    if (TEST) window.__pdTest = 'error: ' + err.message;
+  });
+</script>
