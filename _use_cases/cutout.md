@@ -16,7 +16,7 @@ examples: |
 instances:
   - title: "Paper dolls and paper outfits painted by Zelda Fitzgerald"
     url: "https://cubap.github.io/movable-books/demos/paper-doll-zelda.html"
-    description: "Beinecke MS 11873654, ca. 1927. Eight figures and six outfits, already cut out in this copy, so each piece is its own Yale canvas; the demo drags them, derives their silhouettes in the browser, and reconstructs the uncut sheet from authored home positions."
+    description: "YCAL MSS 317 (Yale digital object 11873654), ca. 1927. Eight figures and six outfits, already cut out in this copy, so each piece is its own Yale canvas; the demo drags them, derives their silhouettes in the browser, and reconstructs the uncut sheet from authored home positions."
   - title: "Victorian Paper Doll Collection"
     url: "#"
     description: "19th-century children's book with elaborately illustrated paper dolls and costumes"

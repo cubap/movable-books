@@ -1,6 +1,6 @@
 {
   "@context": "http://iiif.io/api/presentation/3/context.json",
-  "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json",
+  "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json",
   "type": "Manifest",
   "label": {
     "none": [
@@ -9,7 +9,7 @@
   },
   "summary": {
     "en": [
-      "Derivative view of Beinecke MS 11873654 for the movable-books Cutout use case. Yale's copy of this object is already cut out, so their published manifest has one canvas per physical piece and no sheet at all. This manifest keeps that per-piece shape, and adds a leading derived canvas that lays the fourteen pieces back down on a virtual uncut sheet at the home positions recorded in the accompanying annotation page. Every image is still served by Yale: each piece is a region of its own Yale canvas, requested from Yale's IIIF Image service. Nothing is re-hosted here.",
+      "Derivative view of YCAL MSS 317 (Yale digital object 11873654) for the movable-books Cutout use case. Yale's copy of this object is already cut out, so their published manifest has one canvas per physical piece and no sheet at all. This manifest keeps that per-piece shape, and adds a leading derived canvas that lays the fourteen pieces back down on a virtual uncut sheet at the home positions recorded in the accompanying annotation page. Every image is still served by Yale: each piece is a region of its own Yale canvas, requested from Yale's IIIF Image service. Nothing is re-hosted here.",
       "Read together with https://github.com/cubap/movable-books/blob/gh-pages/fixtures/pages/yale-11873654-paper-doll-annotations.json, which is the document the demo actually consumes, and with the live source manifest https://collections.library.yale.edu/manifests/11873654."
     ]
   },
@@ -21,7 +21,7 @@
     },
     "value": {
       "en": [
-        "Paper dolls and paper outfits painted by Zelda Fitzgerald [graphic], ca. 1927. Beinecke Rare Book & Manuscript Library, Yale University, General Collection, MS 11873654. Images © Yale University Library; this derivative adds only descriptive metadata. See the catalog record for the current rights statement."
+        "Paper dolls and paper outfits painted by Zelda Fitzgerald [graphic], ca. 1927. Beinecke Rare Book & Manuscript Library, Yale University. Call number YCAL MSS 317; digital object 11873654. Images © Yale University Library; this derivative adds only descriptive metadata. See the catalog record for the current rights statement."
       ]
     }
   },
@@ -59,7 +59,7 @@
   ],
   "homepage": [
     {
-      "id": "https://github.com/cubap/movable-books/demos/paper-doll-zelda.html",
+      "id": "https://cubap.github.io/movable-books/demos/paper-doll-zelda.html",
       "type": "Text",
       "label": {
         "en": [
@@ -80,7 +80,7 @@
   ],
   "seeAlso": [
     {
-      "id": "https://github.com/cubap/movable-books/fixtures/pages/yale-11873654-paper-doll-annotations.json",
+      "id": "https://cubap.github.io/movable-books/fixtures/pages/yale-11873654-paper-doll-annotations.json",
       "type": "AnnotationPage",
       "label": {
         "en": [
@@ -102,7 +102,7 @@
   ],
   "rendering": [
     {
-      "id": "https://github.com/cubap/movable-books/demos/paper-doll-zelda.html",
+      "id": "https://cubap.github.io/movable-books/demos/paper-doll-zelda.html",
       "type": "Text",
       "label": {
         "en": [
@@ -157,7 +157,7 @@
       },
       "value": {
         "en": [
-          "General Collection. MS 11873654"
+          "YCAL MSS 317. Digital object 11873654"
         ]
       }
     },
@@ -225,12 +225,12 @@
     }
   ],
   "start": {
-    "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/sheet",
+    "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/sheet",
     "type": "Canvas"
   },
   "items": [
     {
-      "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/sheet",
+      "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/sheet",
       "type": "Canvas",
       "width": 17090,
       "height": 11030,
@@ -255,11 +255,11 @@
       ],
       "items": [
         {
-          "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/sheet/page/1",
+          "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/sheet/page/1",
           "type": "AnnotationPage",
           "items": [
             {
-              "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/sheet-female-1",
+              "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/sheet-female-1",
               "type": "Annotation",
               "motivation": "painting",
               "label": {
@@ -290,7 +290,7 @@
               },
               "target": {
                 "type": "SpecificResource",
-                "source": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/sheet",
+                "source": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/sheet",
                 "selector": {
                   "type": "FragmentSelector",
                   "conformsTo": "http://www.w3.org/TR/media-frags/",
@@ -299,7 +299,7 @@
               }
             },
             {
-              "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/sheet-female-2",
+              "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/sheet-female-2",
               "type": "Annotation",
               "motivation": "painting",
               "label": {
@@ -330,7 +330,7 @@
               },
               "target": {
                 "type": "SpecificResource",
-                "source": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/sheet",
+                "source": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/sheet",
                 "selector": {
                   "type": "FragmentSelector",
                   "conformsTo": "http://www.w3.org/TR/media-frags/",
@@ -339,7 +339,7 @@
               }
             },
             {
-              "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/sheet-gown-pink",
+              "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/sheet-gown-pink",
               "type": "Annotation",
               "motivation": "painting",
               "label": {
@@ -370,7 +370,7 @@
               },
               "target": {
                 "type": "SpecificResource",
-                "source": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/sheet",
+                "source": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/sheet",
                 "selector": {
                   "type": "FragmentSelector",
                   "conformsTo": "http://www.w3.org/TR/media-frags/",
@@ -379,7 +379,7 @@
               }
             },
             {
-              "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/sheet-gown-cream",
+              "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/sheet-gown-cream",
               "type": "Annotation",
               "motivation": "painting",
               "label": {
@@ -410,7 +410,7 @@
               },
               "target": {
                 "type": "SpecificResource",
-                "source": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/sheet",
+                "source": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/sheet",
                 "selector": {
                   "type": "FragmentSelector",
                   "conformsTo": "http://www.w3.org/TR/media-frags/",
@@ -419,7 +419,7 @@
               }
             },
             {
-              "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/sheet-male-1",
+              "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/sheet-male-1",
               "type": "Annotation",
               "motivation": "painting",
               "label": {
@@ -450,7 +450,7 @@
               },
               "target": {
                 "type": "SpecificResource",
-                "source": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/sheet",
+                "source": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/sheet",
                 "selector": {
                   "type": "FragmentSelector",
                   "conformsTo": "http://www.w3.org/TR/media-frags/",
@@ -459,7 +459,7 @@
               }
             },
             {
-              "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/sheet-female-3",
+              "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/sheet-female-3",
               "type": "Annotation",
               "motivation": "painting",
               "label": {
@@ -490,7 +490,7 @@
               },
               "target": {
                 "type": "SpecificResource",
-                "source": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/sheet",
+                "source": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/sheet",
                 "selector": {
                   "type": "FragmentSelector",
                   "conformsTo": "http://www.w3.org/TR/media-frags/",
@@ -499,7 +499,7 @@
               }
             },
             {
-              "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/sheet-coat-maroon",
+              "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/sheet-coat-maroon",
               "type": "Annotation",
               "motivation": "painting",
               "label": {
@@ -530,7 +530,7 @@
               },
               "target": {
                 "type": "SpecificResource",
-                "source": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/sheet",
+                "source": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/sheet",
                 "selector": {
                   "type": "FragmentSelector",
                   "conformsTo": "http://www.w3.org/TR/media-frags/",
@@ -539,7 +539,7 @@
               }
             },
             {
-              "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/sheet-male-2",
+              "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/sheet-male-2",
               "type": "Annotation",
               "motivation": "painting",
               "label": {
@@ -570,7 +570,7 @@
               },
               "target": {
                 "type": "SpecificResource",
-                "source": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/sheet",
+                "source": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/sheet",
                 "selector": {
                   "type": "FragmentSelector",
                   "conformsTo": "http://www.w3.org/TR/media-frags/",
@@ -579,7 +579,7 @@
               }
             },
             {
-              "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/sheet-male-3",
+              "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/sheet-male-3",
               "type": "Annotation",
               "motivation": "painting",
               "label": {
@@ -610,7 +610,7 @@
               },
               "target": {
                 "type": "SpecificResource",
-                "source": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/sheet",
+                "source": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/sheet",
                 "selector": {
                   "type": "FragmentSelector",
                   "conformsTo": "http://www.w3.org/TR/media-frags/",
@@ -619,7 +619,7 @@
               }
             },
             {
-              "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/sheet-male-4",
+              "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/sheet-male-4",
               "type": "Annotation",
               "motivation": "painting",
               "label": {
@@ -650,7 +650,7 @@
               },
               "target": {
                 "type": "SpecificResource",
-                "source": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/sheet",
+                "source": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/sheet",
                 "selector": {
                   "type": "FragmentSelector",
                   "conformsTo": "http://www.w3.org/TR/media-frags/",
@@ -659,7 +659,7 @@
               }
             },
             {
-              "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/sheet-male-5",
+              "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/sheet-male-5",
               "type": "Annotation",
               "motivation": "painting",
               "label": {
@@ -690,7 +690,7 @@
               },
               "target": {
                 "type": "SpecificResource",
-                "source": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/sheet",
+                "source": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/sheet",
                 "selector": {
                   "type": "FragmentSelector",
                   "conformsTo": "http://www.w3.org/TR/media-frags/",
@@ -699,7 +699,7 @@
               }
             },
             {
-              "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/sheet-suit-buttons",
+              "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/sheet-suit-buttons",
               "type": "Annotation",
               "motivation": "painting",
               "label": {
@@ -730,7 +730,7 @@
               },
               "target": {
                 "type": "SpecificResource",
-                "source": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/sheet",
+                "source": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/sheet",
                 "selector": {
                   "type": "FragmentSelector",
                   "conformsTo": "http://www.w3.org/TR/media-frags/",
@@ -739,7 +739,7 @@
               }
             },
             {
-              "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/sheet-suit-evening",
+              "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/sheet-suit-evening",
               "type": "Annotation",
               "motivation": "painting",
               "label": {
@@ -770,7 +770,7 @@
               },
               "target": {
                 "type": "SpecificResource",
-                "source": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/sheet",
+                "source": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/sheet",
                 "selector": {
                   "type": "FragmentSelector",
                   "conformsTo": "http://www.w3.org/TR/media-frags/",
@@ -779,7 +779,7 @@
               }
             },
             {
-              "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/sheet-tailcoat",
+              "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/sheet-tailcoat",
               "type": "Annotation",
               "motivation": "painting",
               "label": {
@@ -810,7 +810,7 @@
               },
               "target": {
                 "type": "SpecificResource",
-                "source": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/sheet",
+                "source": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/sheet",
                 "selector": {
                   "type": "FragmentSelector",
                   "conformsTo": "http://www.w3.org/TR/media-frags/",
@@ -823,7 +823,7 @@
       ]
     },
     {
-      "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/female-1",
+      "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/female-1",
       "type": "Canvas",
       "width": 2081,
       "height": 4094,
@@ -899,11 +899,11 @@
       ],
       "items": [
         {
-          "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/female-1/page/1",
+          "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/female-1/page/1",
           "type": "AnnotationPage",
           "items": [
             {
-              "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/female-1/annotation/1",
+              "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/female-1/annotation/1",
               "type": "Annotation",
               "motivation": "painting",
               "body": {
@@ -927,12 +927,12 @@
                   }
                 ]
               },
-              "target": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/female-1"
+              "target": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/female-1"
             }
           ]
         },
         {
-          "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/female-1/page/tags",
+          "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/female-1/page/tags",
           "type": "AnnotationPage",
           "label": {
             "en": [
@@ -941,7 +941,7 @@
           },
           "items": [
             {
-              "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/female-1-role",
+              "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/female-1-role",
               "type": "Annotation",
               "motivation": "tagging",
               "label": {
@@ -991,10 +991,10 @@
                   "language": "en"
                 }
               ],
-              "target": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/female-1/annotation/1"
+              "target": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/female-1/annotation/1"
             },
             {
-              "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/female-1-torso",
+              "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/female-1-torso",
               "type": "Annotation",
               "motivation": "commenting",
               "label": {
@@ -1014,14 +1014,14 @@
                   }
                 }
               ],
-              "target": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/female-1/annotation/1"
+              "target": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/female-1/annotation/1"
             }
           ]
         }
       ]
     },
     {
-      "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/female-2",
+      "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/female-2",
       "type": "Canvas",
       "width": 2006,
       "height": 4846,
@@ -1097,11 +1097,11 @@
       ],
       "items": [
         {
-          "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/female-2/page/1",
+          "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/female-2/page/1",
           "type": "AnnotationPage",
           "items": [
             {
-              "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/female-2/annotation/1",
+              "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/female-2/annotation/1",
               "type": "Annotation",
               "motivation": "painting",
               "body": {
@@ -1125,12 +1125,12 @@
                   }
                 ]
               },
-              "target": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/female-2"
+              "target": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/female-2"
             }
           ]
         },
         {
-          "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/female-2/page/tags",
+          "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/female-2/page/tags",
           "type": "AnnotationPage",
           "label": {
             "en": [
@@ -1139,7 +1139,7 @@
           },
           "items": [
             {
-              "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/female-2-role",
+              "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/female-2-role",
               "type": "Annotation",
               "motivation": "tagging",
               "label": {
@@ -1189,10 +1189,10 @@
                   "language": "en"
                 }
               ],
-              "target": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/female-2/annotation/1"
+              "target": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/female-2/annotation/1"
             },
             {
-              "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/female-2-torso",
+              "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/female-2-torso",
               "type": "Annotation",
               "motivation": "commenting",
               "label": {
@@ -1212,14 +1212,14 @@
                   }
                 }
               ],
-              "target": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/female-2/annotation/1"
+              "target": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/female-2/annotation/1"
             }
           ]
         }
       ]
     },
     {
-      "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/gown-pink",
+      "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/gown-pink",
       "type": "Canvas",
       "width": 2318,
       "height": 4996,
@@ -1295,11 +1295,11 @@
       ],
       "items": [
         {
-          "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/gown-pink/page/1",
+          "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/gown-pink/page/1",
           "type": "AnnotationPage",
           "items": [
             {
-              "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/gown-pink/annotation/1",
+              "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/gown-pink/annotation/1",
               "type": "Annotation",
               "motivation": "painting",
               "body": {
@@ -1323,12 +1323,12 @@
                   }
                 ]
               },
-              "target": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/gown-pink"
+              "target": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/gown-pink"
             }
           ]
         },
         {
-          "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/gown-pink/page/tags",
+          "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/gown-pink/page/tags",
           "type": "AnnotationPage",
           "label": {
             "en": [
@@ -1337,7 +1337,7 @@
           },
           "items": [
             {
-              "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/gown-pink-role",
+              "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/gown-pink-role",
               "type": "Annotation",
               "motivation": "tagging",
               "label": {
@@ -1387,10 +1387,10 @@
                   "language": "en"
                 }
               ],
-              "target": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/gown-pink/annotation/1"
+              "target": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/gown-pink/annotation/1"
             },
             {
-              "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/gown-pink-torso",
+              "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/gown-pink-torso",
               "type": "Annotation",
               "motivation": "commenting",
               "label": {
@@ -1410,14 +1410,14 @@
                   }
                 }
               ],
-              "target": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/gown-pink/annotation/1"
+              "target": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/gown-pink/annotation/1"
             }
           ]
         }
       ]
     },
     {
-      "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/gown-cream",
+      "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/gown-cream",
       "type": "Canvas",
       "width": 1647,
       "height": 4308,
@@ -1493,11 +1493,11 @@
       ],
       "items": [
         {
-          "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/gown-cream/page/1",
+          "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/gown-cream/page/1",
           "type": "AnnotationPage",
           "items": [
             {
-              "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/gown-cream/annotation/1",
+              "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/gown-cream/annotation/1",
               "type": "Annotation",
               "motivation": "painting",
               "body": {
@@ -1521,12 +1521,12 @@
                   }
                 ]
               },
-              "target": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/gown-cream"
+              "target": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/gown-cream"
             }
           ]
         },
         {
-          "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/gown-cream/page/tags",
+          "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/gown-cream/page/tags",
           "type": "AnnotationPage",
           "label": {
             "en": [
@@ -1535,7 +1535,7 @@
           },
           "items": [
             {
-              "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/gown-cream-role",
+              "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/gown-cream-role",
               "type": "Annotation",
               "motivation": "tagging",
               "label": {
@@ -1585,10 +1585,10 @@
                   "language": "en"
                 }
               ],
-              "target": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/gown-cream/annotation/1"
+              "target": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/gown-cream/annotation/1"
             },
             {
-              "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/gown-cream-torso",
+              "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/gown-cream-torso",
               "type": "Annotation",
               "motivation": "commenting",
               "label": {
@@ -1608,14 +1608,14 @@
                   }
                 }
               ],
-              "target": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/gown-cream/annotation/1"
+              "target": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/gown-cream/annotation/1"
             }
           ]
         }
       ]
     },
     {
-      "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-1",
+      "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-1",
       "type": "Canvas",
       "width": 2364,
       "height": 4724,
@@ -1691,11 +1691,11 @@
       ],
       "items": [
         {
-          "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-1/page/1",
+          "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-1/page/1",
           "type": "AnnotationPage",
           "items": [
             {
-              "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-1/annotation/1",
+              "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-1/annotation/1",
               "type": "Annotation",
               "motivation": "painting",
               "body": {
@@ -1719,12 +1719,12 @@
                   }
                 ]
               },
-              "target": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-1"
+              "target": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-1"
             }
           ]
         },
         {
-          "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-1/page/tags",
+          "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-1/page/tags",
           "type": "AnnotationPage",
           "label": {
             "en": [
@@ -1733,7 +1733,7 @@
           },
           "items": [
             {
-              "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/male-1-role",
+              "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/male-1-role",
               "type": "Annotation",
               "motivation": "tagging",
               "label": {
@@ -1783,10 +1783,10 @@
                   "language": "en"
                 }
               ],
-              "target": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-1/annotation/1"
+              "target": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-1/annotation/1"
             },
             {
-              "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/male-1-torso",
+              "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/male-1-torso",
               "type": "Annotation",
               "motivation": "commenting",
               "label": {
@@ -1806,14 +1806,14 @@
                   }
                 }
               ],
-              "target": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-1/annotation/1"
+              "target": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-1/annotation/1"
             }
           ]
         }
       ]
     },
     {
-      "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/female-3",
+      "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/female-3",
       "type": "Canvas",
       "width": 2150,
       "height": 4938,
@@ -1889,11 +1889,11 @@
       ],
       "items": [
         {
-          "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/female-3/page/1",
+          "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/female-3/page/1",
           "type": "AnnotationPage",
           "items": [
             {
-              "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/female-3/annotation/1",
+              "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/female-3/annotation/1",
               "type": "Annotation",
               "motivation": "painting",
               "body": {
@@ -1917,12 +1917,12 @@
                   }
                 ]
               },
-              "target": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/female-3"
+              "target": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/female-3"
             }
           ]
         },
         {
-          "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/female-3/page/tags",
+          "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/female-3/page/tags",
           "type": "AnnotationPage",
           "label": {
             "en": [
@@ -1931,7 +1931,7 @@
           },
           "items": [
             {
-              "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/female-3-role",
+              "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/female-3-role",
               "type": "Annotation",
               "motivation": "tagging",
               "label": {
@@ -1981,10 +1981,10 @@
                   "language": "en"
                 }
               ],
-              "target": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/female-3/annotation/1"
+              "target": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/female-3/annotation/1"
             },
             {
-              "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/female-3-torso",
+              "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/female-3-torso",
               "type": "Annotation",
               "motivation": "commenting",
               "label": {
@@ -2004,14 +2004,14 @@
                   }
                 }
               ],
-              "target": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/female-3/annotation/1"
+              "target": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/female-3/annotation/1"
             }
           ]
         }
       ]
     },
     {
-      "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/coat-maroon",
+      "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/coat-maroon",
       "type": "Canvas",
       "width": 1994,
       "height": 4429,
@@ -2087,11 +2087,11 @@
       ],
       "items": [
         {
-          "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/coat-maroon/page/1",
+          "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/coat-maroon/page/1",
           "type": "AnnotationPage",
           "items": [
             {
-              "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/coat-maroon/annotation/1",
+              "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/coat-maroon/annotation/1",
               "type": "Annotation",
               "motivation": "painting",
               "body": {
@@ -2115,12 +2115,12 @@
                   }
                 ]
               },
-              "target": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/coat-maroon"
+              "target": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/coat-maroon"
             }
           ]
         },
         {
-          "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/coat-maroon/page/tags",
+          "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/coat-maroon/page/tags",
           "type": "AnnotationPage",
           "label": {
             "en": [
@@ -2129,7 +2129,7 @@
           },
           "items": [
             {
-              "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/coat-maroon-role",
+              "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/coat-maroon-role",
               "type": "Annotation",
               "motivation": "tagging",
               "label": {
@@ -2179,10 +2179,10 @@
                   "language": "en"
                 }
               ],
-              "target": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/coat-maroon/annotation/1"
+              "target": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/coat-maroon/annotation/1"
             },
             {
-              "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/coat-maroon-torso",
+              "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/coat-maroon-torso",
               "type": "Annotation",
               "motivation": "commenting",
               "label": {
@@ -2202,14 +2202,14 @@
                   }
                 }
               ],
-              "target": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/coat-maroon/annotation/1"
+              "target": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/coat-maroon/annotation/1"
             }
           ]
         }
       ]
     },
     {
-      "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-2",
+      "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-2",
       "type": "Canvas",
       "width": 1907,
       "height": 5100,
@@ -2285,11 +2285,11 @@
       ],
       "items": [
         {
-          "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-2/page/1",
+          "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-2/page/1",
           "type": "AnnotationPage",
           "items": [
             {
-              "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-2/annotation/1",
+              "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-2/annotation/1",
               "type": "Annotation",
               "motivation": "painting",
               "body": {
@@ -2313,12 +2313,12 @@
                   }
                 ]
               },
-              "target": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-2"
+              "target": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-2"
             }
           ]
         },
         {
-          "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-2/page/tags",
+          "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-2/page/tags",
           "type": "AnnotationPage",
           "label": {
             "en": [
@@ -2327,7 +2327,7 @@
           },
           "items": [
             {
-              "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/male-2-role",
+              "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/male-2-role",
               "type": "Annotation",
               "motivation": "tagging",
               "label": {
@@ -2377,10 +2377,10 @@
                   "language": "en"
                 }
               ],
-              "target": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-2/annotation/1"
+              "target": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-2/annotation/1"
             },
             {
-              "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/male-2-torso",
+              "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/male-2-torso",
               "type": "Annotation",
               "motivation": "commenting",
               "label": {
@@ -2400,14 +2400,14 @@
                   }
                 }
               ],
-              "target": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-2/annotation/1"
+              "target": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-2/annotation/1"
             }
           ]
         }
       ]
     },
     {
-      "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-3",
+      "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-3",
       "type": "Canvas",
       "width": 2381,
       "height": 4684,
@@ -2483,11 +2483,11 @@
       ],
       "items": [
         {
-          "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-3/page/1",
+          "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-3/page/1",
           "type": "AnnotationPage",
           "items": [
             {
-              "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-3/annotation/1",
+              "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-3/annotation/1",
               "type": "Annotation",
               "motivation": "painting",
               "body": {
@@ -2511,12 +2511,12 @@
                   }
                 ]
               },
-              "target": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-3"
+              "target": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-3"
             }
           ]
         },
         {
-          "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-3/page/tags",
+          "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-3/page/tags",
           "type": "AnnotationPage",
           "label": {
             "en": [
@@ -2525,7 +2525,7 @@
           },
           "items": [
             {
-              "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/male-3-role",
+              "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/male-3-role",
               "type": "Annotation",
               "motivation": "tagging",
               "label": {
@@ -2575,10 +2575,10 @@
                   "language": "en"
                 }
               ],
-              "target": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-3/annotation/1"
+              "target": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-3/annotation/1"
             },
             {
-              "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/male-3-torso",
+              "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/male-3-torso",
               "type": "Annotation",
               "motivation": "commenting",
               "label": {
@@ -2598,14 +2598,14 @@
                   }
                 }
               ],
-              "target": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-3/annotation/1"
+              "target": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-3/annotation/1"
             }
           ]
         }
       ]
     },
     {
-      "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-4",
+      "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-4",
       "type": "Canvas",
       "width": 1405,
       "height": 4395,
@@ -2681,11 +2681,11 @@
       ],
       "items": [
         {
-          "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-4/page/1",
+          "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-4/page/1",
           "type": "AnnotationPage",
           "items": [
             {
-              "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-4/annotation/1",
+              "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-4/annotation/1",
               "type": "Annotation",
               "motivation": "painting",
               "body": {
@@ -2709,12 +2709,12 @@
                   }
                 ]
               },
-              "target": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-4"
+              "target": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-4"
             }
           ]
         },
         {
-          "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-4/page/tags",
+          "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-4/page/tags",
           "type": "AnnotationPage",
           "label": {
             "en": [
@@ -2723,7 +2723,7 @@
           },
           "items": [
             {
-              "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/male-4-role",
+              "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/male-4-role",
               "type": "Annotation",
               "motivation": "tagging",
               "label": {
@@ -2773,10 +2773,10 @@
                   "language": "en"
                 }
               ],
-              "target": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-4/annotation/1"
+              "target": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-4/annotation/1"
             },
             {
-              "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/male-4-torso",
+              "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/male-4-torso",
               "type": "Annotation",
               "motivation": "commenting",
               "label": {
@@ -2796,14 +2796,14 @@
                   }
                 }
               ],
-              "target": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-4/annotation/1"
+              "target": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-4/annotation/1"
             }
           ]
         }
       ]
     },
     {
-      "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-5",
+      "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-5",
       "type": "Canvas",
       "width": 2659,
       "height": 5250,
@@ -2879,11 +2879,11 @@
       ],
       "items": [
         {
-          "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-5/page/1",
+          "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-5/page/1",
           "type": "AnnotationPage",
           "items": [
             {
-              "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-5/annotation/1",
+              "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-5/annotation/1",
               "type": "Annotation",
               "motivation": "painting",
               "body": {
@@ -2907,12 +2907,12 @@
                   }
                 ]
               },
-              "target": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-5"
+              "target": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-5"
             }
           ]
         },
         {
-          "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-5/page/tags",
+          "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-5/page/tags",
           "type": "AnnotationPage",
           "label": {
             "en": [
@@ -2921,7 +2921,7 @@
           },
           "items": [
             {
-              "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/male-5-role",
+              "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/male-5-role",
               "type": "Annotation",
               "motivation": "tagging",
               "label": {
@@ -2971,10 +2971,10 @@
                   "language": "en"
                 }
               ],
-              "target": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-5/annotation/1"
+              "target": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-5/annotation/1"
             },
             {
-              "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/male-5-torso",
+              "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/male-5-torso",
               "type": "Annotation",
               "motivation": "commenting",
               "label": {
@@ -2994,14 +2994,14 @@
                   }
                 }
               ],
-              "target": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-5/annotation/1"
+              "target": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-5/annotation/1"
             }
           ]
         }
       ]
     },
     {
-      "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/suit-buttons",
+      "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/suit-buttons",
       "type": "Canvas",
       "width": 2791,
       "height": 5031,
@@ -3077,11 +3077,11 @@
       ],
       "items": [
         {
-          "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/suit-buttons/page/1",
+          "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/suit-buttons/page/1",
           "type": "AnnotationPage",
           "items": [
             {
-              "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/suit-buttons/annotation/1",
+              "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/suit-buttons/annotation/1",
               "type": "Annotation",
               "motivation": "painting",
               "body": {
@@ -3105,12 +3105,12 @@
                   }
                 ]
               },
-              "target": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/suit-buttons"
+              "target": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/suit-buttons"
             }
           ]
         },
         {
-          "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/suit-buttons/page/tags",
+          "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/suit-buttons/page/tags",
           "type": "AnnotationPage",
           "label": {
             "en": [
@@ -3119,7 +3119,7 @@
           },
           "items": [
             {
-              "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/suit-buttons-role",
+              "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/suit-buttons-role",
               "type": "Annotation",
               "motivation": "tagging",
               "label": {
@@ -3169,10 +3169,10 @@
                   "language": "en"
                 }
               ],
-              "target": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/suit-buttons/annotation/1"
+              "target": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/suit-buttons/annotation/1"
             },
             {
-              "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/suit-buttons-torso",
+              "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/suit-buttons-torso",
               "type": "Annotation",
               "motivation": "commenting",
               "label": {
@@ -3192,14 +3192,14 @@
                   }
                 }
               ],
-              "target": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/suit-buttons/annotation/1"
+              "target": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/suit-buttons/annotation/1"
             }
           ]
         }
       ]
     },
     {
-      "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/suit-evening",
+      "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/suit-evening",
       "type": "Canvas",
       "width": 2358,
       "height": 3926,
@@ -3275,11 +3275,11 @@
       ],
       "items": [
         {
-          "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/suit-evening/page/1",
+          "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/suit-evening/page/1",
           "type": "AnnotationPage",
           "items": [
             {
-              "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/suit-evening/annotation/1",
+              "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/suit-evening/annotation/1",
               "type": "Annotation",
               "motivation": "painting",
               "body": {
@@ -3303,12 +3303,12 @@
                   }
                 ]
               },
-              "target": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/suit-evening"
+              "target": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/suit-evening"
             }
           ]
         },
         {
-          "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/suit-evening/page/tags",
+          "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/suit-evening/page/tags",
           "type": "AnnotationPage",
           "label": {
             "en": [
@@ -3317,7 +3317,7 @@
           },
           "items": [
             {
-              "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/suit-evening-role",
+              "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/suit-evening-role",
               "type": "Annotation",
               "motivation": "tagging",
               "label": {
@@ -3367,10 +3367,10 @@
                   "language": "en"
                 }
               ],
-              "target": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/suit-evening/annotation/1"
+              "target": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/suit-evening/annotation/1"
             },
             {
-              "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/suit-evening-torso",
+              "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/suit-evening-torso",
               "type": "Annotation",
               "motivation": "commenting",
               "label": {
@@ -3390,14 +3390,14 @@
                   }
                 }
               ],
-              "target": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/suit-evening/annotation/1"
+              "target": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/suit-evening/annotation/1"
             }
           ]
         }
       ]
     },
     {
-      "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/tailcoat",
+      "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/tailcoat",
       "type": "Canvas",
       "width": 1942,
       "height": 3764,
@@ -3473,11 +3473,11 @@
       ],
       "items": [
         {
-          "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/tailcoat/page/1",
+          "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/tailcoat/page/1",
           "type": "AnnotationPage",
           "items": [
             {
-              "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/tailcoat/annotation/1",
+              "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/tailcoat/annotation/1",
               "type": "Annotation",
               "motivation": "painting",
               "body": {
@@ -3501,12 +3501,12 @@
                   }
                 ]
               },
-              "target": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/tailcoat"
+              "target": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/tailcoat"
             }
           ]
         },
         {
-          "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/tailcoat/page/tags",
+          "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/tailcoat/page/tags",
           "type": "AnnotationPage",
           "label": {
             "en": [
@@ -3515,7 +3515,7 @@
           },
           "items": [
             {
-              "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/tailcoat-role",
+              "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/tailcoat-role",
               "type": "Annotation",
               "motivation": "tagging",
               "label": {
@@ -3565,10 +3565,10 @@
                   "language": "en"
                 }
               ],
-              "target": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/tailcoat/annotation/1"
+              "target": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/tailcoat/annotation/1"
             },
             {
-              "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/tailcoat-torso",
+              "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/annotation/tailcoat-torso",
               "type": "Annotation",
               "motivation": "commenting",
               "label": {
@@ -3588,7 +3588,7 @@
                   }
                 }
               ],
-              "target": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/tailcoat/annotation/1"
+              "target": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/tailcoat/annotation/1"
             }
           ]
         }
@@ -3597,7 +3597,7 @@
   ],
   "structures": [
     {
-      "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/range/root",
+      "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/range/root",
       "type": "Range",
       "label": {
         "en": [
@@ -3606,63 +3606,63 @@
       },
       "items": [
         {
-          "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/sheet",
+          "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/sheet",
           "type": "Canvas"
         },
         {
-          "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/female-1",
+          "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/female-1",
           "type": "Canvas"
         },
         {
-          "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/female-2",
+          "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/female-2",
           "type": "Canvas"
         },
         {
-          "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/gown-pink",
+          "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/gown-pink",
           "type": "Canvas"
         },
         {
-          "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/gown-cream",
+          "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/gown-cream",
           "type": "Canvas"
         },
         {
-          "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-1",
+          "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-1",
           "type": "Canvas"
         },
         {
-          "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/female-3",
+          "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/female-3",
           "type": "Canvas"
         },
         {
-          "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/coat-maroon",
+          "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/coat-maroon",
           "type": "Canvas"
         },
         {
-          "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-2",
+          "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-2",
           "type": "Canvas"
         },
         {
-          "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-3",
+          "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-3",
           "type": "Canvas"
         },
         {
-          "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-4",
+          "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-4",
           "type": "Canvas"
         },
         {
-          "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-5",
+          "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/male-5",
           "type": "Canvas"
         },
         {
-          "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/suit-buttons",
+          "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/suit-buttons",
           "type": "Canvas"
         },
         {
-          "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/suit-evening",
+          "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/suit-evening",
           "type": "Canvas"
         },
         {
-          "id": "https://github.com/cubap/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/tailcoat",
+          "id": "https://cubap.github.io/movable-books/fixtures/manifests/yale-11873654-paper-dolls.json/canvas/tailcoat",
           "type": "Canvas"
         }
       ]
