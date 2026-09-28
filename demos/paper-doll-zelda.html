@@ -24,12 +24,16 @@ permalink: /demos/paper-doll-zelda.html
     time rather than baked in; a
     <a href="{{ '/fixtures/manifests/yale-11873654-paper-dolls.json' | relative_url }}">derivative Manifest</a>
     publishes the same model for viewers that cannot read a standalone annotation page, and it still
-    points at Yale's image service &#8212; no image is copied here.
+    points at Yale's image service. No image is copied here.
   </p>
 
   <div class="panel-and-controls">
     <div id="stage" class="stage" aria-label="Paper doll sheet">
       <div id="world" class="world"></div>
+      <div id="stageMsg" class="stage-msg" hidden>
+        <p id="stageMsgText"></p>
+        <button type="button" id="btnRetry" hidden>Try again</button>
+      </div>
     </div>
 
     <div class="controls">
@@ -78,6 +82,18 @@ permalink: /demos/paper-doll-zelda.html
           intersection over union 0.989).
         </p>
         <p>
+          <strong>Grabbing.</strong> A cut-out piece is mostly transparent inside its bounding box, and a
+          snapped outfit covers its figure almost completely, so a rectangle test would pick the garment when
+          you aimed at the doll underneath it. The page walks the stack from the top down and takes the first
+          layer with non-transparent pixels under the pointer.
+        </p>
+        <p>
+          <strong>Keyboard.</strong> In Dress-up mode a press focuses the piece it picked. Arrow keys nudge it
+          by 0.4% of the stage, Shift by 2%, and each move finishes with the same drop logic a pointer gets,
+          so the keyboard can snap an outfit to a torso and has the result announced, not just slide a layer
+          around.
+        </p>
+        <p>
           <a href="https://collections.library.yale.edu/catalog/11873654" target="_blank" rel="noopener">Yale catalog record</a>
           &middot;
           <a href="https://collections.library.yale.edu/manifests/11873654" target="_blank" rel="noopener">Yale IIIF Manifest</a>
@@ -97,20 +113,23 @@ permalink: /demos/paper-doll-zelda.html
       <a href="https://collections.library.yale.edu/catalog/11873654" target="_blank" rel="noopener">
         <em>Paper dolls and paper outfits painted by Zelda Fitzgerald [graphic]</em>
       </a>,
-      ca. 1927. Beinecke Rare Book &amp; Manuscript Library, Yale University, General Collection 11873654.
+      ca. 1927. Beinecke Rare Book &amp; Manuscript Library, Yale University. Call number YCAL MSS 317;
+      the digital object is <a href="https://collections.library.yale.edu/catalog/11873654" target="_blank" rel="noopener">11873654</a>.
     </p>
     <p>
       The catalogue describes 8 paper dolls (5 male, 3 female) and 6 paper outfits (4 men's, 2 women's) in
-      graphite, watercolor and gouache, 28&#8211;31 cm, and notes that several dolls have lost arms, hands
-      or feet and that two outfits are taped onto figures in this copy. The fourteen recto canvases in
-      Yale's manifest are exactly that set, one per piece.
+      graphite, watercolor and gouache, 28&#8211;31 cm. It also records the condition of the thing itself:
+      two of the outfits are taped onto the dolls they fit, the other four do not fit the dolls in this
+      collection, three arms, two hands and two feet are missing from the dolls, one head was partly
+      replaced by the artist, and three sleeves are missing from the outfits. The fourteen recto canvases
+      in Yale's manifest are exactly that set, one per piece.
     </p>
     <p>
       Yale's rights statement is the usual caveat that the material may be subject to copyright. This demo
       stores no copies: it fetches Yale's manifest and asks Yale's image server for regions at display size,
       and it attributes the object and links the catalogue record above. The reading of the object encoded in
-      the annotation page &#8212; which piece is a figure and which an outfit, the sex each is cut for, the
-      torso anchors &#8212; is ours, and the two figures whose sex is not obvious on the scan were assigned
+      the annotation page (which piece is a figure and which an outfit, the sex each is cut for, and the
+      torso anchors) is ours, and the two figures whose sex is not obvious on the scan were assigned
       so that the counts match the catalogue rather than from certainty about the drawing.
     </p>
   </div>
@@ -235,6 +254,30 @@ permalink: /demos/paper-doll-zelda.html
   .load-status { font-size: .85rem; color: #555; margin: .25rem 0 0; line-height: 1.4; }
   .load-status.error { color: #b3261e; }
 
+  /* A dead fetch used to leave only a line of text in the side column while the
+     stage sat empty, so the failure read as a broken image. Say it where the
+     user is already looking, name the document, and offer the way out. */
+  .stage-msg {
+    position: absolute;
+    inset: 0;
+    z-index: 200000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: .6rem;
+    padding: 1rem;
+    text-align: center;
+    font-size: .9rem;
+    line-height: 1.45;
+    color: #7a1f17;
+    background: rgba(244, 239, 229, .93);
+  }
+  .stage-msg[hidden] { display: none; }
+  .stage-msg p { margin: 0; max-width: 44ch; }
+  .stage-msg.warn { color: #6b5310; }
+  .stage-msg button { padding: .4rem .9rem; cursor: pointer; }
+
   .assembly { margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #ddd; }
   .assembly h2 { font-size: 1.2rem; margin-bottom: .5rem; }
   .assembly > p { margin: .4rem 0 1rem; line-height: 1.5; max-width: 62ch; }
@@ -301,11 +344,20 @@ permalink: /demos/paper-doll-zelda.html
   // drawn wider than ~1700 px, so a 1200 px long side is already oversampled.
   const WORK_LONG_SIDE = 1200;
 
+  // A hung request used to leave the page on "Assembling paper-doll model" with
+  // nothing on the stage and no way out. Both documents and every tile are now
+  // bounded.
+  const DOC_TIMEOUT_MS = 15000;
+  const TILE_TIMEOUT_MS = 20000;
+
   const stage = document.getElementById('stage');
   const world = document.getElementById('world');
   const loadStatus = document.getElementById('loadStatus');
   const dragStatus = document.getElementById('dragStatus');
   const snapInput = document.getElementById('snap');
+  const stageMsg = document.getElementById('stageMsg');
+  const stageMsgText = document.getElementById('stageMsgText');
+  const btnRetry = document.getElementById('btnRetry');
 
   const params = new URLSearchParams(location.search);
   const TEST = params.get('test');
@@ -449,44 +501,65 @@ permalink: /demos/paper-doll-zelda.html
     return cv;
   };
 
-  const loadImage = (url) => new Promise((resolve, reject) => {
+  const loadImage = (url, ms) => new Promise((resolve, reject) => {
     const im = new Image();
     im.crossOrigin = 'anonymous';
-    im.onload = () => resolve(im);
-    im.onerror = () => reject(new Error(`could not fetch ${url}`));
+    const timer = setTimeout(() => {
+      im.onload = im.onerror = null;
+      im.src = '';
+      reject(new Error(`timed out after ${ms / 1000}s`));
+    }, ms);
+    im.onload = () => { clearTimeout(timer); resolve(im); };
+    im.onerror = () => { clearTimeout(timer); reject(new Error(`could not fetch ${url}`)); };
     im.src = url;
   });
 
   // Four at a time: enough to keep the network busy, few enough that the
-  // per-piece flood fill does not stall the pointer.
+  // per-piece flood fill does not stall the pointer. A tile that will not load
+  // is reported and skipped. It used to reject the whole batch, which left the
+  // page with thirteen layers, no model, and controls that threw on every click.
   async function processAll(list) {
     const queue = list.slice();
+    const failed = [];
+    let done = 0;
     const worker = async () => {
       while (queue.length) {
         const p = queue.shift();
-        const img = await loadImage(p.url);
-        p.el = cutOut(img, TOL);
-        p.el.className = 'piece';
-        p.el.dataset.piece = p.id;
-        p.el.tabIndex = 0;
-        p.el.setAttribute('role', 'img');
-        p.el.setAttribute('aria-label', `${p.role} ${p.id}: ${p.label}`);
-        wire(p);
-        world.appendChild(p.el);
-        applySize(p);
-        applyPos(p);
+        try {
+          const img = await loadImage(p.url, TILE_TIMEOUT_MS);
+          p.el = cutOut(img, TOL);
+          p.ctx = p.el.getContext('2d');
+          p.el.className = 'piece';
+          p.el.dataset.piece = p.id;
+          p.el.tabIndex = 0;
+          p.el.setAttribute('role', 'img');
+          p.el.setAttribute('aria-label', `${p.role} ${p.id}: ${p.label}`);
+          wire(p);
+          world.appendChild(p.el);
+          applySize(p);
+          applyPos(p);
+        } catch (err) {
+          p.failed = err.message;
+          failed.push(p);
+          console.warn(`[paper-doll] ${p.id}: ${err.message}`);
+        }
+        done++;
+        loadStatus.textContent = `Cutting out ${done} of ${list.length} pieces…`;
       }
     };
     await Promise.all([worker(), worker(), worker(), worker()]);
+    return failed;
   }
 
   // --- placement -------------------------------------------------------------
 
   const applySize = (p) => {
+    if (!p.el) return;
     p.el.style.width = (p.size.w * p.scale * 100) + '%';
     p.el.style.height = (p.size.h * p.scale * 100) + '%';
   };
   const applyPos = (p) => {
+    if (!p.el) return;
     p.el.style.left = (p.pos.x * 100) + '%';
     p.el.style.top = (p.pos.y * 100) + '%';
     if (p.dot) {
@@ -500,9 +573,32 @@ permalink: /demos/paper-doll-zelda.html
     y: p.pos.y + p.anchorLocal.y * p.size.h * p.scale
   });
   const footprint = (p) => ({ w: p.size.w * p.scale, h: p.size.h * p.scale });
-  const bumpZ = (p) => { p.el.style.zIndex = String(p.role === 'garment' ? ++zGar : ++zFig); };
+  const bumpZ = (p) => { if (p.el) p.el.style.zIndex = String(p.role === 'garment' ? ++zGar : ++zFig); };
 
-  const figures = () => pieces.filter(p => p.role === 'figure');
+  const drawn = () => pieces.filter(p => p.el);
+  const figures = () => drawn().filter(p => p.role === 'figure');
+
+  // --- hit testing -----------------------------------------------------------
+  //
+  // A piece is a flood-filled canvas, so most of its bounding box is fully
+  // transparent, and a snapped outfit covers its figure almost completely.
+  // elementFromPoint and rectangle tests therefore pick the garment when the
+  // user aimed at the figure underneath it. Walk the stack in the order the
+  // user actually sees it and take the first layer with ink under the cursor.
+  const stacked = () => drawn().sort((a, b) =>
+    (parseInt(a.el.style.zIndex, 10) || 0) - (parseInt(b.el.style.zIndex, 10) || 0));
+
+  const inkAt = (p, cx, cy) => {
+    const r = p.el.getBoundingClientRect();
+    if (cx < r.left || cx >= r.right || cy < r.top || cy >= r.bottom) return false;
+    const x = Math.min(p.el.width - 1, Math.floor(((cx - r.left) / r.width) * p.el.width));
+    const y = Math.min(p.el.height - 1, Math.floor(((cy - r.top) / r.height) * p.el.height));
+    // cutOut leaves alpha at 0, 140 (the one-pixel edge halo) or 255.
+    return p.ctx.getImageData(x, y, 1, 1).data[3] > 0;
+  };
+
+  // Topmost layer first, so a grab picks what is on screen, not what is beneath.
+  const piecesAt = (cx, cy) => stacked().reverse().filter(p => inkAt(p, cx, cy));
 
   function layoutHome() {
     for (const p of pieces) {
@@ -516,10 +612,10 @@ permalink: /demos/paper-doll-zelda.html
   // Dress-up puts figures in one band and outfits in another, at a single
   // uniform scale so the 1:1 fit between them survives.
   function layoutWorkspace() {
-    const rows = [figures(), pieces.filter(p => p.role === 'garment')];
+    const rows = [figures(), drawn().filter(p => p.role === 'garment')];
     const gap = 220;
     const widthOf = (r) => r.reduce((s, p) => s + p.obj.w, 0) + gap * (r.length - 1);
-    const heightOf = (r) => Math.max(...r.map(p => p.obj.h));
+    const heightOf = (r) => (r.length ? Math.max(...r.map(p => p.obj.h)) : 0);
     const s = Math.min(1,
       (0.94 * SHEET.width) / Math.max(...rows.map(widthOf)),
       (0.43 * SHEET.height) / Math.max(...rows.map(heightOf)));
@@ -552,56 +648,97 @@ permalink: /demos/paper-doll-zelda.html
   }
 
   // --- dragging --------------------------------------------------------------
+  //
+  // One set of pointer listeners on the world element instead of one per piece.
+  // The hit test has to read every layer's alpha anyway, and a per-element
+  // listener fires for whichever element the browser picked, which is the
+  // garment covering a figure rather than the figure the user aimed at.
+
+  const stagePoint = (e) => {
+    const r = stage.getBoundingClientRect();
+    return { x: (e.clientX - r.left) / r.width, y: (e.clientY - r.top) / r.height };
+  };
+
+  // Clamped, and it takes the outfits of a figure along at the offset they were
+  // dropped at.
+  function movePiece(p, x, y) {
+    const fp = footprint(p);
+    setPos(p,
+      Math.min(Math.max(x, -fp.w * 0.5), 1 - fp.w * 0.5),
+      Math.min(Math.max(y, -fp.h * 0.5), 1 - fp.h * 0.5));
+    if (p.role === 'figure') {
+      for (const g of pieces) if (g.wornOn === p) setPos(g, p.pos.x + g.rel.x, p.pos.y + g.rel.y);
+    }
+  }
 
   function wire(p) {
-    p.el.addEventListener('pointerdown', (e) => {
-      if (!world.classList.contains('draggable')) return;
-      e.preventDefault();
-      p.el.setPointerCapture(e.pointerId);
-      p.el.classList.add('dragging');
-      drag = { p, id: e.pointerId, x0: e.clientX, y0: e.clientY, ox: p.pos.x, oy: p.pos.y };
-      if (p.role === 'garment') p.wornOn = null;
-      bumpZ(p);
-    });
-    p.el.addEventListener('pointermove', (e) => {
-      if (!drag || drag.id !== e.pointerId || drag.p !== p) return;
-      const r = stage.getBoundingClientRect();
-      const fp = footprint(p);
-      let nx = drag.ox + (e.clientX - drag.x0) / r.width;
-      let ny = drag.oy + (e.clientY - drag.y0) / r.height;
-      nx = Math.min(Math.max(nx, -fp.w * 0.5), 1 - fp.w * 0.5);
-      ny = Math.min(Math.max(ny, -fp.h * 0.5), 1 - fp.h * 0.5);
-      setPos(p, nx, ny);
-      if (p.role === 'figure') {
-        for (const g of pieces) if (g.wornOn === p) setPos(g, nx + g.rel.x, ny + g.rel.y);
-      }
-    });
-    const end = (e) => {
-      if (!drag || drag.p !== p) return;
-      const d = drag; drag = null;
-      p.el.classList.remove('dragging');
-      finishDrop(d.p, e);
-    };
-    p.el.addEventListener('pointerup', end);
-    p.el.addEventListener('pointercancel', (e) => { if (drag && drag.p === p) { drag = null; p.el.classList.remove('dragging'); } });
     p.el.addEventListener('keydown', (e) => {
       if (!world.classList.contains('draggable')) return;
       const step = e.shiftKey ? 0.02 : 0.004;
       const k = { ArrowLeft: [-step, 0], ArrowRight: [step, 0], ArrowUp: [0, -step], ArrowDown: [0, step] }[e.key];
       if (!k) return;
       e.preventDefault();
-      setPos(p, p.pos.x + k[0], p.pos.y + k[1]);
-      if (p.role === 'figure') for (const g of pieces) if (g.wornOn === p) setPos(g, g.pos.x + k[0], g.pos.y + k[1]);
+      movePiece(p, p.pos.x + k[0], p.pos.y + k[1]);
+      // The same finish a pointer drop gets, so the keyboard can snap, wear and
+      // announce instead of only sliding a layer around. The drop point is the
+      // piece's own anchor, which is what the snap test measures anyway.
+      finishDrop(p, anchorPoint(p));
     });
   }
 
-  function finishDrop(p, e) {
+  function beginDrag(p, e) {
+    // A second finger used to overwrite the live drag, leaving the first piece
+    // stuck with cursor: grabbing and never dropped.
+    if (drag && drag.id !== e.pointerId) endDrag(null);
+    e.preventDefault();
+    // preventDefault suppresses the focus that would otherwise follow a press,
+    // and without focus the arrow keys have nothing to move.
+    p.el.focus({ preventScroll: true });
+    world.setPointerCapture(e.pointerId);
+    p.el.classList.add('dragging');
+    drag = { p, id: e.pointerId, x0: e.clientX, y0: e.clientY, ox: p.pos.x, oy: p.pos.y };
+    if (p.role === 'garment') p.wornOn = null;
+    bumpZ(p);
+  }
+
+  function endDrag(e) {
+    if (!drag || (e && drag.id !== e.pointerId)) return;
+    const p = drag.p;
+    drag = null;
+    p.el.classList.remove('dragging');
+    finishDrop(p, e ? stagePoint(e) : anchorPoint(p));
+  }
+
+  function abortDrag(e) {
+    if (!drag || drag.id !== e.pointerId) return;
+    drag.p.el.classList.remove('dragging');
+    drag = null;
+  }
+
+  function wireWorld() {
+    world.addEventListener('pointerdown', (e) => {
+      if (!world.classList.contains('draggable')) return;
+      const hit = piecesAt(e.clientX, e.clientY)[0];
+      if (hit) beginDrag(hit, e);
+    });
+    world.addEventListener('pointermove', (e) => {
+      if (!drag || drag.id !== e.pointerId) return;
+      const r = stage.getBoundingClientRect();
+      movePiece(drag.p,
+        drag.ox + (e.clientX - drag.x0) / r.width,
+        drag.oy + (e.clientY - drag.y0) / r.height);
+    });
+    world.addEventListener('pointerup', endDrag);
+    world.addEventListener('pointercancel', abortDrag);
+  }
+
+  // cursor is a point in 0..1 stage coordinates: where the pointer was let go,
+  // or the piece's own anchor for a keyboard move.
+  function finishDrop(p, cursor) {
     if (p.role !== 'garment') {
       dragStatus.textContent = `${p.id} moved; its outfits came with it.`;
       return;
     }
-    const r = stage.getBoundingClientRect();
-    const cursor = { x: (e.clientX - r.left) / r.width, y: (e.clientY - r.top) / r.height };
     const ap = anchorPoint(p);
     const fp = footprint(p);
 
@@ -611,9 +748,11 @@ permalink: /demos/paper-doll-zelda.html
       const d = Math.hypot((ap.x - fa.x) * SHEET.width, (ap.y - fa.y) * SHEET.height) / SHEET.width;
       if (d < best) { best = d; nearest = f; }
     }
-    const underCursor = figures().find(f =>
-      cursor.x >= f.pos.x && cursor.x <= f.pos.x + footprint(f).w &&
-      cursor.y >= f.pos.y && cursor.y <= f.pos.y + footprint(f).h);
+    // The figure with ink under the drop point, not the one whose rectangle
+    // happens to contain it.
+    const r = stage.getBoundingClientRect();
+    const underCursor = piecesAt(r.left + cursor.x * r.width, r.top + cursor.y * r.height)
+      .find(f => f.role === 'figure');
 
     const snapped = snapInput.checked && nearest && best <= SNAP;
     if (snapped) {
@@ -641,6 +780,7 @@ permalink: /demos/paper-doll-zelda.html
     world.classList.toggle('show-anchors', on);
     document.getElementById('btnAnchors').setAttribute('aria-pressed', String(on));
     for (const p of pieces) {
+      if (!p.el) continue;
       if (on && !p.dot) {
         p.dot = document.createElement('div');
         p.dot.className = 'anchor-dot' + (p.role === 'garment' ? ' garment' : '');
@@ -665,16 +805,52 @@ permalink: /demos/paper-doll-zelda.html
     if (b) set('asmTag2', `tag ${b.id}  ${b.region.x},${b.region.y},${b.region.w},${b.region.h}`);
   };
 
-  const load = async () => {
-    const [mfRes, pageRes] = await Promise.all([
-      fetch(YALE_MANIFEST, { cache: 'no-store' }),
-      fetch(DOLL_PAGE_URL, { cache: 'no-store' })
-    ]);
-    if (!mfRes.ok) throw new Error(`Yale manifest returned ${mfRes.status}`);
-    if (!pageRes.ok) throw new Error(`paper-doll annotations returned ${pageRes.status}`);
+  // Name the document that failed, and bound the wait: a hung request used to
+  // leave the page reading "Assembling paper-doll model" with nothing on it.
+  const DOC_LABELS = new Map([
+    [YALE_MANIFEST, "Yale's IIIF Manifest"],
+    [DOLL_PAGE_URL, 'the paper-doll Annotation Page']
+  ]);
 
-    const mf = await mfRes.json();
-    const model = assembleDollModel(mf, await pageRes.json());
+  const fetchDoc = async (url) => {
+    const name = DOC_LABELS.get(url) || url;
+    const signal = AbortSignal.timeout ? AbortSignal.timeout(DOC_TIMEOUT_MS) : undefined;
+    let res;
+    try {
+      res = await fetch(url, { cache: 'no-store', signal });
+    } catch (err) {
+      throw new Error(err.name === 'TimeoutError'
+        ? `${name} did not answer within ${DOC_TIMEOUT_MS / 1000} s`
+        : `${name}: ${err.message}`);
+    }
+    if (!res.ok) throw new Error(`${name} returned ${res.status}`);
+    return res.json();
+  };
+
+  const showStageMessage = (text, opts = {}) => {
+    stageMsgText.textContent = text;
+    stageMsg.classList.toggle('warn', !!opts.warn);
+    btnRetry.hidden = !opts.retry;
+    stageMsg.hidden = false;
+  };
+
+  const clearStageMessage = () => {
+    stageMsg.hidden = true;
+    stageMsg.classList.remove('warn');
+    btnRetry.hidden = true;
+  };
+
+  const load = async () => {
+    // Retry re-runs this from the top, so drop whatever the last attempt drew.
+    world.replaceChildren();
+    pieces = [];
+    drag = null;
+    clearStageMessage();
+    loadStatus.classList.remove('error');
+    loadStatus.textContent = 'Assembling paper-doll model…';
+
+    const [mf, page] = await Promise.all([fetchDoc(YALE_MANIFEST), fetchDoc(DOLL_PAGE_URL)]);
+    const model = assembleDollModel(mf, page);
     pieces = model.pieces;
 
     stage.style.aspectRatio = `${SHEET.width} / ${SHEET.height}`;
@@ -688,22 +864,35 @@ permalink: /demos/paper-doll-zelda.html
     });
 
     const t0 = performance.now();
-    await processAll(pieces);
+    const failed = await processAll(pieces);
     layoutHome();
     for (const p of pieces) bumpZ(p);
 
     loadStatus.textContent =
       `Assembled from ${model.canvases.length} Yale canvases + ${DOLL_PAGE_URL.split('/').pop()}. ` +
-      `${pieces.filter(p => p.role === 'figure').length} figures, ` +
-      `${pieces.filter(p => p.role === 'garment').length} outfits, sheet ${SHEET.width}×${SHEET.height}, ` +
+      `${figures().length} figures, ` +
+      `${drawn().filter(p => p.role === 'garment').length} outfits, sheet ${SHEET.width}×${SHEET.height}, ` +
       `alpha in ${Math.round(performance.now() - t0)} ms.`;
+    if (failed.length) {
+      loadStatus.textContent += ` ${failed.length} piece${failed.length > 1 ? 's' : ''} did not load: ` +
+        `${failed.map(p => p.id).join(', ')}.`;
+      showStageMessage(
+        `${failed.length} of ${pieces.length} pieces did not come back from Yale's image service: ` +
+        `${failed.map(p => p.id).join(', ')}. The rest of the sheet is usable. ` +
+        `The reason for each is in the browser console.`,
+        { warn: true, retry: true });
+    }
 
     if (TEST) await runScenario(TEST);
     window.paperDoll = {
       ready: true,
       pieces: new Map(pieces.map(p => [p.id, p])),
+      failed: failed.map(p => p.id),
       setMode, layoutHome, layoutWorkspace, toggleAnchors,
       snapGarment,
+      // The layer ids with ink at a client point, topmost first. Used by the
+      // headless pass to check that a grab picks what is actually on screen.
+      hitAt: (cx, cy) => piecesAt(cx, cy).map(p => p.id),
       place: (id, x, y) => { const p = pieces.find(q => q.id === id); if (p) setPos(p, x, y); }
     };
     if (TEST) window.__pdTest = 'ready';
@@ -715,6 +904,7 @@ permalink: /demos/paper-doll-zelda.html
     const g = pieces.find(p => p.id === garmentId);
     const f = pieces.find(p => p.id === figureId);
     if (!g || !f) throw new Error(`unknown piece in snapGarment(${garmentId}, ${figureId})`);
+    if (!g.el || !f.el) throw new Error(`piece did not draw in snapGarment(${garmentId}, ${figureId})`);
     const fa = anchorPoint(f);
     const fp = footprint(g);
     setPos(g, fa.x - g.anchorLocal.x * fp.w, fa.y - g.anchorLocal.y * fp.h);
@@ -737,7 +927,8 @@ permalink: /demos/paper-doll-zelda.html
     if (name === 'free') {
       const g = params.get('garment') || 'gown-pink';
       const x = parseFloat(params.get('x')), y = parseFloat(params.get('y'));
-      setPos(pieces.find(p => p.id === g), x, y);
+      const p = pieces.find(q => q.id === g);
+      if (p) setPos(p, x, y);
       return;
     }
     throw new Error(`unknown test scenario "${name}"`);
@@ -747,10 +938,19 @@ permalink: /demos/paper-doll-zelda.html
   document.getElementById('btnDress').addEventListener('click', () => setMode('dress'));
   document.getElementById('btnReset').addEventListener('click', () => { layoutHome(); dragStatus.textContent = 'Every piece is back on the sheet.'; });
   document.getElementById('btnAnchors').addEventListener('click', toggleAnchors);
+  wireWorld();
 
-  load().catch((err) => {
+  const bootFail = (err) => {
     loadStatus.classList.add('error');
     loadStatus.textContent = `Could not assemble the model: ${err.message}`;
+    showStageMessage(
+      `The paper-doll model could not be assembled. ${err.message}. ` +
+      'The sheet is built from two documents fetched when the page loads, so if either one ' +
+      'is unreachable the stage stays empty.',
+      { retry: true });
     if (TEST) window.__pdTest = 'error: ' + err.message;
-  });
+  };
+
+  btnRetry.addEventListener('click', () => { load().catch(bootFail); });
+  load().catch(bootFail);
 </script>
