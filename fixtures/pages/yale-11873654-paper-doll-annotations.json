@@ -1,0 +1,789 @@
+{
+  "@context": "http://www.w3.org/ns/anno.jsonld",
+  "id": "https://cubap.github.io/movable-books/fixtures/pages/yale-11873654-paper-doll-annotations.json",
+  "type": "AnnotationPage",
+  "label": {
+    "en": [
+      "Paper-doll model for Yale 11873654 (Zelda Fitzgerald paper dolls)"
+    ]
+  },
+  "summary": {
+    "en": [
+      "Everything the paper-doll demo needs, in one page, expressed as annotations on Yale's own canvases. The pieces, their pixel sizes and their image services all stay under collections.library.yale.edu; this page adds only what a source record cannot know, namely which of the fourteen cut pieces is a figure and which is a garment, where each piece sits on the derived uncut sheet, and where a figure's torso is so that a garment can be registered against it. Every number the demo draws is derived from these annotations at load time, and no image is re-hosted."
+    ]
+  },
+  "seeAlso": [
+    {
+      "id": "https://collections.library.yale.edu/manifests/11873654",
+      "type": "Manifest",
+      "label": {
+        "en": [
+          "Yale source IIIF Manifest (Presentation API 3)"
+        ]
+      },
+      "format": "application/ld+json"
+    },
+    {
+      "id": "https://collections.library.yale.edu/catalog/11873654",
+      "type": "Text",
+      "label": {
+        "en": [
+          "Yale University Library catalog record 11873654"
+        ]
+      }
+    }
+  ],
+  "items": [
+    {
+      "id": "https://cubap.github.io/movable-books/fixtures/pages/yale-11873654-paper-doll-annotations.json/annotation/sheet-model",
+      "type": "Annotation",
+      "motivation": "describing",
+      "label": {
+        "en": [
+          "Derived sheet: coordinate space, scale and behaviour"
+        ]
+      },
+      "body": [
+        {
+          "type": "TextualBody",
+          "value": "Yale's copy of this object is already cut out: the published manifest has one canvas per physical piece, fourteen recto/verso pairs, and no sheet canvas at all. The cutout use case still asks for a view of the uncut sheet, so the sheet here is derived rather than quoted. It is a virtual rectangle 17090 by 11030 units, where one unit is one pixel of Yale's scans, and every piece is given a home position on it. Home positions and footprints are normalised to that rectangle, so 0,0 is its top-left corner and 1,1 its bottom-right corner.",
+          "format": "text/plain",
+          "language": "en"
+        },
+        {
+          "type": "TextualBody",
+          "value": "Scale assumption: all fourteen recto exposures are 3421-3468 px wide by 5609 px tall, which is one fixed camera setup photographing pieces the catalogue measures at 28-31 cm. The pixel-to-millimetre ratio is therefore common to every piece, so an outfit can be laid on a figure at a 1:1 ratio with no resizing and no per-piece scale hint. If a future instance mixes plates photographed at different magnifications, add a `scale` field to each piece body and multiply its footprint by it.",
+          "format": "text/plain",
+          "language": "en"
+        },
+        {
+          "type": "TextualBody",
+          "value": "Transparency: the pieces are photographed on a near-black board, not a white one, so the demo recovers alpha in the browser by flooding inward from the crop border through pixels within a tolerance of that border's median colour. The tolerance below was chosen by comparing the resulting silhouette against an independent luminance-threshold segmentation of the same crops: mean intersection over union 0.989 across all fourteen pieces.",
+          "format": "text/plain",
+          "language": "en"
+        },
+        {
+          "type": "TextualBody",
+          "value": "{\n  \"sheet\": {\n    \"width\": 17090,\n    \"height\": 11030,\n    \"unit\": \"one pixel of the Yale scans\"\n  },\n  \"scale\": {\n    \"shared\": true,\n    \"basis\": \"14 recto canvases of 3421-3468 x 5609 px over pieces of 28-31 cm\"\n  },\n  \"snap\": {\n    \"threshold\": 0.05,\n    \"space\": \"fraction of sheet width, measured between torso anchors\"\n  },\n  \"alpha\": {\n    \"method\": \"edge flood fill\",\n    \"seed\": \"crop border\",\n    \"tolerance\": 46,\n    \"referenceColour\": \"median of the border pixels\",\n    \"edgeSoftening\": 140\n  }\n}",
+          "format": "application/json"
+        }
+      ]
+    },
+    {
+      "id": "https://cubap.github.io/movable-books/fixtures/pages/yale-11873654-paper-doll-annotations.json/annotation/cut-state",
+      "type": "Annotation",
+      "motivation": "describing",
+      "label": {
+        "en": [
+          "Condition of this copy: already cut, several figures partly dressed"
+        ]
+      },
+      "body": {
+        "type": "TextualBody",
+        "value": "The catalogue gives an extent of 8 paper dolls (5 male, 3 female) and 6 paper outfits (4 men's, 2 women's), and says that two of the outfits are taped onto figures in this copy. The fourteen recto canvases are exactly that count, so each canvas carries one piece and none carries a sheet of pieces. Several figures are also painted wearing something, which is why the demo treats a garment as an overlay on top of whatever the figure already shows rather than as a replacement for a bare body. Several dolls have lost arms, hands or feet, so the silhouette the flood fill recovers is the surviving paper, not the intended figure. Which two outfits are the taped ones cannot be told from the scans alone and is not asserted here.",
+        "format": "text/plain",
+        "language": "en"
+      }
+    },
+    {
+      "id": "https://cubap.github.io/movable-books/fixtures/pages/yale-11873654-paper-doll-annotations.json/annotation/female-2",
+      "type": "Annotation",
+      "motivation": "tagging",
+      "label": {
+        "en": [
+          "Figure: young woman with auburn hair, undressed, both arms lost below the shoulder"
+        ]
+      },
+      "body": [
+        {
+          "type": "TextualBody",
+          "value": "movable-books:piece",
+          "format": "text/plain",
+          "language": "en"
+        },
+        {
+          "type": "TextualBody",
+          "value": "movable-books:role.figure",
+          "format": "text/plain",
+          "language": "en"
+        },
+        {
+          "type": "TextualBody",
+          "value": "movable-books:id.female-2",
+          "format": "text/plain",
+          "language": "en"
+        },
+        {
+          "type": "TextualBody",
+          "value": "movable-books:sex.female",
+          "format": "text/plain",
+          "language": "en"
+        },
+        {
+          "type": "TextualBody",
+          "value": "{\n  \"piece\": \"female-2\",\n  \"role\": \"figure\",\n  \"fits\": \"female\",\n  \"region\": {\n    \"x\": 601,\n    \"y\": 382,\n    \"w\": 2006,\n    \"h\": 4846\n  },\n  \"anchor\": {\n    \"x\": 0.38,\n    \"y\": 0.26,\n    \"space\": \"normalised to the whole Yale canvas image\",\n    \"meaning\": \"upper chest, at the armpit line\"\n  },\n  \"home\": {\n    \"x\": 0.04143,\n    \"y\": 0.03935,\n    \"space\": \"normalised derived-sheet units\"\n  },\n  \"size\": {\n    \"w\": 0.11738,\n    \"h\": 0.43935,\n    \"space\": \"normalised derived-sheet units\"\n  }\n}",
+          "format": "application/json"
+        }
+      ],
+      "target": {
+        "type": "SpecificResource",
+        "source": "https://collections.library.yale.edu/manifests/oid/11873654/canvas/11873745",
+        "selector": {
+          "type": "FragmentSelector",
+          "conformsTo": "http://www.w3.org/TR/media-frags/",
+          "value": "xywh=601,382,2006,4846"
+        }
+      }
+    },
+    {
+      "id": "https://cubap.github.io/movable-books/fixtures/pages/yale-11873654-paper-doll-annotations.json/annotation/gown-pink",
+      "type": "Annotation",
+      "motivation": "tagging",
+      "label": {
+        "en": [
+          "Garment: pink and lavender evening gown with a white collar and a green sash"
+        ]
+      },
+      "body": [
+        {
+          "type": "TextualBody",
+          "value": "movable-books:piece",
+          "format": "text/plain",
+          "language": "en"
+        },
+        {
+          "type": "TextualBody",
+          "value": "movable-books:role.garment",
+          "format": "text/plain",
+          "language": "en"
+        },
+        {
+          "type": "TextualBody",
+          "value": "movable-books:id.gown-pink",
+          "format": "text/plain",
+          "language": "en"
+        },
+        {
+          "type": "TextualBody",
+          "value": "movable-books:fits.female",
+          "format": "text/plain",
+          "language": "en"
+        },
+        {
+          "type": "TextualBody",
+          "value": "{\n  \"piece\": \"gown-pink\",\n  \"role\": \"garment\",\n  \"fits\": \"female\",\n  \"region\": {\n    \"x\": 746,\n    \"y\": 387,\n    \"w\": 2318,\n    \"h\": 4996\n  },\n  \"anchor\": {\n    \"x\": 0.42,\n    \"y\": 0.18,\n    \"space\": \"normalised to the whole Yale canvas image\",\n    \"meaning\": \"upper chest, at the armpit line\"\n  },\n  \"home\": {\n    \"x\": 0.17051,\n    \"y\": 0.02575,\n    \"space\": \"normalised derived-sheet units\"\n  },\n  \"size\": {\n    \"w\": 0.13563,\n    \"h\": 0.45295,\n    \"space\": \"normalised derived-sheet units\"\n  }\n}",
+          "format": "application/json"
+        }
+      ],
+      "target": {
+        "type": "SpecificResource",
+        "source": "https://collections.library.yale.edu/manifests/oid/11873654/canvas/11873747",
+        "selector": {
+          "type": "FragmentSelector",
+          "conformsTo": "http://www.w3.org/TR/media-frags/",
+          "value": "xywh=746,387,2318,4996"
+        }
+      }
+    },
+    {
+      "id": "https://cubap.github.io/movable-books/fixtures/pages/yale-11873654-paper-doll-annotations.json/annotation/gown-cream",
+      "type": "Annotation",
+      "motivation": "tagging",
+      "label": {
+        "en": [
+          "Garment: cream dress with a pink sash and pink-trimmed skirt"
+        ]
+      },
+      "body": [
+        {
+          "type": "TextualBody",
+          "value": "movable-books:piece",
+          "format": "text/plain",
+          "language": "en"
+        },
+        {
+          "type": "TextualBody",
+          "value": "movable-books:role.garment",
+          "format": "text/plain",
+          "language": "en"
+        },
+        {
+          "type": "TextualBody",
+          "value": "movable-books:id.gown-cream",
+          "format": "text/plain",
+          "language": "en"
+        },
+        {
+          "type": "TextualBody",
+          "value": "movable-books:fits.female",
+          "format": "text/plain",
+          "language": "en"
+        },
+        {
+          "type": "TextualBody",
+          "value": "{\n  \"piece\": \"gown-cream\",\n  \"role\": \"garment\",\n  \"fits\": \"female\",\n  \"region\": {\n    \"x\": 705,\n    \"y\": 734,\n    \"w\": 1647,\n    \"h\": 4308\n  },\n  \"anchor\": {\n    \"x\": 0.4,\n    \"y\": 0.23,\n    \"space\": \"normalised to the whole Yale canvas image\",\n    \"meaning\": \"upper chest, at the armpit line\"\n  },\n  \"home\": {\n    \"x\": 0.31785,\n    \"y\": 0.08812,\n    \"space\": \"normalised derived-sheet units\"\n  },\n  \"size\": {\n    \"w\": 0.09637,\n    \"h\": 0.39057,\n    \"space\": \"normalised derived-sheet units\"\n  }\n}",
+          "format": "application/json"
+        }
+      ],
+      "target": {
+        "type": "SpecificResource",
+        "source": "https://collections.library.yale.edu/manifests/oid/11873654/canvas/11873749",
+        "selector": {
+          "type": "FragmentSelector",
+          "conformsTo": "http://www.w3.org/TR/media-frags/",
+          "value": "xywh=705,734,1647,4308"
+        }
+      }
+    },
+    {
+      "id": "https://cubap.github.io/movable-books/fixtures/pages/yale-11873654-paper-doll-annotations.json/annotation/female-1",
+      "type": "Annotation",
+      "motivation": "tagging",
+      "label": {
+        "en": [
+          "Figure: young woman with dark hair in a blue skirt over a white petticoat, arms lost"
+        ]
+      },
+      "body": [
+        {
+          "type": "TextualBody",
+          "value": "movable-books:piece",
+          "format": "text/plain",
+          "language": "en"
+        },
+        {
+          "type": "TextualBody",
+          "value": "movable-books:role.figure",
+          "format": "text/plain",
+          "language": "en"
+        },
+        {
+          "type": "TextualBody",
+          "value": "movable-books:id.female-1",
+          "format": "text/plain",
+          "language": "en"
+        },
+        {
+          "type": "TextualBody",
+          "value": "movable-books:sex.female",
+          "format": "text/plain",
+          "language": "en"
+        },
+        {
+          "type": "TextualBody",
+          "value": "{\n  \"piece\": \"female-1\",\n  \"role\": \"figure\",\n  \"fits\": \"female\",\n  \"region\": {\n    \"x\": 688,\n    \"y\": 885,\n    \"w\": 2081,\n    \"h\": 4094\n  },\n  \"anchor\": {\n    \"x\": 0.42,\n    \"y\": 0.34,\n    \"space\": \"normalised to the whole Yale canvas image\",\n    \"meaning\": \"upper chest, at the armpit line\"\n  },\n  \"home\": {\n    \"x\": 0.42592,\n    \"y\": 0.10752,\n    \"space\": \"normalised derived-sheet units\"\n  },\n  \"size\": {\n    \"w\": 0.12177,\n    \"h\": 0.37117,\n    \"space\": \"normalised derived-sheet units\"\n  }\n}",
+          "format": "application/json"
+        }
+      ],
+      "target": {
+        "type": "SpecificResource",
+        "source": "https://collections.library.yale.edu/manifests/oid/11873654/canvas/11873743",
+        "selector": {
+          "type": "FragmentSelector",
+          "conformsTo": "http://www.w3.org/TR/media-frags/",
+          "value": "xywh=688,885,2081,4094"
+        }
+      }
+    },
+    {
+      "id": "https://cubap.github.io/movable-books/fixtures/pages/yale-11873654-paper-doll-annotations.json/annotation/female-3",
+      "type": "Annotation",
+      "motivation": "tagging",
+      "label": {
+        "en": [
+          "Figure: young woman with auburn hair in a maroon skirt, white apron and blue sash"
+        ]
+      },
+      "body": [
+        {
+          "type": "TextualBody",
+          "value": "movable-books:piece",
+          "format": "text/plain",
+          "language": "en"
+        },
+        {
+          "type": "TextualBody",
+          "value": "movable-books:role.figure",
+          "format": "text/plain",
+          "language": "en"
+        },
+        {
+          "type": "TextualBody",
+          "value": "movable-books:id.female-3",
+          "format": "text/plain",
+          "language": "en"
+        },
+        {
+          "type": "TextualBody",
+          "value": "movable-books:sex.female",
+          "format": "text/plain",
+          "language": "en"
+        },
+        {
+          "type": "TextualBody",
+          "value": "{\n  \"piece\": \"female-3\",\n  \"role\": \"figure\",\n  \"fits\": \"female\",\n  \"region\": {\n    \"x\": 462,\n    \"y\": 382,\n    \"w\": 2150,\n    \"h\": 4938\n  },\n  \"anchor\": {\n    \"x\": 0.37,\n    \"y\": 0.25,\n    \"space\": \"normalised to the whole Yale canvas image\",\n    \"meaning\": \"upper chest, at the armpit line\"\n  },\n  \"home\": {\n    \"x\": 0.55939,\n    \"y\": 0.03101,\n    \"space\": \"normalised derived-sheet units\"\n  },\n  \"size\": {\n    \"w\": 0.1258,\n    \"h\": 0.44769,\n    \"space\": \"normalised derived-sheet units\"\n  }\n}",
+          "format": "application/json"
+        }
+      ],
+      "target": {
+        "type": "SpecificResource",
+        "source": "https://collections.library.yale.edu/manifests/oid/11873654/canvas/11873753",
+        "selector": {
+          "type": "FragmentSelector",
+          "conformsTo": "http://www.w3.org/TR/media-frags/",
+          "value": "xywh=462,382,2150,4938"
+        }
+      }
+    },
+    {
+      "id": "https://cubap.github.io/movable-books/fixtures/pages/yale-11873654-paper-doll-annotations.json/annotation/male-1",
+      "type": "Annotation",
+      "motivation": "tagging",
+      "label": {
+        "en": [
+          "Figure: young man with dark hair, bare chest and a long navy lower garment"
+        ]
+      },
+      "body": [
+        {
+          "type": "TextualBody",
+          "value": "movable-books:piece",
+          "format": "text/plain",
+          "language": "en"
+        },
+        {
+          "type": "TextualBody",
+          "value": "movable-books:role.figure",
+          "format": "text/plain",
+          "language": "en"
+        },
+        {
+          "type": "TextualBody",
+          "value": "movable-books:id.male-1",
+          "format": "text/plain",
+          "language": "en"
+        },
+        {
+          "type": "TextualBody",
+          "value": "movable-books:sex.male",
+          "format": "text/plain",
+          "language": "en"
+        },
+        {
+          "type": "TextualBody",
+          "value": "{\n  \"piece\": \"male-1\",\n  \"role\": \"figure\",\n  \"fits\": \"male\",\n  \"region\": {\n    \"x\": 653,\n    \"y\": 509,\n    \"w\": 2364,\n    \"h\": 4724\n  },\n  \"anchor\": {\n    \"x\": 0.42,\n    \"y\": 0.27,\n    \"space\": \"normalised to the whole Yale canvas image\",\n    \"meaning\": \"upper chest, at the armpit line\"\n  },\n  \"home\": {\n    \"x\": 0.6969,\n    \"y\": 0.05041,\n    \"space\": \"normalised derived-sheet units\"\n  },\n  \"size\": {\n    \"w\": 0.13833,\n    \"h\": 0.42829,\n    \"space\": \"normalised derived-sheet units\"\n  }\n}",
+          "format": "application/json"
+        }
+      ],
+      "target": {
+        "type": "SpecificResource",
+        "source": "https://collections.library.yale.edu/manifests/oid/11873654/canvas/11873751",
+        "selector": {
+          "type": "FragmentSelector",
+          "conformsTo": "http://www.w3.org/TR/media-frags/",
+          "value": "xywh=653,509,2364,4724"
+        }
+      }
+    },
+    {
+      "id": "https://cubap.github.io/movable-books/fixtures/pages/yale-11873654-paper-doll-annotations.json/annotation/male-2",
+      "type": "Annotation",
+      "motivation": "tagging",
+      "label": {
+        "en": [
+          "Figure: young man with dark hair in a navy skirt over a white petticoat"
+        ]
+      },
+      "body": [
+        {
+          "type": "TextualBody",
+          "value": "movable-books:piece",
+          "format": "text/plain",
+          "language": "en"
+        },
+        {
+          "type": "TextualBody",
+          "value": "movable-books:role.figure",
+          "format": "text/plain",
+          "language": "en"
+        },
+        {
+          "type": "TextualBody",
+          "value": "movable-books:id.male-2",
+          "format": "text/plain",
+          "language": "en"
+        },
+        {
+          "type": "TextualBody",
+          "value": "movable-books:sex.male",
+          "format": "text/plain",
+          "language": "en"
+        },
+        {
+          "type": "TextualBody",
+          "value": "{\n  \"piece\": \"male-2\",\n  \"role\": \"figure\",\n  \"fits\": \"male\",\n  \"region\": {\n    \"x\": 705,\n    \"y\": 202,\n    \"w\": 1907,\n    \"h\": 5100\n  },\n  \"anchor\": {\n    \"x\": 0.42,\n    \"y\": 0.21,\n    \"space\": \"normalised to the whole Yale canvas image\",\n    \"meaning\": \"upper chest, at the armpit line\"\n  },\n  \"home\": {\n    \"x\": 0.84693,\n    \"y\": 0.01632,\n    \"space\": \"normalised derived-sheet units\"\n  },\n  \"size\": {\n    \"w\": 0.11159,\n    \"h\": 0.46238,\n    \"space\": \"normalised derived-sheet units\"\n  }\n}",
+          "format": "application/json"
+        }
+      ],
+      "target": {
+        "type": "SpecificResource",
+        "source": "https://collections.library.yale.edu/manifests/oid/11873654/canvas/11873757",
+        "selector": {
+          "type": "FragmentSelector",
+          "conformsTo": "http://www.w3.org/TR/media-frags/",
+          "value": "xywh=705,202,1907,5100"
+        }
+      }
+    },
+    {
+      "id": "https://cubap.github.io/movable-books/fixtures/pages/yale-11873654-paper-doll-annotations.json/annotation/male-3",
+      "type": "Annotation",
+      "motivation": "tagging",
+      "label": {
+        "en": [
+          "Figure: young man with dark hair in a dark green skirt"
+        ]
+      },
+      "body": [
+        {
+          "type": "TextualBody",
+          "value": "movable-books:piece",
+          "format": "text/plain",
+          "language": "en"
+        },
+        {
+          "type": "TextualBody",
+          "value": "movable-books:role.figure",
+          "format": "text/plain",
+          "language": "en"
+        },
+        {
+          "type": "TextualBody",
+          "value": "movable-books:id.male-3",
+          "format": "text/plain",
+          "language": "en"
+        },
+        {
+          "type": "TextualBody",
+          "value": "movable-books:sex.male",
+          "format": "text/plain",
+          "language": "en"
+        },
+        {
+          "type": "TextualBody",
+          "value": "{\n  \"piece\": \"male-3\",\n  \"role\": \"figure\",\n  \"fits\": \"male\",\n  \"region\": {\n    \"x\": 694,\n    \"y\": 347,\n    \"w\": 2381,\n    \"h\": 4684\n  },\n  \"anchor\": {\n    \"x\": 0.4,\n    \"y\": 0.24,\n    \"space\": \"normalised to the whole Yale canvas image\",\n    \"meaning\": \"upper chest, at the armpit line\"\n  },\n  \"home\": {\n    \"x\": 0.01053,\n    \"y\": 0.55902,\n    \"space\": \"normalised derived-sheet units\"\n  },\n  \"size\": {\n    \"w\": 0.13932,\n    \"h\": 0.42466,\n    \"space\": \"normalised derived-sheet units\"\n  }\n}",
+          "format": "application/json"
+        }
+      ],
+      "target": {
+        "type": "SpecificResource",
+        "source": "https://collections.library.yale.edu/manifests/oid/11873654/canvas/11873759",
+        "selector": {
+          "type": "FragmentSelector",
+          "conformsTo": "http://www.w3.org/TR/media-frags/",
+          "value": "xywh=694,347,2381,4684"
+        }
+      }
+    },
+    {
+      "id": "https://cubap.github.io/movable-books/fixtures/pages/yale-11873654-paper-doll-annotations.json/annotation/male-4",
+      "type": "Annotation",
+      "motivation": "tagging",
+      "label": {
+        "en": [
+          "Figure: young man with dark hair in a black coat over a white shirt"
+        ]
+      },
+      "body": [
+        {
+          "type": "TextualBody",
+          "value": "movable-books:piece",
+          "format": "text/plain",
+          "language": "en"
+        },
+        {
+          "type": "TextualBody",
+          "value": "movable-books:role.figure",
+          "format": "text/plain",
+          "language": "en"
+        },
+        {
+          "type": "TextualBody",
+          "value": "movable-books:id.male-4",
+          "format": "text/plain",
+          "language": "en"
+        },
+        {
+          "type": "TextualBody",
+          "value": "movable-books:sex.male",
+          "format": "text/plain",
+          "language": "en"
+        },
+        {
+          "type": "TextualBody",
+          "value": "{\n  \"piece\": \"male-4\",\n  \"role\": \"figure\",\n  \"fits\": \"male\",\n  \"region\": {\n    \"x\": 1040,\n    \"y\": 688,\n    \"w\": 1405,\n    \"h\": 4395\n  },\n  \"anchor\": {\n    \"x\": 0.47,\n    \"y\": 0.29,\n    \"space\": \"normalised to the whole Yale canvas image\",\n    \"meaning\": \"upper chest, at the armpit line\"\n  },\n  \"home\": {\n    \"x\": 0.16156,\n    \"y\": 0.58522,\n    \"space\": \"normalised derived-sheet units\"\n  },\n  \"size\": {\n    \"w\": 0.08221,\n    \"h\": 0.39846,\n    \"space\": \"normalised derived-sheet units\"\n  }\n}",
+          "format": "application/json"
+        }
+      ],
+      "target": {
+        "type": "SpecificResource",
+        "source": "https://collections.library.yale.edu/manifests/oid/11873654/canvas/11873761",
+        "selector": {
+          "type": "FragmentSelector",
+          "conformsTo": "http://www.w3.org/TR/media-frags/",
+          "value": "xywh=1040,688,1405,4395"
+        }
+      }
+    },
+    {
+      "id": "https://cubap.github.io/movable-books/fixtures/pages/yale-11873654-paper-doll-annotations.json/annotation/male-5",
+      "type": "Annotation",
+      "motivation": "tagging",
+      "label": {
+        "en": [
+          "Figure: young man with dark hair in a navy skirt, one hand on the hip"
+        ]
+      },
+      "body": [
+        {
+          "type": "TextualBody",
+          "value": "movable-books:piece",
+          "format": "text/plain",
+          "language": "en"
+        },
+        {
+          "type": "TextualBody",
+          "value": "movable-books:role.figure",
+          "format": "text/plain",
+          "language": "en"
+        },
+        {
+          "type": "TextualBody",
+          "value": "movable-books:id.male-5",
+          "format": "text/plain",
+          "language": "en"
+        },
+        {
+          "type": "TextualBody",
+          "value": "movable-books:sex.male",
+          "format": "text/plain",
+          "language": "en"
+        },
+        {
+          "type": "TextualBody",
+          "value": "{\n  \"piece\": \"male-5\",\n  \"role\": \"figure\",\n  \"fits\": \"male\",\n  \"region\": {\n    \"x\": 98,\n    \"y\": 312,\n    \"w\": 2659,\n    \"h\": 5250\n  },\n  \"anchor\": {\n    \"x\": 0.47,\n    \"y\": 0.23,\n    \"space\": \"normalised to the whole Yale canvas image\",\n    \"meaning\": \"upper chest, at the armpit line\"\n  },\n  \"home\": {\n    \"x\": 0.25547,\n    \"y\": 0.50771,\n    \"space\": \"normalised derived-sheet units\"\n  },\n  \"size\": {\n    \"w\": 0.15559,\n    \"h\": 0.47597,\n    \"space\": \"normalised derived-sheet units\"\n  }\n}",
+          "format": "application/json"
+        }
+      ],
+      "target": {
+        "type": "SpecificResource",
+        "source": "https://collections.library.yale.edu/manifests/oid/11873654/canvas/11873763",
+        "selector": {
+          "type": "FragmentSelector",
+          "conformsTo": "http://www.w3.org/TR/media-frags/",
+          "value": "xywh=98,312,2659,5250"
+        }
+      }
+    },
+    {
+      "id": "https://cubap.github.io/movable-books/fixtures/pages/yale-11873654-paper-doll-annotations.json/annotation/coat-maroon",
+      "type": "Annotation",
+      "motivation": "tagging",
+      "label": {
+        "en": [
+          "Garment: maroon full-length coat with a white collar, green belt and gold buttons"
+        ]
+      },
+      "body": [
+        {
+          "type": "TextualBody",
+          "value": "movable-books:piece",
+          "format": "text/plain",
+          "language": "en"
+        },
+        {
+          "type": "TextualBody",
+          "value": "movable-books:role.garment",
+          "format": "text/plain",
+          "language": "en"
+        },
+        {
+          "type": "TextualBody",
+          "value": "movable-books:id.coat-maroon",
+          "format": "text/plain",
+          "language": "en"
+        },
+        {
+          "type": "TextualBody",
+          "value": "movable-books:fits.male",
+          "format": "text/plain",
+          "language": "en"
+        },
+        {
+          "type": "TextualBody",
+          "value": "{\n  \"piece\": \"coat-maroon\",\n  \"role\": \"garment\",\n  \"fits\": \"male\",\n  \"region\": {\n    \"x\": 670,\n    \"y\": 538,\n    \"w\": 1994,\n    \"h\": 4429\n  },\n  \"anchor\": {\n    \"x\": 0.42,\n    \"y\": 0.2,\n    \"space\": \"normalised to the whole Yale canvas image\",\n    \"meaning\": \"upper chest, at the armpit line\"\n  },\n  \"home\": {\n    \"x\": 0.42276,\n    \"y\": 0.58214,\n    \"space\": \"normalised derived-sheet units\"\n  },\n  \"size\": {\n    \"w\": 0.11668,\n    \"h\": 0.40154,\n    \"space\": \"normalised derived-sheet units\"\n  }\n}",
+          "format": "application/json"
+        }
+      ],
+      "target": {
+        "type": "SpecificResource",
+        "source": "https://collections.library.yale.edu/manifests/oid/11873654/canvas/11873755",
+        "selector": {
+          "type": "FragmentSelector",
+          "conformsTo": "http://www.w3.org/TR/media-frags/",
+          "value": "xywh=670,538,1994,4429"
+        }
+      }
+    },
+    {
+      "id": "https://cubap.github.io/movable-books/fixtures/pages/yale-11873654-paper-doll-annotations.json/annotation/suit-buttons",
+      "type": "Annotation",
+      "motivation": "tagging",
+      "label": {
+        "en": [
+          "Garment: black suit with gold buttons, white shirt and black bow tie"
+        ]
+      },
+      "body": [
+        {
+          "type": "TextualBody",
+          "value": "movable-books:piece",
+          "format": "text/plain",
+          "language": "en"
+        },
+        {
+          "type": "TextualBody",
+          "value": "movable-books:role.garment",
+          "format": "text/plain",
+          "language": "en"
+        },
+        {
+          "type": "TextualBody",
+          "value": "movable-books:id.suit-buttons",
+          "format": "text/plain",
+          "language": "en"
+        },
+        {
+          "type": "TextualBody",
+          "value": "movable-books:fits.male",
+          "format": "text/plain",
+          "language": "en"
+        },
+        {
+          "type": "TextualBody",
+          "value": "{\n  \"piece\": \"suit-buttons\",\n  \"role\": \"garment\",\n  \"fits\": \"male\",\n  \"region\": {\n    \"x\": 266,\n    \"y\": 295,\n    \"w\": 2791,\n    \"h\": 5031\n  },\n  \"anchor\": {\n    \"x\": 0.47,\n    \"y\": 0.18,\n    \"space\": \"normalised to the whole Yale canvas image\",\n    \"meaning\": \"upper chest, at the armpit line\"\n  },\n  \"home\": {\n    \"x\": 0.55114,\n    \"y\": 0.52756,\n    \"space\": \"normalised derived-sheet units\"\n  },\n  \"size\": {\n    \"w\": 0.16331,\n    \"h\": 0.45612,\n    \"space\": \"normalised derived-sheet units\"\n  }\n}",
+          "format": "application/json"
+        }
+      ],
+      "target": {
+        "type": "SpecificResource",
+        "source": "https://collections.library.yale.edu/manifests/oid/11873654/canvas/11873765",
+        "selector": {
+          "type": "FragmentSelector",
+          "conformsTo": "http://www.w3.org/TR/media-frags/",
+          "value": "xywh=266,295,2791,5031"
+        }
+      }
+    },
+    {
+      "id": "https://cubap.github.io/movable-books/fixtures/pages/yale-11873654-paper-doll-annotations.json/annotation/suit-evening",
+      "type": "Annotation",
+      "motivation": "tagging",
+      "label": {
+        "en": [
+          "Garment: black evening jacket with a white shirt, black bow tie and trousers"
+        ]
+      },
+      "body": [
+        {
+          "type": "TextualBody",
+          "value": "movable-books:piece",
+          "format": "text/plain",
+          "language": "en"
+        },
+        {
+          "type": "TextualBody",
+          "value": "movable-books:role.garment",
+          "format": "text/plain",
+          "language": "en"
+        },
+        {
+          "type": "TextualBody",
+          "value": "movable-books:id.suit-evening",
+          "format": "text/plain",
+          "language": "en"
+        },
+        {
+          "type": "TextualBody",
+          "value": "movable-books:fits.male",
+          "format": "text/plain",
+          "language": "en"
+        },
+        {
+          "type": "TextualBody",
+          "value": "{\n  \"piece\": \"suit-evening\",\n  \"role\": \"garment\",\n  \"fits\": \"male\",\n  \"region\": {\n    \"x\": 474,\n    \"y\": 1058,\n    \"w\": 2358,\n    \"h\": 3926\n  },\n  \"anchor\": {\n    \"x\": 0.47,\n    \"y\": 0.28,\n    \"space\": \"normalised to the whole Yale canvas image\",\n    \"meaning\": \"upper chest, at the armpit line\"\n  },\n  \"home\": {\n    \"x\": 0.72616,\n    \"y\": 0.62774,\n    \"space\": \"normalised derived-sheet units\"\n  },\n  \"size\": {\n    \"w\": 0.13798,\n    \"h\": 0.35594,\n    \"space\": \"normalised derived-sheet units\"\n  }\n}",
+          "format": "application/json"
+        }
+      ],
+      "target": {
+        "type": "SpecificResource",
+        "source": "https://collections.library.yale.edu/manifests/oid/11873654/canvas/11873767",
+        "selector": {
+          "type": "FragmentSelector",
+          "conformsTo": "http://www.w3.org/TR/media-frags/",
+          "value": "xywh=474,1058,2358,3926"
+        }
+      }
+    },
+    {
+      "id": "https://cubap.github.io/movable-books/fixtures/pages/yale-11873654-paper-doll-annotations.json/annotation/tailcoat",
+      "type": "Annotation",
+      "motivation": "tagging",
+      "label": {
+        "en": [
+          "Garment: black tailcoat with gold buttons, white shirt and black bow tie"
+        ]
+      },
+      "body": [
+        {
+          "type": "TextualBody",
+          "value": "movable-books:piece",
+          "format": "text/plain",
+          "language": "en"
+        },
+        {
+          "type": "TextualBody",
+          "value": "movable-books:role.garment",
+          "format": "text/plain",
+          "language": "en"
+        },
+        {
+          "type": "TextualBody",
+          "value": "movable-books:id.tailcoat",
+          "format": "text/plain",
+          "language": "en"
+        },
+        {
+          "type": "TextualBody",
+          "value": "movable-books:fits.male",
+          "format": "text/plain",
+          "language": "en"
+        },
+        {
+          "type": "TextualBody",
+          "value": "{\n  \"piece\": \"tailcoat\",\n  \"role\": \"garment\",\n  \"fits\": \"male\",\n  \"region\": {\n    \"x\": 728,\n    \"y\": 1018,\n    \"w\": 1942,\n    \"h\": 3764\n  },\n  \"anchor\": {\n    \"x\": 0.47,\n    \"y\": 0.28,\n    \"space\": \"normalised to the whole Yale canvas image\",\n    \"meaning\": \"upper chest, at the armpit line\"\n  },\n  \"home\": {\n    \"x\": 0.87583,\n    \"y\": 0.64243,\n    \"space\": \"normalised derived-sheet units\"\n  },\n  \"size\": {\n    \"w\": 0.11363,\n    \"h\": 0.34125,\n    \"space\": \"normalised derived-sheet units\"\n  }\n}",
+          "format": "application/json"
+        }
+      ],
+      "target": {
+        "type": "SpecificResource",
+        "source": "https://collections.library.yale.edu/manifests/oid/11873654/canvas/11873769",
+        "selector": {
+          "type": "FragmentSelector",
+          "conformsTo": "http://www.w3.org/TR/media-frags/",
+          "value": "xywh=728,1018,1942,3764"
+        }
+      }
+    }
+  ]
+}
