@@ -1,0 +1,130 @@
+---
+layout: default
+title: "MNHS Scrapbook — Sachet & Flap"
+permalink: /demos/mnhs-scrapbook-sachet.html
+---
+
+<div class="demo-mnhs-scrapbook">
+  <h1>Birchwood League of Women Voters scrapbook — sachet extraction</h1>
+  <p>
+    A 1950s publicity scrapbook with a flap that opens to reveal a pocket containing a foil
+    sachet of hand lotion. Drag the slider (or press Play) to move through the four states:
+    flap closed → flap open → sachet extracted → sachet moved aside.
+  </p>
+
+  <div class="panel-and-controls">
+    <div class="image-panel" aria-label="Scrapbook sachet state animation">
+      <img id="img-05" alt="State 1: flap closed, sachet in pocket" src="{{ '/assets/images/mnhs-scrapbook/05_cropped.jpg' | relative_url }}" />
+      <img id="img-06" class="is-hidden" alt="State 2: flap open, sachet in pocket" src="{{ '/assets/images/mnhs-scrapbook/06_cropped.jpg' | relative_url }}" />
+      <img id="img-07" class="is-hidden" alt="State 3: sachet extracted, draped over flap" src="{{ '/assets/images/mnhs-scrapbook/07_cropped.jpg' | relative_url }}" />
+      <img id="img-08" class="is-hidden" alt="State 4: sachet moved aside on the page" src="{{ '/assets/images/mnhs-scrapbook/08_cropped.jpg' | relative_url }}" />
+    </div>
+
+    <div class="controls">
+      <label for="state">State</label>
+      <input id="state" type="range" min="0" max="3" value="0" step="0.001" aria-label="Scrapbook state (0-3)" />
+      <div class="ticks">
+        <span>Closed</span><span>Flap open</span><span>Extracted</span><span>Moved aside</span>
+      </div>
+
+      <div class="btn-row">
+        <button type="button" id="btnPlay">▶ Play</button>
+        <button type="button" id="btnReset" aria-label="Reset to flap closed">⟲ Reset</button>
+      </div>
+
+      <details class="details-info">
+        <summary>About this object &amp; the states</summary>
+        <ul>
+          <li><strong>05</strong> — Flap closed: the cover card sits over the pocket; the sachet is tucked inside.</li>
+          <li><strong>06</strong> — Flap open: the “BALM ARGENTA” pocket and directions are revealed, sachet still in place.</li>
+          <li><strong>07</strong> — The foil sachet is pulled out and draped over the top edge of the open flap card.</li>
+          <li><strong>08</strong> — The sachet is moved aside and lies flat on the page (lower-right), flap closed again.</li>
+        </ul>
+      </details>
+
+      <details class="details-info">
+        <summary>Photography recommendations</summary>
+        <ul>
+          <li>Lock camera position, exposure, and white balance across all states so the crossfade aligns without flicker.</li>
+          <li>Include a gray card or color target in at least one frame per setup.</li>
+          <li>For removable elements (like this sachet): photograph in place, mid-extraction, and fully removed on a plain, evenly-lit background at the same scale. A plain background enables a clean cutout (transparent PNG) for path-based animation later.</li>
+          <li>For flaps: capture each intermediate state (each flap individually, then combinations).</li>
+          <li>Keep the same resolution and aspect ratio across states; avoid re-cropping between shots.</li>
+        </ul>
+      </details>
+    </div>
+  </div>
+</div>
+
+<style>
+  .demo-mnhs-scrapbook .panel-and-controls { display: grid; grid-template-columns: 1fr; gap: 1rem; align-items: start; }
+  @media (min-width: 900px){ .demo-mnhs-scrapbook .panel-and-controls { grid-template-columns: 2fr 1fr; } }
+  .demo-mnhs-scrapbook .image-panel {
+    position: relative; width: 100%; max-width: 800px;
+    aspect-ratio: 1199 / 1600; background: #111; border: 1px solid var(--border-color, #ddd); overflow: hidden;
+  }
+  .demo-mnhs-scrapbook .image-panel img {
+    position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain;
+    transition: opacity 300ms ease; background: #111;
+  }
+  .demo-mnhs-scrapbook .image-panel img.is-hidden { opacity: 0; }
+  .demo-mnhs-scrapbook .controls { display: flex; flex-direction: column; gap: .6rem; }
+  .demo-mnhs-scrapbook .controls input[type="range"] { width: 100%; }
+  .demo-mnhs-scrapbook .ticks { display: flex; justify-content: space-between; font-size: .8rem; color: #555; gap: .25rem; }
+  .demo-mnhs-scrapbook .ticks span { text-align: center; flex: 1; }
+  .demo-mnhs-scrapbook .btn-row { display: flex; gap: .5rem; }
+  .demo-mnhs-scrapbook .btn-row button { flex: 1; padding: .5rem .75rem; cursor: pointer; border: 1px solid var(--primary-color, #2c5aa0); background: var(--primary-color, #2c5aa0); color: #fff; border-radius: 4px; }
+  .demo-mnhs-scrapbook .btn-row button:hover { background: var(--secondary-color, #0d5ba6); }
+  .demo-mnhs-scrapbook .details-info summary { cursor: pointer; font-weight: 600; }
+</style>
+
+<script>
+  const stateInput = document.getElementById('state');
+  const btnPlay = document.getElementById('btnPlay');
+  const btnReset = document.getElementById('btnReset');
+  const imgs = ['img-05', 'img-06', 'img-07', 'img-08'].map(id => document.getElementById(id));
+  const NUM_STATES = imgs.length;
+
+  let playing = false;
+  let timer = null;
+
+  const applyState = (t) => {
+    imgs.forEach((img, i) => {
+      const dist = Math.abs(t - i);
+      const visible = dist < 1;
+      img.classList.toggle('is-hidden', !visible);
+      img.style.opacity = visible ? String(Math.max(0, 1 - dist)) : '0';
+    });
+  };
+
+  stateInput.addEventListener('input', (e) => {
+    applyState(Number(e.target.value));
+  });
+
+  const step = () => {
+    const cur = Number(stateInput.value);
+    const next = cur >= NUM_STATES - 1.001 ? 0 : cur + 1;
+    stateInput.value = String(next);
+    stateInput.dispatchEvent(new Event('input'));
+  };
+
+  const togglePlay = () => {
+    playing = !playing;
+    if (playing) {
+      btnPlay.textContent = '⏸ Pause';
+      timer = setInterval(step, 2600);
+    } else {
+      btnPlay.textContent = '▶ Play';
+      clearInterval(timer);
+    }
+  };
+
+  btnPlay.addEventListener('click', togglePlay);
+  btnReset.addEventListener('click', () => {
+    stateInput.value = '0';
+    applyState(0);
+    if (playing) { clearInterval(timer); playing = false; btnPlay.textContent = '▶ Play'; }
+  });
+
+  applyState(0);
+</script>
