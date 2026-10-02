@@ -1,0 +1,143 @@
+---
+layout: default
+title: "MNHS Cloth Book — Flap States"
+permalink: /demos/mnhs-cloth-book-fade.html
+---
+
+<div class="demo-mnhs-cloth">
+  <h1>Fergus Falls Woolen Mill cloth sample book — flap states</h1>
+  <p>
+    A cloth sample book (Minnesota Historical Society, 1896) with fabric swatches mounted on
+    hinged flaps. Printed details sit under each flap. Drag the slider or press Play to move
+    through the four photographed states with a gentle crossfade.
+  </p>
+
+  <div class="panel-and-controls">
+    <div class="image-panel" aria-label="Cloth book state animation">
+      <img id="img-01" alt="State 1: closed cover" src="{{ '/assets/images/mnhs-cloth-book/01_cropped.jpg' | relative_url }}" />
+      <img id="img-02" class="is-hidden" alt="State 2: open spread, all flaps down" src="{{ '/assets/images/mnhs-cloth-book/02_cropped.jpg' | relative_url }}" />
+      <img id="img-03" class="is-hidden" alt="State 3: right-page flap lifted" src="{{ '/assets/images/mnhs-cloth-book/03_cropped.jpg' | relative_url }}" />
+      <img id="img-04" class="is-hidden" alt="State 4: left-page flap lifted" src="{{ '/assets/images/mnhs-cloth-book/04_cropped.jpg' | relative_url }}" />
+    </div>
+
+    <div class="controls">
+      <label for="state">State</label>
+      <input id="state" type="range" min="0" max="3" value="0" step="0.001" aria-label="Cloth book state (0-3)" />
+      <div class="ticks">
+        <span>Closed</span><span>All down</span><span>Right flap up</span><span>Left flap up</span>
+      </div>
+
+      <div class="btn-row">
+        <button type="button" id="btnPlay">▶ Play</button>
+        <button type="button" id="btnReset" aria-label="Reset to closed">⟲ Reset</button>
+      </div>
+
+      <details class="details-info">
+        <summary>About this object &amp; the states</summary>
+        <ul>
+          <li><strong>01</strong> — Closed cover: “No. 3. CLOTH SAMPLES” from the Fergus Falls Woolen Mill (1896).</li>
+          <li><strong>02</strong> — Open spread; the twelve cloth samples are mounted on hinged flaps, all down.</li>
+          <li><strong>03</strong> — A flap on the right page is lifted, revealing the printed style text underneath.</li>
+          <li><strong>04</strong> — The top-left flap on the left page is lifted above the page edge, revealing “STYLE 37 — Suiting” print. The backside of the cloth (lighter, less finished) is visible.</li>
+        </ul>
+      </details>
+
+      <details class="details-info">
+        <summary>Why a fade instead of a physical fold</summary>
+        <p>
+          The underside of the cloth was not photographed flat: glue and fabric thickness cause
+          bowing and shadowing, and each hinged sample has different tension. These photographs are
+          well-registered at the same size, so a crossfade is a pragmatic, artifact-friendly way to
+          move between states without modeling hinge physics (see photography recommendations below).
+        </p>
+      </details>
+
+      <details class="details-info">
+        <summary>Photography recommendations</summary>
+        <ul>
+          <li>Keep camera position, exposure, and white balance locked across all states so crossfades align without flicker (this set is already well-registered — keep doing that).</li>
+          <li>Include a gray card or color target in at least one frame per setup for color correction.</li>
+          <li>For the cloth backside: even if it can’t lie flat, capture it with raking light to document texture; a separate flat photo of a detached sample would let it be composited.</li>
+          <li>Capture each intermediate state (each flap individually, then combinations) rather than only end states.</li>
+        </ul>
+      </details>
+    </div>
+  </div>
+</div>
+
+<style>
+  .demo-mnhs-cloth .panel-and-controls { display: grid; grid-template-columns: 1fr; gap: 1rem; align-items: start; }
+  @media (min-width: 900px){ .demo-mnhs-cloth .panel-and-controls { grid-template-columns: 2fr 1fr; } }
+  .demo-mnhs-cloth .image-panel {
+    position: relative; width: 100%; max-width: 1024px;
+    aspect-ratio: 1600 / 1042; background: #111; border: 1px solid var(--border-color, #ddd); overflow: hidden;
+  }
+  .demo-mnhs-cloth .image-panel img {
+    position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain;
+    transition: opacity 300ms ease; background: #111;
+  }
+  .demo-mnhs-cloth .image-panel img.is-hidden { opacity: 0; }
+  .demo-mnhs-cloth .controls { display: flex; flex-direction: column; gap: .6rem; }
+  .demo-mnhs-cloth .controls input[type="range"] { width: 100%; }
+  .demo-mnhs-cloth .ticks { display: flex; justify-content: space-between; font-size: .8rem; color: #555; gap: .25rem; }
+  .demo-mnhs-cloth .ticks span { text-align: center; flex: 1; }
+  .demo-mnhs-cloth .btn-row { display: flex; gap: .5rem; }
+  .demo-mnhs-cloth .btn-row button { flex: 1; padding: .5rem .75rem; cursor: pointer; border: 1px solid var(--primary-color, #2c5aa0); background: var(--primary-color, #2c5aa0); color: #fff; border-radius: 4px; }
+  .demo-mnhs-cloth .btn-row button:hover { background: var(--secondary-color, #0d5ba6); }
+  .demo-mnhs-cloth .details-info summary { cursor: pointer; font-weight: 600; }
+</style>
+
+<script>
+  const stateInput = document.getElementById('state');
+  const btnPlay = document.getElementById('btnPlay');
+  const btnReset = document.getElementById('btnReset');
+  const imgs = ['img-01', 'img-02', 'img-03', 'img-04'].map(id => document.getElementById(id));
+  const NUM_STATES = imgs.length;
+
+  let playing = false;
+  let timer = null;
+
+  // Crossfade between nearest states: slider t in [0, NUM_STATES-1]
+  const applyState = (t) => {
+    imgs.forEach((img, i) => {
+      const dist = Math.abs(t - i);
+      // Only the two nearest states are visible; others hidden to avoid double-exposure
+      const visible = dist < 1;
+      img.classList.toggle('is-hidden', !visible);
+      // opacity: 1 at its own state, fading toward the neighbor
+      img.style.opacity = visible ? String(Math.max(0, 1 - dist)) : '0';
+    });
+  };
+
+  stateInput.addEventListener('input', (e) => {
+    applyState(Number(e.target.value));
+  });
+
+  const step = () => {
+    const cur = Number(stateInput.value);
+    const next = cur >= NUM_STATES - 1.001 ? 0 : cur + 1;
+    stateInput.value = String(next);
+    stateInput.dispatchEvent(new Event('input'));
+  };
+
+  const togglePlay = () => {
+    playing = !playing;
+    if (playing) {
+      btnPlay.textContent = '⏸ Pause';
+      timer = setInterval(step, 2200);
+      // If paused at final state, restart
+    } else {
+      btnPlay.textContent = '▶ Play';
+      clearInterval(timer);
+    }
+  };
+
+  btnPlay.addEventListener('click', togglePlay);
+  btnReset.addEventListener('click', () => {
+    stateInput.value = '0';
+    applyState(0);
+    if (playing) { clearInterval(timer); playing = false; btnPlay.textContent = '▶ Play'; }
+  });
+
+  applyState(0);
+</script>
