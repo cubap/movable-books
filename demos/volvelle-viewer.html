@@ -11,7 +11,7 @@ permalink: /demos/volvelle-viewer.html
   </p>
 
   <div class="volvelle-panel-and-controls">
-    <div id="volvelle-panel" class="volvelle-panel" aria-live="polite" tabindex="0" style="position:relative; width:100%; max-width:600px;">
+      <div id="volvelle-panel" class="volvelle-panel" aria-live="polite" tabindex="0" style="position:relative; width:100%; max-width:600px; cursor: grab;">
       <canvas id="volvelle-canvas" style="position:absolute; left:0; top:0; z-index:1; width:100%; height:100%;"></canvas>
       <canvas id="guide-canvas" style="position:absolute; left:0; top:0; z-index:2; pointer-events:none; width:100%; height:100%;"></canvas>
     </div>
@@ -19,16 +19,18 @@ permalink: /demos/volvelle-viewer.html
       <button id="prev-face" aria-label="Previous face">⟨ Prev</button>
       <span id="face-label">Loading…</span>
       <button id="next-face" aria-label="Next face">Next ⟩</button>
+        <button id="btnResetView" aria-label="Reset view">⟲ Reset View</button>
+      </div>
     </div>
-  </div>
 </div>
 
 <style>
   .volvelle-panel-and-controls { display: grid; grid-template-columns: 1fr; gap: 1rem; align-items: start; }
   @media (min-width: 900px){ .volvelle-panel-and-controls { grid-template-columns: 2fr 1fr; } }
   .volvelle-panel { position: relative; width: 100%; max-width: 600px; background: #eee; border: 1px solid #ddd; overflow: hidden; }
-  .volvelle-controls { display: flex; gap: 1rem; align-items: center; justify-content: center; margin-top: 1rem; }
-  #face-label { font-weight: bold; font-size: 1.1rem; }
+  .volvelle-controls { display: flex; gap: 1rem; align-items: center; justify-content: center; margin-top: 1rem; flex-wrap: wrap; }
+  #face-label { font-weight: bold; font-size: 1.1rem; min-width: 120px; text-align: center; }
+  .volvelle-panel:active { cursor: grabbing; }
 </style>
 
 <script>
@@ -52,6 +54,14 @@ let faceData = [];      // Array of { img, clipPath, rotation, label }
 let currentFace = 0;
 let isAnimating = false;
 let rotation = 0;
+
+// View State (Zoom & Pan)
+let scale = 1;
+let offsetX = 0;
+let offsetY = 0;
+let isPanning = false;
+let isRotating = false;
+let lastMousePos = { x: 0, y: 0 };
 
 // Geometry derived from Canvas dimensions
 let canvasW, canvasH;   // Guide Canvas dimensions
@@ -131,6 +141,11 @@ function drawVolvelleDisc() {
   if (faceData.length === 0) return;
 
   volvelleCtx.save();
+  
+  // Apply Global View Transform (Pan & Zoom)
+  volvelleCtx.translate(offsetX, offsetY);
+  volvelleCtx.scale(scale, scale);
+
   // Scale from guide Canvas coordinates to view coordinates
   const scaleX = viewW / canvasW;
   const scaleY = viewH / canvasH;
@@ -145,7 +160,7 @@ function drawVolvelleDisc() {
   const face = faceData[currentFace];
   if (face && face.img) {
     volvelleCtx.save();
-    const angle = face.rotation * Math.PI / 180;
+    const angle = (face.rotation + rotation) * Math.PI / 180;
     volvelleCtx.rotate(angle);
 
     // Map from disc Canvas coords to guide coords
@@ -165,8 +180,13 @@ function drawVolvelleDisc() {
 function drawGuideWithCutout() {
   const viewW = guideCanvas.width;
   const viewH = guideCanvas.height;
-  guideCtx.clearRect(0, 0, viewW, viewH);
+  guideCtx.clearRect(0, 0, viewH, viewH); // Fixed typo: viewH instead of viewW
   guideCtx.save();
+  
+  // Apply Global View Transform (Pan & Zoom)
+  guideCtx.translate(offsetX, offsetY);
+  guideCtx.scale(scale, scale);
+
   guideCtx.scale(viewW / canvasW, viewH / canvasH);
   if (guideImg) guideCtx.drawImage(guideImg, 0, 0, canvasW, canvasH);
   if (guideCutoutPathStr) {
@@ -189,7 +209,6 @@ function animateToFace(targetFace) {
   if (isAnimating) return;
   isAnimating = true;
 
-  // Calculate rotation step from face data
   const targetRotation = -faceData[targetFace].rotation;
   const start = rotation;
   let delta = ((targetRotation - start + 540) % 360) - 180;
@@ -198,11 +217,13 @@ function animateToFace(targetFace) {
   function step() {
     frame++;
     rotation = start + (delta * frame / frames);
-    volvelleCanvas.style.transform = `rotate(${rotation}deg)`;
+    // We no longer use CSS transform on the canvas element itself, 
+    // instead we redraw the disc with the current rotation.
+    redraw();
     if (frame < frames) requestAnimationFrame(step);
     else {
       rotation = targetRotation;
-      volvelleCanvas.style.transform = `rotate(${rotation}deg)`;
+      redraw();
       isAnimating = false;
     }
   }
@@ -210,6 +231,8 @@ function animateToFace(targetFace) {
 }
 
 // ─── Controls ───────────────────────────────────────────────────
+const btnResetView = document.getElementById('btnResetView');
+
 prevBtn.onclick = () => {
   if (isAnimating || faceData.length === 0) return;
   currentFace = (currentFace + faceData.length - 1) % faceData.length;
@@ -223,6 +246,13 @@ nextBtn.onclick = () => {
   animateToFace(currentFace);
 };
 
+btnResetView.onclick = () => {
+  scale = 1;
+  offsetX = 0;
+  offsetY = 0;
+  redraw();
+};
+
 function updateFaceLabel() {
   if (faceData.length === 0) {
     faceLabel.textContent = 'Loading…';
@@ -231,6 +261,94 @@ function updateFaceLabel() {
   const label = faceData[currentFace].label || `Face ${currentFace + 1}`;
   faceLabel.textContent = `${label} (${currentFace + 1}/${faceData.length})`;
 }
+
+// ─── Interaction ────────────────────────────────────────────────
+panel.addEventListener('wheel', (e) => {
+  e.preventDefault();
+  const zoomSpeed = 0.001;
+  const delta = -e.deltaY;
+  const zoomFactor = Math.pow(1.1, delta / 100);
+  
+  // Zoom toward mouse position
+  const rect = panel.getBoundingClientRect();
+  const mouseX = e.clientX - rect.left;
+  const mouseY = e.clientY - rect.top;
+  
+  offsetX -= (mouseX - offsetX) * (zoomFactor - 1);
+  offsetY -= (mouseY - offsetY) * (zoomFactor - 1);
+  scale *= zoomFactor;
+  
+  redraw();
+}, { passive: false });
+
+panel.addEventListener('mousedown', (e) => {
+  const rect = panel.getBoundingClientRect();
+  const mx = e.clientX - rect.left;
+  const my = e.clientY - rect.top;
+  
+  // Check if clicking inside the disc area (approximate)
+  const discCX = (discX + discW / 2) * (rect.width / canvasW) + offsetX;
+  const discCY = (discY + discH / 2) * (rect.height / canvasH) + offsetY;
+  const dist = Math.sqrt((mx - discCX)**2 + (my - discCY)**2);
+  const discRadius = (discW / 2) * (rect.width / canvasW) * scale;
+  
+  if (dist < discRadius) {
+    isRotating = true;
+  } else {
+    isPanning = true;
+  }
+  
+  lastMousePos = { x: mx, y: my };
+});
+
+window.addEventListener('mousemove', (e) => {
+  if (!isPanning && !isRotating) return;
+  
+  const rect = panel.getBoundingClientRect();
+  const mx = e.clientX - rect.left;
+  const my = e.clientY - rect.top;
+  
+  if (isPanning) {
+    offsetX += mx - lastMousePos.x;
+    offsetY += my - lastMousePos.y;
+    redraw();
+  } else if (isRotating) {
+    const discCX = (discX + discW / 2) * (rect.width / canvasW) + offsetX;
+    const discCY = (discY + discH / 2) * (rect.height / canvasH) + offsetY;
+    
+    const angleRad = Math.atan2(my - discCY, mx - discCX);
+    const angleDeg = angleRad * 180 / Math.PI;
+    
+    // Update rotation and snap to nearest face
+    rotation = angleDeg;
+    
+    // Find nearest face based on rotation
+    let bestFace = 0;
+    let minDiff = Infinity;
+    faceData.forEach((face, i) => {
+      let diff = Math.abs(face.rotation - rotation);
+      if (diff > 180) diff = 360 - diff;
+      if (diff < minDiff) {
+        minDiff = diff;
+        bestFace = i;
+      }
+    });
+    
+    if (bestFace !== currentFace) {
+      currentFace = bestFace;
+      updateFaceLabel();
+    }
+    
+    redraw();
+  }
+  
+  lastMousePos = { x: mx, y: my };
+});
+
+window.addEventListener('mouseup', () => {
+  isPanning = false;
+  isRotating = false;
+});
 
 // ─── IIIF Resolution Chain ──────────────────────────────────────
 async function resolveImageFromCanvas(canvasIdOrObj) {
