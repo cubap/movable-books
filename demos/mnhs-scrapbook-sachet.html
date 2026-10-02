@@ -5,51 +5,100 @@ permalink: /demos/mnhs-scrapbook-sachet.html
 ---
 
 <div class="demo-mnhs-scrapbook">
-  <h1>Birchwood League of Women Voters scrapbook — sachet extraction</h1>
+  <h1>Birchwood League of Women Voters scrapbook: flap and sachet</h1>
   <p>
-    A 1950s publicity scrapbook with a flap that opens to reveal a pocket containing a foil
-    sachet of hand lotion. Drag the slider (or press Play) to move through the four states:
-    flap closed → flap open → sachet extracted → sachet moved aside.
+    A 1950s publicity scrapbook at the Minnesota Historical Society. A card is pasted along the
+    top edge of the page, hangs down over a photograph, and is tucked into a pocket at its bottom.
+    Lower on the page a second pocket holds foil sachets of Balm Argent hand lotion.
+  </p>
+  <p>
+    Drag up on the page, or use the slider. The card turns on its top hinge and foreshortens as it
+    comes up. Keep pulling and a sachet slides out of its pocket and stops near the top of the page.
   </p>
 
   <div class="panel-and-controls">
-    <div class="image-panel" aria-label="Scrapbook sachet state animation">
-      <img id="img-05" alt="State 1: flap closed, sachet in pocket" src="{{ '/assets/images/mnhs-scrapbook/05_cropped.jpg' | relative_url }}" />
-      <img id="img-06" class="is-hidden" alt="State 2: flap open, sachet in pocket" src="{{ '/assets/images/mnhs-scrapbook/06_cropped.jpg' | relative_url }}" />
-      <img id="img-07" class="is-hidden" alt="State 3: sachet extracted, draped over flap" src="{{ '/assets/images/mnhs-scrapbook/07_cropped.jpg' | relative_url }}" />
-      <img id="img-08" class="is-hidden" alt="State 4: sachet moved aside on the page" src="{{ '/assets/images/mnhs-scrapbook/08_cropped.jpg' | relative_url }}" />
+    <div class="stage" id="stage" role="application"
+         aria-label="Scrapbook page. Drag up to open the flap and pull out a sachet, or use the slider.">
+      <img class="layer base" src="{{ '/assets/images/mnhs-scrapbook/05_cropped.jpg' | relative_url }}" alt="" />
+
+      <div class="layer pocket" aria-hidden="true">
+        <img src="{{ '/assets/images/mnhs-scrapbook/06_cropped.jpg' | relative_url }}" alt="" />
+      </div>
+
+      <div class="flap-space">
+        <div class="flap" id="flap">
+          <div class="face recto" aria-hidden="true">
+            <img src="{{ '/assets/images/mnhs-scrapbook/05_cropped.jpg' | relative_url }}" alt="" />
+          </div>
+          <div class="face verso" aria-hidden="true">
+            <img src="{{ '/assets/images/mnhs-scrapbook/06_cropped.jpg' | relative_url }}" alt="" />
+          </div>
+        </div>
+      </div>
+
+      <img class="sachet" id="sachet" src="{{ '/assets/images/mnhs-scrapbook/sachet-cutout.png' | relative_url }}" alt="" />
+      <div class="layer pocket-lip" aria-hidden="true">
+        <img src="{{ '/assets/images/mnhs-scrapbook/05_cropped.jpg' | relative_url }}" alt="" />
+      </div>
+
+      <p class="hint" id="hint">Drag up</p>
     </div>
 
     <div class="controls">
-      <label for="state">State</label>
-      <input id="state" type="range" min="0" max="3" value="0" step="0.001" aria-label="Scrapbook state (0-3)" />
+      <label for="progress">Interaction</label>
+      <input id="progress" type="range" min="0" max="1000" value="0" step="1"
+             aria-label="Interaction progress: flap opening, then sachet extraction" />
       <div class="ticks">
-        <span>Closed</span><span>Flap open</span><span>Extracted</span><span>Moved aside</span>
+        <span>Flap closed</span><span>Flap up</span><span>Sachet out</span>
       </div>
+      <p class="readout" id="readout" aria-live="polite">Flap closed.</p>
 
       <div class="btn-row">
-        <button type="button" id="btnPlay">▶ Play</button>
-        <button type="button" id="btnReset" aria-label="Reset to flap closed">⟲ Reset</button>
+        <button type="button" id="btnPlay">Play</button>
+        <button type="button" id="btnReset">Reset</button>
       </div>
 
       <details class="details-info">
-        <summary>About this object &amp; the states</summary>
+        <summary>What each photograph is</summary>
         <ul>
-          <li><strong>05</strong> — Flap closed: the cover card sits over the pocket; the sachet is tucked inside.</li>
-          <li><strong>06</strong> — Flap open: the “BALM ARGENTA” pocket and directions are revealed, sachet still in place.</li>
-          <li><strong>07</strong> — The foil sachet is pulled out and draped over the top edge of the open flap card.</li>
-          <li><strong>08</strong> — The sachet is moved aside and lies flat on the page (lower-right), flap closed again.</li>
+          <li><strong>05</strong> The starting point. Flap down, sachets in their pocket.</li>
+          <li><strong>06</strong> Flap folded up over the top edge. You get the inside of the flap, the
+            photograph it was covering, and the sachets.</li>
+          <li><strong>07</strong> One sachet pulled up to the top of the page.</li>
+          <li><strong>08</strong> A sachet lying flat on the page. Not a state in the interaction; it is
+            the frame the sachet cutout was trimmed from.</li>
         </ul>
       </details>
 
       <details class="details-info">
-        <summary>Photography recommendations</summary>
+        <summary>How this one is built</summary>
         <ul>
-          <li>Lock camera position, exposure, and white balance across all states so the crossfade aligns without flicker.</li>
-          <li>Include a gray card or color target in at least one frame per setup.</li>
-          <li>For removable elements (like this sachet): photograph in place, mid-extraction, and fully removed on a plain, evenly-lit background at the same scale. A plain background enables a clean cutout (transparent PNG) for path-based animation later.</li>
-          <li>For flaps: capture each intermediate state (each flap individually, then combinations).</li>
-          <li>Keep the same resolution and aspect ratio across states; avoid re-cropping between shots.</li>
+          <li>Every layer is the same 1199&times;1600 scan, cropped with percentages. Nothing was
+            re-exported except the sachet.</li>
+          <li>The flap is one element with two faces and <code>transform-origin: top center</code>.
+            The recto is the 05 crop of the flap. The verso is the 06 crop of the folded-up flap,
+            stretched to the flap's full height so the 3D foreshortening puts it back where the
+            photograph has it.</li>
+          <li>The pocket layer sits between the base and the flap, so lifting the flap uncovers it.</li>
+          <li>The sachet is a transparent PNG cut from 08. It pops in at the pocket mouth, because the
+            real thing is hidden behind the paper edge until it moves, then slides out from under a
+            strip of the base image so it stays tucked for the start of its travel.</li>
+        </ul>
+      </details>
+
+      <details class="details-info">
+        <summary>Shooting this kind of object</summary>
+        <ul>
+          <li>Tripod, and don't move it. Match exposure and white balance between frames or the layers
+            shimmer where they meet.</li>
+          <li>Photograph the flap partway up as well as open and closed. You need at least one frame
+            with the flap out of the way to see what it covers.</li>
+          <li>For anything that comes out of a pocket, shoot it in place, partway out, and fully out
+            lying flat. The flat shot is the one you cut from.</li>
+          <li>Keep the same crop and pixel size for every frame. Re-cropping between shots costs you
+            the registration.</li>
+          <li>The inside of a flap is the hardest frame to light, because the flap is in the way of the
+            light. Expect to fix it in the crop.</li>
         </ul>
       </details>
     </div>
@@ -59,72 +108,209 @@ permalink: /demos/mnhs-scrapbook-sachet.html
 <style>
   .demo-mnhs-scrapbook .panel-and-controls { display: grid; grid-template-columns: 1fr; gap: 1rem; align-items: start; }
   @media (min-width: 900px){ .demo-mnhs-scrapbook .panel-and-controls { grid-template-columns: 2fr 1fr; } }
-  .demo-mnhs-scrapbook .image-panel {
+
+  .demo-mnhs-scrapbook .stage {
     position: relative; width: 100%; max-width: 800px;
-    aspect-ratio: 1199 / 1600; background: #111; border: 1px solid var(--border-color, #ddd); overflow: hidden;
+    aspect-ratio: 1199 / 1600; background: #111;
+    border: 1px solid var(--border-color, #ddd); overflow: hidden;
+    touch-action: none; cursor: grab; user-select: none;
   }
-  .demo-mnhs-scrapbook .image-panel img {
-    position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain;
-    transition: opacity 300ms ease; background: #111;
+  .demo-mnhs-scrapbook .stage.dragging { cursor: grabbing; }
+  /* The theme puts a 1rem margin and max-width:100% on every img. Both would wreck the
+     crops: the margin knocks them out of registration and max-width clamps the oversized
+     slices down to the box they are supposed to overflow. */
+  .demo-mnhs-scrapbook .stage img { margin: 0; display: block; max-width: none; }
+
+  /* Every crop is a full scan absolutely positioned inside a clipping box, so the offsets
+     land where the source pixels are. */
+  .demo-mnhs-scrapbook .layer, .demo-mnhs-scrapbook .face { position: absolute; overflow: hidden; }
+  .demo-mnhs-scrapbook .layer img, .demo-mnhs-scrapbook .face img { position: absolute; }
+
+  .demo-mnhs-scrapbook .base { inset: 0; z-index: 1; }
+  .demo-mnhs-scrapbook .base img { inset: 0; width: 100%; height: 100%; }
+
+  /* Flap footprint: x 212-404, y 197-491 of the 1199x1600 scan. */
+  .demo-mnhs-scrapbook .pocket {
+    left: 17.6814%; top: 12.3125%; width: 16.0133%; height: 18.375%;
+    z-index: 2;
   }
-  .demo-mnhs-scrapbook .image-panel img.is-hidden { opacity: 0; }
+  .demo-mnhs-scrapbook .pocket img {
+    width: 624.4792%; height: 544.2177%; left: -110.4167%; top: -67.0068%;
+  }
+
+  .demo-mnhs-scrapbook .flap-space {
+    position: absolute; inset: 0; z-index: 3;
+    perspective: 8000px; perspective-origin: 50% 12.3125%;
+  }
+  .demo-mnhs-scrapbook .flap {
+    position: absolute;
+    left: 17.6814%; top: 12.3125%; width: 16.0133%; height: 18.375%;
+    transform-origin: top center;
+    transform-style: preserve-3d;
+    will-change: transform;
+  }
+  /* Faces are leaves on purpose: Blink ignores backface-visibility on preserve-3d elements. */
+  .demo-mnhs-scrapbook .face { inset: 0; backface-visibility: hidden; }
+  .demo-mnhs-scrapbook .recto img {
+    width: 624.4792%; height: 544.2177%; left: -110.4167%; top: -67.0068%;
+  }
+  .demo-mnhs-scrapbook .verso { transform: rotateX(180deg); }
+  /* 06 crop x 214-388, y 57-199, stretched to the flap box. */
+  .demo-mnhs-scrapbook .verso img {
+    width: 689.0805%; height: 1126.7606%; left: -122.9885%; top: -40.1408%;
+  }
+
+  /* Sachet cutout is 150x88 source units; its silhouette sits at 6,6 to 144,82. */
+  .demo-mnhs-scrapbook .sachet {
+    position: absolute; z-index: 4;
+    left: 19.6414%; top: 73.6875%; width: 12.5104%; height: 5.5%;
+    opacity: 0; pointer-events: none;
+  }
+
+  /* A strip of the base image drawn over the sachet so it stays tucked at the start.
+     x 180-450, y 1250-1330. */
+  .demo-mnhs-scrapbook .pocket-lip {
+    left: 15.0125%; top: 78.125%; width: 22.5188%; height: 5%;
+    z-index: 5;
+  }
+  .demo-mnhs-scrapbook .pocket-lip img {
+    width: 444.0741%; height: 2000%; left: -66.6667%; top: -1562.5%;
+  }
+
+  .demo-mnhs-scrapbook .hint {
+    position: absolute; z-index: 6; left: 50%; top: 46%; transform: translateX(-50%);
+    margin: 0; padding: .25rem .7rem; border-radius: 999px;
+    background: rgba(0,0,0,.55); color: #fff; font-size: .85rem; letter-spacing: .02em;
+    pointer-events: none; transition: opacity 400ms ease;
+  }
+  .demo-mnhs-scrapbook .hint.gone { opacity: 0; }
+
   .demo-mnhs-scrapbook .controls { display: flex; flex-direction: column; gap: .6rem; }
   .demo-mnhs-scrapbook .controls input[type="range"] { width: 100%; }
   .demo-mnhs-scrapbook .ticks { display: flex; justify-content: space-between; font-size: .8rem; color: #555; gap: .25rem; }
   .demo-mnhs-scrapbook .ticks span { text-align: center; flex: 1; }
+  .demo-mnhs-scrapbook .readout { margin: 0; font-size: .9rem; min-height: 1.3em; color: #333; }
   .demo-mnhs-scrapbook .btn-row { display: flex; gap: .5rem; }
   .demo-mnhs-scrapbook .btn-row button { flex: 1; padding: .5rem .75rem; cursor: pointer; border: 1px solid var(--primary-color, #2c5aa0); background: var(--primary-color, #2c5aa0); color: #fff; border-radius: 4px; }
   .demo-mnhs-scrapbook .btn-row button:hover { background: var(--secondary-color, #0d5ba6); }
   .demo-mnhs-scrapbook .details-info summary { cursor: pointer; font-weight: 600; }
+  .demo-mnhs-scrapbook .details-info li { margin-bottom: .4rem; }
+  .demo-mnhs-scrapbook .details-info code { font-size: .85em; }
 </style>
 
 <script>
-  const stateInput = document.getElementById('state');
+  const stage = document.getElementById('stage');
+  const flap = document.getElementById('flap');
+  const sachet = document.getElementById('sachet');
+  const hint = document.getElementById('hint');
+  const slider = document.getElementById('progress');
+  const readout = document.getElementById('readout');
   const btnPlay = document.getElementById('btnPlay');
   const btnReset = document.getElementById('btnReset');
-  const imgs = ['img-05', 'img-06', 'img-07', 'img-08'].map(id => document.getElementById(id));
-  const NUM_STATES = imgs.length;
 
-  let playing = false;
+  const FLAP_MAX_DEG = 117;   // lands the folded flap where photograph 06 has it
+  const FLAP_END = 0.55;      // share of the timeline spent opening the flap
+  const POP_END = 0.16;       // share of the sachet phase spent popping in
+  const REST = { left: 19.6414, top: 73.6875 };
+  const OUT = { left: 20.2, top: 11.3125 };
+
+  const clamp = (v, a, b) => (v < a ? a : v > b ? b : v);
+  const lerp = (a, b, u) => a + (b - a) * u;
+  const easeInOut = u => (u < 0.5 ? 2 * u * u : 1 - Math.pow(-2 * u + 2, 2) / 2);
+
+  let t = 0;
+
+  function describe(v) {
+    if (v < 0.01) return 'Flap closed.';
+    if (v < FLAP_END - 0.02) return 'Flap lifting on its top hinge.';
+    if (v < FLAP_END + 0.02) return 'Flap up: inside of the flap, the photo under it, sachets in the pocket.';
+    if (v < 0.72) return 'Sachet coming out of the pocket.';
+    if (v < 0.995) return 'Sachet on its way up the page.';
+    return 'Sachet pulled up, where photograph 07 has it.';
+  }
+
+  function render() {
+    const ft = clamp(t / FLAP_END, 0, 1);
+    flap.style.transform = 'translateZ(0.6px) rotateX(' + (FLAP_MAX_DEG * ft).toFixed(3) + 'deg)';
+
+    const u = clamp((t - FLAP_END) / (1 - FLAP_END), 0, 1);
+    const pop = clamp(u / POP_END, 0, 1);
+    const travel = easeInOut(clamp((u - POP_END) / (1 - POP_END), 0, 1));
+
+    sachet.style.opacity = pop.toFixed(3);
+    sachet.style.left = lerp(REST.left, OUT.left, travel).toFixed(4) + '%';
+    sachet.style.top = lerp(REST.top, OUT.top, travel).toFixed(4) + '%';
+    sachet.style.transform =
+      'scale(' + lerp(0.9, 1, pop).toFixed(3) + ') rotate(' + (-3.5 * travel).toFixed(2) + 'deg)';
+    sachet.style.filter = 'drop-shadow(0 ' + (2 + 10 * travel).toFixed(1) + 'px ' +
+      (3 + 12 * travel).toFixed(1) + 'px rgba(0,0,0,' + (0.15 + 0.35 * travel).toFixed(2) + '))';
+
+    hint.classList.toggle('gone', t > 0.02);
+    readout.textContent = describe(t);
+    slider.value = String(Math.round(t * 1000));
+  }
+
+  slider.addEventListener('input', () => {
+    stopPlay();
+    t = clamp(Number(slider.value) / 1000, 0, 1);
+    render();
+  });
+
+  /* The flap phase and the sachet phase each track the pointer at their own rate, so one
+     continuous upward pull opens the flap and then walks the sachet up the page. */
+  let dragging = false;
+  let lastY = 0;
+
+  function beginDrag(y) {
+    dragging = true;
+    lastY = y;
+    stage.classList.add('dragging');
+    stopPlay();
+  }
+  function moveDrag(y) {
+    if (!dragging) return;
+    const h = stage.getBoundingClientRect().height;
+    const rate = t < FLAP_END ? 1 / (h * 0.4) : 1 / (h * 0.62);
+    t = clamp(t + (lastY - y) * rate, 0, 1);
+    lastY = y;
+    render();
+  }
+  function endDrag() {
+    dragging = false;
+    stage.classList.remove('dragging');
+  }
+
+  stage.addEventListener('pointerdown', e => {
+    e.preventDefault();
+    stage.setPointerCapture(e.pointerId);
+    beginDrag(e.clientY);
+  });
+  stage.addEventListener('pointermove', e => moveDrag(e.clientY));
+  stage.addEventListener('pointerup', endDrag);
+  stage.addEventListener('pointercancel', endDrag);
+
   let timer = null;
+  function stopPlay() {
+    if (timer) { cancelAnimationFrame(timer); timer = null; }
+    btnPlay.textContent = 'Play';
+  }
+  function startPlay() {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { t = 1; render(); return; }
+    const from = t >= 0.999 ? 0 : t;
+    const dur = 5200 * (1 - from);
+    const t0 = performance.now();
+    btnPlay.textContent = 'Pause';
+    const tick = now => {
+      const p = clamp((now - t0) / dur, 0, 1);
+      t = from + (1 - from) * easeInOut(p);
+      render();
+      timer = p < 1 ? requestAnimationFrame(tick) : null;
+      btnPlay.textContent = timer ? 'Pause' : 'Play';
+    };
+    timer = requestAnimationFrame(tick);
+  }
+  btnPlay.addEventListener('click', () => (timer ? stopPlay() : startPlay()));
+  btnReset.addEventListener('click', () => { stopPlay(); t = 0; render(); });
 
-  const applyState = (t) => {
-    imgs.forEach((img, i) => {
-      const dist = Math.abs(t - i);
-      const visible = dist < 1;
-      img.classList.toggle('is-hidden', !visible);
-      img.style.opacity = visible ? String(Math.max(0, 1 - dist)) : '0';
-    });
-  };
-
-  stateInput.addEventListener('input', (e) => {
-    applyState(Number(e.target.value));
-  });
-
-  const step = () => {
-    const cur = Number(stateInput.value);
-    const next = cur >= NUM_STATES - 1.001 ? 0 : cur + 1;
-    stateInput.value = String(next);
-    stateInput.dispatchEvent(new Event('input'));
-  };
-
-  const togglePlay = () => {
-    playing = !playing;
-    if (playing) {
-      btnPlay.textContent = '⏸ Pause';
-      timer = setInterval(step, 2600);
-    } else {
-      btnPlay.textContent = '▶ Play';
-      clearInterval(timer);
-    }
-  };
-
-  btnPlay.addEventListener('click', togglePlay);
-  btnReset.addEventListener('click', () => {
-    stateInput.value = '0';
-    applyState(0);
-    if (playing) { clearInterval(timer); playing = false; btnPlay.textContent = '▶ Play'; }
-  });
-
-  applyState(0);
+  render();
 </script>
